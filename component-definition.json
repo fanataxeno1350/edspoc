@@ -158,7 +158,7 @@
           }
         },
         {
-          "title": "Hero",
+          "title": "Hero2",
           "id": "hero",
           "plugins": {
             "xwalk": {
