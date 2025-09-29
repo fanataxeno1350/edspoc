@@ -243,7 +243,7 @@
         "component": "text",
         "valueType": "string",
         "name": "imageAlt2",
-        "label": "Alt",
+        "label": "Alt2",
         "value": ""
       },
       {
