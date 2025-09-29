@@ -223,7 +223,7 @@
     ]
   },
   {
-    "id": "hero2",
+    "id": "hero",
     "fields": [
       {
         "component": "reference",
@@ -236,6 +236,13 @@
         "component": "text",
         "valueType": "string",
         "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt2",
         "label": "Alt",
         "value": ""
       },
