@@ -3,8 +3,6 @@
     {
       "title": "Hero Homepage",
       "id": "herohomepage",
-      "icon": "hero-icon",
-      "category": "content",
       "plugins": {
         "xwalk": {
           "page": {
