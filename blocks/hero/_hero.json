@@ -40,6 +40,12 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },   {
+          "component": "reference",
+          "valueType": "string",
+          "name": "imageextra",
+          "label": "Image Extra",
+          "multi": false
         }
       ]
     }
