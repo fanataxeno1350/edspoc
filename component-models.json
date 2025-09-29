@@ -212,6 +212,172 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "imageextra",
+        "label": "Image Extra",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt2",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "herohomepage",
+    "description": "Block model for Hero Homepage rendering",
+    "fields": [
+      {
+        "component": "image",
+        "name": "backgroundImage",
+        "label": "Background Image",
+        "description": "The main background image for the hero block.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "video",
+        "name": "backgroundVideo",
+        "label": "Background Video",
+        "description": "Background video file.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "video",
+        "name": "posterVideo",
+        "label": "Poster Video",
+        "description": "Poster/alternate video file.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "richtext",
+        "name": "title",
+        "label": "Title",
+        "description": "Main title for the hero section.",
+        "required": true,
+        "placeholder": "Enter hero title...",
+        "group": "Text",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "description": "Description for the hero section.",
+        "required": false,
+        "placeholder": "Enter hero description...",
+        "group": "Text",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "text",
+        "name": "cta_1_text",
+        "label": "CTA 1 Text",
+        "description": "Text for the first call to action.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "aem-content",
+        "name": "cta_1_link",
+        "label": "CTA 1 Link",
+        "description": "Link for the first call to action.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "text",
+        "name": "cta_2_text",
+        "label": "CTA 2 Text",
+        "description": "Text for the second call to action.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "aem-content",
+        "name": "cta_2_link",
+        "label": "CTA 2 Link",
+        "description": "Link for the second call to action.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
+      },
+      {
+        "component": "text",
+        "name": "videoCtaText",
+        "label": "Video CTA Text",
+        "description": "Text for the video play call to action button.",
+        "required": false,
+        "placeholder": "",
+        "group": "",
+        "collapsed": false,
+        "default": "",
+        "options": null
       }
     ]
   }
