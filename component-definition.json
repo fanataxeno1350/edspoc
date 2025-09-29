@@ -171,6 +171,18 @@
               }
             }
           }
+        },
+        {
+          "title": "Hero Homepage",
+          "id": "herohomepage",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "fields": null
+              }
+            }
+          }
         }
       ]
     }
