@@ -73,7 +73,7 @@
                 },
                 {
                     "component": "text",
-                    "description": "Text for CTA button.",
+                    "description": "Text for button.",
                     "label": "CTA Text",
                     "name": "ctaText",
                     "valueType": "string"
