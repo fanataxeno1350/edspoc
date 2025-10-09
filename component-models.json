@@ -292,5 +292,67 @@
         "value": ""
       }
     ]
+  },
+  {
+    "id": "textandmedia",
+    "description": "Block model for Text and Media rendering",
+    "fields": [
+      {
+        "component": "image",
+        "description": "Primary image for the block.",
+        "label": "Main Image",
+        "name": "media_image",
+        "required": true,
+        "valueType": "string"
+      },
+      {
+        "component": "image",
+        "description": "Image used for mobile devices.",
+        "label": "Mobile Image",
+        "name": "media_imageMobile",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "description": "Alternative text for the image.",
+        "label": "Image Alt Text",
+        "name": "media_imageAlt",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "description": "Headline of the block.",
+        "label": "Title",
+        "name": "title",
+        "required": true,
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "description": "Main text content.",
+        "label": "Body",
+        "name": "body",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "description": "Link for the call-to-action.",
+        "label": "CTA Link",
+        "name": "cta_link",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "description": "Text for the call-to-action button.",
+        "label": "CTA Text",
+        "name": "cta_text",
+        "required": false,
+        "valueType": "string"
+      }
+    ]
   }
 ]
