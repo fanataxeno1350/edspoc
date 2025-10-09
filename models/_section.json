@@ -52,7 +52,8 @@
         "columns",
         "fragment",
         "quote",
-        "textandmedia"
+        "textandmedia",
+        "interactive-list"
       ]
     }
   ]
