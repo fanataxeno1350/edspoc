@@ -1,0 +1,131 @@
+{
+  "definitions": [
+    {
+      "title": "Interactive List",
+      "id": "interactive-list",
+      "icon": "list-icon",
+      "category": "content",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "backgroundImage": "/static/image/scarp/new/pillars-green.webp",
+              "ctaLink": "/qiddiya-city/",
+              "ctaText": "Explore Qiddiya City",
+              "headline": "<h2>Bringing entertainment, sports, and culture to the forefront</h2>",
+              "items": [
+                {
+                  "description": "<p>One of Qiddiya Investment Company’s main goals is to establish fun-filled destinations for thrill-seekers, including both locals and visitors.</p>",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/1754989656235.webp",
+                  "imageAlt": "Six Flags Qiddiya City offers thrilling rides and immersive attractions.",
+                  "title": "Entertainment"
+                },
+                {
+                  "description": "<p>Qiddiya Investment Company promotes sports by developing facilities, establishing strategic partnerships, and hosting sporting events of all kinds—including esports and motorsports—thus catering to athletes, fans, and the industry at large.</p>",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/1754989656427.webp",
+                  "imageAlt": "Qiddiya Speed Park Track at night, built for world-class motorsport and high-speed thrills.",
+                  "title": "Sports"
+                },
+                {
+                  "description": "<p>This is the stage on which the Kingdom showcases its rich culture and traditions to the world and the bridge that connects us to the wonderful things the rest of the world has to offer.</p>",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/1754989656316.webp",
+                  "imageAlt": "Illuminated Performing Arts Centre situated on the edge of the Tuwaiq Mountains.",
+                  "title": "Culture"
+                }
+              ],
+              "model": "interactive-list",
+              "name": "Interactive List"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "interactive-list",
+      "description": "Block model for Interactive List rendering",
+      "fields": [
+        {
+          "collapsed": false,
+          "component": "richtext",
+          "description": "Main headline of the block.",
+          "group": "Text",
+          "label": "Headline",
+          "name": "headline",
+          "placeholder": "Type block headline...",
+          "required": true,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "description": "Background image of the block.",
+          "label": "Background Image",
+          "name": "backgroundImage",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "description": "Link for CTA button.",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "description": "Text for CTA button.",
+          "label": "CTA Text",
+          "name": "ctaText",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "group",
+          "description": "List of cards in the block.",
+          "fields": [
+            {
+              "component": "aem-content",
+              "description": "Image URL for the card.",
+              "label": "Card Image",
+              "name": "image",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Alt text for card image.",
+              "label": "Image Alt Text",
+              "name": "imageAlt",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Title of the card.",
+              "label": "Card Title",
+              "name": "title",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "richtext",
+              "description": "Description text for the card.",
+              "label": "Card Description",
+              "name": "description",
+              "required": false,
+              "valueType": "string"
+            }
+          ],
+          "label": "Cards",
+          "name": "items",
+          "required": true,
+          "valueType": "object[]"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
