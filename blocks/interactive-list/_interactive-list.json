@@ -55,7 +55,6 @@
                     "label": "Headline",
                     "name": "headline",
                     "placeholder": "Type block headline...",
-                    "required": true,
                     "valueType": "string"
                 },
                 {
@@ -63,7 +62,6 @@
                     "description": "Background image of the block.",
                     "label": "Background Image",
                     "name": "backgroundImage",
-                    "required": false,
                     "valueType": "string"
                 },
                 {
@@ -71,7 +69,6 @@
                     "description": "Link for CTA button.",
                     "label": "CTA Link",
                     "name": "ctaLink",
-                    "required": false,
                     "valueType": "string"
                 },
                 {
@@ -79,20 +76,18 @@
                     "description": "Text for CTA button.",
                     "label": "CTA Text",
                     "name": "ctaText",
-                    "required": false,
                     "valueType": "string"
                 },
                 {
                     "component": "container",
                     "description": "List of cards in the block.",
-                    "multi":true,
+                    "multi": true,
                     "fields": [
                         {
                             "component": "aem-content",
                             "description": "Image URL for the card.",
                             "label": "Card Image",
                             "name": "image",
-                            "required": false,
                             "valueType": "string"
                         },
                         {
@@ -100,7 +95,6 @@
                             "description": "Alt text for card image.",
                             "label": "Image Alt Text",
                             "name": "imageAlt",
-                            "required": false,
                             "valueType": "string"
                         },
                         {
@@ -108,7 +102,6 @@
                             "description": "Title of the card.",
                             "label": "Card Title",
                             "name": "title",
-                            "required": true,
                             "valueType": "string"
                         },
                         {
@@ -116,13 +109,11 @@
                             "description": "Description text for the card.",
                             "label": "Card Description",
                             "name": "description",
-                            "required": false,
                             "valueType": "string"
                         }
                     ],
                     "label": "Cards",
-                    "name": "items",
-                    "required": true
+                    "name": "items"
                 }
             ]
         }
