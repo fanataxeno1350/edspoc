@@ -83,8 +83,9 @@
                     "valueType": "string"
                 },
                 {
-                    "component": "group",
+                    "component": "container",
                     "description": "List of cards in the block.",
+                    "multi":true,
                     "fields": [
                         {
                             "component": "aem-content",
@@ -121,8 +122,7 @@
                     ],
                     "label": "Cards",
                     "name": "items",
-                    "required": true,
-                    "valueType": "object[]"
+                    "required": true
                 }
             ]
         }
