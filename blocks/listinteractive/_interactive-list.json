@@ -81,48 +81,6 @@
           "name": "ctaText",
           "required": false,
           "valueType": "string"
-        },
-        {
-          "component": "group",
-          "description": "List of cards in the block.",
-          "fields": [
-            {
-              "component": "aem-content",
-              "description": "Image URL for the card.",
-              "label": "Card Image",
-              "name": "image",
-              "required": false,
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "description": "Alt text for card image.",
-              "label": "Image Alt Text",
-              "name": "imageAlt",
-              "required": false,
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "description": "Title of the card.",
-              "label": "Card Title",
-              "name": "title",
-              "required": true,
-              "valueType": "string"
-            },
-            {
-              "component": "richtext",
-              "description": "Description text for the card.",
-              "label": "Card Description",
-              "name": "description",
-              "required": false,
-              "valueType": "string"
-            }
-          ],
-          "label": "Cards",
-          "name": "items",
-          "required": true,
-          "valueType": "object[]"
         }
       ]
     }
