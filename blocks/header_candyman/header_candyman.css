@@ -1,0 +1,211 @@
+.header-section-top-0 {
+  top: 0 !important; /* Equivalent to 0px assuming 16px base */
+}
+.header-section-start-0 {
+  left: 0 !important; /* Equivalent to 0px assuming 16px base */
+}
+.header-section-w-100 {
+  width: 100% !important; /* Equivalent to 100% assuming 16px base */
+}
+.header-section-z-3 {
+  z-index: 3 !important; /* Equivalent to 3 assuming 16px base */
+}
+.header-container-hd {
+  margin-left: auto; /* Equivalent to 0px assuming 16px base */
+  margin-right: auto; /* Equivalent to 0px assuming 16px base */
+  max-width: 115pc; /* Equivalent to 1840px assuming 16px base */
+}
+.header-fmm-container {
+  padding-left: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+  padding-right: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+  width: 100%; /* Equivalent to 100% assuming 16px base */
+}
+.header-p-0 {
+  padding: 0 !important; /* Equivalent to 0px assuming 16px base */
+}
+.header-primary {
+  background-color: #001871; /* Equivalent to #001871 assuming 16px base */
+  height: 3.75rem; /* Equivalent to 60px assuming 16px base */
+}
+@media (min-width: 992px) {
+  .header-primary {
+    height: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  }
+}
+.header-container {
+  margin-left: auto; /* Equivalent to 0px assuming 16px base */
+  margin-right: auto; /* Equivalent to 0px assuming 16px base */
+  padding-left: calc(var(--bs-gutter-x) * 0.5); /* Equivalent to 12px assuming 16px base */
+  padding-right: calc(var(--bs-gutter-x) * 0.5); /* Equivalent to 12px assuming 16px base */
+  width: 100%; /* Equivalent to 100% assuming 16px base */
+}
+.header-h-100 {
+  height: 100% !important; /* Equivalent to 100% assuming 16px base */
+}
+.header-d-flex {
+  display: flex !important; /* Equivalent to flex assuming 16px base */
+}
+.header-justify-content-between {
+  justify-content: space-between !important; /* Equivalent to space-between assuming 16px base */
+}
+.header-align-items-center {
+  align-items: center !important; /* Equivalent to center assuming 16px base */
+}
+.header-primary__left {
+  align-items: center; /* Equivalent to center assuming 16px base */
+  display: flex; /* Equivalent to flex assuming 16px base */
+}
+.header-primary__hamburger {
+  align-items: center; /* Equivalent to center assuming 16px base */
+  aspect-ratio: 1 / 1; /* Equivalent to 1 / 1 assuming 16px base */
+  display: flex; /* Equivalent to flex assuming 16px base */
+  justify-content: center; /* Equivalent to center assuming 16px base */
+  width: 3rem; /* Equivalent to 48px assuming 16px base */
+}
+.header-d-lg-none {
+  display: none !important; /* Equivalent to none assuming 16px base */
+}
+.header-primary__hamburger--icon {
+  cursor: pointer; /* Equivalent to pointer assuming 16px base */
+  display: flex; /* Equivalent to flex assuming 16px base */
+  flex-direction: column; /* Equivalent to column assuming 16px base */
+  height: 1.1875rem; /* Equivalent to 19px assuming 16px base */
+  justify-content: space-between; /* Equivalent to space-between assuming 16px base */
+  width: 1.3125rem; /* Equivalent to 21px assuming 16px base */
+}
+.header-primary__hamburger--element {
+  background-color: #fff; /* Equivalent to rgb(255, 255, 255) assuming 16px base */
+  border-radius: 0.1875rem; /* Equivalent to 3px assuming 16px base */
+  height: 0.1875rem; /* Equivalent to 3px assuming 16px base */
+  transition: all 0.25s linear; /* Equivalent to all 0.25s linear 0s none running assuming 16px base */
+  width: 100%; /* Equivalent to 100% assuming 16px base */
+}
+.header-primary__logo {
+  aspect-ratio: 106 / 30; /* Equivalent to 3.53333 / 1 assuming 16px base */
+  width: 10.3125rem; /* Equivalent to 165px assuming 16px base */
+}
+.header-d-inline-block {
+  display: inline-block !important; /* Equivalent to inline-block assuming 16px base */
+}
+.header-cta-analytics {
+  cursor: pointer; /* Equivalent to pointer assuming 16px base */
+}
+.header-object-fit-contain {
+  object-fit: contain !important; /* Equivalent to contain assuming 16px base */
+}
+.header-w-100 {
+  width: 100% !important; /* Equivalent to 100% assuming 16px base */
+}
+.header-primary__navbar--desktop {
+  display: block; /* Equivalent to block assuming 16px base */
+}
+.header-d-none {
+  display: none !important; /* Equivalent to none assuming 16px base */
+}
+@media (min-width: 992px) {
+  .header-primary__navbar--desktop {
+    margin-left: 0px; /* Equivalent to 0px assuming 16px base */
+    margin-right: 0px; /* Equivalent to 0px assuming 16px base */
+    padding-left: 0px; /* Equivalent to 0px assuming 16px base */
+    padding-right: 0px; /* Equivalent to 0px assuming 16px base */
+  }
+  .header-primary__logo {
+    margin-right: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  }
+}
+@media (min-width: 1200px) {
+  .header-primary__logo {
+    margin-right: 3rem; /* Equivalent to 48px assuming 16px base */
+  }
+}
+.header-cmp-navigation__group {
+  align-items: center; /* Equivalent to center assuming 16px base */
+  column-gap: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  display: flex; /* Equivalent to flex assuming 16px base */
+  flex-direction: row; /* Equivalent to row assuming 16px base */
+  justify-content: center; /* Equivalent to center assuming 16px base */
+  list-style: none; /* Equivalent to none assuming 16px base */
+}
+@media (min-width: 1200px) {
+  .header-cmp-navigation__group {
+    column-gap: 2.5rem; /* Equivalent to 40px assuming 16px base */
+  }
+}
+.header-cmp-navigation__item--level-0 {
+  position: relative; /* Equivalent to relative assuming 16px base */
+}
+.header-cmp-navigation__item-link {
+  color: #fff; /* Equivalent to rgb(255, 255, 255) assuming 16px base */
+  font-size: 1.125rem; /* Equivalent to 18px assuming 16px base */
+  font-weight: 700; /* Equivalent to 700 assuming 16px base */
+  line-height: 1rem; /* Equivalent to 16px assuming 16px base */
+  white-space: nowrap; /* Equivalent to nowrap assuming 16px base */
+}
+.header-dropdown-icon {
+  background-image: url("/etc.clientlibs/candyman/clientlibs/clientlib-site/resources/images/down-arrow-white.svg"); /* Equivalent to url("/etc.clientlibs/candyman/clientlibs/clientlib-site/resources/images/down-arrow-white.svg") assuming 16px base */
+  background-position: 50% 50%; /* Equivalent to 50% 50% assuming 16px base */
+  background-repeat: no-repeat; /* Equivalent to no-repeat assuming 16px base */
+  background-size: contain; /* Equivalent to contain assuming 16px base */
+  cursor: pointer; /* Equivalent to pointer assuming 16px base */
+  display: inline-block; /* Equivalent to inline-block assuming 16px base */
+  height: 0.5rem; /* Equivalent to 8px assuming 16px base */
+  margin-left: 0.5rem; /* Equivalent to 8px assuming 16px base */
+  width: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+}
+.header-primary__mobile--logo {
+  display: none !important; /* Equivalent to none assuming 16px base */
+}
+.header-flex-lg-row-reverse {
+  flex-direction: row-reverse !important; /* Equivalent to row-reverse assuming 16px base */
+}
+.header-primary__modal {
+  background-color: #fff; /* Equivalent to rgb(255, 255, 255) assuming 16px base */
+  display: none; /* Equivalent to none assuming 16px base */
+  height: calc(100dvh - 60px); /* Equivalent to calc(100vh - 60px) assuming 16px base */
+  top: 3.75rem; /* Equivalent to 60px assuming 16px base */
+}
+.header-primary__modal--container {
+  background-color: rgba(0, 0, 0, 0.4); /* Equivalent to rgba(0, 0, 0, 0.4) assuming 16px base */
+}
+.header-primary__sidemenu {
+  align-items: center; /* Equivalent to center assuming 16px base */
+  background-color: #f8f8f8; /* Equivalent to rgb(248, 248, 248) assuming 16px base */
+  display: flex; /* Equivalent to flex assuming 16px base */
+  flex-direction: column; /* Equivalent to column assuming 16px base */
+  justify-content: space-between; /* Equivalent to space-between assuming 16px base */
+  width: 20rem; /* Equivalent to 320px assuming 16px base */
+}
+.header-overflow-auto {
+  overflow: auto !important; /* Equivalent to auto assuming 16px base */
+}
+.header-primary__sidemenu--navbar {
+  margin-bottom: 10.125rem; /* Equivalent to 162px assuming 16px base */
+  width: 100%; /* Equivalent to 100% assuming 16px base */
+}
+.header-primary__spacer {
+  background-color: #001871; /* Equivalent to rgb(0, 24, 113) assuming 16px base */
+  height: 0; /* Equivalent to 0px assuming 16px base */
+}
+.header-cmp-navigation__group .header-cmp-navigation__item--level-0 .header-cmp-navigation__group {
+  background-color: #fff; /* Equivalent to rgb(255, 255, 255) assuming 16px base */
+  border-radius: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.149); /* Equivalent to 0px 3px 8px rgba(0, 0, 0, 0.149) assuming 16px base */
+  display: none; /* Equivalent to none assuming 16px base */
+  left: 50%; /* Equivalent to 50% assuming 16px base */
+  list-style: none; /* Equivalent to none assuming 16px base */
+  opacity: 0.9; /* Equivalent to 0.9 assuming 16px base */
+  padding: 0.625rem 0.375rem; /* Equivalent to 10px 6px assuming 16px base */
+  position: absolute; /* Equivalent to absolute assuming 16px base */
+  row-gap: 1rem; /* Equivalent to 16px assuming 16px base */
+  text-align: center; /* Equivalent to center assuming 16px base */
+  top: calc(100% + 10px); /* Equivalent to calc(100% + 10px) assuming 16px base */
+  transform: translateX(-50%); /* Equivalent to translateX(-50%) assuming 16px base */
+  z-index: 10; /* Equivalent to 10 assuming 16px base */
+}
+.header-cmp-navigation__group .header-cmp-navigation__item--level-0 .header-cmp-navigation__group .header-cmp-navigation__item--level-1 .header-cmp-navigation__item-link {
+  color: #001871; /* Equivalent to rgb(0, 24, 113) assuming 16px base */
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 500; /* Equivalent to 500 assuming 16px base */
+  line-height: 1rem; /* Equivalent to 16px assuming 16px base */
+  white-space: nowrap; /* Equivalent to nowrap assuming 16px base */
+}

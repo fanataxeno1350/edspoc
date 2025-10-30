@@ -209,6 +209,105 @@
     ]
   },
   {
+    "id": "header_candyman",
+    "description": "Block model for site header with navigation and logo",
+    "fields": [
+      {
+        "component": "aem-content",
+        "description": "URL of the main desktop logo image.",
+        "label": "Desktop Logo Image",
+        "name": "logoDesktop",
+        "required": true,
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "description": "Alt text for the desktop logo image.",
+        "label": "Desktop Logo Alt Text",
+        "name": "logoDesktopAlt",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "description": "URL for the desktop logo link.",
+        "label": "Desktop Logo Link",
+        "name": "logoDesktopHref",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "description": "URL of the mobile logo image.",
+        "label": "Mobile Logo Image",
+        "name": "logoMobile",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "description": "Alt text for the mobile logo image.",
+        "label": "Mobile Logo Alt Text",
+        "name": "logoMobileAlt",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "description": "URL for the mobile logo link.",
+        "label": "Mobile Logo Link",
+        "name": "logoMobileHref",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "description": "List of items in the header navigation.",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Nav Item Text",
+            "name": "text",
+            "required": true,
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "label": "Nav Item Link",
+            "name": "href",
+            "required": true,
+            "valueType": "string"
+          },
+          {
+            "component": "container",
+            "fields": [
+              {
+                "component": "text",
+                "label": "Child Nav Item Text",
+                "name": "text",
+                "required": true,
+                "valueType": "string"
+              },
+              {
+                "component": "aem-content",
+                "label": "Child Nav Item Link",
+                "name": "href",
+                "required": true,
+                "valueType": "string"
+              }
+            ],
+            "label": "Child Navigation Items",
+            "name": "children",
+            "required": false
+          }
+        ],
+        "label": "Navigation Items",
+        "name": "navItems",
+        "required": false
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {

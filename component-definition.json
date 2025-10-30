@@ -173,6 +173,57 @@
           }
         },
         {
+          "title": "Header Candyman",
+          "id": "header_candyman",
+          "icon": "header-icon",
+          "category": "navigation",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "logoDesktop": "/content/dam/candyman/Candyman-NewLogo-3148X3887PX.png",
+                  "logoDesktopAlt": "candyman Icon",
+                  "logoDesktopHref": "/home-page.html",
+                  "logoMobile": "/content/dam/candyman/Candyman-NewLogo-3148X3887PX.png",
+                  "logoMobileAlt": "candyman Icon",
+                  "logoMobileHref": "/home-page.html",
+                  "model": "header_candyman",
+                  "name": "header_candyman",
+                  "navItems": [
+                    {
+                      "children": [
+                        {
+                          "href": "/home-page/home/faqs.html",
+                          "text": "FAQs"
+                        },
+                        {
+                          "href": "/home-page/home/contact-us.html",
+                          "text": "Contact us"
+                        },
+                        {
+                          "href": "/home-page/home/terms-of-use.html",
+                          "text": "Terms of use"
+                        },
+                        {
+                          "href": "/home-page/home/gst-new-mrp.html",
+                          "text": "GST 2.0 New MRP"
+                        }
+                      ],
+                      "href": "/home-page/home.html",
+                      "text": "Home"
+                    },
+                    {
+                      "href": "/home-page/once-upon-a-time-by-candyman.html",
+                      "text": "Once Upon A Time By Candyman"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "plugins": {
