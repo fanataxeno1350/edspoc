@@ -58,6 +58,7 @@ export default function decorate(b) {
           }
         }
       }
+      
       const cards = wrapper.querySelectorAll(".o2-card.listinteractive-item");
       cards.forEach((card) => {
         card.classList.add("o2-card", "listinteractive-item");
