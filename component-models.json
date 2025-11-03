@@ -209,43 +209,112 @@
     ]
   },
   {
-    "id": "header-footer-boing",
-    "description": "",
+    "id": "header-footer",
+    "description": "Block model for Header and Footer rendering",
     "fields": [
       {
-        "component": "aem-content",
-        "label": "Menu Link Href",
-        "name": "href",
-        "valueType": "string"
-      },
-      {
         "component": "text",
-        "label": "Menu Text",
-        "name": "text",
+        "label": "App Name",
+        "name": "appName",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Menu Icon",
-        "name": "icon",
+        "label": "Logo Image",
+        "name": "logoImg",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Logo Link",
+        "name": "logoLink",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Login Link",
+        "name": "loginLink",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "componentType": "sidebar-menu-item",
+        "label": "Sidebar Menu Items",
+        "multi": true,
+        "name": "sidebarMenu"
+      },
+      {
+        "component": "container",
+        "componentType": "footer-link",
+        "label": "Footer Links",
+        "multi": true,
+        "name": "footerLinks"
+      },
+      {
+        "component": "container",
+        "componentType": "social-link",
+        "label": "Social Links",
+        "multi": true,
+        "name": "socialLinks"
+      },
+      {
+        "component": "reference",
+        "label": "Footer Logo 1",
+        "name": "footerLogo1",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Footer Logo 2",
+        "name": "footerLogo2",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Copyright Text",
+        "name": "copyright",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "footer-list-item",
+    "id": "sidebar-menu-item",
     "description": "",
     "fields": [
       {
+        "component": "reference",
+        "label": "Menu Icon",
+        "name": "icon",
+        "valueType": "string"
+      },
+      {
         "component": "aem-content",
-        "label": "Footer Link Href",
-        "name": "href",
+        "label": "Menu Link",
+        "name": "link",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "Footer Link Text",
-        "name": "text",
+        "label": "Menu Label",
+        "name": "label",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "footer-link",
+    "description": "",
+    "fields": [
+      {
+        "component": "aem-content",
+        "label": "Footer Link",
+        "name": "link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Footer Label",
+        "name": "label",
         "valueType": "string"
       }
     ]
@@ -256,20 +325,20 @@
     "fields": [
       {
         "component": "aem-content",
-        "label": "Social Link Href",
-        "name": "href",
+        "label": "Social Link",
+        "name": "link",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Social Icon",
+        "label": "Platform Icon",
         "name": "icon",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "Aria Label",
-        "name": "ariaLabel",
+        "label": "Platform Name",
+        "name": "platform",
         "valueType": "string"
       }
     ]

@@ -173,17 +173,17 @@
           }
         },
         {
-          "title": "Header Footer Boing",
-          "id": "header-footer-boing",
-          "icon": "header-footer-boing-icon",
+          "title": "Header Footer",
+          "id": "header-footer",
+          "icon": "header-footer-icon",
           "category": "navigation",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "filter": "header-footer-boing",
-                  "model": "header-footer-boing"
+                  "model": "header-footer",
+                  "name": "header-footer"
                 }
               }
             }
@@ -206,16 +206,16 @@
           }
         },
         {
-          "title": "Footer List Item",
-          "id": "footer-list-item",
+          "title": "Footer Link",
+          "id": "footer-link",
           "icon": "",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "footer-list-item",
-                  "name": "footer-list-item"
+                  "model": "footer-link",
+                  "name": "footer-link"
                 }
               }
             }
