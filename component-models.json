@@ -209,6 +209,162 @@
     ]
   },
   {
+    "id": "header-footer-boing",
+    "description": "",
+    "fields": [
+      {
+        "component": "aem-content",
+        "label": "Menu Link Href",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Menu Text",
+        "name": "text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Menu Icon",
+        "name": "icon",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "footer-list-item",
+    "description": "",
+    "fields": [
+      {
+        "component": "aem-content",
+        "label": "Footer Link Href",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Footer Link Text",
+        "name": "text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "social-link",
+    "description": "",
+    "fields": [
+      {
+        "component": "aem-content",
+        "label": "Social Link Href",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Social Icon",
+        "name": "icon",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Aria Label",
+        "name": "ariaLabel",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "header",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "App Name",
+        "name": "appName",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Menu Label",
+            "name": "label",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "label": "Menu Link",
+            "name": "href",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "label": "Menu Icon",
+            "name": "icon",
+            "valueType": "string"
+          }
+        ],
+        "label": "Sidebar Menu",
+        "multi": true,
+        "name": "sidebarMenu"
+      },
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Footer Link Label",
+            "name": "label",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "label": "Footer Link URL",
+            "name": "href",
+            "valueType": "string"
+          }
+        ],
+        "label": "Footer Links",
+        "multi": true,
+        "name": "footerLinks"
+      },
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Platform",
+            "name": "platform",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "label": "Social Link URL",
+            "name": "href",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "label": "Social Icon",
+            "name": "icon",
+            "valueType": "string"
+          }
+        ],
+        "label": "Social Links",
+        "multi": true,
+        "name": "socialLinks"
+      },
+      {
+        "component": "text",
+        "label": "Copyright Text",
+        "name": "copyright",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "header_candyman",
     "description": "Block model for site header with navigation and logo",
     "fields": [

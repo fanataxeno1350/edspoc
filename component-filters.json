@@ -19,7 +19,9 @@
       "quote",
       "textandmedia",
       "interactive-list",
-      "header_candyman"
+      "header_candyman",
+      "header",
+      "header-footer-boing"
     ]
   },
   {
@@ -47,6 +49,14 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "header-footer-boing",
+    "components": [
+      "sidebar-menu-item",
+      "footer-list-item",
+      "social-link"
     ]
   }
 ]
