@@ -15,37 +15,13 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "quote",
-      "textandmedia",
-      "interactive-list",
-      "header_candyman",
-      "header",
-      "header-footer-boing",
-      "headerfooter",
-      "carousel",
-      "featurecards",
-      "latestblogs",
-      "footerbrand",
-      "stickynavigation"
+      "fragment"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
-    ]
-  },
-  {
-    "id": "cards",
-    "components": [
-      "card"
-    ]
-  },
-  {
-    "id": "carousel",
-    "components": [
-      "carouselItem"
     ]
   },
   {
@@ -61,65 +37,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "featurecards",
-    "components": [
-      "featurecard",
-      "boltesitaresection"
-    ]
-  },
-  {
-    "id": "footer-brand",
-    "components": [
-      "footer-brand"
-    ]
-  },
-  {
-    "id": "footer-brand",
-    "components": [
-      "footer-list-column",
-      "footer-list-link",
-      "footer-social-link"
-    ]
-  },
-  {
-    "id": "sidebarMenu",
-    "components": [
-      "sidebar-menu-item"
-    ]
-  },
-  {
-    "id": "footerLinks",
-    "components": [
-      "footer-link"
-    ]
-  },
-  {
-    "id": "socialLinks",
-    "components": [
-      "social-link"
-    ]
-  },
-  {
-    "id": "headerfooter",
-    "components": [
-      "headerfootermenuitem",
-      "headerfooterfooterlink",
-      "headerfootersociallink"
-    ]
-  },
-  {
-    "id": "latestblogs",
-    "components": [
-      "latestblogcard"
-    ]
-  },
-  {
-    "id": "sticky-navigation",
-    "components": [
-      "sticky-navigation-item"
     ]
   }
 ]
