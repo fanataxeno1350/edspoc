@@ -161,6 +161,67 @@
     ]
   },
   {
+    "id": "carousel",
+    "description": "",
+    "fields": [
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "container",
+            "fields": [
+              {
+                "component": "container",
+                "fields": [
+                  {
+                    "component": "reference",
+                    "label": "Banner Media",
+                    "multi": false,
+                    "name": "carousel-banner-media",
+                    "valueType": "string"
+                  },
+                  {
+                    "component": "container",
+                    "fields": [
+                      {
+                        "component": "container",
+                        "fields": [
+                          {
+                            "component": "text",
+                            "label": "CTA Button Text",
+                            "name": "carousel-cmp-button__text",
+                            "valueType": "string"
+                          },
+                          {
+                            "component": "reference",
+                            "label": "CTA Button Link",
+                            "multi": false,
+                            "name": "carousel-cmp-button",
+                            "valueType": "string"
+                          }
+                        ],
+                        "label": "Banner CTA",
+                        "name": "carousel-banner-cta"
+                      }
+                    ],
+                    "label": "Banner CTA Container",
+                    "name": "carousel-boing__banner--cta"
+                  }
+                ],
+                "label": "Carousel Banner Section Wrapper",
+                "name": "carousel-banner-section__wrapper"
+              }
+            ],
+            "label": "Carousel Banner Section",
+            "name": "carousel-banner-section"
+          }
+        ],
+        "label": "Carousel Banner",
+        "name": "carousel-banner"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {
@@ -176,6 +237,116 @@
         "name": "rows",
         "value": "",
         "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "featurecards",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Link Href",
+        "name": "featurecards-link-href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link Title",
+        "name": "featurecards-link-title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link CTA Label",
+        "name": "featurecards-link-data-cta-label",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image Src",
+        "multi": false,
+        "name": "featurecards-image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Image Alt",
+        "name": "featurecards-image-alt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Title",
+        "name": "featurecards-title-h2",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Card Description",
+        "name": "featurecards-desc",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Arrow Icon",
+        "name": "featurecards-arrow-icon-btn",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "boltesitarecard",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Card Section Link Href",
+        "name": "featurecards-bolte-sitare-card-section-href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Section Link Title",
+        "name": "featurecards-bolte-sitare-card-section-title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Section Data Title",
+        "name": "featurecards-bolte-sitare-card-section-data-title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Card Section Image Src",
+        "multi": false,
+        "name": "featurecards-bolte-sitare-card-section--img",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Section Image Alt",
+        "name": "featurecards-bolte-sitare-card-section--img-alt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Section Title",
+        "name": "featurecards-bolte-sitare-card-section--title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Card Section Text",
+        "name": "featurecards-bolte-sitare-card-section--text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Section Button",
+        "name": "featurecards-bolte-sitare-card-section--btn",
+        "valueType": "string"
       }
     ]
   },
@@ -219,6 +390,80 @@
         "name": "imageextra",
         "label": "Image Extra",
         "multi": false
+      }
+    ]
+  },
+  {
+    "id": "latestblogs",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Blog URL",
+        "name": "url",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "CTA Label",
+        "name": "ctaLabel",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
+        "multi": false,
+        "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Published Date (ISO)",
+        "name": "date",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Display Date",
+        "name": "displayDate",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Blog Title",
+        "name": "title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "stickynavigation",
+    "description": "",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Icon",
+        "multi": false,
+        "name": "icon",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Alt Text",
+        "name": "alt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Label",
+        "name": "label",
+        "valueType": "string"
       }
     ]
   }
