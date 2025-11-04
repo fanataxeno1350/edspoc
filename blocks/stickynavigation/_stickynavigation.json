@@ -17,7 +17,7 @@
       }
     },
     {
-      "title": "Sticky Navigation Item",
+      "title": "Navigation Item",
       "id": "sticky-navigation-item",
       "icon": "",
       "plugins": {
@@ -40,19 +40,25 @@
       "fields": [
         {
           "component": "text",
-          "label": "Link",
-          "name": "link",
+          "label": "Link Href",
+          "name": "linkHref",
           "valueType": "string"
         },
         {
           "component": "text",
           "label": "Data Link",
-          "name": "data-link",
+          "name": "dataLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Link Class",
+          "name": "linkClass",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Icon Image",
+          "label": "Icon",
           "multi": false,
           "name": "icon",
           "valueType": "string"
@@ -60,13 +66,31 @@
         {
           "component": "text",
           "label": "Icon Alt Text",
-          "name": "icon-alt",
+          "name": "iconAlt",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Icon Class",
+          "name": "iconClass",
           "valueType": "string"
         },
         {
           "component": "text",
           "label": "Label",
           "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Label Class",
+          "name": "labelClass",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Item Class",
+          "name": "itemClass",
           "valueType": "string"
         }
       ]

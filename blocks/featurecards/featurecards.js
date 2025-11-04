@@ -1,31 +1,34 @@
 export default function decorate(block) {
-  // Title section
+  // Title Section
   const wrapper = block.closest('.featurecards-wrapper');
-  if (!wrapper) return;
-  const textSection = wrapper.querySelector('.featurecards-text');
-  if (textSection) block.append(textSection.cloneNode(true));
-
-  // Standard feature cards
-  const cards = wrapper.querySelectorAll('.featurecards-section.featurecards-card');
-  if (cards.length) {
-    const cardList = document.createElement('div');
-    cards.forEach((card) => {
-      cardList.append(card.cloneNode(true));
-    });
-    block.append(cardList);
+  const titleDiv = wrapper.querySelector('.featurecards-text');
+  if (titleDiv) {
+    block.append(titleDiv.cloneNode(true));
   }
 
-  // BolteSitare card sections
+  // Feature Cards
+  const cardSections = wrapper.querySelectorAll('.featurecards-section.featurecards-card');
+  const cardsContainer = document.createElement('div');
+  cardSections.forEach((section) => {
+    const card = document.createElement('div');
+    card.className = section.className;
+    const link = section.querySelector('a');
+    if (link) {
+      card.append(link.cloneNode(true));
+    }
+    cardsContainer.append(card);
+  });
+  block.append(cardsContainer);
+
+  // Bolte Sitare Card Sections
   const bolteSitareCards = wrapper.querySelectorAll('.featurecards-bolte-sitare-card-section');
-  if (bolteSitareCards.length) {
-    const bolteList = document.createElement('div');
-    bolteSitareCards.forEach((bCard) => {
-      bolteList.append(bCard.cloneNode(true));
-    });
-    block.append(bolteList);
-  }
+  bolteSitareCards.forEach((bolteCard) => {
+    block.append(bolteCard.cloneNode(true));
+  });
 
-  // Curve container
+  // Curve Container
   const curve = wrapper.querySelector('.featurecards-curve-container');
-  if (curve) block.append(curve.cloneNode(true));
+  if (curve) {
+    block.append(curve.cloneNode(true));
+  }
 }

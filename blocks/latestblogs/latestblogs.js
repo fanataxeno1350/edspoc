@@ -1,83 +1,29 @@
 export default function decorate(block) {
-  // Decorate section intro
+  block.classList.add('latestblogs-wrapper');
   const wrapper = document.createElement('div');
-  wrapper.className = 'latestblogs-wrapper';
-  const listing = document.createElement('div');
-  listing.className = 'latestblogs-listing';
+  wrapper.className = 'latestblogs-listing';
+  // First Section (Header)
+  const header = document.createElement('div');
+  header.className = 'latestblogs-listing_section--first latestblogs-text--white latestblogs-text-center';
+  const h2 = block.querySelector('.latestblogs-listing--title');
+  if (h2) header.append(h2);
+  const desc = block.querySelector('.latestblogs-listing--desc');
+  if (desc) header.append(desc);
+  const btnWrap = block.querySelector('.latestblogs-listing--btnwrapper');
+  if (btnWrap) header.append(btnWrap);
+  wrapper.append(header);
 
-  // Find and move section intro
-  const sectionFirst = block.querySelector('.latestblogs-listing_section--first');
-  if (sectionFirst) {
-    wrapper.appendChild(sectionFirst);
-  }
+  // Second Section (Cards)
+  const cardSection = document.createElement('div');
+  cardSection.className = 'latestblogs-listing_section--second latestblogs-d-flex';
 
-  // Blog cards
-  const cardsSection = block.querySelector('.latestblogs-listing_section--second');
-  if (cardsSection) {
-    const cardsContainer = document.createElement('div');
-    cardsContainer.className = 'latestblogs-listing_section--second latestblogs-d-flex';
-    const cardLinks = cardsSection.querySelectorAll('.latestblogs-listing--cardwrapper');
-    cardLinks.forEach((a) => {
-      const cardWrapper = document.createElement('a');
-      cardWrapper.href = a.href;
-      cardWrapper.className = a.className;
-      if (a.hasAttribute('data-cta-label')) {
-        cardWrapper.setAttribute('data-cta-label', a.getAttribute('data-cta-label'));
-      }
+  // Find all cards
+  block.querySelectorAll('.latestblogs-listing--cardwrapper').forEach((card) => {
+    cardSection.append(card);
+  });
+  wrapper.append(cardSection);
 
-      const cards = a.querySelector('.latestblogs-listing--cards');
-      if (cards) {
-        const cardDiv = document.createElement('div');
-        cardDiv.className = 'latestblogs-listing--cards';
-
-        const imageWrapper = cards.querySelector('.latestblogs-listing--cardimagewrapper');
-        if (imageWrapper) {
-          const imgDiv = document.createElement('div');
-          imgDiv.className = 'latestblogs-listing--cardimagewrapper';
-          const img = imageWrapper.querySelector('img');
-          if (img) {
-            const image = document.createElement('img');
-            image.src = img.src;
-            image.alt = img.alt || '';
-            image.className = img.className;
-            imgDiv.appendChild(image);
-          }
-          cardDiv.appendChild(imgDiv);
-        }
-
-        const contentWrapper = cards.querySelector('.latestblogs-cards_content--wrapper');
-        if (contentWrapper) {
-          const contentDiv = document.createElement('div');
-          contentDiv.className = 'latestblogs-cards_content--wrapper';
-
-          const dateP = contentWrapper.querySelector('.latestblogs--text__body-5');
-          if (dateP) {
-            const dateElem = document.createElement('p');
-            dateElem.className = dateP.className;
-            if (dateP.hasAttribute('data-date')) {
-              dateElem.setAttribute('data-date', dateP.getAttribute('data-date'));
-            }
-            dateElem.innerHTML = dateP.innerHTML;
-            contentDiv.appendChild(dateElem);
-          }
-
-          const titleP = contentWrapper.querySelector('.latestblogs--text__body-2');
-          if (titleP) {
-            const titleElem = document.createElement('p');
-            titleElem.className = titleP.className;
-            titleElem.innerHTML = titleP.innerHTML;
-            contentDiv.appendChild(titleElem);
-          }
-
-          cardDiv.appendChild(contentDiv);
-        }
-        cardWrapper.appendChild(cardDiv);
-      }
-      cardsContainer.appendChild(cardWrapper);
-    });
-    listing.appendChild(cardsContainer);
-  }
-  wrapper.appendChild(listing);
+  // Clear and append
   block.textContent = '';
-  block.appendChild(wrapper);
+  block.append(wrapper);
 }

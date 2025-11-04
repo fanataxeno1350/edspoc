@@ -1,1 +1,40 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';\n\nexport default function decorate(block) {\n  // Sidebar Menu Items\n  const sidebarMenu = block.querySelector('.header-sidebar__menu');\n  if (sidebarMenu) {\n    sidebarMenu.querySelectorAll('.header-sidebar__menu-item').forEach((li) => {\n      li.classList.add('sidebarmenuitem');\n      const a = li.querySelector('a');\n      if (a) {\n        a.classList.add('sidebarmenuitem-link');\n        const img = a.querySelector('img');\n        if (img) {\n          img.classList.add('sidebarmenuitem-icon');\n        }\n      }\n    });\n  }\n  // Footer Lists\n  block.querySelectorAll('.header-footer-list__item').forEach((li) => {\n    li.classList.add('footerlistitem');\n    const a = li.querySelector('a');\n    if (a) {\n      a.classList.add('footerlistitem-link');\n    }\n  });\n  // Social Links\n  block.querySelectorAll('.header-footer-brand__right--item').forEach((li) => {\n    li.classList.add('sociallink-item');\n    const a = li.querySelector('a');\n    if (a) {\n      a.classList.add('sociallink');\n      const img = a.querySelector('img');\n      if (img) {\n        img.classList.add('sociallink-icon');\n      }\n    }\n  });\n  // Optimize all images\n  block.querySelectorAll('img').forEach((img) => {\n    if (!img.closest('picture')) {\n      const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);\n      img.replaceWith(optimizedPic);\n    }\n  });\n}
+export default function decorate(block) {
+  // HEADER/LOGO
+  const header = document.querySelector('.header-boing-container');
+  if (header) {
+    block.append(header.cloneNode(true));
+  }
+
+  // SIDEBAR MENU
+  const sidebarMenu = document.querySelector('.header-sidebar__menu');
+  if (sidebarMenu) {
+    const menu = document.createElement('ul');
+    menu.className = sidebarMenu.className;
+    sidebarMenu.querySelectorAll('.header-sidebar__menu-item').forEach((item) => {
+      const li = document.createElement('li');
+      li.className = item.className;
+      const link = item.querySelector('a');
+      if (link) {
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.className = link.className;
+        a.innerHTML = link.innerHTML;
+        li.append(a);
+      }
+      menu.append(li);
+    });
+    block.append(menu);
+  }
+
+  // FOOTER BRAND SECTION
+  const footerBrand = document.querySelector('.header-footer-brand');
+  if (footerBrand) {
+    block.append(footerBrand.cloneNode(true));
+  }
+
+  // OVERLAY (for mobile menu)
+  const overlay = document.querySelector('.header-overlay');
+  if (overlay) {
+    block.append(overlay.cloneNode(true));
+  }
+}

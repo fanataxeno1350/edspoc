@@ -17,16 +17,16 @@
       }
     },
     {
-      "title": "Latest Blog Card",
-      "id": "latestblogcard",
+      "title": "Blog Card",
+      "id": "blogcard",
       "icon": "",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "latestblogcard",
-              "name": "latestblogcard"
+              "model": "blogcard",
+              "name": "blogcard"
             }
           }
         }
@@ -46,8 +46,8 @@
         },
         {
           "component": "text",
-          "label": "Data CTA Label",
-          "name": "data-cta-label",
+          "label": "CTA Label",
+          "name": "ctaLabel",
           "valueType": "string"
         },
         {
@@ -64,15 +64,9 @@
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Title",
           "name": "title",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Card Wrapper Class",
-          "name": "latestblogs-listing--cardwrapper-class",
           "valueType": "string"
         }
       ]
@@ -82,7 +76,7 @@
     {
       "id": "latestblogs",
       "components": [
-        "latestblogcard"
+        "blogcard"
       ]
     }
   ]

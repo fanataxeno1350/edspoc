@@ -17,16 +17,16 @@
       }
     },
     {
-      "title": "Slide",
-      "id": "slide",
+      "title": "Carousel Item",
+      "id": "carouselItem",
       "icon": "",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "slide",
-              "name": "Slide"
+              "model": "carouselItem",
+              "name": "carouselItem"
             }
           }
         }
@@ -49,14 +49,7 @@
                   "fields": [
                     {
                       "component": "reference",
-                      "label": "Carousel Banner Video",
-                      "multi": false,
-                      "name": "carousel-banner-video",
-                      "valueType": "string"
-                    },
-                    {
-                      "component": "reference",
-                      "label": "Carousel Banner Image",
+                      "label": "Banner Image",
                       "multi": false,
                       "name": "carousel-banner-image",
                       "valueType": "string"
@@ -65,53 +58,67 @@
                       "component": "container",
                       "fields": [
                         {
+                          "component": "reference",
+                          "label": "Banner Video",
+                          "multi": false,
+                          "name": "carousel-banner-video",
+                          "valueType": "string"
+                        }
+                      ],
+                      "label": "Video Wrapper",
+                      "name": "carousel-video-wrapper"
+                    },
+                    {
+                      "component": "container",
+                      "fields": [
+                        {
                           "component": "container",
                           "fields": [
-                            {
-                              "component": "reference",
-                              "label": "Carousel CTA Button",
-                              "multi": false,
-                              "name": "carousel-cmp-button",
-                              "valueType": "string"
-                            },
                             {
                               "component": "container",
                               "fields": [
                                 {
-                                  "component": "text",
-                                  "label": "Popup Message",
-                                  "name": "carousel-popup-message",
+                                  "component": "reference",
+                                  "label": "CTA Button",
+                                  "multi": false,
+                                  "name": "carousel-cmp-button",
                                   "valueType": "string"
                                 },
                                 {
-                                  "component": "text",
-                                  "label": "Proceed Button Label",
-                                  "name": "carousel-proceed-button-label",
-                                  "valueType": "string"
-                                },
-                                {
-                                  "component": "text",
-                                  "label": "Cancel Button Label",
-                                  "name": "carousel-cancel-button-label",
-                                  "valueType": "string"
-                                },
-                                {
-                                  "component": "text",
-                                  "label": "Background Color",
-                                  "name": "carousel-background-color",
-                                  "valueType": "string"
+                                  "component": "container",
+                                  "fields": [
+                                    {
+                                      "component": "text",
+                                      "label": "Popup Message",
+                                      "name": "carousel-popup-message",
+                                      "valueType": "string"
+                                    },
+                                    {
+                                      "component": "text",
+                                      "label": "Proceed Button Label",
+                                      "name": "carousel-proceed-button-label",
+                                      "valueType": "string"
+                                    },
+                                    {
+                                      "component": "text",
+                                      "label": "Cancel Button Label",
+                                      "name": "carousel-cancel-button-label",
+                                      "valueType": "string"
+                                    },
+                                    {
+                                      "component": "text",
+                                      "label": "Background Color",
+                                      "name": "carousel-background-color",
+                                      "valueType": "string"
+                                    }
+                                  ],
+                                  "label": "Popup",
+                                  "name": "carousel-pop-up"
                                 }
                               ],
-                              "label": "Carousel Pop Up",
-                              "name": "carousel-pop-up"
-                            }
-                          ],
-                          "label": "Carousel Text Center",
-                          "name": "carousel-text-center"
-                        },
-                        {
-                          "component": "container",
-                          "fields": [
+                              "label": "Text Center",
+                              "name": "carousel-text-center"
+                            },
                             {
                               "component": "container",
                               "fields": [
@@ -122,19 +129,19 @@
                                       "component": "container",
                                       "fields": [
                                         {
-                                          "component": "reference",
-                                          "label": "Close Button",
-                                          "multi": false,
-                                          "name": "carousel-close-btn",
-                                          "valueType": "string"
-                                        }
-                                      ],
-                                      "label": "Offcanvas Header",
-                                      "name": "carousel-offcanvas-header"
-                                    },
-                                    {
-                                      "component": "container",
-                                      "fields": [
+                                          "component": "container",
+                                          "fields": [
+                                            {
+                                              "component": "reference",
+                                              "label": "Close Button",
+                                              "multi": false,
+                                              "name": "carousel-close-btn",
+                                              "valueType": "string"
+                                            }
+                                          ],
+                                          "label": "Offcanvas Header",
+                                          "name": "carousel-offcanvas-header"
+                                        },
                                         {
                                           "component": "container",
                                           "fields": [
@@ -145,74 +152,81 @@
                                                   "component": "container",
                                                   "fields": [
                                                     {
-                                                      "component": "reference",
-                                                      "label": "Popup Icon",
-                                                      "multi": false,
-                                                      "name": "carousel-icon-svg",
-                                                      "valueType": "string"
+                                                      "component": "container",
+                                                      "fields": [
+                                                        {
+                                                          "component": "reference",
+                                                          "label": "Popup Icon",
+                                                          "multi": false,
+                                                          "name": "carousel-icon-svg",
+                                                          "valueType": "string"
+                                                        }
+                                                      ],
+                                                      "label": "Image Holder",
+                                                      "name": "carousel-img_holder"
+                                                    },
+                                                    {
+                                                      "component": "container",
+                                                      "fields": [],
+                                                      "label": "Text Box",
+                                                      "name": "carousel-text_box"
                                                     }
                                                   ],
-                                                  "label": "Image Holder",
-                                                  "name": "carousel-img_holder"
+                                                  "label": "Popup Image Text Container",
+                                                  "name": "carousel-pop-image_text-container"
                                                 },
                                                 {
                                                   "component": "container",
-                                                  "fields": [],
-                                                  "label": "Text Box",
-                                                  "name": "carousel-text_box"
+                                                  "fields": [
+                                                    {
+                                                      "component": "reference",
+                                                      "label": "Popup Login CTA",
+                                                      "multi": false,
+                                                      "name": "carousel-popup-login-cta",
+                                                      "valueType": "string"
+                                                    }
+                                                  ],
+                                                  "label": "CTA Box",
+                                                  "name": "carousel-cta_box"
                                                 }
                                               ],
-                                              "label": "Pop Image Text Container",
-                                              "name": "carousel-pop-image_text-container"
-                                            },
-                                            {
-                                              "component": "container",
-                                              "fields": [
-                                                {
-                                                  "component": "reference",
-                                                  "label": "Popup Login CTA",
-                                                  "multi": false,
-                                                  "name": "carousel-popup-login-cta",
-                                                  "valueType": "string"
-                                                }
-                                              ],
-                                              "label": "CTA Box",
-                                              "name": "carousel-cta_box"
+                                              "label": "Popup Content",
+                                              "name": "carousel-pop-content"
                                             }
                                           ],
-                                          "label": "Pop Content",
-                                          "name": "carousel-pop-content"
+                                          "label": "Offcanvas Body",
+                                          "name": "carousel-offcanvas-body"
                                         }
                                       ],
-                                      "label": "Offcanvas Body",
-                                      "name": "carousel-offcanvas-body"
+                                      "label": "Offcanvas",
+                                      "name": "carousel-offcanvas"
                                     }
                                   ],
-                                  "label": "Carousel Offcanvas",
-                                  "name": "carousel-offcanvas"
+                                  "label": "Generic Popup",
+                                  "name": "carousel-generic-popup"
                                 }
                               ],
-                              "label": "Carousel Generic Popup",
-                              "name": "carousel-generic-popup"
+                              "label": "External Link Popup",
+                              "name": "carousel-external-link-popup"
                             }
                           ],
-                          "label": "Carousel External Link Popup",
-                          "name": "carousel-external-link-popup"
+                          "label": "Banner CTA",
+                          "name": "carousel-banner-cta"
                         }
                       ],
-                      "label": "Carousel Banner CTA",
-                      "name": "carousel-banner-cta"
+                      "label": "Banner CTA Wrapper",
+                      "name": "carousel-boing__banner--cta"
                     }
                   ],
-                  "label": "Carousel Banner Section Wrapper",
+                  "label": "Banner Section Wrapper",
                   "name": "carousel-banner-section__wrapper"
                 }
               ],
-              "label": "Carousel Banner Section",
+              "label": "Banner Section",
               "name": "carousel-banner-section"
             }
           ],
-          "label": "Carousel Banner",
+          "label": "Banner",
           "name": "carousel-banner"
         }
       ]
@@ -222,7 +236,7 @@
     {
       "id": "carousel",
       "components": [
-        "slide"
+        "carouselItem"
       ]
     }
   ]

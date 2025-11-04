@@ -1,0 +1,167 @@
+{
+  "definitions": [
+    {
+      "title": "FeatureCards",
+      "id": "featurecards",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "featurecards",
+              "model": "featurecards"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Card",
+      "id": "card",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "card",
+              "name": "Card"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "BolteSitareCard",
+      "id": "boltesitarecard",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "boltesitarecard",
+              "name": "BolteSitareCard"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "featurecards",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Link URL",
+          "name": "href",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Link Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Data CTA Label",
+          "name": "dataCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image",
+          "multi": false,
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Image Alt",
+          "name": "imageAlt",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Card Title",
+          "name": "cardTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Card Description",
+          "name": "description",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "boltesitarecard",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Link URL",
+          "name": "href",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Link Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Data Title",
+          "name": "dataTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image",
+          "multi": false,
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Image Alt",
+          "name": "imageAlt",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Card Title",
+          "name": "cardTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Card Description",
+          "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Button Text",
+          "name": "buttonText",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "featurecards",
+      "components": [
+        "card",
+        "boltesitarecard"
+      ]
+    }
+  ]
+}
