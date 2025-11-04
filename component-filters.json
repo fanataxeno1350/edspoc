@@ -85,10 +85,20 @@
     ]
   },
   {
-    "id": "header-footer-boing",
+    "id": "sidebarMenu",
     "components": [
-      "sidebar-menu-item",
-      "footer-list-item",
+      "sidebar-menu-item"
+    ]
+  },
+  {
+    "id": "footerLinks",
+    "components": [
+      "footer-link"
+    ]
+  },
+  {
+    "id": "socialLinks",
+    "components": [
       "social-link"
     ]
   },
