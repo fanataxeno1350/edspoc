@@ -180,6 +180,189 @@
     ]
   },
   {
+    "id": "carousel",
+    "description": "",
+    "fields": [
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "container",
+            "fields": [
+              {
+                "component": "container",
+                "fields": [
+                  {
+                    "component": "reference",
+                    "label": "Carousel Banner Video",
+                    "multi": false,
+                    "name": "carousel-banner-video",
+                    "valueType": "string"
+                  },
+                  {
+                    "component": "reference",
+                    "label": "Carousel Banner Image",
+                    "multi": false,
+                    "name": "carousel-banner-image",
+                    "valueType": "string"
+                  },
+                  {
+                    "component": "container",
+                    "fields": [
+                      {
+                        "component": "container",
+                        "fields": [
+                          {
+                            "component": "reference",
+                            "label": "Carousel CTA Button",
+                            "multi": false,
+                            "name": "carousel-cmp-button",
+                            "valueType": "string"
+                          },
+                          {
+                            "component": "container",
+                            "fields": [
+                              {
+                                "component": "text",
+                                "label": "Popup Message",
+                                "name": "carousel-popup-message",
+                                "valueType": "string"
+                              },
+                              {
+                                "component": "text",
+                                "label": "Proceed Button Label",
+                                "name": "carousel-proceed-button-label",
+                                "valueType": "string"
+                              },
+                              {
+                                "component": "text",
+                                "label": "Cancel Button Label",
+                                "name": "carousel-cancel-button-label",
+                                "valueType": "string"
+                              },
+                              {
+                                "component": "text",
+                                "label": "Background Color",
+                                "name": "carousel-background-color",
+                                "valueType": "string"
+                              }
+                            ],
+                            "label": "Carousel Pop Up",
+                            "name": "carousel-pop-up"
+                          }
+                        ],
+                        "label": "Carousel Text Center",
+                        "name": "carousel-text-center"
+                      },
+                      {
+                        "component": "container",
+                        "fields": [
+                          {
+                            "component": "container",
+                            "fields": [
+                              {
+                                "component": "container",
+                                "fields": [
+                                  {
+                                    "component": "container",
+                                    "fields": [
+                                      {
+                                        "component": "reference",
+                                        "label": "Close Button",
+                                        "multi": false,
+                                        "name": "carousel-close-btn",
+                                        "valueType": "string"
+                                      }
+                                    ],
+                                    "label": "Offcanvas Header",
+                                    "name": "carousel-offcanvas-header"
+                                  },
+                                  {
+                                    "component": "container",
+                                    "fields": [
+                                      {
+                                        "component": "container",
+                                        "fields": [
+                                          {
+                                            "component": "container",
+                                            "fields": [
+                                              {
+                                                "component": "container",
+                                                "fields": [
+                                                  {
+                                                    "component": "reference",
+                                                    "label": "Popup Icon",
+                                                    "multi": false,
+                                                    "name": "carousel-icon-svg",
+                                                    "valueType": "string"
+                                                  }
+                                                ],
+                                                "label": "Image Holder",
+                                                "name": "carousel-img_holder"
+                                              },
+                                              {
+                                                "component": "container",
+                                                "fields": [],
+                                                "label": "Text Box",
+                                                "name": "carousel-text_box"
+                                              }
+                                            ],
+                                            "label": "Pop Image Text Container",
+                                            "name": "carousel-pop-image_text-container"
+                                          },
+                                          {
+                                            "component": "container",
+                                            "fields": [
+                                              {
+                                                "component": "reference",
+                                                "label": "Popup Login CTA",
+                                                "multi": false,
+                                                "name": "carousel-popup-login-cta",
+                                                "valueType": "string"
+                                              }
+                                            ],
+                                            "label": "CTA Box",
+                                            "name": "carousel-cta_box"
+                                          }
+                                        ],
+                                        "label": "Pop Content",
+                                        "name": "carousel-pop-content"
+                                      }
+                                    ],
+                                    "label": "Offcanvas Body",
+                                    "name": "carousel-offcanvas-body"
+                                  }
+                                ],
+                                "label": "Carousel Offcanvas",
+                                "name": "carousel-offcanvas"
+                              }
+                            ],
+                            "label": "Carousel Generic Popup",
+                            "name": "carousel-generic-popup"
+                          }
+                        ],
+                        "label": "Carousel External Link Popup",
+                        "name": "carousel-external-link-popup"
+                      }
+                    ],
+                    "label": "Carousel Banner CTA",
+                    "name": "carousel-banner-cta"
+                  }
+                ],
+                "label": "Carousel Banner Section Wrapper",
+                "name": "carousel-banner-section__wrapper"
+              }
+            ],
+            "label": "Carousel Banner Section",
+            "name": "carousel-banner-section"
+          }
+        ],
+        "label": "Carousel Banner",
+        "name": "carousel-banner"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {
@@ -195,6 +378,283 @@
         "name": "rows",
         "value": "",
         "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "featurecards",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Link URL",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link Title",
+        "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Data CTA Label",
+        "name": "dataCtaLabel",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
+        "multi": false,
+        "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Image Alt",
+        "name": "imageAlt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Title",
+        "name": "cardTitle",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Card Description",
+        "name": "description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "boltesitarecard",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Link URL",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link Title",
+        "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Data Title",
+        "name": "dataTitle",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
+        "multi": false,
+        "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Image Alt",
+        "name": "imageAlt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Card Title",
+        "name": "cardTitle",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Card Description",
+        "name": "description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Button Text",
+        "name": "buttonText",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "footer-brand",
+    "description": "",
+    "fields": [
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "container",
+            "fields": [
+              {
+                "component": "reference",
+                "label": "Footer Brand Logo",
+                "multi": false,
+                "name": "footer-brand-logo",
+                "valueType": "string"
+              },
+              {
+                "component": "reference",
+                "label": "Footer Brand Secondary Logo",
+                "multi": false,
+                "name": "footer-brand-secondary-logo",
+                "valueType": "string"
+              }
+            ],
+            "label": "Footer Brand Left",
+            "name": "footer-brand-left"
+          },
+          {
+            "component": "container",
+            "fields": [
+              {
+                "component": "container",
+                "fields": [
+                  {
+                    "component": "container",
+                    "fields": [
+                      {
+                        "component": "reference",
+                        "label": "Footer Navigation Columns Left",
+                        "multi": true,
+                        "name": "footer-nav-columns-left",
+                        "valueType": "footer-nav-column"
+                      }
+                    ],
+                    "label": "Footer Navbar Left",
+                    "name": "footer-brand-navbar--left"
+                  },
+                  {
+                    "component": "container",
+                    "fields": [
+                      {
+                        "component": "reference",
+                        "label": "Footer Navigation Columns Right",
+                        "multi": true,
+                        "name": "footer-nav-columns-right",
+                        "valueType": "footer-nav-column"
+                      }
+                    ],
+                    "label": "Footer Navbar Right",
+                    "name": "footer-brand-navbar--right"
+                  }
+                ],
+                "label": "Footer Brand Navbar",
+                "name": "footer-brand-navbar"
+              }
+            ],
+            "label": "Footer Brand Right",
+            "name": "footer-brand-right"
+          }
+        ],
+        "label": "Footer Brand Primary",
+        "name": "footer-brand-primary"
+      },
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "container",
+            "fields": [
+              {
+                "component": "text",
+                "label": "Social Media Title",
+                "name": "footer-social-media--title",
+                "valueType": "string"
+              },
+              {
+                "component": "reference",
+                "label": "Footer Social Items",
+                "multi": true,
+                "name": "footer-social-items",
+                "valueType": "footer-social-item"
+              }
+            ],
+            "label": "Footer Brand Right",
+            "name": "footer-brand-right"
+          },
+          {
+            "component": "container",
+            "fields": [
+              {
+                "component": "reference",
+                "label": "Footer Brand Left Links",
+                "multi": true,
+                "name": "footer-brand-left-links",
+                "valueType": "footer-nav-item"
+              },
+              {
+                "component": "text",
+                "label": "Copyright",
+                "name": "footer-brand-left--copyright",
+                "valueType": "string"
+              }
+            ],
+            "label": "Footer Brand Left",
+            "name": "footer-brand-left"
+          }
+        ],
+        "label": "Footer Brand Secondary",
+        "name": "footer-brand-secondary"
+      }
+    ]
+  },
+  {
+    "id": "footer-nav-column",
+    "description": "",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Footer Navigation Items",
+        "multi": true,
+        "name": "footer-nav-items",
+        "valueType": "footer-nav-item"
+      }
+    ]
+  },
+  {
+    "id": "footer-nav-item",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Footer Nav Item Link Text",
+        "name": "footer-list-item--link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Footer Nav Item URL",
+        "name": "footer-list-item--url",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "footer-social-item",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Social Link URL",
+        "name": "footer-brand-right--link",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Social Image",
+        "multi": false,
+        "name": "footer-brand-right--image",
+        "valueType": "string"
       }
     ]
   },
@@ -464,6 +924,108 @@
     ]
   },
   {
+    "id": "headerfooter",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Menu Item Classes",
+        "name": "class",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link Href",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Anchor Classes",
+        "name": "linkclass",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Icon Src",
+        "name": "icon",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Icon Classes",
+        "name": "iconclass",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Menu Label",
+        "name": "label",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "footerlistitem",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Footer List Item Classes",
+        "name": "class",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link Href",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Anchor Classes",
+        "name": "linkclass",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Item Label",
+        "name": "label",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "sociallink",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Social Link Href",
+        "name": "href",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Social Link Classes",
+        "name": "class",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Icon Src",
+        "name": "icon",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Icon Classes",
+        "name": "iconclass",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {
@@ -604,6 +1166,43 @@
     ]
   },
   {
+    "id": "latestblogs",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Link",
+        "name": "link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "CTA Label",
+        "name": "ctaLabel",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
+        "multi": false,
+        "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Date",
+        "name": "date",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Title",
+        "name": "title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "quote",
     "fields": [
       {
@@ -619,6 +1218,43 @@
         "name": "author",
         "label": "Author",
         "value": ""
+      }
+    ]
+  },
+  {
+    "id": "stickynavigation",
+    "description": "",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Link",
+        "name": "link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Data Link",
+        "name": "data-link",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Icon Image",
+        "multi": false,
+        "name": "icon",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Icon Alt Text",
+        "name": "icon-alt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Label",
+        "name": "label",
+        "valueType": "string"
       }
     ]
   },

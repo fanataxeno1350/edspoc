@@ -1,0 +1,167 @@
+{
+  "definitions": [
+    {
+      "title": "FeatureCards",
+      "id": "featurecards",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "featurecards",
+              "model": "featurecards"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "FeatureCard",
+      "id": "featurecard",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "featurecard",
+              "name": "FeatureCard"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "BolteSitareCardSection",
+      "id": "boltesitarecardsection",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "boltesitarecardsection",
+              "name": "BolteSitareCardSection"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "featurecards",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Link Href",
+          "name": "featurecards-link-href",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Link Title",
+          "name": "featurecards-link-title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA Label",
+          "name": "featurecards-link-data-cta-label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image Src",
+          "multi": false,
+          "name": "featurecards-image-src",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Image Alt",
+          "name": "featurecards-image-alt",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Card Title",
+          "name": "featurecards-title-h2",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Card Description",
+          "name": "featurecards-desc",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Arrow Icon Button",
+          "name": "featurecards-arrow-icon-btn",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "boltesitarecardsection",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Section Href",
+          "name": "featurecards-bolte-sitare-card-section-href",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Section Title",
+          "name": "featurecards-bolte-sitare-card-section-title",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image Src",
+          "multi": false,
+          "name": "featurecards-bolte-sitare-card-section-img-src",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Image Alt",
+          "name": "featurecards-bolte-sitare-card-section-img-alt",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Card Section Title",
+          "name": "featurecards-bolte-sitare-card-section--title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Card Section Text",
+          "name": "featurecards-bolte-sitare-card-section--text",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Button Text",
+          "name": "featurecards-bolte-sitare-card-section--btn",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "featurecards",
+      "components": [
+        "featurecard",
+        "boltesitarecardsection"
+      ]
+    }
+  ]
+}

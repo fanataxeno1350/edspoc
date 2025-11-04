@@ -1,0 +1,49 @@
+export default function decorate(block) {
+  // Decorate main wrapper
+  block.classList.add('latestblogs-wrapper');
+
+  // Find listing section
+  const listing = block.querySelector('.latestblogs-listing');
+  if (!listing) return;
+
+  // Decorate header section
+  const headerSection = listing.querySelector('.latestblogs-listing_section--first');
+  if (headerSection) {
+    headerSection.classList.add('latestblogs-text--white', 'latestblogs-text-center');
+    const title = headerSection.querySelector('.latestblogs-listing--title');
+    if (title) title.classList.add('latestblogs--text__heading-1', 'latestblogs-text--white', 'latestblogs-pb-3');
+    const desc = headerSection.querySelector('.latestblogs-listing--desc');
+    if (desc) desc.classList.add('latestblogs--text__body-2', 'latestblogs-pb-4');
+    const btnWrapper = headerSection.querySelector('.latestblogs-listing--btnwrapper');
+    if (btnWrapper) {
+      const btn = btnWrapper.querySelector('a');
+      if (btn) btn.classList.add('latestblogs--text__title-3', 'latestblogs-listing--btn', 'analytics_cta_click');
+    }
+  }
+
+  // Decorate cards
+  const cardsSection = listing.querySelector('.latestblogs-listing_section--second');
+  if (cardsSection) {
+    cardsSection.classList.add('latestblogs-d-flex');
+    const cards = cardsSection.querySelectorAll('.latestblogs-listing--cardwrapper');
+    cards.forEach((card) => {
+      card.classList.add('analytics_cta_click');
+      const cardInner = card.querySelector('.latestblogs-listing--cards');
+      if (cardInner) {
+        const imgWrapper = cardInner.querySelector('.latestblogs-listing--cardimagewrapper');
+        if (imgWrapper) {
+          imgWrapper.classList.add('latestblogs-listing--cardimagewrapper');
+          const img = imgWrapper.querySelector('img');
+          if (img) img.classList.add('latestblogs-listing--cardimage', 'latestblogs-w-100', 'latestblogs-h-100');
+        }
+        const contentWrapper = cardInner.querySelector('.latestblogs-cards_content--wrapper');
+        if (contentWrapper) {
+          const dateP = contentWrapper.querySelector('.latestblogs-published_date');
+          if (dateP) dateP.classList.add('latestblogs--text__body-5', 'latestblogs-p-0', 'latestblogs-m-0', 'latestblogs-mb-3', 'latestblogs-published_date');
+          const titleP = contentWrapper.querySelector('.latestblogs--text__body-2');
+          if (titleP) titleP.classList.add('latestblogs--text__body-2', 'latestblogs--text__body');
+        }
+      }
+    });
+  }
+}

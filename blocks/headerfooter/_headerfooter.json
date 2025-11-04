@@ -1,0 +1,182 @@
+{
+  "definitions": [
+    {
+      "title": "HeaderFooter",
+      "id": "headerfooter",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "headerfooter",
+              "model": "headerfooter"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "SidebarMenuItem",
+      "id": "sidebarmenuitem",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "sidebarmenuitem",
+              "name": "SidebarMenuItem"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "FooterListItem",
+      "id": "footerlistitem",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "footerlistitem",
+              "name": "FooterListItem"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "SocialLink",
+      "id": "sociallink",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "sociallink",
+              "name": "SocialLink"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "headerfooter",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Menu Item Classes",
+          "name": "class",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Link Href",
+          "name": "href",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Anchor Classes",
+          "name": "linkclass",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Icon Src",
+          "name": "icon",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Icon Classes",
+          "name": "iconclass",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Menu Label",
+          "name": "label",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footerlistitem",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Footer List Item Classes",
+          "name": "class",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Link Href",
+          "name": "href",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Anchor Classes",
+          "name": "linkclass",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Item Label",
+          "name": "label",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "sociallink",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Social Link Href",
+          "name": "href",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Social Link Classes",
+          "name": "class",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Icon Src",
+          "name": "icon",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Icon Classes",
+          "name": "iconclass",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "headerfooter",
+      "components": [
+        "sidebarmenuitem",
+        "footerlistitem",
+        "sociallink"
+      ]
+    }
+  ]
+}

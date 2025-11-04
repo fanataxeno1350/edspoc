@@ -37,6 +37,12 @@
     ]
   },
   {
+    "id": "carousel",
+    "components": [
+      "slide"
+    ]
+  },
+  {
     "id": "columns",
     "components": [
       "column"
@@ -52,11 +58,44 @@
     ]
   },
   {
+    "id": "featurecards",
+    "components": [
+      "card",
+      "boltesitarecard"
+    ]
+  },
+  {
+    "id": "footer-brand",
+    "components": [
+      "footer-brand"
+    ]
+  },
+  {
     "id": "header-footer-boing",
     "components": [
       "sidebar-menu-item",
       "footer-list-item",
       "social-link"
+    ]
+  },
+  {
+    "id": "headerfooter",
+    "components": [
+      "sidebarmenuitem",
+      "footerlistitem",
+      "sociallink"
+    ]
+  },
+  {
+    "id": "latestblogs",
+    "components": [
+      "blogcard"
+    ]
+  },
+  {
+    "id": "sticky-navigation",
+    "components": [
+      "sticky-navigation-item"
     ]
   }
 ]

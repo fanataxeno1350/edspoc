@@ -1,0 +1,251 @@
+{
+  "definitions": [
+    {
+      "title": "Footer Brand",
+      "id": "footer-brand",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "footer-brand",
+              "model": "footer-brand"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Navigation Column",
+      "id": "footer-nav-column",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "footer-nav-column",
+              "name": "footer-nav-column"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Navigation Item",
+      "id": "footer-nav-item",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "footer-nav-item",
+              "name": "footer-nav-item"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Social Item",
+      "id": "footer-social-item",
+      "icon": "",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "footer-social-item",
+              "name": "footer-social-item"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "footer-brand",
+      "description": "",
+      "fields": [
+        {
+          "component": "container",
+          "fields": [
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "reference",
+                  "label": "Footer Brand Logo",
+                  "multi": false,
+                  "name": "footer-brand-logo",
+                  "valueType": "string"
+                },
+                {
+                  "component": "reference",
+                  "label": "Footer Brand Secondary Logo",
+                  "multi": false,
+                  "name": "footer-brand-secondary-logo",
+                  "valueType": "string"
+                }
+              ],
+              "label": "Footer Brand Left",
+              "name": "footer-brand-left"
+            },
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "container",
+                  "fields": [
+                    {
+                      "component": "container",
+                      "fields": [
+                        {
+                          "component": "reference",
+                          "label": "Footer Navigation Columns Left",
+                          "multi": true,
+                          "name": "footer-nav-columns-left",
+                          "valueType": "footer-nav-column"
+                        }
+                      ],
+                      "label": "Footer Navbar Left",
+                      "name": "footer-brand-navbar--left"
+                    },
+                    {
+                      "component": "container",
+                      "fields": [
+                        {
+                          "component": "reference",
+                          "label": "Footer Navigation Columns Right",
+                          "multi": true,
+                          "name": "footer-nav-columns-right",
+                          "valueType": "footer-nav-column"
+                        }
+                      ],
+                      "label": "Footer Navbar Right",
+                      "name": "footer-brand-navbar--right"
+                    }
+                  ],
+                  "label": "Footer Brand Navbar",
+                  "name": "footer-brand-navbar"
+                }
+              ],
+              "label": "Footer Brand Right",
+              "name": "footer-brand-right"
+            }
+          ],
+          "label": "Footer Brand Primary",
+          "name": "footer-brand-primary"
+        },
+        {
+          "component": "container",
+          "fields": [
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "text",
+                  "label": "Social Media Title",
+                  "name": "footer-social-media--title",
+                  "valueType": "string"
+                },
+                {
+                  "component": "reference",
+                  "label": "Footer Social Items",
+                  "multi": true,
+                  "name": "footer-social-items",
+                  "valueType": "footer-social-item"
+                }
+              ],
+              "label": "Footer Brand Right",
+              "name": "footer-brand-right"
+            },
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "reference",
+                  "label": "Footer Brand Left Links",
+                  "multi": true,
+                  "name": "footer-brand-left-links",
+                  "valueType": "footer-nav-item"
+                },
+                {
+                  "component": "text",
+                  "label": "Copyright",
+                  "name": "footer-brand-left--copyright",
+                  "valueType": "string"
+                }
+              ],
+              "label": "Footer Brand Left",
+              "name": "footer-brand-left"
+            }
+          ],
+          "label": "Footer Brand Secondary",
+          "name": "footer-brand-secondary"
+        }
+      ]
+    },
+    {
+      "id": "footer-nav-column",
+      "description": "",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Footer Navigation Items",
+          "multi": true,
+          "name": "footer-nav-items",
+          "valueType": "footer-nav-item"
+        }
+      ]
+    },
+    {
+      "id": "footer-nav-item",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Footer Nav Item Link Text",
+          "name": "footer-list-item--link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Footer Nav Item URL",
+          "name": "footer-list-item--url",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footer-social-item",
+      "description": "",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Social Link URL",
+          "name": "footer-brand-right--link",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Social Image",
+          "multi": false,
+          "name": "footer-brand-right--image",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "footer-brand",
+      "components": [
+        "footer-brand"
+      ]
+    }
+  ]
+}

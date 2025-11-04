@@ -1,0 +1,153 @@
+.featurecards-wrapper {
+  padding: 1.5rem 1rem 1rem; /* Equivalent to 24px 16px 16px assuming 16px base */
+  position: relative;
+}
+.featurecards-text {
+  font-family: Barlow;
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: 1.75rem; /* Equivalent to 28px assuming 16px base */
+  padding-bottom: 1rem; /* Equivalent to 16px assuming 16px base */
+}
+.featurecards-title {
+  text-align: center;
+  color: #161616;
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-title-partial {
+  color: #aa1f30;
+}
+.featurecards-section {
+  margin-inline: auto;
+  padding-bottom: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  display: block;
+}
+.featurecards-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.featurecards-image {
+  width: 100%;
+  padding-bottom: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  height: 12.0625rem; /* Equivalent to 193px assuming 16px base */
+}
+.featurecards-image img {
+  width: 100%;
+  height: 100%;
+}
+.featurecards-text-center {
+  text-align: center;
+}
+.featurecards-title-h2 {
+  color: #aa1f30;
+  margin-bottom: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  font-family: Barlow;
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-pb-5 {
+  padding-bottom: 1rem; /* Equivalent to 16px assuming 16px base */
+}
+.featurecards-desc {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  color: #030303;
+  font-family: Barlow;
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 400;
+  line-height: normal;
+}
+.featurecards-redirected-btn {
+  display: none;
+}
+.featurecards-arrow-icon-btn {
+  background-color: #aa1f30;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 2.5rem; /* Equivalent to 40px assuming 16px base */
+  width: 2.5rem; /* Equivalent to 40px assuming 16px base */
+}
+.featurecards-arrow-icon-btn .featurecards-icon-svg {
+  height: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  width: 1.25rem; /* Equivalent to 20px assuming 16px base */
+}
+.featurecards-bolte-sitare-card-section {
+  border-radius: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  box-shadow: rgba(0, 0, 0, 0.22) 0.125rem 0.25rem 1rem 0px; /* Equivalent to 2px 4px 16px assuming 16px base */
+  margin-bottom: 1rem; /* Equivalent to 16px assuming 16px base */
+  padding: 0.75rem 1.125rem 0.75rem 0.75rem; /* Equivalent to 12px 18px 12px 12px assuming 16px base */
+  position: relative;
+  z-index: 11;
+  display: none;
+}
+.featurecards-bolte-sitare-card-section:first-of-type {
+  padding-top: 1.25rem; /* Equivalent to 20px assuming 16px base */
+}
+.featurecards-bolte-sitare-card-section:last-of-type {
+  margin-bottom: 3.375rem; /* Equivalent to 54px assuming 16px base */
+}
+.featurecards-bolte-sitare-card-section--wrapper {
+  gap: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  display: flex;
+}
+.featurecards-bolte-sitare-card-section .featurecards-content-wrapper {
+  flex: 1;
+}
+.featurecards-bolte-sitare-card-section--img {
+  border-radius: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  height: 6.8125rem; /* Equivalent to 109px assuming 16px base */
+  width: 8.3125rem; /* Equivalent to 133px assuming 16px base */
+}
+.featurecards-bolte-sitare-card-section--img .featurecards-card-img {
+  border-radius: 0.25rem; /* Equivalent to 4px assuming 16px base */
+}
+.featurecards-bolte-sitare-card-section--title {
+  padding-bottom: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  font-family: Barlow;
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+  color: #030303;
+}
+.featurecards-bolte-sitare-card-section--text {
+  font-family: Barlow;
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 400;
+  line-height: normal;
+  color: #030303;
+}
+.featurecards-bolte-sitare-card-section--btn {
+  background-color: #aa1f30;
+  border-radius: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  cursor: pointer;
+  height: 1.8125rem; /* Equivalent to 29px assuming 16px base */
+  line-height: 1.8125rem; /* Equivalent to 29px assuming 16px base */
+  padding: 0 1rem; /* Equivalent to 0px 16px assuming 16px base */
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-family: Barlow;
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 600;
+  line-height: 1rem; /* Equivalent to 16px assuming 16px base */
+  display: inline-block;
+}
+.featurecards-curve-container {
+  background-color: #fff;
+  border-radius: 0 0 2rem 2rem; /* Equivalent to 0px 0px 32px 32px assuming 16px base */
+  bottom: -3.6875rem; /* Equivalent to -59px assuming 16px base */
+  height: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  transform: skewY(-6.2deg);
+  width: 100%;
+  z-index: 10;
+  display: none;
+}
