@@ -1,48 +1,42 @@
 {
   "definitions": [
     {
-      "title": "FeatureCards",
+      "title": "Feature Cards",
       "id": "featurecards",
-      "icon": "",
+      "icon": "featurecards-icon",
+      "category": "content",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "featurecards",
-              "model": "featurecards"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "FeatureCard",
-      "id": "featurecard",
-      "icon": "",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "model": "featurecard",
-              "name": "FeatureCard"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "BolteSitareCard",
-      "id": "boltesitarecard",
-      "icon": "",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "model": "boltesitarecard",
-              "name": "BolteSitareCard"
+              "cards": [
+                {
+                  "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
+                  "ctaLabel": "Explore",
+                  "description": "India ki taaza aur thodi-si tedhi news!",
+                  "image": {
+                    "alt": "Tedhe Medhe Samachaar",
+                    "src": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp"
+                  },
+                  "link": "/tedhe-medhe-samachaar.html",
+                  "title": "Tedhe Medhe Samachar"
+                },
+                {
+                  "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
+                  "ctaLabel": "Explore",
+                  "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
+                  "image": {
+                    "alt": "Bolte Sitare - Lets Boing!",
+                    "src": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp"
+                  },
+                  "link": "/bolte-sitare.html",
+                  "title": "Bolte Sitare"
+                }
+              ],
+              "header": "\u003ch1 class=\"featurecards-title\"\u003eWelcome to \u003cspan class=\"featurecards-title-highlight\"\u003eLetsBoing!\u003c/span\u003e\u003c/h1\u003e",
+              "model": "featurecards",
+              "name": "featurecards"
             }
           }
         }
@@ -52,122 +46,85 @@
   "models": [
     {
       "id": "featurecards",
-      "description": "",
+      "description": "Block model for Feature Cards rendering",
       "fields": [
         {
-          "component": "text",
-          "label": "Link Href",
-          "name": "featurecards-link-href",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Link Title",
-          "name": "featurecards-link-title",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Link CTA Label",
-          "name": "featurecards-link-data-cta-label",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Image Src",
-          "multi": false,
-          "name": "featurecards-image",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Image Alt",
-          "name": "featurecards-image-alt",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Card Title",
-          "name": "featurecards-title-h2",
-          "valueType": "string"
-        },
-        {
           "component": "richtext",
-          "label": "Card Description",
-          "name": "featurecards-desc",
+          "description": "Main heading for the feature cards section.",
+          "group": "Header",
+          "label": "Header",
+          "name": "header",
+          "required": false,
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Arrow Icon",
-          "name": "featurecards-arrow-icon-btn",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "boltesitarecard",
-      "description": "",
-      "fields": [
-        {
-          "component": "text",
-          "label": "Card Section Link Href",
-          "name": "featurecards-bolte-sitare-card-section-href",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Card Section Link Title",
-          "name": "featurecards-bolte-sitare-card-section-title",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Card Section Data Title",
-          "name": "featurecards-bolte-sitare-card-section-data-title",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Card Section Image Src",
-          "multi": false,
-          "name": "featurecards-bolte-sitare-card-section--img",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Card Section Image Alt",
-          "name": "featurecards-bolte-sitare-card-section--img-alt",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Card Section Title",
-          "name": "featurecards-bolte-sitare-card-section--title",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Card Section Text",
-          "name": "featurecards-bolte-sitare-card-section--text",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Card Section Button",
-          "name": "featurecards-bolte-sitare-card-section--btn",
-          "valueType": "string"
+          "component": "container",
+          "description": "List of feature cards.",
+          "fields": [
+            {
+              "component": "aem-content",
+              "description": "URL for the card.",
+              "label": "Card Link",
+              "name": "link",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "text",
+                  "label": "Image Source",
+                  "name": "src",
+                  "required": true,
+                  "valueType": "string"
+                },
+                {
+                  "component": "text",
+                  "label": "Image Alt Text",
+                  "name": "alt",
+                  "required": false,
+                  "valueType": "string"
+                }
+              ],
+              "label": "Image",
+              "name": "image"
+            },
+            {
+              "component": "text",
+              "label": "Card Title",
+              "name": "title",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Card Description",
+              "name": "description",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "CTA Label",
+              "name": "ctaLabel",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "CTA Icon Source",
+              "name": "ctaIcon",
+              "required": false,
+              "valueType": "string"
+            }
+          ],
+          "label": "Cards",
+          "name": "cards",
+          "valueType": "object[]"
         }
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "featurecards",
-      "components": [
-        "featurecard",
-        "boltesitarecard"
-      ]
-    }
-  ]
+  "filters": []
 }

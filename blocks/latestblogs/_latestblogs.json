@@ -1,32 +1,21 @@
 {
   "definitions": [
     {
-      "title": "LatestBlogs",
+      "title": "Latest Blogs",
       "id": "latestblogs",
-      "icon": "",
+      "icon": "bookmark",
+      "category": "content",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "latestblogs",
-              "model": "latestblogs"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "LatestBlogCard",
-      "id": "latestblogcard",
-      "icon": "",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "model": "latestblogcard",
-              "name": "LatestBlogCard"
+              "model": "latestblogs",
+              "name": "latestblogs",
+              "sectionDescription": "Stay updated with our latest news, \nblogs and events",
+              "sectionTitle": "More Boings",
+              "viewAllLabel": "View All",
+              "viewAllLink": "/bolte-sitare/boingwale-blogs.html"
             }
           }
         }
@@ -36,54 +25,80 @@
   "models": [
     {
       "id": "latestblogs",
-      "description": "",
+      "description": "Block model for Latest Blogs Listing",
       "fields": [
         {
           "component": "text",
-          "label": "Blog URL",
-          "name": "url",
+          "description": "Main heading for latest blogs section.",
+          "label": "Section Title",
+          "name": "sectionTitle",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "description": "Section description or subtitle.",
+          "label": "Section Description",
+          "name": "sectionDescription",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "description": "URL for the 'View All' button.",
+          "label": "View All Link URL",
+          "name": "viewAllLink",
+          "required": false,
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "CTA Label",
-          "name": "ctaLabel",
+          "description": "Text label for the 'View All' button.",
+          "label": "View All Label",
+          "name": "viewAllLabel",
+          "required": false,
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "Image",
-          "multi": false,
-          "name": "image",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Published Date (ISO)",
-          "name": "date",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Display Date",
-          "name": "displayDate",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Blog Title",
-          "name": "title",
-          "valueType": "string"
+          "component": "container",
+          "description": "List of latest blog articles.",
+          "fields": [
+            {
+              "component": "aem-content",
+              "label": "Article URL",
+              "name": "articleUrl",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "image",
+              "label": "Article Image",
+              "name": "imageSrc",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "date-time",
+              "label": "Publish Date",
+              "name": "publishDate",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Article Title",
+              "name": "articleTitle",
+              "required": true,
+              "valueType": "string"
+            }
+          ],
+          "label": "Articles List",
+          "name": "articles",
+          "required": false,
+          "valueType": "object[]"
         }
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "latestblogs",
-      "components": [
-        "latestblogcard"
-      ]
-    }
-  ]
+  "filters": []
 }

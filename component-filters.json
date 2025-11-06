@@ -19,19 +19,17 @@
       "carousel",
       "featurecards",
       "latestblogs",
-      "stickynavigation"
+      "stickynavigation",
+      "header-footer-brand",
+      "spaceadder",
+      "footer-brand-section",
+      "sticky-navigation"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
-    ]
-  },
-  {
-    "id": "carousel",
-    "components": [
-      "carousel-slide"
     ]
   },
   {
@@ -47,19 +45,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "featurecards",
-    "components": [
-      "featurecard",
-      "boltesitarecard"
-    ]
-  },
-  {
-    "id": "latestblogs",
-    "components": [
-      "latestblogcard"
     ]
   },
   {

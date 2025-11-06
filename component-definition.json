@@ -115,30 +115,15 @@
         {
           "title": "Carousel",
           "id": "carousel",
-          "icon": "",
+          "icon": "carousel-icon",
+          "category": "content",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "filter": "carousel",
-                  "model": "carousel"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Carousel Slide",
-          "id": "carousel-slide",
-          "icon": "",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "carousel-slide",
-                  "name": "carousel-slide"
+                  "model": "carousel",
+                  "name": "Carousel"
                 }
               }
             }
@@ -160,48 +145,132 @@
           }
         },
         {
-          "title": "FeatureCards",
+          "title": "Feature Cards",
           "id": "featurecards",
-          "icon": "",
+          "icon": "featurecards-icon",
+          "category": "content",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "filter": "featurecards",
-                  "model": "featurecards"
+                  "cards": [
+                    {
+                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
+                      "ctaLabel": "Explore",
+                      "description": "India ki taaza aur thodi-si tedhi news!",
+                      "image": {
+                        "alt": "Tedhe Medhe Samachaar",
+                        "src": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp"
+                      },
+                      "link": "/tedhe-medhe-samachaar.html",
+                      "title": "Tedhe Medhe Samachar"
+                    },
+                    {
+                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
+                      "ctaLabel": "Explore",
+                      "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
+                      "image": {
+                        "alt": "Bolte Sitare - Lets Boing!",
+                        "src": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp"
+                      },
+                      "link": "/bolte-sitare.html",
+                      "title": "Bolte Sitare"
+                    }
+                  ],
+                  "header": "<h1 class=\"featurecards-title\">Welcome to <span class=\"featurecards-title-highlight\">LetsBoing!</span></h1>",
+                  "model": "featurecards",
+                  "name": "featurecards"
                 }
               }
             }
           }
         },
         {
-          "title": "FeatureCard",
-          "id": "featurecard",
-          "icon": "",
+          "title": "Footer Brand Section",
+          "id": "footer-brand-section",
+          "icon": "footer",
+          "category": "content",
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
+                "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "model": "featurecard",
-                  "name": "FeatureCard"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "BolteSitareCard",
-          "id": "boltesitarecard",
-          "icon": "",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "boltesitarecard",
-                  "name": "BolteSitareCard"
+                  "copyright_text": "© 2025 Bingo! All Rights Reserved.",
+                  "footer_brand_left_links": [
+                    {
+                      "href": "https://www.itcportal.com/",
+                      "text": "ITC portal"
+                    }
+                  ],
+                  "footer_links": [
+                    {
+                      "href": "/about-us.html",
+                      "text": "About us"
+                    },
+                    {
+                      "href": "/terms-and-conditions.html",
+                      "text": "Terms and Conditions"
+                    },
+                    {
+                      "href": "/privacy-policy.html",
+                      "text": "Privacy Policy"
+                    },
+                    {
+                      "href": "/bolte-sitare/boingwale-blogs.html",
+                      "text": "BoingWale Blogs"
+                    },
+                    {
+                      "href": "/tedhe-medhe-samachaar/tedhe-medhe-highlights.html",
+                      "text": "Tedhe Medhe Highlights"
+                    },
+                    {
+                      "href": "/bolte-sitare/number-ka-khel.html",
+                      "text": "Numbers Ka Khel"
+                    },
+                    {
+                      "href": "https://www.itcportal.com/contact-us.aspx",
+                      "text": "Contact us"
+                    },
+                    {
+                      "href": "/tedhe-medhe-samachaar/sa-meme-chaar.html",
+                      "text": "Sa-Meme-Char"
+                    },
+                    {
+                      "href": "/bolte-sitare/love-compatibility.html",
+                      "text": "Pyaar O Scope"
+                    },
+                    {
+                      "href": "/bolte-sitare/bhavishya-on-the-go.html",
+                      "text": "Bhavishya On The Go"
+                    },
+                    {
+                      "href": "/tedhe-medhe-samachaar/boing-weekly.html",
+                      "text": "Boing Weekly"
+                    }
+                  ],
+                  "footer_logo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
+                  "footer_logo_link": "https://www.itcportal.com/",
+                  "footer_secondary_logo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
+                  "model": "footer-brand-section",
+                  "name": "footer-brand-section",
+                  "social_links": [
+                    {
+                      "href": "https://www.facebook.com/share/1BiTDumTX4/?mibextid=wwXIf",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
+                      "platform": "facebook"
+                    },
+                    {
+                      "href": "https://www.instagram.com/bingo_snacks?igsh=bjc5eXg1cDNkM3U1",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/instagram-2?fmt=webp-alpha.webp",
+                      "platform": "instagram"
+                    },
+                    {
+                      "href": "http://www.youtube.com/@BingoSnacks",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
+                      "platform": "youtube"
+                    }
+                  ]
                 }
               }
             }
@@ -223,6 +292,23 @@
           }
         },
         {
+          "title": "Header Footer Brand",
+          "id": "header-footer-brand",
+          "icon": "header-footer-brand-icon",
+          "category": "navigation",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "model": "header-footer-brand",
+                  "name": "header-footer-brand"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "plugins": {
@@ -238,32 +324,80 @@
           }
         },
         {
-          "title": "LatestBlogs",
+          "title": "Latest Blogs",
           "id": "latestblogs",
-          "icon": "",
+          "icon": "bookmark",
+          "category": "content",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "filter": "latestblogs",
-                  "model": "latestblogs"
+                  "model": "latestblogs",
+                  "name": "latestblogs",
+                  "sectionDescription": "Stay updated with our latest news, \nblogs and events",
+                  "sectionTitle": "More Boings",
+                  "viewAllLabel": "View All",
+                  "viewAllLink": "/bolte-sitare/boingwale-blogs.html"
                 }
               }
             }
           }
         },
         {
-          "title": "LatestBlogCard",
-          "id": "latestblogcard",
-          "icon": "",
+          "title": "Space Adder",
+          "id": "spaceadder",
+          "icon": "spaceadder-icon",
+          "category": "layout",
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
+                "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "model": "latestblogcard",
-                  "name": "LatestBlogCard"
+                  "model": "spaceadder"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Sticky Navigation",
+          "id": "sticky-navigation",
+          "icon": "navigation",
+          "category": "navigation",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "items": [
+                    {
+                      "alt": "home icon",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/home_active?fmt=webp-alpha.webp",
+                      "label": "Home",
+                      "link": "/"
+                    },
+                    {
+                      "alt": "Samachaar icon",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/samachaar?fmt=webp-alpha.webp",
+                      "label": "Samachar",
+                      "link": "/tedhe-medhe-samachaar.html"
+                    },
+                    {
+                      "alt": "star icon",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/star-1?fmt=webp-alpha.webp",
+                      "label": "Bolte Sitare",
+                      "link": "/bolte-sitare.html"
+                    },
+                    {
+                      "alt": "profile logo",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/profile-circle?fmt=webp-alpha.webp",
+                      "label": "Profile",
+                      "link": "/login/profile.html"
+                    }
+                  ],
+                  "model": "sticky-navigation",
+                  "name": "sticky-navigation"
                 }
               }
             }

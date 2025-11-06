@@ -3,30 +3,15 @@
     {
       "title": "Carousel",
       "id": "carousel",
-      "icon": "",
+      "icon": "carousel-icon",
+      "category": "content",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "carousel",
-              "model": "carousel"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Carousel Slide",
-      "id": "carousel-slide",
-      "icon": "",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "model": "carousel-slide",
-              "name": "carousel-slide"
+              "model": "carousel",
+              "name": "Carousel"
             }
           }
         }
@@ -36,72 +21,100 @@
   "models": [
     {
       "id": "carousel",
-      "description": "",
+      "description": "Block model for Carousel rendering",
       "fields": [
         {
           "component": "container",
+          "description": "Slides in the carousel.",
           "fields": [
             {
-              "component": "container",
-              "fields": [
+              "component": "select",
+              "label": "Slide Type",
+              "name": "type",
+              "options": [
                 {
-                  "component": "container",
-                  "fields": [
-                    {
-                      "component": "reference",
-                      "label": "Banner Media",
-                      "multi": false,
-                      "name": "carousel-banner-media",
-                      "valueType": "string"
-                    },
-                    {
-                      "component": "container",
-                      "fields": [
-                        {
-                          "component": "container",
-                          "fields": [
-                            {
-                              "component": "text",
-                              "label": "CTA Button Text",
-                              "name": "carousel-cmp-button__text",
-                              "valueType": "string"
-                            },
-                            {
-                              "component": "reference",
-                              "label": "CTA Button Link",
-                              "multi": false,
-                              "name": "carousel-cmp-button",
-                              "valueType": "string"
-                            }
-                          ],
-                          "label": "Banner CTA",
-                          "name": "carousel-banner-cta"
-                        }
-                      ],
-                      "label": "Banner CTA Container",
-                      "name": "carousel-boing__banner--cta"
-                    }
-                  ],
-                  "label": "Carousel Banner Section Wrapper",
-                  "name": "carousel-banner-section__wrapper"
+                  "name": "Image",
+                  "value": "image"
+                },
+                {
+                  "name": "Video",
+                  "value": "video"
                 }
               ],
-              "label": "Carousel Banner Section",
-              "name": "carousel-banner-section"
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Image or video source.",
+              "label": "Media Source",
+              "name": "media_src",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Alt text for image or title for video.",
+              "label": "Media Alt/Title",
+              "name": "media_alt",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Link for CTA button (if present).",
+              "label": "CTA Link",
+              "name": "cta_link",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Text for CTA button (if present).",
+              "label": "CTA Text",
+              "name": "cta_text",
+              "required": false,
+              "valueType": "string"
             }
           ],
-          "label": "Carousel Banner",
-          "name": "carousel-banner"
+          "label": "Carousel Items",
+          "name": "items",
+          "required": true
+        },
+        {
+          "component": "boolean",
+          "description": "Enable autoplay for carousel.",
+          "label": "Autoplay",
+          "name": "is_autoplay",
+          "required": false,
+          "valueType": "boolean"
+        },
+        {
+          "component": "number",
+          "description": "Delay between slides in ms.",
+          "label": "Autoplay Delay",
+          "name": "delay",
+          "required": false,
+          "valueType": "number"
+        },
+        {
+          "component": "boolean",
+          "description": "Disable auto pause on interaction.",
+          "label": "Disable Autopause",
+          "name": "autopause_disabled",
+          "required": false,
+          "valueType": "boolean"
+        },
+        {
+          "component": "boolean",
+          "description": "Loop carousel slides.",
+          "label": "Loop",
+          "name": "is_loop",
+          "required": false,
+          "valueType": "boolean"
         }
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "carousel",
-      "components": [
-        "carousel-slide"
-      ]
-    }
-  ]
+  "filters": []
 }
