@@ -116,7 +116,7 @@
           "title": "Carousel",
           "id": "carousel",
           "icon": "carousel-icon",
-          "category": "content",
+          "category": "media",
           "plugins": {
             "xwalk": {
               "page": {
@@ -147,7 +147,7 @@
         {
           "title": "Feature Cards",
           "id": "featurecards",
-          "icon": "featurecards-icon",
+          "icon": "cards-icon",
           "category": "content",
           "plugins": {
             "xwalk": {
@@ -156,29 +156,23 @@
                 "template": {
                   "cards": [
                     {
-                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
                       "ctaLabel": "Explore",
-                      "description": "India ki taaza aur thodi-si tedhi news!",
-                      "image": {
-                        "alt": "Tedhe Medhe Samachaar",
-                        "src": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp"
-                      },
-                      "link": "/tedhe-medhe-samachaar.html",
+                      "desc": "India ki taaza aur thodi-si tedhi news!",
+                      "href": "/tedhe-medhe-samachaar.html",
+                      "imgAlt": "Tedhe Medhe Samachaar",
+                      "imgSrc": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
                       "title": "Tedhe Medhe Samachar"
                     },
                     {
-                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
                       "ctaLabel": "Explore",
-                      "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
-                      "image": {
-                        "alt": "Bolte Sitare - Lets Boing!",
-                        "src": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp"
-                      },
-                      "link": "/bolte-sitare.html",
+                      "desc": "Aapki bhavishyavaani, Bingo! ki zubaani",
+                      "href": "/bolte-sitare.html",
+                      "imgAlt": "Bolte Sitare - Lets Boing!",
+                      "imgSrc": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
                       "title": "Bolte Sitare"
                     }
                   ],
-                  "header": "<h1 class=\"featurecards-title\">Welcome to <span class=\"featurecards-title-highlight\">LetsBoing!</span></h1>",
+                  "mainTitle": "<h1 class=\"featurecards-title\">Welcome to <span class=\"featurecards-title-partial\">LetsBoing!</span></h1>",
                   "model": "featurecards",
                   "name": "featurecards"
                 }
@@ -277,6 +271,23 @@
           }
         },
         {
+          "title": "Footer Brand",
+          "id": "footer-brand",
+          "icon": "footer",
+          "category": "content",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "model": "footer-brand",
+                  "name": "footer-brand"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Fragment",
           "id": "fragment",
           "plugins": {
@@ -292,7 +303,7 @@
           }
         },
         {
-          "title": "Header Footer Brand",
+          "title": "Header & Footer Brand",
           "id": "header-footer-brand",
           "icon": "header-footer-brand-icon",
           "category": "navigation",
@@ -326,19 +337,69 @@
         {
           "title": "Latest Blogs",
           "id": "latestblogs",
-          "icon": "bookmark",
+          "icon": "article",
           "category": "content",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
+                  "blogs": [
+                    {
+                      "date": "2025-10-21T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/mithai-banner?fmt=webp-alpha.webp",
+                      "link": "/bolte-sitare/boingwale-blogs/kaunsi-diwali-sweet-aapke-zodiac-sign-se-sabse-zyada-milti-hai-.html",
+                      "title": "Kaunsi Diwali Sweet Aapke Zodiac Sign Se Sabse Zyada Milti Hai?"
+                    },
+                    {
+                      "date": "2025-10-21T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/rangoli-banner?fmt=webp-alpha.webp",
+                      "link": "/bolte-sitare/boingwale-blogs/aap-kis-type-ke-rangoli--artist--ho-.html",
+                      "title": "Aap Kis Type Ke Rangoli ‘Artist’ Ho?"
+                    },
+                    {
+                      "date": "2025-10-21T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/diwali-whatsapp-forward-banner?fmt=webp-alpha.webp",
+                      "link": "/bolte-sitare/boingwale-blogs/har-zodiac-sign-kis-type-ke-diwali-whatsapp-forward-bhejta-hai-.html",
+                      "title": "Har Zodiac Sign Kis Type Ke Diwali WhatsApp Forward Bhejta Hai?"
+                    },
+                    {
+                      "date": "2025-10-21T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/diwali-wish-message-banner-v2?fmt=webp-alpha.webp",
+                      "link": "/bolte-sitare/boingwale-blogs/aap-kis-style-mein-diwali-wish-message-karte-hain--jaaniye-zodia.html",
+                      "title": "Aap Kis Style Mein Diwali Wish Message Karte Hain? Jaaniye Zodiac Ki Nazar Se"
+                    },
+                    {
+                      "date": "2025-10-21T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/diwali-party-banner?fmt=webp-alpha.webp",
+                      "link": "/bolte-sitare/boingwale-blogs/aapka-diwali-party-vibe-kya-hai-.html",
+                      "title": "Aapka Diwali Party Vibe Kya Hai?"
+                    },
+                    {
+                      "date": "2025-10-20T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/patakha-banner?fmt=webp-alpha.webp",
+                      "link": "/bolte-sitare/boingwale-blogs/kaunsa-diwali-cracker-aapke-zodiac-ko-represent-karta-hai-.html",
+                      "title": "Kaunsa Diwali Cracker Aapke Zodiac Ko Represent Karta Hai?"
+                    },
+                    {
+                      "date": "2025-10-20T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/diwali-hamper-banner?fmt=webp-alpha.webp",
+                      "link": "/bolte-sitare/boingwale-blogs/zodiac-ki-nazar-se--har-sign-ka-perfect-diwali-hamper.html",
+                      "title": "Zodiac Ki Nazar Se: Har Sign Ka Perfect Diwali Hamper"
+                    },
+                    {
+                      "date": "2025-10-19T00:00:00.000+05:30",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/stalked-by-boss-banner.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/aapka-boss-aapko-social-media-pe-follow-kare-toh-aap-kaise-react.html",
+                      "title": "Aapka Boss Aapko Social Media Pe Follow Kare Toh Aap Kaise React Karte Ho?"
+                    }
+                  ],
+                  "header_cta_link": "/bolte-sitare/boingwale-blogs.html",
+                  "header_cta_text": "View All",
+                  "header_desc": "Stay updated with our latest news, blogs and events",
+                  "header_title": "More Boings",
                   "model": "latestblogs",
-                  "name": "latestblogs",
-                  "sectionDescription": "Stay updated with our latest news, \nblogs and events",
-                  "sectionTitle": "More Boings",
-                  "viewAllLabel": "View All",
-                  "viewAllLink": "/bolte-sitare/boingwale-blogs.html"
+                  "name": "latestblogs"
                 }
               }
             }
@@ -347,14 +408,15 @@
         {
           "title": "Space Adder",
           "id": "spaceadder",
-          "icon": "spaceadder-icon",
+          "icon": "space-icon",
           "category": "layout",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "model": "spaceadder"
+                  "model": "spaceadder",
+                  "name": "spaceadder"
                 }
               }
             }

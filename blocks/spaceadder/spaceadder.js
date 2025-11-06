@@ -1,3 +1,3 @@
 export default function decorate(b){
-  b.classList.add('spaceadder');
+  b.classList.add('spaceadder-container');
 }

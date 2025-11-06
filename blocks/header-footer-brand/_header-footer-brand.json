@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Header Footer Brand",
+      "title": "Header \u0026 Footer Brand",
       "id": "header-footer-brand",
       "icon": "header-footer-brand-icon",
       "category": "navigation",
@@ -21,11 +21,11 @@
   "models": [
     {
       "id": "header-footer-brand",
-      "description": "Block model for Header and Footer navigation and branding.",
+      "description": "Block model for Header and Footer Brand rendering",
       "fields": [
         {
           "component": "text",
-          "description": "Application name displayed in header.",
+          "description": "The app name shown in header.",
           "label": "App Name",
           "name": "appName",
           "required": false,
@@ -33,23 +33,23 @@
         },
         {
           "component": "aem-content",
-          "description": "Logo image displayed in the header.",
-          "label": "Header Logo Image",
-          "name": "logoImg",
+          "description": "Main logo image src.",
+          "label": "Logo Image",
+          "name": "logoImage",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Link for header logo.",
-          "label": "Header Logo Link",
+          "description": "Main logo link.",
+          "label": "Logo Link",
           "name": "logoLink",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Login page link in header.",
+          "description": "Login button link.",
           "label": "Login Link",
           "name": "loginLink",
           "required": false,
@@ -57,31 +57,31 @@
         },
         {
           "component": "container",
-          "description": "Sidebar navigation menu.",
           "fields": [
             {
-              "component": "aem-content",
-              "description": "Sidebar menu links.",
-              "label": "Menu Item Links",
-              "name": "menuItemLinks",
-              "required": false,
-              "valueType": "string[]"
-            },
-            {
-              "component": "aem-content",
-              "description": "Sidebar menu icons.",
-              "label": "Menu Item Icons",
-              "name": "menuItemIcons",
-              "required": false,
-              "valueType": "string[]"
-            },
-            {
-              "component": "text",
-              "description": "Sidebar menu item labels.",
-              "label": "Menu Item Labels",
-              "name": "menuItemLabels",
-              "required": false,
-              "valueType": "string[]"
+              "component": "container",
+              "fields": [
+                {
+                  "component": "text",
+                  "label": "Menu Text",
+                  "name": "text",
+                  "valueType": "string"
+                },
+                {
+                  "component": "aem-content",
+                  "label": "Menu Link",
+                  "name": "href",
+                  "valueType": "string"
+                },
+                {
+                  "component": "aem-content",
+                  "label": "Icon Source",
+                  "name": "iconSrc",
+                  "valueType": "string"
+                }
+              ],
+              "label": "Menu Items",
+              "name": "menuItems"
             }
           ],
           "label": "Sidebar Menu",
@@ -89,75 +89,98 @@
         },
         {
           "component": "container",
-          "description": "Footer navigation links.",
           "fields": [
             {
               "component": "aem-content",
-              "description": "Footer navigation link URLs.",
-              "label": "Footer Link URLs",
-              "name": "footerLinkUrls",
-              "required": false,
-              "valueType": "string[]"
+              "label": "Left Logo 1",
+              "name": "leftLogo1",
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "label": "Left Logo 2",
+              "name": "leftLogo2",
+              "valueType": "string"
+            },
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "text",
+                  "label": "Link Text",
+                  "name": "linkText",
+                  "valueType": "string"
+                },
+                {
+                  "component": "aem-content",
+                  "label": "Link URL",
+                  "name": "linkUrl",
+                  "valueType": "string"
+                }
+              ],
+              "label": "Footer Links",
+              "name": "footerLinks"
+            }
+          ],
+          "label": "Footer Brand Primary",
+          "name": "footerBrandPrimary"
+        },
+        {
+          "component": "container",
+          "fields": [
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "aem-content",
+                  "label": "Platform",
+                  "name": "platform",
+                  "valueType": "string"
+                },
+                {
+                  "component": "aem-content",
+                  "label": "Social URL",
+                  "name": "url",
+                  "valueType": "string"
+                },
+                {
+                  "component": "aem-content",
+                  "label": "Icon Source",
+                  "name": "iconSrc",
+                  "valueType": "string"
+                }
+              ],
+              "label": "Social Links",
+              "name": "socialLinks"
+            },
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "text",
+                  "label": "Link Text",
+                  "name": "linkText",
+                  "valueType": "string"
+                },
+                {
+                  "component": "aem-content",
+                  "label": "Link URL",
+                  "name": "linkUrl",
+                  "valueType": "string"
+                }
+              ],
+              "label": "Footer Left Links",
+              "name": "footerLeftLinks"
             },
             {
               "component": "text",
-              "description": "Footer navigation link labels.",
-              "label": "Footer Link Labels",
-              "name": "footerLinkLabels",
-              "required": false,
-              "valueType": "string[]"
+              "label": "Copyright Text",
+              "name": "copyright",
+              "valueType": "string"
             }
           ],
-          "label": "Footer Links",
-          "name": "footerLinks"
-        },
-        {
-          "component": "container",
-          "description": "Logos shown in footer.",
-          "fields": [
-            {
-              "component": "aem-content",
-              "description": "Footer logo image URLs.",
-              "label": "Footer Logo Images",
-              "name": "footerLogoImages",
-              "required": false,
-              "valueType": "string[]"
-            }
-          ],
-          "label": "Footer Logos",
-          "name": "footerLogos"
-        },
-        {
-          "component": "container",
-          "description": "Social media links in the footer.",
-          "fields": [
-            {
-              "component": "aem-content",
-              "description": "Links to social media profiles.",
-              "label": "Social URLs",
-              "name": "socialUrls",
-              "required": false,
-              "valueType": "string[]"
-            },
-            {
-              "component": "aem-content",
-              "description": "Icon image URLs for social media.",
-              "label": "Social Media Icons",
-              "name": "socialIcons",
-              "required": false,
-              "valueType": "string[]"
-            }
-          ],
-          "label": "Social Media Links",
-          "name": "socialLinks"
-        },
-        {
-          "component": "text",
-          "description": "Copyright text in footer.",
-          "label": "Copyright Text",
-          "name": "copyrightText",
-          "required": false,
-          "valueType": "string"
+          "label": "Footer Brand Secondary",
+          "name": "footerBrandSecondary"
         }
       ]
     }

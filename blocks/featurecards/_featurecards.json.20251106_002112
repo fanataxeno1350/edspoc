@@ -1,0 +1,130 @@
+{
+  "definitions": [
+    {
+      "title": "Feature Cards",
+      "id": "featurecards",
+      "icon": "featurecards-icon",
+      "category": "content",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "cards": [
+                {
+                  "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
+                  "ctaLabel": "Explore",
+                  "description": "India ki taaza aur thodi-si tedhi news!",
+                  "image": {
+                    "alt": "Tedhe Medhe Samachaar",
+                    "src": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp"
+                  },
+                  "link": "/tedhe-medhe-samachaar.html",
+                  "title": "Tedhe Medhe Samachar"
+                },
+                {
+                  "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762409809441.svg+xml",
+                  "ctaLabel": "Explore",
+                  "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
+                  "image": {
+                    "alt": "Bolte Sitare - Lets Boing!",
+                    "src": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp"
+                  },
+                  "link": "/bolte-sitare.html",
+                  "title": "Bolte Sitare"
+                }
+              ],
+              "header": "\u003ch1 class=\"featurecards-title\"\u003eWelcome to \u003cspan class=\"featurecards-title-highlight\"\u003eLetsBoing!\u003c/span\u003e\u003c/h1\u003e",
+              "model": "featurecards",
+              "name": "featurecards"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "featurecards",
+      "description": "Block model for Feature Cards rendering",
+      "fields": [
+        {
+          "component": "richtext",
+          "description": "Main heading for the feature cards section.",
+          "group": "Header",
+          "label": "Header",
+          "name": "header",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "description": "List of feature cards.",
+          "fields": [
+            {
+              "component": "aem-content",
+              "description": "URL for the card.",
+              "label": "Card Link",
+              "name": "link",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "container",
+              "fields": [
+                {
+                  "component": "text",
+                  "label": "Image Source",
+                  "name": "src",
+                  "required": true,
+                  "valueType": "string"
+                },
+                {
+                  "component": "text",
+                  "label": "Image Alt Text",
+                  "name": "alt",
+                  "required": false,
+                  "valueType": "string"
+                }
+              ],
+              "label": "Image",
+              "name": "image"
+            },
+            {
+              "component": "text",
+              "label": "Card Title",
+              "name": "title",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Card Description",
+              "name": "description",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "CTA Label",
+              "name": "ctaLabel",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "CTA Icon Source",
+              "name": "ctaIcon",
+              "required": false,
+              "valueType": "string"
+            }
+          ],
+          "label": "Cards",
+          "name": "cards",
+          "valueType": "object[]"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

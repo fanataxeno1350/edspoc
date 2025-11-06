@@ -47,7 +47,7 @@
   "models": [
     {
       "id": "sticky-navigation",
-      "description": "Sticky Navigation Bar",
+      "description": "Model for Sticky Navigation with icon, label, and link.",
       "fields": [
         {
           "component": "container",
@@ -55,6 +55,7 @@
           "fields": [
             {
               "component": "text",
+              "description": "Text label for navigation item",
               "label": "Label",
               "name": "label",
               "required": true,
@@ -62,6 +63,7 @@
             },
             {
               "component": "aem-content",
+              "description": "URL for navigation item",
               "label": "Link",
               "name": "link",
               "required": true,
@@ -69,6 +71,7 @@
             },
             {
               "component": "aem-content",
+              "description": "Image source for icon",
               "label": "Icon URL",
               "name": "icon",
               "required": true,
@@ -76,6 +79,7 @@
             },
             {
               "component": "text",
+              "description": "Alt text for icon image",
               "label": "Icon Alt Text",
               "name": "alt",
               "required": false,
@@ -83,9 +87,7 @@
             }
           ],
           "label": "Navigation Items",
-          "name": "items",
-          "required": true,
-          "valueType": "object[]"
+          "name": "items"
         }
       ]
     }

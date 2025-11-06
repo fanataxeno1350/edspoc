@@ -4,7 +4,7 @@
       "title": "Carousel",
       "id": "carousel",
       "icon": "carousel-icon",
-      "category": "content",
+      "category": "media",
       "plugins": {
         "xwalk": {
           "page": {
@@ -24,13 +24,54 @@
       "description": "Block model for Carousel rendering",
       "fields": [
         {
+          "collapsed": false,
+          "component": "boolean",
+          "description": "Enable automatic slide change.",
+          "group": "Settings",
+          "label": "Autoplay",
+          "name": "isAutoplay",
+          "required": false,
+          "valueType": "boolean"
+        },
+        {
+          "collapsed": false,
+          "component": "number",
+          "description": "Time between slide changes in milliseconds.",
+          "group": "Settings",
+          "label": "Autoplay Delay (ms)",
+          "name": "delay",
+          "required": false,
+          "valueType": "number"
+        },
+        {
+          "collapsed": false,
+          "component": "boolean",
+          "description": "Disable pause on interaction.",
+          "group": "Settings",
+          "label": "Disable Autopause",
+          "name": "autopauseDisabled",
+          "required": false,
+          "valueType": "boolean"
+        },
+        {
+          "collapsed": false,
+          "component": "boolean",
+          "description": "Enable looping of slides.",
+          "group": "Settings",
+          "label": "Loop",
+          "name": "isLoop",
+          "required": false,
+          "valueType": "boolean"
+        },
+        {
+          "collapsed": false,
           "component": "container",
-          "description": "Slides in the carousel.",
+          "description": "Carousel slides",
           "fields": [
             {
               "component": "select",
-              "label": "Slide Type",
-              "name": "type",
+              "label": "Media Type",
+              "name": "mediaType",
               "options": [
                 {
                   "name": "Image",
@@ -46,72 +87,40 @@
             },
             {
               "component": "aem-content",
-              "description": "Image or video source.",
+              "description": "Image or video source URL.",
               "label": "Media Source",
-              "name": "media_src",
+              "name": "mediaSrc",
               "required": true,
               "valueType": "string"
             },
             {
               "component": "text",
-              "description": "Alt text for image or title for video.",
-              "label": "Media Alt/Title",
-              "name": "media_alt",
-              "required": false,
-              "valueType": "string"
-            },
-            {
-              "component": "aem-content",
-              "description": "Link for CTA button (if present).",
-              "label": "CTA Link",
-              "name": "cta_link",
+              "description": "Alternative text for image.",
+              "label": "Alt Text",
+              "name": "alt",
               "required": false,
               "valueType": "string"
             },
             {
               "component": "text",
-              "description": "Text for CTA button (if present).",
-              "label": "CTA Text",
-              "name": "cta_text",
+              "description": "Title of the slide.",
+              "label": "Slide Title",
+              "name": "title",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "richtext",
+              "description": "HTML for CTA buttons inside the slide.",
+              "label": "CTA (HTML)",
+              "name": "ctaHtml",
               "required": false,
               "valueType": "string"
             }
           ],
-          "label": "Carousel Items",
-          "name": "items",
-          "required": true
-        },
-        {
-          "component": "boolean",
-          "description": "Enable autoplay for carousel.",
-          "label": "Autoplay",
-          "name": "is_autoplay",
-          "required": false,
-          "valueType": "boolean"
-        },
-        {
-          "component": "number",
-          "description": "Delay between slides in ms.",
-          "label": "Autoplay Delay",
-          "name": "delay",
-          "required": false,
-          "valueType": "number"
-        },
-        {
-          "component": "boolean",
-          "description": "Disable auto pause on interaction.",
-          "label": "Disable Autopause",
-          "name": "autopause_disabled",
-          "required": false,
-          "valueType": "boolean"
-        },
-        {
-          "component": "boolean",
-          "description": "Loop carousel slides.",
-          "label": "Loop",
-          "name": "is_loop",
-          "required": false,
-          "valueType": "boolean"
+          "label": "Slides",
+          "multiple": true,
+          "name": "slides"
         }
       ]
     }
