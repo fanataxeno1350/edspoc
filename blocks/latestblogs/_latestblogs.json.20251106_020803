@@ -29,7 +29,7 @@
       "fields": [
         {
           "component": "text",
-          "description": "The main title for the blog section.",
+          "description": "The main title for the section.",
           "label": "Title",
           "name": "title",
           "required": true,
@@ -37,26 +37,26 @@
         },
         {
           "component": "richtext",
-          "description": "A brief description for the blog section.",
+          "description": "A brief description for the section.",
           "label": "Description",
           "name": "description",
-          "required": true,
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "description": "Link for the 'View All' CTA button.",
-          "label": "CTA Link",
-          "name": "ctaLink",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "text",
-          "description": "Text for the 'View All' CTA button.",
+          "description": "Text for the call-to-action button.",
           "label": "CTA Text",
           "name": "ctaText",
-          "required": false,
+          "required": true,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "description": "Link for the call-to-action button.",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "required": true,
           "valueType": "string"
         }
       ]

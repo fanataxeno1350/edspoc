@@ -1,10 +1,10 @@
 {
   "definitions": [
     {
-      "title": "Header \u0026 Footer Brand",
+      "title": "Header and Footer Brand Block",
       "id": "header-footer-brand",
       "icon": "header-footer-brand-icon",
-      "category": "navigation",
+      "category": "content",
       "plugins": {
         "xwalk": {
           "page": {
@@ -21,11 +21,11 @@
   "models": [
     {
       "id": "header-footer-brand",
-      "description": "Block model for Header and Footer Brand rendering",
+      "description": "Block model for rendering site header and footer with navigation and social links.",
       "fields": [
         {
           "component": "text",
-          "description": "The app name shown in header.",
+          "description": "Name of the application shown in the header.",
           "label": "App Name",
           "name": "appName",
           "required": false,
@@ -33,154 +33,75 @@
         },
         {
           "component": "aem-content",
-          "description": "Main logo image src.",
-          "label": "Logo Image",
-          "name": "logoImage",
+          "description": "Primary logo displayed in the header.",
+          "label": "Header Logo Image",
+          "name": "headerLogo",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Main logo link.",
-          "label": "Logo Link",
-          "name": "logoLink",
+          "description": "Alt text for the header logo image.",
+          "label": "Header Logo Alt Text",
+          "name": "headerLogoAlt",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Login button link.",
+          "description": "URL for the login button.",
           "label": "Login Link",
-          "name": "loginLink",
+          "name": "loginCtaLink",
           "required": false,
           "valueType": "string"
         },
         {
-          "component": "container",
-          "fields": [
-            {
-              "component": "container",
-              "fields": [
-                {
-                  "component": "text",
-                  "label": "Menu Text",
-                  "name": "text",
-                  "valueType": "string"
-                },
-                {
-                  "component": "aem-content",
-                  "label": "Menu Link",
-                  "name": "href",
-                  "valueType": "string"
-                },
-                {
-                  "component": "aem-content",
-                  "label": "Icon Source",
-                  "name": "iconSrc",
-                  "valueType": "string"
-                }
-              ],
-              "label": "Menu Items",
-              "name": "menuItems"
-            }
-          ],
-          "label": "Sidebar Menu",
-          "name": "sidebarMenu"
+          "component": "richtext",
+          "description": "Navigation items in the header sidebar.",
+          "label": "Header Navigation",
+          "name": "headerNav",
+          "required": false,
+          "valueType": "string"
         },
         {
-          "component": "container",
-          "fields": [
-            {
-              "component": "aem-content",
-              "label": "Left Logo 1",
-              "name": "leftLogo1",
-              "valueType": "string"
-            },
-            {
-              "component": "aem-content",
-              "label": "Left Logo 2",
-              "name": "leftLogo2",
-              "valueType": "string"
-            },
-            {
-              "component": "container",
-              "fields": [
-                {
-                  "component": "text",
-                  "label": "Link Text",
-                  "name": "linkText",
-                  "valueType": "string"
-                },
-                {
-                  "component": "aem-content",
-                  "label": "Link URL",
-                  "name": "linkUrl",
-                  "valueType": "string"
-                }
-              ],
-              "label": "Footer Links",
-              "name": "footerLinks"
-            }
-          ],
-          "label": "Footer Brand Primary",
-          "name": "footerBrandPrimary"
+          "component": "aem-content",
+          "description": "First logo in the footer (e.g. ITC Logo).",
+          "label": "Footer Logo 1",
+          "name": "footerLogo1",
+          "required": false,
+          "valueType": "string"
         },
         {
-          "component": "container",
-          "fields": [
-            {
-              "component": "container",
-              "fields": [
-                {
-                  "component": "aem-content",
-                  "label": "Platform",
-                  "name": "platform",
-                  "valueType": "string"
-                },
-                {
-                  "component": "aem-content",
-                  "label": "Social URL",
-                  "name": "url",
-                  "valueType": "string"
-                },
-                {
-                  "component": "aem-content",
-                  "label": "Icon Source",
-                  "name": "iconSrc",
-                  "valueType": "string"
-                }
-              ],
-              "label": "Social Links",
-              "name": "socialLinks"
-            },
-            {
-              "component": "container",
-              "fields": [
-                {
-                  "component": "text",
-                  "label": "Link Text",
-                  "name": "linkText",
-                  "valueType": "string"
-                },
-                {
-                  "component": "aem-content",
-                  "label": "Link URL",
-                  "name": "linkUrl",
-                  "valueType": "string"
-                }
-              ],
-              "label": "Footer Left Links",
-              "name": "footerLeftLinks"
-            },
-            {
-              "component": "text",
-              "label": "Copyright Text",
-              "name": "copyright",
-              "valueType": "string"
-            }
-          ],
-          "label": "Footer Brand Secondary",
-          "name": "footerBrandSecondary"
+          "component": "aem-content",
+          "description": "Second logo in the footer (e.g. FSSI Logo).",
+          "label": "Footer Logo 2",
+          "name": "footerLogo2",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "description": "Primary and secondary footer links.",
+          "label": "Footer Links",
+          "name": "footerLinks",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "description": "Social media follow links in the footer.",
+          "label": "Footer Social Links",
+          "name": "footerSocialLinks",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "description": "Copyright text in the footer.",
+          "label": "Footer Copyright",
+          "name": "footerCopyright",
+          "required": false,
+          "valueType": "string"
         }
       ]
     }

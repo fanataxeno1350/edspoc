@@ -1,0 +1,68 @@
+.sidenavigation-menu1 {
+  margin-bottom: 0.625rem; /* Equivalent to 10px assuming 16px base */
+  background: url("../images/backg-linktop.png") 0 0 repeat-x scroll white;
+  border: thin solid #7f7faa;
+  border-radius: 0.625rem 0 0 0.625rem; /* Equivalent to 10px assuming 16px base */
+  box-shadow: 0.125rem 0.125rem 0.375rem silver; /* Equivalent to 2px 2px 6px assuming 16px base */
+  clear: both;
+  float: right;
+  width: 11.875rem; /* Equivalent to 190px assuming 16px base */
+  -moz-border-radius: 0.625rem 0 0 0.625rem; /* Equivalent to 10px assuming 16px base */
+}
+
+.sidenavigation-menu1 ul {
+  padding-bottom: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+  margin-top: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  margin-bottom: 0;
+  padding-left: 1.5625rem; /* Equivalent to 25px assuming 16px base */
+  padding-right: 0.3125rem; /* Equivalent to 5px assuming 16px base */
+  list-style-type: disc;
+  /* Fallback for list-style-image if image fails to load */
+  font-family: "Verdana", Geneva, sans-serif;
+  font-size: 0.719rem; /* Equivalent to 11.52px assuming 16px base */
+  font-weight: 400;
+  color: black;
+}
+
+.sidenavigation-menu1 li {
+  list-style-image: url("../images/webding.png");
+  font-family: "Verdana", Geneva, sans-serif;
+  font-size: 0.719rem; /* Equivalent to 11.52px assuming 16px base */
+  font-weight: 400;
+  color: black;
+}
+
+.sidenavigation-menu1 a,
+.sidenavigation-menu1 a:visited {
+  color: black;
+  text-decoration: underline;
+  font-family: "Verdana", Geneva, sans-serif;
+  font-size: 0.719rem; /* Equivalent to 11.52px assuming 16px base */
+  font-weight: 400;
+}
+
+.sidenavigation-menu1 a:hover,
+.sidenavigation-menu1 a:active {
+  background-color: #7f7faa;
+  text-decoration: none;
+  color: white;
+  border-radius: 0.1875rem; /* Equivalent to 3px assuming 16px base */
+}
+
+.sidenavigation-linktop {
+  text-shadow: 0.0625rem 0.0625rem black; /* Equivalent to 1px 1px assuming 16px base */
+  color: white;
+  margin-left: 0.625rem; /* Equivalent to 10px assuming 16px base */
+  position: relative;
+  top: 0.3125rem; /* Equivalent to 5px assuming 16px base */
+  font-family: "Verdana", Geneva, sans-serif;
+  font-size: 0.719rem; /* Equivalent to 11.52px assuming 16px base */
+  font-weight: 400;
+}
+
+.sidenavigation-linktop b {
+  font-weight: 700;
+  font-family: "Verdana", Geneva, sans-serif;
+  font-size: 0.719rem; /* Equivalent to 11.52px assuming 16px base */
+  color: white;
+}

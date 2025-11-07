@@ -1,0 +1,40 @@
+export default function decorate(b){
+  b.classList.add('carousel-position-relative');
+  const swiper=b.querySelector('.carousel-primary-swiper');
+  if(swiper){
+    swiper.classList.add('carousel-initialized');
+    const slides=swiper.querySelectorAll('.swiper-slide');
+    slides.forEach((slide)=>{
+      slide.classList.add('carousel-slide-init');
+      const video=slide.querySelector('video.carousel-banner-video');
+      if(video){
+        video.setAttribute('muted','true');
+        video.setAttribute('autoplay','true');
+        video.classList.add('carousel-w-100','carousel-object-fit-cover');
+      }
+      const img=slide.querySelector('img.carousel-banner-image');
+      if(img){
+        img.classList.add('carousel-w-100','carousel-h-100','carousel-object-fit-cover');
+      }
+    });
+    const actions=swiper.querySelector('.carousel-cmp-carousel__actions');
+    if(actions){
+      actions.classList.add('carousel-actions-init');
+      actions.querySelectorAll('button').forEach(btn=>{
+        btn.classList.add('carousel-action-btn');
+      });
+    }
+    const pagination=swiper.querySelector('.carousel-swiper-pagination');
+    if(pagination){
+      pagination.classList.add('carousel-pagination-init');
+    }
+    const btnNext=b.querySelector('.carousel-primary-swiper__buttonNext');
+    if(btnNext){
+      btnNext.classList.add('carousel-next-btn');
+    }
+    const btnPrev=b.querySelector('.carousel-primary-swiper__buttonPrev');
+    if(btnPrev){
+      btnPrev.classList.add('carousel-prev-btn');
+    }
+  }
+}

@@ -1,0 +1,48 @@
+export default function decorate(block) {
+  const swiperElement = block.querySelector('.swiper');
+  if (swiperElement) {
+    const isAutoplay = swiperElement.dataset.isAutoplay === 'true';
+    const delay = parseInt(swiperElement.dataset.delay, 10);
+    const autopauseDisabled = swiperElement.dataset.autopauseDisabled === 'true';
+    const isLoop = swiperElement.dataset.isLoop === 'true';
+
+    const swiperWrapper = block.querySelector('.swiper-wrapper');
+    if (swiperWrapper) {
+      swiperWrapper.classList.add('carousel-primary-swiper-wrapper', 'carousel-z-0');
+    }
+
+    const slides = block.querySelectorAll('.swiper-slide');
+    slides.forEach(slide => {
+      slide.classList.add('carousel-primary-swiper-slide');
+      const video = slide.querySelector('video');
+      if (video) {
+        video.classList.add('carousel-w-100', 'carousel-object-fit-cover', 'carousel-banner-media', 'carousel-banner-video');
+      }
+      const img = slide.querySelector('img');
+      if (img) {
+        img.classList.add('carousel-w-100', 'carousel-h-100', 'carousel-object-fit-cover', 'carousel-banner-media', 'carousel-banner-image');
+      }
+      const ctaButton = slide.querySelector('a.carousel-cmp-button');
+      if (ctaButton) {
+        ctaButton.classList.add('carousel-analytics_cta_click', 'carousel-text-center', 'carousel-cta-layout');
+        const ctaSpan = ctaButton.querySelector('span.carousel-cmp-button__text');
+        if (ctaSpan) {
+          ctaSpan.classList.add('carousel-primary-btn', 'carousel-w-75', 'carousel-p-5', 'carousel-rounded-pill', 'carousel-d-inline-flex', 'carousel-justify-content-center', 'carousel-align-items-center', 'carousel-famlf-cta-btn');
+        }
+      }
+    });
+
+    const prevButton = block.querySelector('.carousel-primary-swiper__buttonPrev');
+    if (prevButton) {
+      prevButton.classList.add('carousel-position-absolute', 'carousel-top-50', 'carousel-swiper-buttonBg', 'carousel-d-none', 'carousel-d-sm-block', 'carousel-cursor-pointer', 'carousel-analytics_cta_click');
+    }
+    const nextButton = block.querySelector('.carousel-primary-swiper__buttonNext');
+    if (nextButton) {
+      nextButton.classList.add('carousel-position-absolute', 'carousel-top-50', 'carousel-swiper-buttonBg', 'carousel-d-none', 'carousel-d-sm-block', 'carousel-cursor-pointer', 'carousel-analytics_cta_click');
+    }
+    const pagination = block.querySelector('.carousel-swiper-pagination');
+    if (pagination) {
+      pagination.classList.add('carousel-primary-swiper-pagination', 'carousel-pagination-set', 'carousel-mb-md-8', 'carousel-mb-10', 'carousel-mt-6', 'carousel-position-absolute');
+    }
+  }
+}

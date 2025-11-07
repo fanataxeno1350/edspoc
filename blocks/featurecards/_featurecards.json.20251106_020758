@@ -12,25 +12,25 @@
             "template": {
               "cards": [
                 {
-                  "altText": "Tedhe Medhe Samachaar",
-                  "cardTitle": "Tedhe Medhe Samachar",
-                  "ctaLabel": "Explore",
-                  "description": "India ki taaza aur thodi-si tedhi news!",
-                  "image": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
-                  "link": "/tedhe-medhe-samachaar.html"
+                  "card_alt_text": "Tedhe Medhe Samachaar",
+                  "card_cta_label": "Explore",
+                  "card_description": "India ki taaza aur thodi-si tedhi news!",
+                  "card_image": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
+                  "card_link": "/tedhe-medhe-samachaar.html",
+                  "card_title": "Tedhe Medhe Samachar"
                 },
                 {
-                  "altText": "Bolte Sitare - Lets Boing!",
-                  "cardTitle": "Bolte Sitare",
-                  "ctaLabel": "Explore",
-                  "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
-                  "image": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
-                  "link": "/bolte-sitare.html"
+                  "card_alt_text": "Bolte Sitare - Lets Boing!",
+                  "card_cta_label": "Explore",
+                  "card_description": "Aapki bhavishyavaani, Bingo! ki zubaani",
+                  "card_image": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
+                  "card_link": "/bolte-sitare.html",
+                  "card_title": "Bolte Sitare"
                 }
               ],
               "model": "featurecards",
               "name": "featurecards",
-              "title": "Welcome to LetsBoing!"
+              "title_text": "Welcome to LetsBoing!"
             }
           }
         }
@@ -43,22 +43,23 @@
       "description": "Block model for Feature Cards rendering",
       "fields": [
         {
-          "component": "text",
+          "component": "richtext",
           "description": "Main title for the feature cards section.",
+          "group": "Header",
           "label": "Title",
-          "name": "title",
+          "name": "title_text",
           "required": true,
           "valueType": "string"
         },
         {
           "component": "container",
-          "description": "List of feature cards.",
+          "description": "List of individual feature cards.",
           "fields": [
             {
               "component": "aem-content",
               "description": "Image for the feature card.",
               "label": "Card Image",
-              "name": "image",
+              "name": "card_image",
               "required": true,
               "valueType": "string"
             },
@@ -66,23 +67,15 @@
               "component": "text",
               "description": "Alternative text for the card image.",
               "label": "Image Alt Text",
-              "name": "altText",
-              "required": true,
-              "valueType": "string"
-            },
-            {
-              "component": "aem-content",
-              "description": "Link for the feature card.",
-              "label": "Card Link",
-              "name": "link",
-              "required": true,
+              "name": "card_alt_text",
+              "required": false,
               "valueType": "string"
             },
             {
               "component": "text",
-              "description": "Title displayed on the feature card.",
+              "description": "Title of the feature card.",
               "label": "Card Title",
-              "name": "cardTitle",
+              "name": "card_title",
               "required": true,
               "valueType": "string"
             },
@@ -90,22 +83,31 @@
               "component": "richtext",
               "description": "Description text for the feature card.",
               "label": "Card Description",
-              "name": "description",
+              "name": "card_description",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "URL for the card's call to action.",
+              "label": "Card Link",
+              "name": "card_link",
               "required": true,
               "valueType": "string"
             },
             {
               "component": "text",
-              "description": "Text for the call-to-action button.",
+              "description": "Text for the call to action button/link.",
               "label": "CTA Label",
-              "name": "ctaLabel",
+              "name": "card_cta_label",
               "required": false,
               "valueType": "string"
             }
           ],
+          "group": "Cards",
           "label": "Feature Cards",
           "name": "cards",
-          "required": true,
+          "required": false,
           "valueType": "array"
         }
       ]

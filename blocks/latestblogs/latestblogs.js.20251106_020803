@@ -1,0 +1,53 @@
+export default function decorate(block) {
+  block.classList.add('latestblogs-block');
+
+  const wrapper = block.querySelector('.latestblogs-wrapper');
+  if (wrapper) wrapper.classList.add('latestblogs-wrapper');
+
+  const listing = block.querySelector('.latestblogs-listing');
+  if (listing) listing.classList.add('latestblogs-listing');
+
+  const firstSection = block.querySelector('.latestblogs-listing_section--first');
+  if (firstSection) {
+    firstSection.classList.add('latestblogs-listing_section--first', 'latestblogs-text--white', 'latestblogs-text-center');
+    const title = firstSection.querySelector('.latestblogs-listing--title');
+    if (title) title.classList.add('latestblogs-listing--title', 'latestblogs--text__heading-1', 'latestblogs-text--white', 'latestblogs-pb-3');
+
+    const desc = firstSection.querySelector('.latestblogs-listing--desc');
+    if (desc) desc.classList.add('latestblogs-listing--desc', 'latestblogs--text__body-2', 'latestblogs-pb-4');
+
+    const btnWrapper = firstSection.querySelector('.latestblogs-listing--btnwrapper');
+    if (btnWrapper) {
+      btnWrapper.classList.add('latestblogs-listing--btnwrapper');
+      const cta = btnWrapper.querySelector('a');
+      if (cta) cta.classList.add('latestblogs--text__title-3', 'latestblogs-listing--btn', 'analytics_cta_click');
+    }
+  }
+
+  const secondSection = block.querySelector('.latestblogs-listing_section--second');
+  if (secondSection) {
+    secondSection.classList.add('latestblogs-listing_section--second', 'latestblogs-d-flex');
+    const cards = secondSection.querySelectorAll('.latestblogs-listing--cardwrapper');
+    cards.forEach(card => {
+      card.classList.add('latestblogs-listing--cardwrapper', 'analytics_cta_click');
+      const cardInner = card.querySelector('.latestblogs-listing--cards');
+      if (cardInner) {
+        cardInner.classList.add('latestblogs-listing--cards');
+        const imgWrapper = cardInner.querySelector('.latestblogs-listing--cardimagewrapper');
+        if (imgWrapper) {
+          imgWrapper.classList.add('latestblogs-listing--cardimagewrapper');
+          const img = imgWrapper.querySelector('.latestblogs-listing--cardimage');
+          if (img) img.classList.add('latestblogs-listing--cardimage', 'latestblogs-w-100', 'latestblogs-h-100');
+        }
+        const contentWrapper = cardInner.querySelector('.latestblogs-cards_content--wrapper');
+        if (contentWrapper) {
+          contentWrapper.classList.add('latestblogs-cards_content--wrapper');
+          const date = contentWrapper.querySelector('.latestblogs-published_date');
+          if (date) date.classList.add('latestblogs--text__body-5', 'latestblogs-p-0', 'latestblogs-m-0', 'latestblogs-mb-3', 'latestblogs-published_date');
+          const text = contentWrapper.querySelector('.latestblogs--text__body');
+          if (text) text.classList.add('latestblogs--text__body-2', 'latestblogs--text__body');
+        }
+      }
+    });
+  }
+}

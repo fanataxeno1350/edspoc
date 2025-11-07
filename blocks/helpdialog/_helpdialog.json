@@ -1,21 +1,19 @@
 {
   "definitions": [
     {
-      "title": "Latest Blogs",
-      "id": "latestblogs",
-      "icon": "teaser-icon",
-      "category": "content",
+      "title": "Help Dialog",
+      "id": "helpdialog",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "ctaLink": "/bolte-sitare/boingwale-blogs.html",
-              "ctaText": "View All",
-              "description": "Stay updated with our latest news, \nblogs and events",
-              "model": "latestblogs",
-              "name": "latestblogs",
-              "title": "More Boings"
+              "ctaLink": "https://wiki.gnucash.org/wiki/Mailing_Lists",
+              "ctaText": "Mailing Lists",
+              "description": "Looking for someone to contact about GnuCash? Try the Mailing Lists, which are public, email-based discussion groups where you can ask and answer GnuCash questions to other users.",
+              "model": "helpdialog",
+              "name": "helpdialog",
+              "title": "Need Help?"
             }
           }
         }
@@ -24,12 +22,12 @@
   ],
   "models": [
     {
-      "id": "latestblogs",
-      "description": "Block model for Latest Blogs rendering",
+      "id": "helpdialog",
+      "description": "",
       "fields": [
         {
           "component": "text",
-          "description": "The main title for the blog section.",
+          "description": "The title of the help dialog.",
           "label": "Title",
           "name": "title",
           "required": true,
@@ -37,7 +35,7 @@
         },
         {
           "component": "richtext",
-          "description": "A brief description for the blog section.",
+          "description": "The main text content of the help dialog.",
           "label": "Description",
           "name": "description",
           "required": true,
@@ -45,7 +43,7 @@
         },
         {
           "component": "aem-content",
-          "description": "Link for the 'View All' CTA button.",
+          "description": "Link for the Call to Action.",
           "label": "CTA Link",
           "name": "ctaLink",
           "required": false,
@@ -53,7 +51,7 @@
         },
         {
           "component": "text",
-          "description": "Text for the 'View All' CTA button.",
+          "description": "Text for the Call to Action.",
           "label": "CTA Text",
           "name": "ctaText",
           "required": false,

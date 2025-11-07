@@ -1,0 +1,24 @@
+export default function decorate(b){
+  b.classList.add('latestblogs-wrapper');
+  const title = b.querySelector('.latestblogs-listing--title');
+  if(title) title.classList.add('latestblogs-title');
+  const desc = b.querySelector('.latestblogs-listing--desc');
+  if(desc) desc.classList.add('latestblogs-description');
+  const cta = b.querySelector('.latestblogs-listing--btnwrapper a');
+  if(cta){
+    cta.classList.add('latestblogs-cta');
+    if(cta.href && !cta.href.includes(window.location.hostname)){
+      cta.target='_blank'; cta.rel='noopener noreferrer';
+    }
+  }
+  const cards = b.querySelectorAll('.latestblogs-listing--cardwrapper');
+  cards.forEach(card=>{
+    card.classList.add('latestblogs-card');
+    const img = card.querySelector('.latestblogs-listing--cardimage');
+    if(img) img.classList.add('latestblogs-card-image');
+    const date = card.querySelector('.latestblogs-published_date');
+    if(date) date.classList.add('latestblogs-card-date');
+    const content = card.querySelector('.latestblogs--text__body-2');
+    if(content) content.classList.add('latestblogs-card-title');
+  });
+}

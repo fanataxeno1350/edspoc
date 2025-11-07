@@ -1,0 +1,313 @@
+{
+  "definitions": [
+    {
+      "title": "Header",
+      "id": "header",
+      "icon": "header-icon",
+      "category": "content",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "appName": "boing",
+              "copyrightText": "© 2025 Bingo! All Rights Reserved.",
+              "footerNav1": [
+                {
+                  "link": "/about-us.html",
+                  "text": "About us"
+                },
+                {
+                  "link": "/terms-and-conditions.html",
+                  "text": "Terms and Conditions"
+                },
+                {
+                  "link": "/privacy-policy.html",
+                  "text": "Privacy Policy"
+                }
+              ],
+              "footerNav2": [
+                {
+                  "link": "/bolte-sitare/boingwale-blogs.html",
+                  "text": "BoingWale Blogs"
+                },
+                {
+                  "link": "/tedhe-medhe-samachaar/tedhe-medhe-highlights.html",
+                  "text": "Tedhe Medhe Highlights"
+                },
+                {
+                  "link": "/bolte-sitare/number-ka-khel.html",
+                  "text": "Numbers Ka Khel"
+                }
+              ],
+              "footerNav3": [
+                {
+                  "link": "https://www.itcportal.com/contact-us.aspx",
+                  "text": "Contact us"
+                },
+                {
+                  "link": "/tedhe-medhe-samachaar/sa-meme-chaar.html",
+                  "text": "Sa-Meme-Char"
+                },
+                {
+                  "link": "/bolte-sitare/number-ka-khel.html",
+                  "text": "Numbers Ka Khel"
+                }
+              ],
+              "footerNav4": [
+                {
+                  "link": "/bolte-sitare/love-compatibility.html",
+                  "text": "Pyaar O Scope"
+                },
+                {
+                  "link": "/bolte-sitare/bhavishya-on-the-go.html",
+                  "text": "Bhavishya On The Go"
+                },
+                {
+                  "link": "/tedhe-medhe-samachaar/boing-weekly.html",
+                  "text": "Boing Weekly"
+                }
+              ],
+              "fssiLogo": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
+              "fssiLogoAltText": "FSSI Logo",
+              "itcLink": "https://www.itcportal.com/",
+              "itcLogo": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
+              "itcLogoAltText": "ITC Logo",
+              "itcPortalLink": "https://www.itcportal.com/",
+              "loginLink": "/login.html",
+              "loginText": "Login",
+              "logoAltText": "Let's Boing",
+              "logoImage": "/content/dam/aemigrate/uploaded-folder/image/lets-boing-logo?fmt=webp-alpha.webp",
+              "menuItems": [
+                {
+                  "altText": "Home",
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/home?fmt=webp-alpha.webp",
+                  "link": "/",
+                  "text": "Home"
+                },
+                {
+                  "altText": "Profile",
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/profile-circle-1?fmt=webp-alpha.webp",
+                  "link": "/login/profile.html",
+                  "text": "Profile"
+                },
+                {
+                  "altText": "Tedhe Medhe Samachaar",
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/news?fmt=webp-alpha.webp",
+                  "link": "/tedhe-medhe-samachaar.html",
+                  "text": "Tedhe Medhe Samachaar"
+                },
+                {
+                  "altText": "Bolte Sitaare",
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/star?fmt=webp-alpha.webp",
+                  "link": "/bolte-sitare.html",
+                  "text": "Bolte Sitaare"
+                },
+                {
+                  "altText": "Logout",
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/logout-3?fmt=webp-alpha.webp",
+                  "link": "/",
+                  "text": "Logout"
+                }
+              ],
+              "model": "header",
+              "name": "Header",
+              "socialMediaLinks": [
+                {
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
+                  "link": "https://www.facebook.com/share/1BiTDumTX4/?mibextid=wwXIf",
+                  "platform": "facebook"
+                },
+                {
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/instagram-2?fmt=webp-alpha.webp",
+                  "link": "https://www.instagram.com/bingo_snacks?igsh=bjc5eXg1cDNkM3U1",
+                  "platform": "instagram"
+                },
+                {
+                  "icon": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
+                  "link": "http://www.youtube.com/@BingoSnacks",
+                  "platform": "youtube"
+                }
+              ],
+              "socialMediaTitle": "Follow Us On"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "header",
+      "description": "Block model for Header rendering",
+      "fields": [
+        {
+          "component": "text",
+          "label": "App Name",
+          "name": "appName",
+          "required": true,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Logo Image",
+          "name": "logoImage",
+          "required": true,
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Logo Alt Text",
+          "name": "logoAltText",
+          "required": true,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Login Link",
+          "name": "loginLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Login Text",
+          "name": "loginText",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Menu Items",
+          "name": "menuItems",
+          "properties": {
+            "rte-config": {
+              "features": [
+                "format",
+                "links"
+              ]
+            }
+          },
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "ITC Logo",
+          "name": "itcLogo",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "ITC Logo Alt Text",
+          "name": "itcLogoAltText",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "ITC Link",
+          "name": "itcLink",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "FSSI Logo",
+          "name": "fssiLogo",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "FSSI Logo Alt Text",
+          "name": "fssiLogoAltText",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Footer Navigation Column 1",
+          "name": "footerNav1",
+          "properties": {
+            "rte-config": {
+              "features": [
+                "format",
+                "links"
+              ]
+            }
+          },
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Footer Navigation Column 2",
+          "name": "footerNav2",
+          "properties": {
+            "rte-config": {
+              "features": [
+                "format",
+                "links"
+              ]
+            }
+          },
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Footer Navigation Column 3",
+          "name": "footerNav3",
+          "properties": {
+            "rte-config": {
+              "features": [
+                "format",
+                "links"
+              ]
+            }
+          },
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Footer Navigation Column 4",
+          "name": "footerNav4",
+          "properties": {
+            "rte-config": {
+              "features": [
+                "format",
+                "links"
+              ]
+            }
+          },
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Social Media Title",
+          "name": "socialMediaTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Social Media Links",
+          "name": "socialMediaLinks",
+          "properties": {
+            "rte-config": {
+              "features": [
+                "format",
+                "links"
+              ]
+            }
+          },
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "ITC Portal Link",
+          "name": "itcPortalLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Copyright Text",
+          "name": "copyrightText",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

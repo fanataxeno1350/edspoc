@@ -3,7 +3,7 @@
     {
       "title": "Space Adder",
       "id": "spaceadder",
-      "icon": "spaceadder-icon",
+      "icon": "space-icon",
       "category": "layout",
       "plugins": {
         "xwalk": {
