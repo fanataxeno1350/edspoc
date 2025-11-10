@@ -49,8 +49,7 @@
         "title",
         "hero",
         "cards",
-        "columns",
-        "fragment","carousel","featurecards","latestblogs","stickynavigation","header-footer-brand","spaceadder","footer-brand-section","sticky-navigation","footer-brand","header","sidenavigation","contentarea","downloadsection","helpdialog","featurehighlights-mainfeature","footer"]
+        "columns"]
     }
   ]
 }
