@@ -1,0 +1,114 @@
+{
+  "definitions": [
+    {
+      "title": "Latest Blogs",
+      "id": "latestblogs",
+      "icon": "article",
+      "category": "content",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "ctaLink": "/bolte-sitare/boingwale-blogs.html",
+              "ctaText": "View All",
+              "description": "Stay updated with our latest news, \nblogs and events",
+              "heading": "More Boings",
+              "model": "latestblogs",
+              "name": "Latest Blogs"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "latestblogs",
+      "description": "Block for listing latest blog articles with CTA",
+      "fields": [
+        {
+          "collapsed": false,
+          "component": "richtext",
+          "description": "Block heading",
+          "group": "Header",
+          "label": "Heading",
+          "name": "heading",
+          "placeholder": "Enter heading",
+          "required": true,
+          "valueType": "string"
+        },
+        {
+          "collapsed": false,
+          "component": "richtext",
+          "description": "Block description",
+          "group": "Header",
+          "label": "Description",
+          "name": "description",
+          "placeholder": "Enter description",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "description": "Link for the 'View All' button",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "description": "Text for the CTA button",
+          "label": "CTA Text",
+          "name": "ctaText",
+          "required": false,
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "description": "List of blog articles",
+          "fields": [
+            {
+              "component": "aem-content",
+              "description": "URL of the blog article",
+              "label": "Article URL",
+              "name": "url",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Image for the article",
+              "label": "Image Source",
+              "name": "image",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Date shown for the article",
+              "label": "Published Date",
+              "name": "publishedDate",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "richtext",
+              "description": "Title of the article",
+              "label": "Article Title",
+              "name": "title",
+              "required": false,
+              "valueType": "string"
+            }
+          ],
+          "label": "Articles",
+          "multiple": true,
+          "name": "articles",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -14,7 +14,14 @@
       "title",
       "hero",
       "cards",
-      "columns"
+      "columns",
+      "header-footer-boing",
+      "carousel",
+      "featurecards",
+      "latestblogs",
+      "spaceadder",
+      "footer-brand",
+      "sticky-navigation-bottom-nav"
     ]
   },
   {

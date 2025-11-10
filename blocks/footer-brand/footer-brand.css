@@ -1,0 +1,200 @@
+.footer-brand-section {
+  padding: 0;
+}
+.footer-brand-wrapper {
+  padding-bottom: 6rem; /* Equivalent to 96px assuming 16px base */
+  padding-top: 11.0625rem; /* Equivalent to 177px assuming 16px base */
+  position: relative;
+  width: 100%;
+  background-color: #161616;
+}
+@media (max-width: 440px) {
+  .footer-brand-wrapper {
+    padding-top: 9rem; /* Equivalent to 144px assuming 16px base */
+  }
+}
+.footer-brand-wrapper .footer-brand-primary {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0 max(min(3.75rem, 16vw), 1rem) 1rem; /* Equivalent to 0 60px 16px (max) or 0 16px 16px (min) assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container {
+  padding: 0;
+  width: 100%;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content {
+  -webkit-box-pack: start !important;
+  -ms-flex-pack: start !important;
+  justify-content: flex-start !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+  -webkit-column-gap: 7.5rem; /* Equivalent to 120px assuming 16px base */
+  -moz-column-gap: 7.5rem; /* Equivalent to 120px assuming 16px base */
+  column-gap: 7.5rem; /* Equivalent to 120px assuming 16px base */
+  row-gap: 2rem; /* Equivalent to 32px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-left .footer-brand-logo {
+  height: 3.9375rem; /* Equivalent to 63px assuming 16px base */
+  min-width: 3.375rem; /* Equivalent to 54px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-left .footer-brand-secondary-logo {
+  max-height: 100%;
+  min-width: 4.375rem; /* Equivalent to 70px assuming 16px base */
+  width: 4.375rem; /* Equivalent to 70px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right {
+  width: 100%;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-brand-navbar {
+  grid-template-columns: repeat(2, 1fr);
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-list-wrapper {
+  height: 50%;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-list-wrapper:not(:has(*)) {
+  display: none;
+  height: 0;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-list-ul {
+  list-style: none;
+  -webkit-box-pack: justify !important;
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+  gap: 2.25rem; /* Equivalent to 36px assuming 16px base */
+  height: 100%;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-list-ul .footer-list-item {
+  width: 100%;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-list-ul .footer-list-item .footer-list-link {
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: normal;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-list-ul .footer-list-item .footer-list-link:hover {
+  text-decoration: underline;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-brand-navbar-left {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  border-right: 1px solid rgba(217, 217, 217, 0.3);
+  gap: 2.25rem; /* Equivalent to 36px assuming 16px base */
+  padding-right: 2rem; /* Equivalent to 32px assuming 16px base */
+  width: 100%;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-brand-navbar-left .footer-list-item {
+  text-align: left;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-brand-navbar-right {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  gap: 2.25rem; /* Equivalent to 36px assuming 16px base */
+  padding-left: 2rem; /* Equivalent to 32px assuming 16px base */
+  width: 100%;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+}
+.footer-brand-wrapper .footer-brand-primary .footer-brand-container .footer-brand-primary-content .footer-brand-right .footer-brand-navbar-right .footer-list-wrapper:last-child .footer-list-ul {
+  border: 0;
+}
+.footer-brand-wrapper .footer-brand-secondary {
+  padding: 1rem 1.5rem; /* Equivalent to 16px 24px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container {
+  padding: 0;
+  width: 100%;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-secondary-content {
+  row-gap: 1.5rem; /* Equivalent to 24px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-secondary-content .footer-brand-right {
+  padding-bottom: 5rem; /* Equivalent to 80px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-secondary-content .footer-brand-right .footer-brand-social-media-title {
+  color: #fff;
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: 2rem; /* Equivalent to 32px assuming 16px base */
+  padding-bottom: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  text-align: center;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-secondary-content .footer-brand-right .footer-brand-right-list {
+  list-style: none;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 1rem; /* Equivalent to 16px assuming 16px base */
+  max-width: 100%;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-secondary-content .footer-brand-right .footer-brand-right-list .footer-brand-right-item {
+  border-color: #f6bb00;
+  border-radius: 50%;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-secondary-content .footer-brand-right .footer-brand-right-list .footer-brand-right-item .footer-brand-right-link {
+  height: 2.6875rem; /* Equivalent to 43px assuming 16px base */
+  width: 2.6875rem; /* Equivalent to 43px assuming 16px base */
+  -webkit-transition: -webkit-transform 0.2s linear;
+  transition: -webkit-transform 0.2s linear;
+  transition: transform 0.2s linear;
+  transition: transform 0.2s linear, -webkit-transform 0.2s linear;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-secondary-content .footer-brand-right .footer-brand-right-list .footer-brand-right-item .footer-brand-right-link:hover {
+  -webkit-transform: scale(1.3334);
+  transform: scale(1.3334);
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left {
+  padding-top: 5rem; /* Equivalent to 80px assuming 16px base */
+  padding-bottom: 5rem; /* Equivalent to 80px assuming 16px base */
+  gap: 0.5rem; /* Equivalent to 8px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-list {
+  list-style: none;
+  row-gap: 0.5rem; /* Equivalent to 8px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-item {
+  border-right: 0.125rem solid rgba(255, 255, 255, 0.3);
+  padding: 0 1.5rem; /* Equivalent to 0 24px assuming 16px base */
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-item:first-child {
+  padding-left: 0;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-item:last-child {
+  border: none;
+  padding-right: 0;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-item.footer-brand-foot-link:last-of-type {
+  border: none;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-item .footer-brand-left-link {
+  color: #fff;
+  display: inline-block;
+  font-size: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  line-height: 1.5;
+  text-decoration: none;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-item .footer-brand-left-link:hover {
+  text-decoration: underline;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-copyright {
+  display: inline-block;
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  line-height: 1.5;
+}
+.footer-brand-wrapper .footer-brand-secondary .footer-brand-container .footer-brand-left .footer-brand-left-copyright .footer-brand-left-text {
+  color: #fff;
+}
