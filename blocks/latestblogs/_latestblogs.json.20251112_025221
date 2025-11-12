@@ -8,12 +8,12 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "ctaLink": "/bolte-sitare/boingwale-blogs.html",
-              "ctaText": "View All",
+              "header_cta_text": "View All",
+              "header_cta_url": "/bolte-sitare/boingwale-blogs.html",
+              "header_desc": "Stay updated with our latest news, \nblogs and events",
+              "header_title": "More Boings",
               "model": "latestblogs",
-              "name": "Latest Blogs",
-              "sectionDescription": "Stay updated with our latest news, \nblogs and events",
-              "sectionTitle": "More Boings"
+              "name": "Latest Blogs"
             }
           }
         }
@@ -26,30 +26,34 @@
       "description": "",
       "fields": [
         {
-          "component": "text",
-          "label": "Section Title",
-          "name": "sectionTitle",
+          "component": "richtext",
+          "description": "Title for the latest blogs section",
+          "label": "Header Title",
+          "name": "header_title",
           "required": true,
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Section Description",
-          "name": "sectionDescription",
+          "description": "Description under the header",
+          "label": "Header Description",
+          "name": "header_desc",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "description": "Link for the main CTA button",
+          "label": "Header CTA URL",
+          "name": "header_cta_url",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "CTA Text",
-          "name": "ctaText",
+          "description": "Text for the main CTA button",
+          "label": "Header CTA Text",
+          "name": "header_cta_text",
           "required": false,
           "valueType": "string"
         },
@@ -60,20 +64,20 @@
             {
               "component": "aem-content",
               "label": "Blog URL",
-              "name": "blogUrl",
+              "name": "url",
               "required": true,
               "valueType": "string"
             },
             {
-              "component": "aem-content",
-              "label": "Image Source",
-              "name": "imageSrc",
+              "component": "text",
+              "label": "Image URL",
+              "name": "image",
               "required": false,
               "valueType": "string"
             },
             {
               "component": "text",
-              "label": "Published Date",
+              "label": "Publish Date",
               "name": "date",
               "required": false,
               "valueType": "string"
@@ -86,9 +90,10 @@
               "valueType": "string"
             }
           ],
-          "label": "Blogs",
-          "minItems": 0,
-          "name": "blogs"
+          "label": "Blogs List",
+          "name": "blogs",
+          "repeatable": true,
+          "required": false
         }
       ]
     }

@@ -120,27 +120,8 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "autoplay": true,
-                  "delay": 5000,
-                  "loop": false,
                   "model": "carousel",
-                  "name": "Carousel",
-                  "slides": [
-                    {
-                      "title": "Banner-1",
-                      "type": "video",
-                      "video_mp4": "/content/dam/aemigrate/uploaded-folder/video/Boing-Announcement.mp4",
-                      "video_webm": "/content/dam/aemigrate/uploaded-folder/video/Boing-Announcement.mp4"
-                    },
-                    {
-                      "cta_link": "/bolte-sitare.html",
-                      "cta_text": "Know More",
-                      "image_alt": "Lets Boing! Horoscope",
-                      "image_src": "/content/dam/aemigrate/uploaded-folder/image/Hero%20banner%20With%20out%20CTA-1.jpeg",
-                      "title": "Banner-3",
-                      "type": "image"
-                    }
-                  ]
+                  "name": "Carousel"
                 }
               }
             }
@@ -169,27 +150,29 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "cards": [
+                  "featureCards_items": [
                     {
-                      "alt": "Tedhe Medhe Samachaar",
-                      "ctaLabel": "Explore",
+                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762942381123.svg+xml",
+                      "ctaText": "Explore",
                       "description": "India ki taaza aur thodi-si tedhi news!",
-                      "href": "/tedhe-medhe-samachaar.html",
-                      "img": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
+                      "imageAlt": "Tedhe Medhe Samachaar",
+                      "link": "/tedhe-medhe-samachaar.html",
                       "title": "Tedhe Medhe Samachar"
                     },
                     {
-                      "alt": "Bolte Sitare - Lets Boing!",
-                      "ctaLabel": "Explore",
+                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762942381123.svg+xml",
+                      "ctaText": "Explore",
                       "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
-                      "href": "/bolte-sitare.html",
-                      "img": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
+                      "imageAlt": "Bolte Sitare - Lets Boing!",
+                      "link": "/bolte-sitare.html",
                       "title": "Bolte Sitare"
                     }
                   ],
+                  "featureCards_title": "Welcome to <span class=\"featureCards-title-partial\">LetsBoing!</span>",
                   "model": "featureCards",
-                  "name": "Feature Cards",
-                  "title": "<h1 class=\"featureCards-title\">Welcome to <span class=\"featureCards-title-partial\">LetsBoing!</span></h1>"
+                  "name": "Feature Cards"
                 }
               }
             }
@@ -203,16 +186,17 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "footerBrandCopyright": "© 2025 Bingo! All Rights Reserved.",
-                  "footerBrandLeftLinks": [
+                  "brandLogo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
+                  "brandLogo_imgAlt": "ITC Logo",
+                  "brandLogo_link": "https://www.itcportal.com/",
+                  "copyrightText": "© 2025 Bingo! All Rights Reserved.",
+                  "footerLinks": [
                     {
                       "href": "https://www.itcportal.com/",
                       "text": "ITC portal"
                     }
                   ],
-                  "footerBrandLogo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
-                  "footerBrandLogo_link": "https://www.itcportal.com/",
-                  "footerBrandNavLinks": [
+                  "menuLinks": [
                     {
                       "href": "/about-us.html",
                       "text": "About us"
@@ -246,6 +230,10 @@
                       "text": "Sa-Meme-Char"
                     },
                     {
+                      "href": "/bolte-sitare/number-ka-khel.html",
+                      "text": "Numbers Ka Khel"
+                    },
+                    {
                       "href": "/bolte-sitare/love-compatibility.html",
                       "text": "Pyaar O Scope"
                     },
@@ -258,8 +246,11 @@
                       "text": "Boing Weekly"
                     }
                   ],
-                  "footerBrandSecondaryLogo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
-                  "footerBrandSocialLinks": [
+                  "model": "footer-brand",
+                  "name": "Footer Brand",
+                  "secondaryLogo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
+                  "secondaryLogo_imgAlt": "FSSI Logo",
+                  "socialLinks": [
                     {
                       "href": "https://www.facebook.com/share/1BiTDumTX4/?mibextid=wwXIf",
                       "img": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
@@ -275,9 +266,7 @@
                       "img": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
                       "platform": "youtube"
                     }
-                  ],
-                  "model": "footer-brand",
-                  "name": "Footer Brand"
+                  ]
                 }
               }
             }
@@ -292,7 +281,7 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "model": "header-footer",
-                  "name": "HeaderFooter"
+                  "name": "Header & Footer"
                 }
               }
             }
@@ -306,12 +295,53 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "header_cta_text": "View All",
-                  "header_cta_url": "/bolte-sitare/boingwale-blogs.html",
-                  "header_desc": "Stay updated with our latest news, \nblogs and events",
-                  "header_title": "More Boings",
+                  "ctaLink": "/bolte-sitare/boingwale-blogs.html",
+                  "ctaText": "View All",
                   "model": "latestblogs",
-                  "name": "Latest Blogs"
+                  "name": "Latest Blogs",
+                  "sectionDescription": "Stay updated with our latest news, \nblogs and events",
+                  "sectionTitle": "More Boings"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Sticky Navigation",
+          "id": "sticky-navigation",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "model": "sticky-navigation",
+                  "name": "Sticky Navigation",
+                  "navigationItems": [
+                    {
+                      "href": "/",
+                      "imgAlt": "home icon",
+                      "imgSrc": "/content/dam/aemigrate/uploaded-folder/image/home_active?fmt=webp-alpha.webp",
+                      "label": "Home"
+                    },
+                    {
+                      "href": "/tedhe-medhe-samachaar.html",
+                      "imgAlt": "Samachaar icon",
+                      "imgSrc": "/content/dam/aemigrate/uploaded-folder/image/samachaar?fmt=webp-alpha.webp",
+                      "label": "Samachar"
+                    },
+                    {
+                      "href": "/bolte-sitare.html",
+                      "imgAlt": "star icon",
+                      "imgSrc": "/content/dam/aemigrate/uploaded-folder/image/star-1?fmt=webp-alpha.webp",
+                      "label": "Bolte Sitaare"
+                    },
+                    {
+                      "href": "/login/profile.html",
+                      "imgAlt": "profile logo",
+                      "imgSrc": "/content/dam/aemigrate/uploaded-folder/image/profile-circle?fmt=webp-alpha.webp",
+                      "label": "Profile"
+                    }
+                  ]
                 }
               }
             }

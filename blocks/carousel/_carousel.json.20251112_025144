@@ -1,0 +1,153 @@
+{
+  "definitions": [
+    {
+      "title": "Carousel",
+      "id": "carousel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "autoplay": true,
+              "delay": 5000,
+              "loop": false,
+              "model": "carousel",
+              "name": "Carousel",
+              "slides": [
+                {
+                  "title": "Banner-1",
+                  "type": "video",
+                  "video_mp4": "/content/dam/aemigrate/uploaded-folder/video/Boing-Announcement.mp4",
+                  "video_webm": "/content/dam/aemigrate/uploaded-folder/video/Boing-Announcement.mp4"
+                },
+                {
+                  "cta_link": "/bolte-sitare.html",
+                  "cta_text": "Know More",
+                  "image_alt": "Lets Boing! Horoscope",
+                  "image_src": "/content/dam/aemigrate/uploaded-folder/image/Hero%20banner%20With%20out%20CTA-1.jpeg",
+                  "title": "Banner-3",
+                  "type": "image"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "carousel",
+      "description": "",
+      "fields": [
+        {
+          "component": "boolean",
+          "description": "Should the carousel auto-play?",
+          "label": "Autoplay",
+          "name": "autoplay",
+          "required": false,
+          "valueType": "boolean"
+        },
+        {
+          "component": "number",
+          "description": "Delay in ms between slides",
+          "label": "Autoplay Delay",
+          "name": "delay",
+          "required": false,
+          "valueType": "number"
+        },
+        {
+          "component": "boolean",
+          "description": "Should the carousel loop?",
+          "label": "Loop",
+          "name": "loop",
+          "required": false,
+          "valueType": "boolean"
+        },
+        {
+          "component": "container",
+          "description": "Carousel slides",
+          "fields": [
+            {
+              "component": "select",
+              "label": "Slide Type",
+              "name": "type",
+              "options": [
+                {
+                  "name": "Image",
+                  "value": "image"
+                },
+                {
+                  "name": "Video",
+                  "value": "video"
+                }
+              ],
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "MP4 video URL",
+              "label": "Video MP4 Source",
+              "name": "video_mp4",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "WEBM video URL",
+              "label": "Video WEBM Source",
+              "name": "video_webm",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Image URL",
+              "label": "Image Source",
+              "name": "image_src",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Alt text for image",
+              "label": "Image Alt Text",
+              "name": "image_alt",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Call to action link for slide",
+              "label": "CTA Link",
+              "name": "cta_link",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "CTA button text",
+              "label": "CTA Text",
+              "name": "cta_text",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Title for the slide",
+              "label": "Slide Title",
+              "name": "title",
+              "required": false,
+              "valueType": "string"
+            }
+          ],
+          "label": "Slides",
+          "name": "slides",
+          "valueType": "object[]"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

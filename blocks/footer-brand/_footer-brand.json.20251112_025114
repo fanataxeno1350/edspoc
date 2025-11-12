@@ -8,17 +8,16 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "brandLogo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
-              "brandLogo_imgAlt": "ITC Logo",
-              "brandLogo_link": "https://www.itcportal.com/",
-              "copyrightText": "© 2025 Bingo! All Rights Reserved.",
-              "footerLinks": [
+              "footerBrandCopyright": "© 2025 Bingo! All Rights Reserved.",
+              "footerBrandLeftLinks": [
                 {
                   "href": "https://www.itcportal.com/",
                   "text": "ITC portal"
                 }
               ],
-              "menuLinks": [
+              "footerBrandLogo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
+              "footerBrandLogo_link": "https://www.itcportal.com/",
+              "footerBrandNavLinks": [
                 {
                   "href": "/about-us.html",
                   "text": "About us"
@@ -52,10 +51,6 @@
                   "text": "Sa-Meme-Char"
                 },
                 {
-                  "href": "/bolte-sitare/number-ka-khel.html",
-                  "text": "Numbers Ka Khel"
-                },
-                {
                   "href": "/bolte-sitare/love-compatibility.html",
                   "text": "Pyaar O Scope"
                 },
@@ -68,11 +63,8 @@
                   "text": "Boing Weekly"
                 }
               ],
-              "model": "footer-brand",
-              "name": "Footer Brand",
-              "secondaryLogo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
-              "secondaryLogo_imgAlt": "FSSI Logo",
-              "socialLinks": [
+              "footerBrandSecondaryLogo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
+              "footerBrandSocialLinks": [
                 {
                   "href": "https://www.facebook.com/share/1BiTDumTX4/?mibextid=wwXIf",
                   "img": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
@@ -88,7 +80,9 @@
                   "img": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
                   "platform": "youtube"
                 }
-              ]
+              ],
+              "model": "footer-brand",
+              "name": "Footer Brand"
             }
           }
         }
@@ -102,113 +96,103 @@
       "fields": [
         {
           "component": "aem-content",
-          "description": "URL for the primary brand logo.",
-          "label": "Brand Logo Link",
-          "name": "brandLogo_link",
+          "label": "Footer Brand Logo Link",
+          "name": "footerBrandLogo_link",
+          "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Image source for the primary brand logo.",
-          "label": "Brand Logo Image",
-          "name": "brandLogo_img",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "description": "Alt text for the primary brand logo image.",
-          "label": "Brand Logo Alt Text",
-          "name": "brandLogo_imgAlt",
+          "label": "Footer Brand Logo Image",
+          "name": "footerBrandLogo_img",
+          "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Image source for the secondary logo.",
-          "label": "Secondary Logo Image",
-          "name": "secondaryLogo_img",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "description": "Alt text for the secondary logo image.",
-          "label": "Secondary Logo Alt Text",
-          "name": "secondaryLogo_imgAlt",
+          "label": "Footer Brand Secondary Logo Image",
+          "name": "footerBrandSecondaryLogo_img",
+          "required": false,
           "valueType": "string"
         },
         {
           "component": "container",
-          "description": "List of navigation menu links.",
           "fields": [
             {
               "component": "text",
               "label": "Link Text",
               "name": "text",
+              "required": true,
               "valueType": "string"
             },
             {
               "component": "aem-content",
               "label": "Link URL",
               "name": "href",
+              "required": true,
               "valueType": "string"
             }
           ],
-          "label": "Menu Links",
-          "name": "menuLinks",
+          "label": "Footer Brand Navigation Links",
+          "name": "footerBrandNavLinks",
           "valueType": "object[]"
         },
         {
           "component": "container",
-          "description": "List of social media links.",
           "fields": [
             {
               "component": "text",
-              "label": "Platform Name",
+              "label": "Platform",
               "name": "platform",
+              "required": true,
               "valueType": "string"
             },
             {
               "component": "aem-content",
-              "label": "Social URL",
+              "label": "Social Link URL",
               "name": "href",
+              "required": true,
               "valueType": "string"
             },
             {
               "component": "aem-content",
               "label": "Social Icon Image",
               "name": "img",
+              "required": false,
               "valueType": "string"
             }
           ],
-          "label": "Social Links",
-          "name": "socialLinks",
+          "label": "Footer Brand Social Links",
+          "name": "footerBrandSocialLinks",
           "valueType": "object[]"
         },
         {
           "component": "container",
-          "description": "Additional footer links.",
           "fields": [
             {
               "component": "text",
-              "label": "Footer Link Text",
+              "label": "Link Text",
               "name": "text",
+              "required": true,
               "valueType": "string"
             },
             {
               "component": "aem-content",
-              "label": "Footer Link URL",
+              "label": "Link URL",
               "name": "href",
+              "required": true,
               "valueType": "string"
             }
           ],
-          "label": "Footer Links",
-          "name": "footerLinks",
+          "label": "Footer Brand Left Links",
+          "name": "footerBrandLeftLinks",
           "valueType": "object[]"
         },
         {
           "component": "text",
-          "description": "Footer copyright text.",
           "label": "Copyright Text",
-          "name": "copyrightText",
+          "name": "footerBrandCopyright",
+          "required": false,
           "valueType": "string"
         }
       ]
