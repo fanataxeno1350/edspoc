@@ -113,6 +113,40 @@
           }
         },
         {
+          "title": "Carousel",
+          "id": "carousel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "autoplay": true,
+                  "delay": 5000,
+                  "loop": false,
+                  "model": "carousel",
+                  "name": "Carousel",
+                  "slides": [
+                    {
+                      "title": "Banner-1",
+                      "type": "video",
+                      "video_mp4": "/content/dam/aemigrate/uploaded-folder/video/Boing-Announcement.mp4",
+                      "video_webm": "/content/dam/aemigrate/uploaded-folder/video/Boing-Announcement.mp4"
+                    },
+                    {
+                      "cta_link": "/bolte-sitare.html",
+                      "cta_text": "Know More",
+                      "image_alt": "Lets Boing! Horoscope",
+                      "image_src": "/content/dam/aemigrate/uploaded-folder/image/Hero%20banner%20With%20out%20CTA-1.jpeg",
+                      "title": "Banner-3",
+                      "type": "image"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Columns",
           "id": "columns",
           "plugins": {
@@ -122,6 +156,207 @@
                 "template": {
                   "columns": "2",
                   "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Feature Cards",
+          "id": "featureCards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "cards": [
+                    {
+                      "alt": "Tedhe Medhe Samachaar",
+                      "ctaLabel": "Explore",
+                      "description": "India ki taaza aur thodi-si tedhi news!",
+                      "href": "/tedhe-medhe-samachaar.html",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
+                      "title": "Tedhe Medhe Samachar"
+                    },
+                    {
+                      "alt": "Bolte Sitare - Lets Boing!",
+                      "ctaLabel": "Explore",
+                      "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
+                      "href": "/bolte-sitare.html",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
+                      "title": "Bolte Sitare"
+                    }
+                  ],
+                  "model": "featureCards",
+                  "name": "Feature Cards",
+                  "title": "<h1 class=\"featureCards-title\">Welcome to <span class=\"featureCards-title-partial\">LetsBoing!</span></h1>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Brand",
+          "id": "footer-brand",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "footerBrandCopyright": "© 2025 Bingo! All Rights Reserved.",
+                  "footerBrandLeftLinks": [
+                    {
+                      "href": "https://www.itcportal.com/",
+                      "text": "ITC portal"
+                    }
+                  ],
+                  "footerBrandLogo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
+                  "footerBrandLogo_link": "https://www.itcportal.com/",
+                  "footerBrandNavLinks": [
+                    {
+                      "href": "/about-us.html",
+                      "text": "About us"
+                    },
+                    {
+                      "href": "/terms-and-conditions.html",
+                      "text": "Terms and Conditions"
+                    },
+                    {
+                      "href": "/privacy-policy.html",
+                      "text": "Privacy Policy"
+                    },
+                    {
+                      "href": "/bolte-sitare/boingwale-blogs.html",
+                      "text": "BoingWale Blogs"
+                    },
+                    {
+                      "href": "/tedhe-medhe-samachaar/tedhe-medhe-highlights.html",
+                      "text": "Tedhe Medhe Highlights"
+                    },
+                    {
+                      "href": "/bolte-sitare/number-ka-khel.html",
+                      "text": "Numbers Ka Khel"
+                    },
+                    {
+                      "href": "https://www.itcportal.com/contact-us.aspx",
+                      "text": "Contact us"
+                    },
+                    {
+                      "href": "/tedhe-medhe-samachaar/sa-meme-chaar.html",
+                      "text": "Sa-Meme-Char"
+                    },
+                    {
+                      "href": "/bolte-sitare/love-compatibility.html",
+                      "text": "Pyaar O Scope"
+                    },
+                    {
+                      "href": "/bolte-sitare/bhavishya-on-the-go.html",
+                      "text": "Bhavishya On The Go"
+                    },
+                    {
+                      "href": "/tedhe-medhe-samachaar/boing-weekly.html",
+                      "text": "Boing Weekly"
+                    }
+                  ],
+                  "footerBrandSecondaryLogo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
+                  "footerBrandSocialLinks": [
+                    {
+                      "href": "https://www.facebook.com/share/1BiTDumTX4/?mibextid=wwXIf",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
+                      "platform": "facebook"
+                    },
+                    {
+                      "href": "https://www.instagram.com/bingo_snacks?igsh=bjc5eXg1cDNkM3U1",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/instagram-2?fmt=webp-alpha.webp",
+                      "platform": "instagram"
+                    },
+                    {
+                      "href": "http://www.youtube.com/@BingoSnacks",
+                      "img": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
+                      "platform": "youtube"
+                    }
+                  ],
+                  "model": "footer-brand",
+                  "name": "Footer Brand"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Header & Footer",
+          "id": "header-footer",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "model": "header-footer",
+                  "name": "HeaderFooter"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Latest Blogs",
+          "id": "latestblogs",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "header_cta_text": "View All",
+                  "header_cta_url": "/bolte-sitare/boingwale-blogs.html",
+                  "header_desc": "Stay updated with our latest news, \nblogs and events",
+                  "header_title": "More Boings",
+                  "model": "latestblogs",
+                  "name": "Latest Blogs"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Sticky Navigation",
+          "id": "stickyNavigation",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "links": [
+                    {
+                      "alt": "home icon",
+                      "dataLink": "/content/boing/in/en/home",
+                      "href": "/",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/home_active?fmt=webp-alpha.webp",
+                      "label": "Home"
+                    },
+                    {
+                      "alt": "Samachaar icon",
+                      "dataLink": "/content/boing/in/en/tedhe-medhe-samachaar",
+                      "href": "/tedhe-medhe-samachaar.html",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/samachaar?fmt=webp-alpha.webp",
+                      "label": "Samachar"
+                    },
+                    {
+                      "alt": "star icon",
+                      "dataLink": "/content/boing/in/en/bolte-sitare",
+                      "href": "/bolte-sitare.html",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/star-1?fmt=webp-alpha.webp",
+                      "label": "Bolte Sitaare"
+                    },
+                    {
+                      "alt": "profile logo",
+                      "dataLink": "/content/boing/in/en/login/profile",
+                      "href": "/login/profile.html",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/profile-circle?fmt=webp-alpha.webp",
+                      "label": "Profile"
+                    }
+                  ],
+                  "model": "stickyNavigation",
+                  "name": "Sticky Navigation"
                 }
               }
             }
