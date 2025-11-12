@@ -10,7 +10,7 @@
             "template": {
               "model": "sticky-navigation",
               "name": "Sticky Navigation",
-              "navItems": [
+              "navigationItems": [
                 {
                   "href": "/",
                   "imgAlt": "home icon",
@@ -49,10 +49,11 @@
       "fields": [
         {
           "component": "container",
-          "description": "List of navigation items for the sticky navigation bar.",
+          "description": "List of navigation links for the sticky navigation bar.",
           "fields": [
             {
               "component": "text",
+              "description": "Navigation item label.",
               "label": "Label",
               "name": "label",
               "required": true,
@@ -60,13 +61,15 @@
             },
             {
               "component": "aem-content",
+              "description": "URL for the navigation link.",
               "label": "Link URL",
               "name": "href",
               "required": true,
               "valueType": "string"
             },
             {
-              "component": "aem-content",
+              "component": "text",
+              "description": "Image source for navigation icon.",
               "label": "Image Source",
               "name": "imgSrc",
               "required": true,
@@ -74,6 +77,7 @@
             },
             {
               "component": "text",
+              "description": "Alt text for navigation icon.",
               "label": "Image Alt Text",
               "name": "imgAlt",
               "required": false,
@@ -81,10 +85,8 @@
             }
           ],
           "label": "Navigation Items",
-          "multiple": true,
-          "name": "navItems",
-          "required": true,
-          "valueType": "object[]"
+          "name": "navigationItems",
+          "required": true
         }
       ]
     }

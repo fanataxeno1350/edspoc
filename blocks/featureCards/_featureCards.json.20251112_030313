@@ -1,0 +1,121 @@
+{
+  "definitions": [
+    {
+      "title": "Feature Cards",
+      "id": "featureCards",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "featureCards_items": [
+                {
+                  "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762942381123.svg+xml",
+                  "ctaText": "Explore",
+                  "description": "India ki taaza aur thodi-si tedhi news!",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
+                  "imageAlt": "Tedhe Medhe Samachaar",
+                  "link": "/tedhe-medhe-samachaar.html",
+                  "title": "Tedhe Medhe Samachar"
+                },
+                {
+                  "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762942381123.svg+xml",
+                  "ctaText": "Explore",
+                  "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
+                  "imageAlt": "Bolte Sitare - Lets Boing!",
+                  "link": "/bolte-sitare.html",
+                  "title": "Bolte Sitare"
+                }
+              ],
+              "featureCards_title": "Welcome to \u003cspan class=\"featureCards-title-partial\"\u003eLetsBoing!\u003c/span\u003e",
+              "model": "featureCards",
+              "name": "Feature Cards"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "featureCards",
+      "description": "",
+      "fields": [
+        {
+          "component": "richtext",
+          "description": "Main title of the feature cards block.",
+          "label": "Block Title",
+          "name": "featureCards_title",
+          "required": true,
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "description": "List of feature cards to display.",
+          "fields": [
+            {
+              "component": "aem-content",
+              "description": "Link for the feature card.",
+              "label": "Card Link",
+              "name": "link",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Image URL for the card.",
+              "label": "Card Image",
+              "name": "image",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Alt text for the card image.",
+              "label": "Image Alt Text",
+              "name": "imageAlt",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Feature card title.",
+              "label": "Card Title",
+              "name": "title",
+              "required": true,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Feature card description.",
+              "label": "Card Description",
+              "name": "description",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "description": "Text for the call-to-action button.",
+              "label": "CTA Text",
+              "name": "ctaText",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "URL for CTA icon (if any).",
+              "label": "CTA Icon URL",
+              "name": "ctaIcon",
+              "required": false,
+              "valueType": "string"
+            }
+          ],
+          "label": "Feature Cards",
+          "name": "featureCards_items"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -23,7 +23,7 @@
       "fields": [
         {
           "component": "container",
-          "description": "Carousel slides, each can be an image, video, and/or CTA.",
+          "description": "Carousel slides",
           "fields": [
             {
               "component": "select",
@@ -39,38 +39,51 @@
                   "value": "video"
                 }
               ],
-              "required": true,
               "valueType": "string"
             },
             {
               "component": "aem-content",
-              "description": "Image or video file path.",
-              "label": "Media Source",
-              "name": "mediaSrc",
-              "required": true,
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "description": "Alt text for image or title for video.",
-              "label": "Media Alt Text",
-              "name": "mediaAlt",
-              "required": false,
-              "valueType": "string"
-            },
-            {
-              "component": "aem-content",
-              "description": "Link for CTA button.",
-              "label": "CTA Link",
-              "name": "ctaHref",
+              "description": "Image asset path",
+              "label": "Image Source",
+              "name": "imageSrc",
               "required": false,
               "valueType": "string"
             },
             {
               "component": "text",
-              "description": "Text for CTA button.",
-              "label": "CTA Text",
-              "name": "ctaText",
+              "description": "Alt text for image",
+              "label": "Image Alt Text",
+              "name": "imageAlt",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Video asset path (mp4)",
+              "label": "Video Source (mp4)",
+              "name": "videoSrc",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "description": "Video asset path (webm)",
+              "label": "Video Source (webm)",
+              "name": "videoSrcWebm",
+              "required": false,
+              "valueType": "string"
+            },
+            {
+              "component": "boolean",
+              "label": "Autoplay Video",
+              "name": "autoplay",
+              "valueType": "boolean"
+            },
+            {
+              "component": "richtext",
+              "description": "CTA markup for slide",
+              "label": "CTA HTML",
+              "name": "ctaHtml",
               "required": false,
               "valueType": "string"
             }
@@ -82,32 +95,32 @@
         },
         {
           "component": "boolean",
-          "description": "Whether the carousel plays automatically.",
-          "label": "Autoplay",
+          "description": "Enable/disable carousel autoplay",
+          "label": "Autoplay Carousel",
           "name": "isAutoplay",
           "required": false,
           "valueType": "boolean"
         },
         {
           "component": "number",
-          "description": "Delay in milliseconds for autoplay.",
-          "label": "Autoplay Delay",
-          "name": "autoplayDelay",
+          "description": "Delay between slides in milliseconds",
+          "label": "Autoplay Delay (ms)",
+          "name": "delay",
           "required": false,
           "valueType": "number"
         },
         {
           "component": "boolean",
-          "description": "Disable pause on hover/focus.",
-          "label": "Disable Autopause",
+          "description": "Disable autoplay pause on interaction",
+          "label": "Autopause Disabled",
           "name": "autopauseDisabled",
           "required": false,
           "valueType": "boolean"
         },
         {
           "component": "boolean",
-          "description": "Whether the carousel loops.",
-          "label": "Loop",
+          "description": "Enable/disable looping",
+          "label": "Loop Carousel",
           "name": "isLoop",
           "required": false,
           "valueType": "boolean"

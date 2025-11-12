@@ -8,9 +8,17 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "copyright_text": "© 2025 Bingo! All Rights Reserved.",
-              "follow_us_title": "Follow Us On",
-              "footer_nav_1": [
+              "brandLogo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
+              "brandLogo_imgAlt": "ITC Logo",
+              "brandLogo_link": "https://www.itcportal.com/",
+              "copyrightText": "© 2025 Bingo! All Rights Reserved.",
+              "footerLinks": [
+                {
+                  "href": "https://www.itcportal.com/",
+                  "text": "ITC portal"
+                }
+              ],
+              "menuLinks": [
                 {
                   "href": "/about-us.html",
                   "text": "About us"
@@ -22,9 +30,7 @@
                 {
                   "href": "/privacy-policy.html",
                   "text": "Privacy Policy"
-                }
-              ],
-              "footer_nav_2": [
+                },
                 {
                   "href": "/bolte-sitare/boingwale-blogs.html",
                   "text": "BoingWale Blogs"
@@ -36,9 +42,7 @@
                 {
                   "href": "/bolte-sitare/number-ka-khel.html",
                   "text": "Numbers Ka Khel"
-                }
-              ],
-              "footer_nav_3": [
+                },
                 {
                   "href": "https://www.itcportal.com/contact-us.aspx",
                   "text": "Contact us"
@@ -50,9 +54,7 @@
                 {
                   "href": "/bolte-sitare/number-ka-khel.html",
                   "text": "Numbers Ka Khel"
-                }
-              ],
-              "footer_nav_4": [
+                },
                 {
                   "href": "/bolte-sitare/love-compatibility.html",
                   "text": "Pyaar O Scope"
@@ -66,26 +68,24 @@
                   "text": "Boing Weekly"
                 }
               ],
-              "itc_portal_link": "https://www.itcportal.com/",
-              "logo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
-              "logo_link": "https://www.itcportal.com/",
               "model": "footer-brand",
               "name": "Footer Brand",
-              "secondary_logo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
-              "social_links": [
+              "secondaryLogo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
+              "secondaryLogo_imgAlt": "FSSI Logo",
+              "socialLinks": [
                 {
                   "href": "https://www.facebook.com/share/1BiTDumTX4/?mibextid=wwXIf",
-                  "icon": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
+                  "img": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
                   "platform": "facebook"
                 },
                 {
                   "href": "https://www.instagram.com/bingo_snacks?igsh=bjc5eXg1cDNkM3U1",
-                  "icon": "/content/dam/aemigrate/uploaded-folder/image/instagram-2?fmt=webp-alpha.webp",
+                  "img": "/content/dam/aemigrate/uploaded-folder/image/instagram-2?fmt=webp-alpha.webp",
                   "platform": "instagram"
                 },
                 {
                   "href": "http://www.youtube.com/@BingoSnacks",
-                  "icon": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
+                  "img": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
                   "platform": "youtube"
                 }
               ]
@@ -102,150 +102,113 @@
       "fields": [
         {
           "component": "aem-content",
-          "description": "Primary brand logo link.",
-          "label": "Logo Link",
-          "name": "logo_link",
-          "required": false,
+          "description": "URL for the primary brand logo.",
+          "label": "Brand Logo Link",
+          "name": "brandLogo_link",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Primary brand logo image.",
-          "label": "Logo Image",
-          "name": "logo_img",
-          "required": false,
+          "description": "Image source for the primary brand logo.",
+          "label": "Brand Logo Image",
+          "name": "brandLogo_img",
           "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "description": "Secondary brand logo image.",
-          "label": "Secondary Logo Image",
-          "name": "secondary_logo_img",
-          "required": false,
-          "valueType": "string"
-        },
-        {
-          "component": "container",
-          "description": "First column of footer navigation links.",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Link Text",
-              "name": "text"
-            },
-            {
-              "component": "aem-content",
-              "label": "Link URL",
-              "name": "href"
-            }
-          ],
-          "label": "Footer Navigation 1",
-          "name": "footer_nav_1",
-          "valueType": "object[]"
-        },
-        {
-          "component": "container",
-          "description": "Second column of footer navigation links.",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Link Text",
-              "name": "text"
-            },
-            {
-              "component": "aem-content",
-              "label": "Link URL",
-              "name": "href"
-            }
-          ],
-          "label": "Footer Navigation 2",
-          "name": "footer_nav_2",
-          "valueType": "object[]"
-        },
-        {
-          "component": "container",
-          "description": "Third column of footer navigation links.",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Link Text",
-              "name": "text"
-            },
-            {
-              "component": "aem-content",
-              "label": "Link URL",
-              "name": "href"
-            }
-          ],
-          "label": "Footer Navigation 3",
-          "name": "footer_nav_3",
-          "valueType": "object[]"
-        },
-        {
-          "component": "container",
-          "description": "Fourth column of footer navigation links.",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Link Text",
-              "name": "text"
-            },
-            {
-              "component": "aem-content",
-              "label": "Link URL",
-              "name": "href"
-            }
-          ],
-          "label": "Footer Navigation 4",
-          "name": "footer_nav_4",
-          "valueType": "object[]"
-        },
-        {
-          "component": "container",
-          "description": "Social media links.",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Platform",
-              "name": "platform"
-            },
-            {
-              "component": "aem-content",
-              "label": "Link URL",
-              "name": "href"
-            },
-            {
-              "component": "aem-content",
-              "label": "Icon URL",
-              "name": "icon"
-            }
-          ],
-          "label": "Social Links",
-          "name": "social_links",
-          "valueType": "object[]"
         },
         {
           "component": "text",
-          "description": "Title above social links.",
-          "label": "Follow Us Title",
-          "name": "follow_us_title",
-          "required": false,
+          "description": "Alt text for the primary brand logo image.",
+          "label": "Brand Logo Alt Text",
+          "name": "brandLogo_imgAlt",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "description": "Link to ITC portal.",
-          "label": "ITC Portal Link",
-          "name": "itc_portal_link",
-          "required": false,
+          "description": "Image source for the secondary logo.",
+          "label": "Secondary Logo Image",
+          "name": "secondaryLogo_img",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "description": "Alt text for the secondary logo image.",
+          "label": "Secondary Logo Alt Text",
+          "name": "secondaryLogo_imgAlt",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "description": "List of navigation menu links.",
+          "fields": [
+            {
+              "component": "text",
+              "label": "Link Text",
+              "name": "text",
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "label": "Link URL",
+              "name": "href",
+              "valueType": "string"
+            }
+          ],
+          "label": "Menu Links",
+          "name": "menuLinks",
+          "valueType": "object[]"
+        },
+        {
+          "component": "container",
+          "description": "List of social media links.",
+          "fields": [
+            {
+              "component": "text",
+              "label": "Platform Name",
+              "name": "platform",
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "label": "Social URL",
+              "name": "href",
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "label": "Social Icon Image",
+              "name": "img",
+              "valueType": "string"
+            }
+          ],
+          "label": "Social Links",
+          "name": "socialLinks",
+          "valueType": "object[]"
+        },
+        {
+          "component": "container",
+          "description": "Additional footer links.",
+          "fields": [
+            {
+              "component": "text",
+              "label": "Footer Link Text",
+              "name": "text",
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "label": "Footer Link URL",
+              "name": "href",
+              "valueType": "string"
+            }
+          ],
+          "label": "Footer Links",
+          "name": "footerLinks",
+          "valueType": "object[]"
         },
         {
           "component": "text",
           "description": "Footer copyright text.",
           "label": "Copyright Text",
-          "name": "copyright_text",
-          "required": false,
+          "name": "copyrightText",
           "valueType": "string"
         }
       ]

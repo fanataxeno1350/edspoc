@@ -166,7 +166,7 @@
     "fields": [
       {
         "component": "container",
-        "description": "Carousel slides",
+        "description": "Carousel slides, each can be an image, video, and/or CTA.",
         "fields": [
           {
             "component": "select",
@@ -182,51 +182,38 @@
                 "value": "video"
               }
             ],
+            "required": true,
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "description": "Image asset path",
-            "label": "Image Source",
-            "name": "imageSrc",
+            "description": "Image or video file path.",
+            "label": "Media Source",
+            "name": "mediaSrc",
+            "required": true,
+            "valueType": "string"
+          },
+          {
+            "component": "text",
+            "description": "Alt text for image or title for video.",
+            "label": "Media Alt Text",
+            "name": "mediaAlt",
+            "required": false,
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "description": "Link for CTA button.",
+            "label": "CTA Link",
+            "name": "ctaHref",
             "required": false,
             "valueType": "string"
           },
           {
             "component": "text",
-            "description": "Alt text for image",
-            "label": "Image Alt Text",
-            "name": "imageAlt",
-            "required": false,
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "description": "Video asset path (mp4)",
-            "label": "Video Source (mp4)",
-            "name": "videoSrc",
-            "required": false,
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "description": "Video asset path (webm)",
-            "label": "Video Source (webm)",
-            "name": "videoSrcWebm",
-            "required": false,
-            "valueType": "string"
-          },
-          {
-            "component": "boolean",
-            "label": "Autoplay Video",
-            "name": "autoplay",
-            "valueType": "boolean"
-          },
-          {
-            "component": "richtext",
-            "description": "CTA markup for slide",
-            "label": "CTA HTML",
-            "name": "ctaHtml",
+            "description": "Text for CTA button.",
+            "label": "CTA Text",
+            "name": "ctaText",
             "required": false,
             "valueType": "string"
           }
@@ -238,32 +225,32 @@
       },
       {
         "component": "boolean",
-        "description": "Enable/disable carousel autoplay",
-        "label": "Autoplay Carousel",
+        "description": "Whether the carousel plays automatically.",
+        "label": "Autoplay",
         "name": "isAutoplay",
         "required": false,
         "valueType": "boolean"
       },
       {
         "component": "number",
-        "description": "Delay between slides in milliseconds",
-        "label": "Autoplay Delay (ms)",
-        "name": "delay",
+        "description": "Delay in milliseconds for autoplay.",
+        "label": "Autoplay Delay",
+        "name": "autoplayDelay",
         "required": false,
         "valueType": "number"
       },
       {
         "component": "boolean",
-        "description": "Disable autoplay pause on interaction",
-        "label": "Autopause Disabled",
+        "description": "Disable pause on hover/focus.",
+        "label": "Disable Autopause",
         "name": "autopauseDisabled",
         "required": false,
         "valueType": "boolean"
       },
       {
         "component": "boolean",
-        "description": "Enable/disable looping",
-        "label": "Loop Carousel",
+        "description": "Whether the carousel loops.",
+        "label": "Loop",
         "name": "isLoop",
         "required": false,
         "valueType": "boolean"
@@ -295,10 +282,10 @@
     "fields": [
       {
         "component": "richtext",
-        "description": "Main title of the feature cards block.",
-        "label": "Block Title",
-        "name": "featureCards_title",
-        "required": true,
+        "description": "Main feature cards section title.",
+        "label": "Main Title",
+        "name": "featureCardsTitle",
+        "required": false,
         "valueType": "string"
       },
       {
@@ -307,31 +294,15 @@
         "fields": [
           {
             "component": "aem-content",
-            "description": "Link for the feature card.",
+            "description": "URL for the card link.",
             "label": "Card Link",
             "name": "link",
             "required": true,
             "valueType": "string"
           },
           {
-            "component": "aem-content",
-            "description": "Image URL for the card.",
-            "label": "Card Image",
-            "name": "image",
-            "required": true,
-            "valueType": "string"
-          },
-          {
             "component": "text",
-            "description": "Alt text for the card image.",
-            "label": "Image Alt Text",
-            "name": "imageAlt",
-            "required": false,
-            "valueType": "string"
-          },
-          {
-            "component": "text",
-            "description": "Feature card title.",
+            "description": "Title of the card.",
             "label": "Card Title",
             "name": "title",
             "required": true,
@@ -339,31 +310,41 @@
           },
           {
             "component": "text",
-            "description": "Feature card description.",
+            "description": "Description for the card.",
             "label": "Card Description",
             "name": "description",
             "required": false,
             "valueType": "string"
           },
           {
-            "component": "text",
-            "description": "Text for the call-to-action button.",
-            "label": "CTA Text",
-            "name": "ctaText",
+            "component": "aem-content",
+            "description": "Image URL for the card.",
+            "label": "Card Image Source",
+            "name": "imageSrc",
             "required": false,
             "valueType": "string"
           },
           {
-            "component": "aem-content",
-            "description": "URL for CTA icon (if any).",
-            "label": "CTA Icon URL",
-            "name": "ctaIcon",
+            "component": "text",
+            "description": "Alternate text for the card image.",
+            "label": "Card Image Alt Text",
+            "name": "imageAlt",
+            "required": false,
+            "valueType": "string"
+          },
+          {
+            "component": "text",
+            "description": "Text for the button or CTA.",
+            "label": "CTA Label",
+            "name": "ctaLabel",
             "required": false,
             "valueType": "string"
           }
         ],
-        "label": "Feature Cards",
-        "name": "featureCards_items"
+        "label": "Feature Cards Items",
+        "name": "featureCardsItems",
+        "required": false,
+        "valueType": "object[]"
       }
     ]
   },
@@ -373,113 +354,150 @@
     "fields": [
       {
         "component": "aem-content",
-        "description": "URL for the primary brand logo.",
-        "label": "Brand Logo Link",
-        "name": "brandLogo_link",
+        "description": "Primary brand logo link.",
+        "label": "Logo Link",
+        "name": "logo_link",
+        "required": false,
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "description": "Image source for the primary brand logo.",
-        "label": "Brand Logo Image",
-        "name": "brandLogo_img",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "description": "Alt text for the primary brand logo image.",
-        "label": "Brand Logo Alt Text",
-        "name": "brandLogo_imgAlt",
+        "description": "Primary brand logo image.",
+        "label": "Logo Image",
+        "name": "logo_img",
+        "required": false,
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "description": "Image source for the secondary logo.",
+        "description": "Secondary brand logo image.",
         "label": "Secondary Logo Image",
-        "name": "secondaryLogo_img",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "description": "Alt text for the secondary logo image.",
-        "label": "Secondary Logo Alt Text",
-        "name": "secondaryLogo_imgAlt",
+        "name": "secondary_logo_img",
+        "required": false,
         "valueType": "string"
       },
       {
         "component": "container",
-        "description": "List of navigation menu links.",
+        "description": "First column of footer navigation links.",
         "fields": [
           {
             "component": "text",
             "label": "Link Text",
-            "name": "text",
-            "valueType": "string"
+            "name": "text"
           },
           {
             "component": "aem-content",
             "label": "Link URL",
-            "name": "href",
-            "valueType": "string"
+            "name": "href"
           }
         ],
-        "label": "Menu Links",
-        "name": "menuLinks",
+        "label": "Footer Navigation 1",
+        "name": "footer_nav_1",
         "valueType": "object[]"
       },
       {
         "component": "container",
-        "description": "List of social media links.",
+        "description": "Second column of footer navigation links.",
         "fields": [
           {
             "component": "text",
-            "label": "Platform Name",
-            "name": "platform",
-            "valueType": "string"
+            "label": "Link Text",
+            "name": "text"
           },
           {
             "component": "aem-content",
-            "label": "Social URL",
-            "name": "href",
-            "valueType": "string"
+            "label": "Link URL",
+            "name": "href"
+          }
+        ],
+        "label": "Footer Navigation 2",
+        "name": "footer_nav_2",
+        "valueType": "object[]"
+      },
+      {
+        "component": "container",
+        "description": "Third column of footer navigation links.",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Link Text",
+            "name": "text"
           },
           {
             "component": "aem-content",
-            "label": "Social Icon Image",
-            "name": "img",
-            "valueType": "string"
+            "label": "Link URL",
+            "name": "href"
+          }
+        ],
+        "label": "Footer Navigation 3",
+        "name": "footer_nav_3",
+        "valueType": "object[]"
+      },
+      {
+        "component": "container",
+        "description": "Fourth column of footer navigation links.",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Link Text",
+            "name": "text"
+          },
+          {
+            "component": "aem-content",
+            "label": "Link URL",
+            "name": "href"
+          }
+        ],
+        "label": "Footer Navigation 4",
+        "name": "footer_nav_4",
+        "valueType": "object[]"
+      },
+      {
+        "component": "container",
+        "description": "Social media links.",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Platform",
+            "name": "platform"
+          },
+          {
+            "component": "aem-content",
+            "label": "Link URL",
+            "name": "href"
+          },
+          {
+            "component": "aem-content",
+            "label": "Icon URL",
+            "name": "icon"
           }
         ],
         "label": "Social Links",
-        "name": "socialLinks",
+        "name": "social_links",
         "valueType": "object[]"
       },
       {
-        "component": "container",
-        "description": "Additional footer links.",
-        "fields": [
-          {
-            "component": "text",
-            "label": "Footer Link Text",
-            "name": "text",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "label": "Footer Link URL",
-            "name": "href",
-            "valueType": "string"
-          }
-        ],
-        "label": "Footer Links",
-        "name": "footerLinks",
-        "valueType": "object[]"
+        "component": "text",
+        "description": "Title above social links.",
+        "label": "Follow Us Title",
+        "name": "follow_us_title",
+        "required": false,
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "description": "Link to ITC portal.",
+        "label": "ITC Portal Link",
+        "name": "itc_portal_link",
+        "required": false,
+        "valueType": "string"
       },
       {
         "component": "text",
         "description": "Footer copyright text.",
         "label": "Copyright Text",
-        "name": "copyrightText",
+        "name": "copyright_text",
+        "required": false,
         "valueType": "string"
       }
     ]
@@ -490,7 +508,7 @@
     "fields": [
       {
         "component": "text",
-        "description": "Short name for the application.",
+        "description": "Application name displayed in the header.",
         "label": "App Name",
         "name": "app_name",
         "required": false,
@@ -498,7 +516,7 @@
       },
       {
         "component": "aem-content",
-        "description": "URL for the logo click-through.",
+        "description": "URL for the main logo link.",
         "label": "Logo Link",
         "name": "logo_link",
         "required": false,
@@ -506,7 +524,7 @@
       },
       {
         "component": "aem-content",
-        "description": "Main logo image src.",
+        "description": "URL of the main logo image.",
         "label": "Logo Image",
         "name": "logo_img",
         "required": false,
@@ -522,9 +540,9 @@
       },
       {
         "component": "text",
-        "description": "Text shown on the login button.",
-        "label": "Login Button Text",
-        "name": "login_text",
+        "description": "Text for the login button.",
+        "label": "Login Button Label",
+        "name": "login_label",
         "required": false,
         "valueType": "string"
       },
@@ -533,21 +551,21 @@
         "description": "Sidebar navigation menu items.",
         "fields": [
           {
-            "component": "aem-content",
-            "label": "Menu Link Title",
-            "name": "menu_title",
+            "component": "text",
+            "label": "Menu Item Label",
+            "name": "label",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "label": "Menu Link URL",
-            "name": "menu_href",
+            "label": "Menu Item Link",
+            "name": "link",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "label": "Menu Icon",
-            "name": "menu_icon",
+            "label": "Menu Item Icon",
+            "name": "icon",
             "valueType": "string"
           }
         ],
@@ -557,66 +575,45 @@
       },
       {
         "component": "container",
-        "description": "Logos shown in the footer.",
+        "description": "Footer navigation links.",
         "fields": [
           {
-            "component": "aem-content",
-            "label": "Brand Logo Link",
-            "name": "brand_logo_link",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "label": "Brand Logo Image",
-            "name": "brand_logo_img",
-            "valueType": "string"
-          }
-        ],
-        "label": "Footer Brand Logos",
-        "multiple": true,
-        "name": "footer_brand_logos"
-      },
-      {
-        "component": "container",
-        "description": "Footer navigation links in columns.",
-        "fields": [
-          {
-            "component": "aem-content",
-            "label": "Footer Link Text",
-            "name": "footer_link_text",
+            "component": "text",
+            "label": "Footer Link Label",
+            "name": "label",
             "valueType": "string"
           },
           {
             "component": "aem-content",
             "label": "Footer Link URL",
-            "name": "footer_link_href",
+            "name": "link",
             "valueType": "string"
           }
         ],
-        "label": "Footer Navigation Links",
+        "label": "Footer Links",
         "multiple": true,
-        "name": "footer_nav_links"
+        "name": "footer_links"
       },
       {
         "component": "container",
-        "description": "Social media links in footer.",
+        "description": "Links to social media in the footer.",
         "fields": [
           {
-            "component": "aem-content",
-            "label": "Social Platform",
-            "name": "social_platform",
+            "component": "text",
+            "label": "Platform Name",
+            "name": "platform",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "label": "Social Link",
-            "name": "social_link",
+            "label": "Social Link URL",
+            "name": "link",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "label": "Social Icon Image",
-            "name": "social_icon",
+            "label": "Social Icon",
+            "name": "icon",
             "valueType": "string"
           }
         ],
@@ -626,7 +623,7 @@
       },
       {
         "component": "text",
-        "description": "Copyright and legal footer text.",
+        "description": "Copyright text in the footer.",
         "label": "Copyright Text",
         "name": "copyright",
         "required": false,
@@ -641,67 +638,63 @@
       {
         "component": "text",
         "label": "Section Title",
-        "name": "sectionTitle",
-        "required": true,
+        "name": "section_title",
+        "required": false,
         "valueType": "string"
       },
       {
         "component": "richtext",
         "label": "Section Description",
-        "name": "sectionDescription",
+        "name": "section_desc",
         "required": false,
         "valueType": "string"
       },
       {
         "component": "aem-content",
         "label": "CTA Link",
-        "name": "ctaLink",
+        "name": "cta_link",
         "required": false,
         "valueType": "string"
       },
       {
         "component": "text",
         "label": "CTA Text",
-        "name": "ctaText",
+        "name": "cta_text",
         "required": false,
         "valueType": "string"
       },
       {
         "component": "container",
-        "description": "List of latest blogs",
         "fields": [
           {
             "component": "aem-content",
-            "label": "Blog URL",
-            "name": "blogUrl",
-            "required": true,
+            "label": "Blog Link",
+            "name": "link",
             "valueType": "string"
           },
           {
             "component": "aem-content",
-            "label": "Image Source",
-            "name": "imageSrc",
-            "required": false,
+            "label": "Blog Image",
+            "name": "image",
             "valueType": "string"
           },
           {
             "component": "text",
-            "label": "Published Date",
+            "label": "Blog Date",
             "name": "date",
-            "required": false,
             "valueType": "string"
           },
           {
-            "component": "richtext",
-            "label": "Blog Title",
-            "name": "title",
-            "required": true,
+            "component": "text",
+            "label": "Blog Heading",
+            "name": "heading",
             "valueType": "string"
           }
         ],
-        "label": "Blogs",
-        "minItems": 0,
-        "name": "blogs"
+        "label": "Blogs List",
+        "name": "blogs",
+        "required": false,
+        "valueType": "object[]"
       }
     ]
   },
@@ -711,11 +704,10 @@
     "fields": [
       {
         "component": "container",
-        "description": "List of navigation links for the sticky navigation bar.",
+        "description": "List of navigation items for the sticky navigation bar.",
         "fields": [
           {
             "component": "text",
-            "description": "Navigation item label.",
             "label": "Label",
             "name": "label",
             "required": true,
@@ -723,15 +715,13 @@
           },
           {
             "component": "aem-content",
-            "description": "URL for the navigation link.",
             "label": "Link URL",
             "name": "href",
             "required": true,
             "valueType": "string"
           },
           {
-            "component": "text",
-            "description": "Image source for navigation icon.",
+            "component": "aem-content",
             "label": "Image Source",
             "name": "imgSrc",
             "required": true,
@@ -739,7 +729,6 @@
           },
           {
             "component": "text",
-            "description": "Alt text for navigation icon.",
             "label": "Image Alt Text",
             "name": "imgAlt",
             "required": false,
@@ -747,8 +736,10 @@
           }
         ],
         "label": "Navigation Items",
-        "name": "navigationItems",
-        "required": true
+        "multiple": true,
+        "name": "navItems",
+        "required": true,
+        "valueType": "object[]"
       }
     ]
   },

@@ -150,27 +150,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "featureCards_items": [
-                    {
-                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762942381123.svg+xml",
-                      "ctaText": "Explore",
-                      "description": "India ki taaza aur thodi-si tedhi news!",
-                      "image": "/content/dam/aemigrate/uploaded-folder/image/tedhe-medhe-cards?fmt=webp-alpha.webp",
-                      "imageAlt": "Tedhe Medhe Samachaar",
-                      "link": "/tedhe-medhe-samachaar.html",
-                      "title": "Tedhe Medhe Samachar"
-                    },
-                    {
-                      "ctaIcon": "/content/dam/aemigrate/uploaded-folder/image/1762942381123.svg+xml",
-                      "ctaText": "Explore",
-                      "description": "Aapki bhavishyavaani, Bingo! ki zubaani",
-                      "image": "/content/dam/aemigrate/uploaded-folder/image/bolte-sitare-cards?fmt=webp-alpha.webp",
-                      "imageAlt": "Bolte Sitare - Lets Boing!",
-                      "link": "/bolte-sitare.html",
-                      "title": "Bolte Sitare"
-                    }
-                  ],
-                  "featureCards_title": "Welcome to <span class=\"featureCards-title-partial\">LetsBoing!</span>",
+                  "featureCardsTitle": "<h1 class=\"featureCards-title\">Welcome to <span class=\"featureCards-title-partial\">LetsBoing!</span></h1>",
                   "model": "featureCards",
                   "name": "Feature Cards"
                 }
@@ -186,17 +166,9 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "brandLogo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
-                  "brandLogo_imgAlt": "ITC Logo",
-                  "brandLogo_link": "https://www.itcportal.com/",
-                  "copyrightText": "© 2025 Bingo! All Rights Reserved.",
-                  "footerLinks": [
-                    {
-                      "href": "https://www.itcportal.com/",
-                      "text": "ITC portal"
-                    }
-                  ],
-                  "menuLinks": [
+                  "copyright_text": "© 2025 Bingo! All Rights Reserved.",
+                  "follow_us_title": "Follow Us On",
+                  "footer_nav_1": [
                     {
                       "href": "/about-us.html",
                       "text": "About us"
@@ -208,7 +180,9 @@
                     {
                       "href": "/privacy-policy.html",
                       "text": "Privacy Policy"
-                    },
+                    }
+                  ],
+                  "footer_nav_2": [
                     {
                       "href": "/bolte-sitare/boingwale-blogs.html",
                       "text": "BoingWale Blogs"
@@ -220,7 +194,9 @@
                     {
                       "href": "/bolte-sitare/number-ka-khel.html",
                       "text": "Numbers Ka Khel"
-                    },
+                    }
+                  ],
+                  "footer_nav_3": [
                     {
                       "href": "https://www.itcportal.com/contact-us.aspx",
                       "text": "Contact us"
@@ -232,7 +208,9 @@
                     {
                       "href": "/bolte-sitare/number-ka-khel.html",
                       "text": "Numbers Ka Khel"
-                    },
+                    }
+                  ],
+                  "footer_nav_4": [
                     {
                       "href": "/bolte-sitare/love-compatibility.html",
                       "text": "Pyaar O Scope"
@@ -246,24 +224,26 @@
                       "text": "Boing Weekly"
                     }
                   ],
+                  "itc_portal_link": "https://www.itcportal.com/",
+                  "logo_img": "/content/dam/aemigrate/uploaded-folder/image/itc-logo-2?fmt=webp-alpha.webp",
+                  "logo_link": "https://www.itcportal.com/",
                   "model": "footer-brand",
                   "name": "Footer Brand",
-                  "secondaryLogo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
-                  "secondaryLogo_imgAlt": "FSSI Logo",
-                  "socialLinks": [
+                  "secondary_logo_img": "/content/dam/aemigrate/uploaded-folder/image/fssi-logo-update?fmt=webp-alpha.webp",
+                  "social_links": [
                     {
                       "href": "https://www.facebook.com/share/1BiTDumTX4/?mibextid=wwXIf",
-                      "img": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/facebook-5?fmt=webp-alpha.webp",
                       "platform": "facebook"
                     },
                     {
                       "href": "https://www.instagram.com/bingo_snacks?igsh=bjc5eXg1cDNkM3U1",
-                      "img": "/content/dam/aemigrate/uploaded-folder/image/instagram-2?fmt=webp-alpha.webp",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/instagram-2?fmt=webp-alpha.webp",
                       "platform": "instagram"
                     },
                     {
                       "href": "http://www.youtube.com/@BingoSnacks",
-                      "img": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
+                      "icon": "/content/dam/aemigrate/uploaded-folder/image/youtube-2?fmt=webp-alpha.webp",
                       "platform": "youtube"
                     }
                   ]
@@ -273,7 +253,7 @@
           }
         },
         {
-          "title": "Header & Footer",
+          "title": "Header and Footer",
           "id": "header-footer",
           "plugins": {
             "xwalk": {
@@ -281,7 +261,7 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "model": "header-footer",
-                  "name": "Header & Footer"
+                  "name": "Header and Footer"
                 }
               }
             }
@@ -295,12 +275,62 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "ctaLink": "/bolte-sitare/boingwale-blogs.html",
-                  "ctaText": "View All",
+                  "blogs": [
+                    {
+                      "date": "09 November 2025",
+                      "heading": "Aap Air Pollution Se Kaise Deal Karte Ho?",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/Air%20Pollution%201536x1024.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/aap-air-pollution-se-kaise-deal-karte-ho-.html"
+                    },
+                    {
+                      "date": "03 November 2025",
+                      "heading": "Aap Stadium Mein Kis Tarah Ke Cricket Fan Ho?",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/1536x1024.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/aap-stadium-mein-kis-tarah-ke-cricket-fan-ho-.html"
+                    },
+                    {
+                      "date": "29 October 2025",
+                      "heading": "Aapka Is Saal Ka Dream Holiday Destination Kahaan Hoga?",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/dream%20destination%201536x1024.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/aapka-is-saal-ka-dream-holiday-destination-kahaan-hoga-.html"
+                    },
+                    {
+                      "date": "29 October 2025",
+                      "heading": "Aapka Zodiac Aapke Aesthetic Ke Baare Mein Kya Kehta Hai?",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/aesthetic%201536x1024.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/aapka-zodiac-aapke-aesthetic-ke-baare-mein-kya-kehta-hai-.html"
+                    },
+                    {
+                      "date": "29 October 2025",
+                      "heading": "Is Halloween Pe Aapka Home Décor Kya Hogai?",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/halloween%20decor%201536x1024.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/is-halloween-pe-aapka-home-decor-kya-hogai-.html"
+                    },
+                    {
+                      "date": "29 October 2025",
+                      "heading": "Aapki Fod Personality Kya Hai?",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/food%20personality%201536x1024.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/aapki-fod-personality-kya-hai-.html"
+                    },
+                    {
+                      "date": "28 October 2025",
+                      "heading": "Kaunsa Halloween Costume Aapke Sign Ko Suit Karta Hai? ",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/Halloween%20banner.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/kaunsa-halloween-costume-aapke-sign-ko-suit-karta-hai--.html"
+                    },
+                    {
+                      "date": "28 October 2025",
+                      "heading": "Long Distance Relationship Mein Aap Kaise Behave Karte Hain?",
+                      "image": "/content/dam/aemigrate/uploaded-folder/image/long%20dist%20banner.jpeg",
+                      "link": "/bolte-sitare/boingwale-blogs/long-distance-relationship-mein-aap-kaise-behave-karte-hain-.html"
+                    }
+                  ],
+                  "cta_link": "/bolte-sitare/boingwale-blogs.html",
+                  "cta_text": "View All",
                   "model": "latestblogs",
                   "name": "Latest Blogs",
-                  "sectionDescription": "Stay updated with our latest news, \nblogs and events",
-                  "sectionTitle": "More Boings"
+                  "section_desc": "Stay updated with our latest news, \nblogs and events",
+                  "section_title": "More Boings"
                 }
               }
             }
@@ -316,7 +346,7 @@
                 "template": {
                   "model": "sticky-navigation",
                   "name": "Sticky Navigation",
-                  "navigationItems": [
+                  "navItems": [
                     {
                       "href": "/",
                       "imgAlt": "home icon",

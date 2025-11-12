@@ -8,12 +8,62 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "ctaLink": "/bolte-sitare/boingwale-blogs.html",
-              "ctaText": "View All",
+              "blogs": [
+                {
+                  "date": "09 November 2025",
+                  "heading": "Aap Air Pollution Se Kaise Deal Karte Ho?",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/Air%20Pollution%201536x1024.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/aap-air-pollution-se-kaise-deal-karte-ho-.html"
+                },
+                {
+                  "date": "03 November 2025",
+                  "heading": "Aap Stadium Mein Kis Tarah Ke Cricket Fan Ho?",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/1536x1024.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/aap-stadium-mein-kis-tarah-ke-cricket-fan-ho-.html"
+                },
+                {
+                  "date": "29 October 2025",
+                  "heading": "Aapka Is Saal Ka Dream Holiday Destination Kahaan Hoga?",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/dream%20destination%201536x1024.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/aapka-is-saal-ka-dream-holiday-destination-kahaan-hoga-.html"
+                },
+                {
+                  "date": "29 October 2025",
+                  "heading": "Aapka Zodiac Aapke Aesthetic Ke Baare Mein Kya Kehta Hai?",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/aesthetic%201536x1024.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/aapka-zodiac-aapke-aesthetic-ke-baare-mein-kya-kehta-hai-.html"
+                },
+                {
+                  "date": "29 October 2025",
+                  "heading": "Is Halloween Pe Aapka Home Décor Kya Hogai?",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/halloween%20decor%201536x1024.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/is-halloween-pe-aapka-home-decor-kya-hogai-.html"
+                },
+                {
+                  "date": "29 October 2025",
+                  "heading": "Aapki Fod Personality Kya Hai?",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/food%20personality%201536x1024.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/aapki-fod-personality-kya-hai-.html"
+                },
+                {
+                  "date": "28 October 2025",
+                  "heading": "Kaunsa Halloween Costume Aapke Sign Ko Suit Karta Hai? ",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/Halloween%20banner.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/kaunsa-halloween-costume-aapke-sign-ko-suit-karta-hai--.html"
+                },
+                {
+                  "date": "28 October 2025",
+                  "heading": "Long Distance Relationship Mein Aap Kaise Behave Karte Hain?",
+                  "image": "/content/dam/aemigrate/uploaded-folder/image/long%20dist%20banner.jpeg",
+                  "link": "/bolte-sitare/boingwale-blogs/long-distance-relationship-mein-aap-kaise-behave-karte-hain-.html"
+                }
+              ],
+              "cta_link": "/bolte-sitare/boingwale-blogs.html",
+              "cta_text": "View All",
               "model": "latestblogs",
               "name": "Latest Blogs",
-              "sectionDescription": "Stay updated with our latest news, \nblogs and events",
-              "sectionTitle": "More Boings"
+              "section_desc": "Stay updated with our latest news, \nblogs and events",
+              "section_title": "More Boings"
             }
           }
         }
@@ -28,67 +78,63 @@
         {
           "component": "text",
           "label": "Section Title",
-          "name": "sectionTitle",
-          "required": true,
+          "name": "section_title",
+          "required": false,
           "valueType": "string"
         },
         {
           "component": "richtext",
           "label": "Section Description",
-          "name": "sectionDescription",
+          "name": "section_desc",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "aem-content",
           "label": "CTA Link",
-          "name": "ctaLink",
+          "name": "cta_link",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "text",
           "label": "CTA Text",
-          "name": "ctaText",
+          "name": "cta_text",
           "required": false,
           "valueType": "string"
         },
         {
           "component": "container",
-          "description": "List of latest blogs",
           "fields": [
             {
               "component": "aem-content",
-              "label": "Blog URL",
-              "name": "blogUrl",
-              "required": true,
+              "label": "Blog Link",
+              "name": "link",
               "valueType": "string"
             },
             {
               "component": "aem-content",
-              "label": "Image Source",
-              "name": "imageSrc",
-              "required": false,
+              "label": "Blog Image",
+              "name": "image",
               "valueType": "string"
             },
             {
               "component": "text",
-              "label": "Published Date",
+              "label": "Blog Date",
               "name": "date",
-              "required": false,
               "valueType": "string"
             },
             {
-              "component": "richtext",
-              "label": "Blog Title",
-              "name": "title",
-              "required": true,
+              "component": "text",
+              "label": "Blog Heading",
+              "name": "heading",
               "valueType": "string"
             }
           ],
-          "label": "Blogs",
-          "minItems": 0,
-          "name": "blogs"
+          "label": "Blogs List",
+          "name": "blogs",
+          "required": false,
+          "valueType": "object[]"
         }
       ]
     }
