@@ -49,7 +49,7 @@
         "title",
         "hero",
         "cards",
-        "columns"]
+        "columns","header-footer","footer-brand","carousel","featureCards","latestblogs","sticky-navigation"]
     }
   ]
 }
