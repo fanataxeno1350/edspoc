@@ -1,0 +1,29 @@
+.access-denied-container {
+  /* No specific styles for the container based on provided CSS */
+}
+
+.access-denied-title {
+  color: rgb(0, 0, 0);
+  font-family: "Times New Roman";
+  font-size: 2rem; /* Equivalent to 32px assuming 16px base */
+  font-weight: 700;
+  margin-block-end: 1.34rem; /* Equivalent to 21.44px assuming 16px base */
+  margin-block-start: 1.34rem; /* Equivalent to 21.44px assuming 16px base */
+  margin-bottom: 1.34rem; /* Equivalent to 21.44px assuming 16px base */
+  margin-top: 1.34rem; /* Equivalent to 21.44px assuming 16px base */
+  display: block;
+}
+
+.access-denied-message,
+.access-denied-reference,
+.access-denied-link {
+  color: rgb(0, 0, 0);
+  font-family: "Times New Roman";
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 400;
+  margin-block-end: 1rem; /* Equivalent to 16px assuming 16px base */
+  margin-block-start: 1rem; /* Equivalent to 16px assuming 16px base */
+  margin-bottom: 1rem; /* Equivalent to 16px assuming 16px base */
+  margin-top: 1rem; /* Equivalent to 16px assuming 16px base */
+  display: block;
+}
