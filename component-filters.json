@@ -15,12 +15,12 @@
       "hero",
       "cards",
       "columns",
-      "Header",
-      "Carousel",
-      "Feature-Cards",
-      "Latest-Blogs",
-      "Spaceadder Container",
-      "Footer-Brand"
+      "header",
+      "carousel",
+      "featureCards",
+      "latestBlogs",
+      "spaceadderContainer",
+      "footerBrand"
     ]
   },
   {
