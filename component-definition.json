@@ -113,6 +113,37 @@
           }
         },
         {
+          "title": "Carousel",
+          "id": "carousel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "carousel",
+                  "model": "carousel",
+                  "name": "Carousel"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Carousel Item",
+          "id": "carouselItem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "carouselItem",
+                  "name": "Carousel Item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Columns",
           "id": "columns",
           "plugins": {
@@ -122,6 +153,191 @@
                 "template": {
                   "columns": "2",
                   "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Feature-Cards",
+          "id": "featureCards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "featureCards",
+                  "model": "featureCards",
+                  "name": "Feature-Cards"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Feature-Card",
+          "id": "featureCard",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "featureCard",
+                  "name": "Feature-Card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer-Brand",
+          "id": "footerBrand",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "footerBrand",
+                  "model": "footerBrand",
+                  "name": "Footer-Brand"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer-Link",
+          "id": "footerLink",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "footerLink",
+                  "name": "Footer-Link"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer-Social",
+          "id": "footerSocial",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "footerSocial",
+                  "name": "Footer-Social"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Header",
+          "id": "header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "header",
+                  "model": "header",
+                  "name": "Header"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "HeaderMenuItem",
+          "id": "headerMenuItem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "headerMenuItem",
+                  "name": "HeaderMenuItem"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "FooterMenuLink",
+          "id": "footerMenuLink",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "footerMenuLink",
+                  "name": "FooterMenuLink"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "SocialLink",
+          "id": "socialLink",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "socialLink",
+                  "name": "SocialLink"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Latest-Blogs",
+          "id": "latestBlogs",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "latestBlogs",
+                  "model": "latestBlogs",
+                  "name": "Latest-Blogs"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Blog-Item",
+          "id": "blogItem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "blogItem",
+                  "name": "Blog-Item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Spaceadder Container",
+          "id": "spaceadderContainer",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "spaceadderContainer",
+                  "model": "spaceadderContainer",
+                  "name": "Spaceadder Container"
                 }
               }
             }

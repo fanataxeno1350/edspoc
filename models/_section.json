@@ -49,7 +49,7 @@
         "title",
         "hero",
         "cards",
-        "columns"]
+        "columns","Header","Carousel","Feature-Cards","Latest-Blogs","Spaceadder Container","Footer-Brand"]
     }
   ]
 }

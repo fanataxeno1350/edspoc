@@ -14,13 +14,25 @@
       "title",
       "hero",
       "cards",
-      "columns"
+      "columns",
+      "Header",
+      "Carousel",
+      "Feature-Cards",
+      "Latest-Blogs",
+      "Spaceadder Container",
+      "Footer-Brand"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "carousel",
+    "components": [
+      "carouselItem"
     ]
   },
   {
@@ -37,5 +49,35 @@
       "button",
       "title"
     ]
+  },
+  {
+    "id": "featureCards",
+    "components": [
+      "featureCard"
+    ]
+  },
+  {
+    "id": "footerBrand",
+    "components": [
+      "footerLink",
+      "footerSocial"
+    ]
+  },
+  {
+    "id": "header",
+    "components": [
+      "headerMenuItem",
+      "footerMenuLink",
+      "socialLink"
+    ]
+  },
+  {
+    "id": "latestBlogs",
+    "components": [
+      "blogItem"
+    ]
+  },
+  {
+    "id": "spaceadderContainer"
   }
 ]
