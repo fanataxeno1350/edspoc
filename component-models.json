@@ -165,32 +165,32 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Video",
-        "name": "video",
+        "label": "Video Source",
+        "name": "videoSrc",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Image",
-        "name": "image",
+        "label": "Image Source",
+        "name": "imageSrc",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "Alt Text",
-        "name": "altText",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "CTA Label",
-        "name": "ctaLabel",
+        "label": "Image Alt",
+        "name": "imageAlt",
         "valueType": "string"
       },
       {
         "component": "reference",
         "label": "CTA Link",
-        "name": "ctaLink",
+        "name": "ctaHref",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "CTA Text",
+        "name": "ctaText",
         "valueType": "string"
       }
     ]
@@ -302,7 +302,7 @@
       {
         "component": "reference",
         "label": "Logo Link",
-        "name": "logoLink",
+        "name": "logoHref",
         "valueType": "string"
       },
       {
@@ -318,30 +318,16 @@
         "valueType": "string"
       },
       {
-        "component": "container",
-        "items": [
-          {
-            "component": "reference",
-            "label": "Footer Link",
-            "name": "footerLink",
-            "valueType": "string"
-          }
-        ],
-        "label": "Footer Links",
-        "name": "footerLinks"
+        "component": "reference",
+        "label": "Secondary Logo Alt",
+        "name": "secondaryLogoAlt",
+        "valueType": "string"
       },
       {
-        "component": "container",
-        "items": [
-          {
-            "component": "reference",
-            "label": "Social Link",
-            "name": "socialLink",
-            "valueType": "string"
-          }
-        ],
-        "label": "Social Links",
-        "name": "socialLinks"
+        "component": "richtext",
+        "label": "Copyright Text",
+        "name": "copyrightText",
+        "valueType": "string"
       },
       {
         "component": "reference",
@@ -350,43 +336,59 @@
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Copyright",
-        "name": "copyright",
+        "component": "reference",
+        "label": "ITC Portal Text",
+        "name": "itcPortalText",
         "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Social Heading",
+        "name": "socialHeading",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "items": {
+          "name": "footerBrandNavColumn"
+        },
+        "label": "Navigation Columns",
+        "name": "navColumns"
+      },
+      {
+        "component": "container",
+        "items": {
+          "name": "footerBrandSocialLink"
+        },
+        "label": "Social Links",
+        "name": "socialLinks"
       }
     ]
   },
   {
-    "id": "footerLink",
+    "id": "footerBrandNavColumn",
     "fields": [
       {
-        "component": "text",
-        "label": "Label",
-        "name": "label",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "URL",
-        "name": "href",
-        "valueType": "string"
+        "component": "multiselect",
+        "label": "Nav Links",
+        "name": "navLinks",
+        "options": []
       }
     ]
   },
   {
-    "id": "socialLink",
+    "id": "footerBrandSocialLink",
     "fields": [
       {
         "component": "reference",
-        "label": "Social Link URL",
-        "name": "url",
+        "label": "Platform Link",
+        "name": "platformLink",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Icon URL",
-        "name": "icon",
+        "label": "Platform Icon",
+        "name": "platformIcon",
         "valueType": "string"
       }
     ]
@@ -402,8 +404,8 @@
       },
       {
         "component": "reference",
-        "label": "Logo Image",
-        "name": "logoImage",
+        "label": "Header Logo",
+        "name": "headerLogo",
         "valueType": "string"
       },
       {
@@ -420,30 +422,42 @@
       },
       {
         "component": "container",
-        "item": {
-          "type": "headerMenuItem"
-        },
-        "label": "Menu Items",
-        "name": "menuItems",
-        "valueType": "array"
+        "items": [
+          {
+            "component": "reference",
+            "label": "Header Menu Item",
+            "name": "headerMenuItem",
+            "valueType": "string"
+          }
+        ],
+        "label": "Header Menu Items",
+        "name": "headerMenuItems"
       },
       {
         "component": "container",
-        "item": {
-          "type": "footerListItem"
-        },
-        "label": "Footer List Items",
-        "name": "footerListItems",
-        "valueType": "array"
+        "items": [
+          {
+            "component": "reference",
+            "label": "Footer Menu Item",
+            "name": "footerMenuItem",
+            "valueType": "string"
+          }
+        ],
+        "label": "Footer Menu Items",
+        "name": "footerMenuItems"
       },
       {
         "component": "container",
-        "item": {
-          "type": "socialLink"
-        },
-        "label": "Social Links",
-        "name": "socialLinks",
-        "valueType": "array"
+        "items": [
+          {
+            "component": "reference",
+            "label": "Footer Social Link",
+            "name": "footerSocialLink",
+            "valueType": "string"
+          }
+        ],
+        "label": "Footer Social Links",
+        "name": "footerSocialLinks"
       },
       {
         "component": "reference",
@@ -464,8 +478,8 @@
       },
       {
         "component": "text",
-        "label": "Label",
-        "name": "label",
+        "label": "Text",
+        "name": "text",
         "valueType": "string"
       },
       {
@@ -477,12 +491,12 @@
     ]
   },
   {
-    "id": "footerListItem",
+    "id": "footerMenuItem",
     "fields": [
       {
         "component": "text",
-        "label": "Label",
-        "name": "label",
+        "label": "Text",
+        "name": "text",
         "valueType": "string"
       },
       {
@@ -494,7 +508,7 @@
     ]
   },
   {
-    "id": "socialLink",
+    "id": "footerSocialLink",
     "fields": [
       {
         "component": "reference",

@@ -72,16 +72,16 @@
   {
     "id": "footerBrand",
     "components": [
-      "footerLink",
-      "socialLink"
+      "footerBrandNavColumn",
+      "footerBrandSocialLink"
     ]
   },
   {
     "id": "header",
     "components": [
       "headerMenuItem",
-      "footerListItem",
-      "socialLink"
+      "footerMenuItem",
+      "footerSocialLink"
     ]
   },
   {

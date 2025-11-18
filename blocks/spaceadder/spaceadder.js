@@ -4,13 +4,16 @@ export default function decorate(block) {
   const spaceadderContainer = document.createElement('div');
   spaceadderContainer.classList.add('spaceadder-container');
 
-  // No content fields to extract from the block's children
-  // as per the provided block JSON (fields: [])
-  // and the desired HTML structure which is just an empty container.
-
-  // Transfer instrumentation from the original block to the new container if needed,
-  // although for an empty container, it might not be strictly necessary.
+  // Transfer instrumentation from the block itself if needed, or from its children if they exist.
+  // Since the block JSON shows no fields, we assume the block itself is the primary element
+  // to transfer instrumentation from, if any was applied directly to the block element.
   moveInstrumentation(block, spaceadderContainer);
+
+  // The block JSON indicates no fields, meaning this block is likely a simple
+  // structural element or a placeholder that doesn't process children for content.
+  // If there were children (rows/cells) in the actual authored content, and they needed
+  // to be processed, this is where that logic would go.
+  // For this specific case, we'll just append the new container.
 
   block.textContent = '';
   block.append(spaceadderContainer);
