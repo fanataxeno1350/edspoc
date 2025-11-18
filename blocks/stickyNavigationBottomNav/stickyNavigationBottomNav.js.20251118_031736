@@ -13,34 +13,34 @@ export default function decorate(block) {
     moveInstrumentation(row, li);
     li.className = 'sticky-navigation-bottom-nav__item sticky-navigation-position-relative';
 
-    const linkCell = row.children[0]; // Assuming the first cell contains the link, image, and label
+    const linkCell = row.children[0];
+    const iconCell = row.children[1];
+    const altTextCell = row.children[2];
+    const labelCell = row.children[3];
 
-    const existingLink = linkCell.querySelector('a');
-    const existingImg = linkCell.querySelector('img');
-    const existingLabel = linkCell.querySelector('span');
+    const link = linkCell.querySelector('a');
+    const img = iconCell.querySelector('img');
+    const altText = altTextCell.textContent.trim();
+    const label = labelCell.textContent.trim();
 
-    if (existingLink) {
+    if (link && img && label) {
       const newLink = document.createElement('a');
-      newLink.href = existingLink.href;
+      newLink.href = link.href;
       newLink.className = 'sticky-navigation-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 sticky-navigation-analytics_cta_click';
-      if (existingLink.dataset.link) {
-        newLink.setAttribute('data-link', existingLink.dataset.link);
+      if (link.dataset.link) {
+        newLink.setAttribute('data-link', link.dataset.link);
       }
 
-      if (existingImg) {
-        const optimizedPic = createOptimizedPicture(existingImg.src, existingImg.alt);
-        const imgElement = optimizedPic.querySelector('img');
-        moveInstrumentation(existingImg, imgElement);
-        imgElement.className = 'sticky-navigation-bottom-nav__icon';
-        newLink.append(optimizedPic);
-      }
+      const optimizedPic = createOptimizedPicture(img.src, altText || img.alt);
+      optimizedPic.querySelector('img').className = 'sticky-navigation-bottom-nav__icon';
+      moveInstrumentation(img, optimizedPic.querySelector('img'));
+      newLink.append(optimizedPic);
 
-      if (existingLabel) {
-        const span = document.createElement('span');
-        span.className = 'sticky-navigation-bottom-nav__label';
-        span.textContent = existingLabel.textContent;
-        newLink.append(span);
-      }
+      const span = document.createElement('span');
+      span.className = 'sticky-navigation-bottom-nav__label';
+      span.textContent = label;
+      newLink.append(span);
+
       li.append(newLink);
     }
     ul.append(li);

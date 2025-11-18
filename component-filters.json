@@ -39,7 +39,7 @@
   {
     "id": "carousel",
     "components": [
-      "carouselItem"
+      "carouselSlide"
     ]
   },
   {
@@ -72,16 +72,16 @@
   {
     "id": "footerBrand",
     "components": [
-      "footerBrandNavColumn",
-      "footerBrandSocialLink"
+      "footerNavColumn",
+      "footerSocialLink"
     ]
   },
   {
     "id": "header",
     "components": [
-      "headerMenuItem",
-      "footerMenuItem",
-      "footerSocialLink"
+      "menuItem",
+      "footerLink",
+      "socialLink"
     ]
   },
   {
@@ -99,7 +99,7 @@
   {
     "id": "stickyNavigationBottomNav",
     "components": [
-      "navigationItem"
+      "navItem"
     ]
   }
 ]
