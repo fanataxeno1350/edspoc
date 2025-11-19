@@ -27,7 +27,9 @@
       "Latest-Blogs",
       "Spaceadder",
       "Footer-Brand",
-      "Sticky-Navigation-Bottom-Nav"
+      "Sticky-Navigation-Bottom-Nav",
+      "Feature-Cards",
+      "Sticky-Bottom-Nav"
     ]
   },
   {
@@ -39,7 +41,7 @@
   {
     "id": "carousel",
     "components": [
-      "carouselSlide"
+      "carouselItem"
     ]
   },
   {
@@ -60,26 +62,21 @@
   {
     "id": "featureCards",
     "components": [
-      "featureCard"
-    ]
-  },
-  {
-    "id": "featurecards",
-    "components": [
-      "featurecard"
+      "featureCard",
+      "bolteSitareCard"
     ]
   },
   {
     "id": "footerBrand",
     "components": [
-      "footerNavColumn",
-      "footerSocialLink"
+      "footerLink",
+      "footerSocial"
     ]
   },
   {
     "id": "header",
     "components": [
-      "menuItem",
+      "sidebarMenuItem",
       "footerLink",
       "socialLink"
     ]
@@ -87,17 +84,11 @@
   {
     "id": "latestBlogs",
     "components": [
-      "blogCard"
+      "blogItem"
     ]
   },
   {
-    "id": "spaceadder"
-  },
-  {
-    "id": "spaceadderContainer"
-  },
-  {
-    "id": "stickyNavigationBottomNav",
+    "id": "stickyBottomNav",
     "components": [
       "navItem"
     ]

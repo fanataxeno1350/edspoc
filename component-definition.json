@@ -129,15 +129,15 @@
           }
         },
         {
-          "title": "Carousel Slide",
-          "id": "carouselSlide",
+          "title": "Carousel Item",
+          "id": "carouselItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "carouselSlide",
-                  "name": "Carousel Slide"
+                  "model": "carouselItem",
+                  "name": "Carousel Item"
                 }
               }
             }
@@ -175,7 +175,7 @@
           }
         },
         {
-          "title": "Feature-Card",
+          "title": "Feature Card",
           "id": "featureCard",
           "plugins": {
             "xwalk": {
@@ -183,38 +183,22 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "featureCard",
-                  "name": "Feature-Card"
+                  "name": "Feature Card"
                 }
               }
             }
           }
         },
         {
-          "title": "Featurecards",
-          "id": "featurecards",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "featurecards",
-                  "model": "featurecards",
-                  "name": "Featurecards"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Featurecard",
-          "id": "featurecard",
+          "title": "Bolte Sitare Card",
+          "id": "bolteSitareCard",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "featurecard",
-                  "name": "Featurecard"
+                  "model": "bolteSitareCard",
+                  "name": "Bolte Sitare Card"
                 }
               }
             }
@@ -237,30 +221,30 @@
           }
         },
         {
-          "title": "Footer-Nav-Column",
-          "id": "footerNavColumn",
+          "title": "Footer-Link",
+          "id": "footerLink",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "footerNavColumn",
-                  "name": "Footer-Nav-Column"
+                  "model": "footerLink",
+                  "name": "Footer-Link"
                 }
               }
             }
           }
         },
         {
-          "title": "Footer-Social-Link",
-          "id": "footerSocialLink",
+          "title": "Footer-Social",
+          "id": "footerSocial",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "footerSocialLink",
-                  "name": "Footer-Social-Link"
+                  "model": "footerSocial",
+                  "name": "Footer-Social"
                 }
               }
             }
@@ -283,15 +267,15 @@
           }
         },
         {
-          "title": "Menu Item",
-          "id": "menuItem",
+          "title": "Sidebar Menu Item",
+          "id": "sidebarMenuItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "menuItem",
-                  "name": "Menu Item"
+                  "model": "sidebarMenuItem",
+                  "name": "Sidebar Menu Item"
                 }
               }
             }
@@ -344,63 +328,31 @@
           }
         },
         {
-          "title": "Blog-Card",
-          "id": "blogCard",
+          "title": "Blog-Item",
+          "id": "blogItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "blogCard",
-                  "name": "Blog-Card"
+                  "model": "blogItem",
+                  "name": "Blog-Item"
                 }
               }
             }
           }
         },
         {
-          "title": "Spaceadder",
-          "id": "spaceadder",
+          "title": "Sticky-Bottom-Nav",
+          "id": "stickyBottomNav",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "filter": "spaceadder",
-                  "model": "spaceadder",
-                  "name": "Spaceadder"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Spaceadder Container",
-          "id": "spaceadderContainer",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "spaceadderContainer",
-                  "model": "spaceadderContainer",
-                  "name": "Spaceadder Container"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Sticky-Navigation-Bottom-Nav",
-          "id": "stickyNavigationBottomNav",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "stickyNavigationBottomNav",
-                  "model": "stickyNavigationBottomNav",
-                  "name": "Sticky-Navigation-Bottom-Nav"
+                  "filter": "stickyBottomNav",
+                  "model": "stickyBottomNav",
+                  "name": "Sticky-Bottom-Nav"
                 }
               }
             }

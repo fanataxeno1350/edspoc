@@ -161,25 +161,24 @@
     ]
   },
   {
-    "id": "carouselSlide",
+    "id": "carouselItem",
     "fields": [
       {
         "component": "reference",
-        "description": "Image or video source URL",
-        "label": "Image / Video",
+        "label": "Video",
+        "name": "video",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
         "name": "image",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "Alt Text",
-        "name": "altText",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Video Title",
-        "name": "videoTitle",
+        "label": "Image Alt",
+        "name": "imageAlt",
         "valueType": "string"
       },
       {
@@ -190,8 +189,8 @@
       },
       {
         "component": "text",
-        "label": "CTA Href",
-        "name": "ctaHref",
+        "label": "CTA URL",
+        "name": "ctaUrl",
         "valueType": "string"
       }
     ]
@@ -226,8 +225,8 @@
       },
       {
         "component": "text",
-        "label": "Image Alt",
-        "name": "alt",
+        "label": "Alt Text",
+        "name": "altText",
         "valueType": "string"
       },
       {
@@ -244,20 +243,14 @@
       },
       {
         "component": "text",
-        "label": "Button Text",
-        "name": "buttonText",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Button Link",
-        "name": "buttonLink",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "featurecard",
+    "id": "bolteSitareCard",
     "fields": [
       {
         "component": "reference",
@@ -267,8 +260,8 @@
       },
       {
         "component": "text",
-        "label": "Image Alt Text",
-        "name": "alt",
+        "label": "Alt Text",
+        "name": "altText",
         "valueType": "string"
       },
       {
@@ -279,20 +272,14 @@
       },
       {
         "component": "richtext",
-        "label": "Description",
-        "name": "description",
+        "label": "Text",
+        "name": "text",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "Link URL",
+        "label": "Link",
         "name": "link",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Link Title",
-        "name": "linkTitle",
         "valueType": "string"
       }
     ]
@@ -302,63 +289,55 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Primary Logo",
-        "name": "primaryLogo",
+        "label": "Logo 1",
+        "name": "logo1",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Secondary Logo",
-        "name": "secondaryLogo",
+        "label": "Logo 2",
+        "name": "logo2",
         "valueType": "string"
       },
       {
         "component": "container",
-        "item": {
-          "component": "reference",
-          "name": "footerNavColumn"
-        },
-        "label": "Navigation Columns",
-        "name": "navColumns",
-        "valueType": "array"
+        "items": "footerLink",
+        "label": "Footer Links",
+        "name": "links"
       },
       {
         "component": "container",
-        "item": {
-          "component": "reference",
-          "name": "footerSocialLink"
-        },
+        "items": "footerSocial",
         "label": "Social Links",
-        "name": "socialLinks",
-        "valueType": "array"
+        "name": "social"
       },
       {
         "component": "text",
-        "label": "Footer Copyright",
-        "name": "footerCopyright",
+        "label": "Copyright",
+        "name": "copyright",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "footerLink",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Label",
+        "name": "label",
         "valueType": "string"
       },
       {
-        "component": "reference",
-        "label": "ITC Portal Link",
-        "name": "itcPortalLink",
+        "component": "text",
+        "label": "URL",
+        "name": "url",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "footerNavColumn",
-    "fields": [
-      {
-        "component": "multiselect",
-        "label": "Links",
-        "name": "links",
-        "valueType": "array"
-      }
-    ]
-  },
-  {
-    "id": "footerSocialLink",
+    "id": "footerSocial",
     "fields": [
       {
         "component": "text",
@@ -367,9 +346,9 @@
         "valueType": "string"
       },
       {
-        "component": "reference",
-        "label": "Link",
-        "name": "link",
+        "component": "text",
+        "label": "URL",
+        "name": "url",
         "valueType": "string"
       },
       {
@@ -391,38 +370,83 @@
       },
       {
         "component": "reference",
-        "label": "Logo Image",
+        "label": "Logo",
         "name": "logo",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Login Link",
-        "name": "loginLink",
+        "label": "Login URL",
+        "name": "loginUrl",
         "valueType": "string"
       },
       {
         "component": "reference",
         "label": "Login Button Text",
-        "name": "loginButtonText",
+        "name": "loginText",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "reference",
+            "label": "Sidebar Menu Item (Multi)",
+            "name": "sidebarMenuItem",
+            "valueType": "string"
+          }
+        ],
+        "label": "Sidebar Menu",
+        "name": "sidebarMenu"
+      },
+      {
+        "component": "reference",
+        "label": "ITC Logo",
+        "name": "itcLogo",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Brand Logo",
-        "name": "brandLogo",
+        "label": "FSSI Logo",
+        "name": "fssiLogo",
         "valueType": "string"
       },
       {
+        "component": "container",
+        "fields": [
+          {
+            "component": "reference",
+            "label": "Footer Link (Multi)",
+            "name": "footerLink",
+            "valueType": "string"
+          }
+        ],
+        "label": "Footer Links",
+        "name": "footerLinks"
+      },
+      {
+        "component": "container",
+        "fields": [
+          {
+            "component": "reference",
+            "label": "Social Link (Multi)",
+            "name": "socialLink",
+            "valueType": "string"
+          }
+        ],
+        "label": "Social Links",
+        "name": "socialLinks"
+      },
+      {
         "component": "reference",
-        "label": "Secondary Logo",
-        "name": "secondaryLogo",
+        "label": "Copyright Text",
+        "name": "copyrightText",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "menuItem",
+    "id": "sidebarMenuItem",
     "fields": [
       {
         "component": "reference",
@@ -431,15 +455,15 @@
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Label",
-        "name": "label",
+        "component": "reference",
+        "label": "Text",
+        "name": "text",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Link",
-        "name": "link",
+        "label": "URL",
+        "name": "url",
         "valueType": "string"
       }
     ]
@@ -448,15 +472,15 @@
     "id": "footerLink",
     "fields": [
       {
-        "component": "text",
-        "label": "Label",
-        "name": "label",
+        "component": "reference",
+        "label": "Text",
+        "name": "text",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Link",
-        "name": "link",
+        "label": "URL",
+        "name": "url",
         "valueType": "string"
       }
     ]
@@ -472,43 +496,8 @@
       },
       {
         "component": "reference",
-        "label": "Link",
-        "name": "link",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "blogCard",
-    "fields": [
-      {
-        "component": "text",
-        "label": "Blog URL",
-        "name": "href",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "Image",
-        "name": "image",
-        "valueType": "string"
-      },
-      {
-        "component": "date-time",
-        "label": "Date",
-        "name": "date",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Date Label",
-        "name": "dateLabel",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Title",
-        "name": "title",
+        "label": "URL",
+        "name": "url",
         "valueType": "string"
       }
     ]
@@ -518,26 +507,26 @@
     "fields": [
       {
         "component": "text",
-        "label": "Heading",
-        "name": "heading",
+        "label": "Title",
+        "name": "title",
         "valueType": "string"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "label": "Description",
         "name": "description",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
       },
       {
         "component": "text",
         "label": "CTA Label",
         "name": "ctaLabel",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "CTA Href",
-        "name": "ctaHref",
         "valueType": "string"
       },
       {
@@ -549,10 +538,33 @@
     ]
   },
   {
-    "id": "spaceadder"
-  },
-  {
-    "id": "spaceadderContainer"
+    "id": "blogItem",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Blog Link",
+        "name": "link",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "date-time",
+        "label": "Published Date",
+        "name": "date",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Blog Title",
+        "name": "title",
+        "valueType": "string"
+      }
+    ]
   },
   {
     "id": "navItem",
@@ -560,7 +572,7 @@
       {
         "component": "text",
         "label": "Link",
-        "name": "link",
+        "name": "href",
         "valueType": "string"
       },
       {
@@ -571,7 +583,7 @@
       },
       {
         "component": "text",
-        "label": "Image Alt Text",
+        "label": "Alt Text",
         "name": "alt",
         "valueType": "string"
       },

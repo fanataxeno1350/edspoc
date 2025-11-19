@@ -1,0 +1,142 @@
+.featurecards-wrapper {
+  padding: 1.5rem 1rem 1rem;
+  position: relative;
+}
+.featurecards-wrapper .featurecards-text {
+  font-family: Barlow; /* Fallback: Barlow, sans-serif */
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: 1.75rem; /* Equivalent to 28px assuming 16px base */
+  padding-bottom: 1rem; /* Equivalent to 16px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-text .featurecards-title {
+  color: #161616; /* Equivalent to rgb(22, 22, 22) */
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-wrapper .featurecards-text .featurecards-title-highlight {
+  color: #aa1f30; /* Equivalent to rgb(170, 31, 48) */
+}
+.featurecards-wrapper .featurecards-section {
+  margin-inline: auto;
+  padding-bottom: 1.5rem; /* Equivalent to 24px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-section .featurecards-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.featurecards-wrapper .featurecards-section .featurecards-image-wrapper {
+  width: 100%;
+  padding-bottom: 0.25rem; /* Equivalent to 4px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-section .featurecards-image-wrapper .featurecards-image {
+  width: 100%;
+  height: 12.0625rem; /* Equivalent to 193px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-section .featurecards-content-wrapper {
+  text-align: center;
+}
+.featurecards-wrapper .featurecards-section .featurecards-card-title {
+  color: #aa1f30; /* Equivalent to rgb(170, 31, 48) */
+  margin-bottom: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  font-family: Barlow; /* Fallback: Barlow, sans-serif */
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-wrapper .featurecards-section .featurecards-description-wrapper {
+  padding-bottom: 1rem; /* Equivalent to 16px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-section .featurecards-card-description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #030303; /* Equivalent to rgb(3, 3, 3) */
+  font-family: Barlow; /* Fallback: Barlow, sans-serif */
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 400;
+  line-height: normal;
+}
+.featurecards-wrapper .featurecards-section .featurecards-redirect-button-wrapper {
+  display: none;
+}
+.featurecards-wrapper .featurecards-section .featurecards-redirect-button-wrapper .featurecards-arrow-icon-btn {
+  background-color: #aa1f30; /* Equivalent to rgb(170, 31, 48) */
+  border-radius: 50%;
+  cursor: pointer;
+  height: 2.5rem; /* Equivalent to 40px assuming 16px base */
+  width: 2.5rem; /* Equivalent to 40px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section {
+  display: none;
+  border-radius: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  box-shadow: rgba(0, 0, 0, 0.22) 0.125rem 0.25rem 1rem 0px; /* Equivalent to 2px 4px 16px 0px */
+  margin-bottom: 1rem; /* Equivalent to 16px assuming 16px base */
+  padding: 0.75rem 1.125rem 0.75rem 0.75rem; /* Equivalent to 12px 18px 12px 12px assuming 16px base */
+  position: relative;
+  z-index: 11;
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section:first-of-type {
+  padding-top: 1.25rem; /* Equivalent to 20px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section:last-of-type {
+  margin-bottom: 3.375rem; /* Equivalent to 54px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section .featurecards-bolte-sitare-card-wrapper {
+  display: flex;
+  gap: 0.75rem; /* Equivalent to 12px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section .featurecards-bolte-sitare-content-wrapper {
+  flex: 1;
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section .featurecards-bolte-sitare-image-wrapper {
+  border-radius: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  height: 6.8125rem; /* Equivalent to 109px assuming 16px base */
+  width: 8.3125rem; /* Equivalent to 133px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section .featurecards-bolte-sitare-image-wrapper .featurecards-bolte-sitare-image {
+  border-radius: 0.25rem; /* Equivalent to 4px assuming 16px base */
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section .featurecards-bolte-sitare-title {
+  padding-bottom: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  font-family: Barlow; /* Fallback: Barlow, sans-serif */
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section .featurecards-bolte-sitare-text {
+  font-family: Barlow; /* Fallback: Barlow, sans-serif */
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 400;
+  line-height: normal;
+  color: #030303; /* Equivalent to rgb(3, 3, 3) */
+}
+.featurecards-wrapper .featurecards-bolte-sitare-card-section .featurecards-bolte-sitare-btn {
+  background-color: #aa1f30; /* Equivalent to rgb(170, 31, 48) */
+  border-radius: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  cursor: pointer;
+  height: 1.8125rem; /* Equivalent to 29px assuming 16px base */
+  line-height: 1.8125rem; /* Equivalent to 29px assuming 16px base */
+  padding: 0 1rem; /* Equivalent to 0px 16px assuming 16px base */
+  text-align: center;
+  text-decoration: none;
+  color: #fff; /* Equivalent to rgb(255, 255, 255) */
+  font-family: Barlow; /* Fallback: Barlow, sans-serif */
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 600;
+}
+.featurecards-wrapper .featurecards-curve-container {
+  background-color: #fff; /* Equivalent to rgb(255, 255, 255) */
+  border-radius: 0 0 2rem 2rem; /* Equivalent to 0px 0px 32px 32px assuming 16px base */
+  bottom: -3.6875rem; /* Equivalent to -59px assuming 16px base */
+  height: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  transform: skewY(-6.2deg);
+  width: 100%;
+  z-index: 10;
+}
