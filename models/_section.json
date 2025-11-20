@@ -42,7 +42,7 @@
   "filters": [
     {
       "id": "section",
-      "components": ["text","image","button","title","hero","cards","columns","header","carousel","featureCards","latestBlogs","spaceadderContainer","footerBrand","Header","Carousel","Featurecards","Latest-Blogs","Spaceadder","Footer-Brand","Sticky-Navigation-Bottom-Nav","Feature-Cards","Sticky-Bottom-Nav"]
+      "components": ["text","image","button","title","hero","cards","columns","header","carousel","featureCards","latestBlogs","spaceadderContainer","footerBrand","Header","Carousel","Featurecards","Latest-Blogs","Spaceadder","Footer-Brand","Sticky-Navigation-Bottom-Nav","Feature-Cards","Sticky-Bottom-Nav","headerNavigation","heroFullwidth","textAndMedia","cardList","mediaComponent","scarpComponent","statsByTheNumber","footer"]
     }
   ]
 }

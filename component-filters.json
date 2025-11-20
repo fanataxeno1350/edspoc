@@ -29,7 +29,21 @@
       "Footer-Brand",
       "Sticky-Navigation-Bottom-Nav",
       "Feature-Cards",
-      "Sticky-Bottom-Nav"
+      "Sticky-Bottom-Nav",
+      "headerNavigation",
+      "heroFullwidth",
+      "textAndMedia",
+      "cardList",
+      "mediaComponent",
+      "scarpComponent",
+      "statsByTheNumber",
+      "footer"
+    ]
+  },
+  {
+    "id": "cardList",
+    "components": [
+      "card"
     ]
   },
   {
@@ -67,6 +81,15 @@
     ]
   },
   {
+    "id": "footer",
+    "components": [
+      "footerSocialLink",
+      "footerNavLink",
+      "footerLanguageLink",
+      "footerPolicyLink"
+    ]
+  },
+  {
     "id": "footerBrand",
     "components": [
       "footerLink",
@@ -82,15 +105,49 @@
     ]
   },
   {
+    "id": "headerNavigation",
+    "components": [
+      "menuItem",
+      "languageOption"
+    ]
+  },
+  {
+    "id": "heroFullwidth",
+    "components": [
+      "heroFullwidth"
+    ]
+  },
+  {
     "id": "latestBlogs",
     "components": [
       "blogItem"
     ]
   },
   {
+    "id": "mediaComponent",
+    "components": [
+      "mediaComponent"
+    ]
+  },
+  {
+    "id": "scarpComponent"
+  },
+  {
+    "id": "statsByTheNumber",
+    "components": [
+      "statCard"
+    ]
+  },
+  {
     "id": "stickyBottomNav",
     "components": [
       "navItem"
+    ]
+  },
+  {
+    "id": "textAndMedia",
+    "components": [
+      "textAndMedia"
     ]
   }
 ]
