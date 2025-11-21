@@ -384,7 +384,7 @@
                 "template": {
                   "filter": "textAndMedia",
                   "model": "textAndMedia",
-                  "name": "textAndMedia"
+                  "name": "Text-And-Media"
                 }
               }
             }
