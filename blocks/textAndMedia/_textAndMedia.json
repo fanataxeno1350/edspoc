@@ -10,7 +10,7 @@
             "template": {
               "filter": "textAndMedia",
               "model": "textAndMedia",
-              "name": "textandmedia"
+              "name": "Text-and-Media"
             }
           }
         }

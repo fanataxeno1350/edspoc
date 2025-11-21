@@ -244,7 +244,7 @@
                 "template": {
                   "filter": "headerNavigation",
                   "model": "headerNavigation",
-                  "name": "header-navigation"
+                  "name": "Header-Navigation"
                 }
               }
             }
@@ -384,7 +384,7 @@
                 "template": {
                   "filter": "textAndMedia",
                   "model": "textAndMedia",
-                  "name": "textandmedia"
+                  "name": "Text-and-Media"
                 }
               }
             }

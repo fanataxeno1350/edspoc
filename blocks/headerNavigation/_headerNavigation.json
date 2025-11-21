@@ -10,7 +10,7 @@
             "template": {
               "filter": "headerNavigation",
               "model": "headerNavigation",
-              "name": "header-navigation"
+              "name": "Header-Navigation"
             }
           }
         }
