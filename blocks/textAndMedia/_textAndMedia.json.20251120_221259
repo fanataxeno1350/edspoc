@@ -41,15 +41,21 @@
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "aem-tag",
+          "label": "CTA",
+          "name": "cta",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
           "label": "CTA Label",
           "name": "ctaLabel",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "CTA URL",
-          "name": "ctaUrl",
+          "component": "aem-tag",
+          "label": "CTA Aria Label",
+          "name": "ctaAriaLabel",
           "valueType": "string"
         }
       ]

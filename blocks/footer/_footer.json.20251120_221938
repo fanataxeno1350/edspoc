@@ -33,13 +33,13 @@
     },
     {
       "title": "Footer Navigation Link",
-      "id": "footerNavigationLink",
+      "id": "footerNavLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerNavigationLink",
+              "model": "footerNavLink",
               "name": "Footer Navigation Link"
             }
           }
@@ -90,30 +90,46 @@
         },
         {
           "component": "container",
-          "itemType": "footerSocialLink",
+          "items": [
+            {
+              "component": "footerSocialLink"
+            }
+          ],
           "label": "Social Links",
           "name": "socialLinks"
         },
         {
           "component": "container",
-          "itemType": "footerNavigationLink",
+          "items": [
+            {
+              "component": "footerNavLink"
+            }
+          ],
           "label": "Navigation Links",
           "name": "navigationLinks"
         },
         {
           "component": "container",
-          "itemType": "footerLanguageLink",
+          "items": [
+            {
+              "component": "footerLanguageLink"
+            }
+          ],
           "label": "Language Links",
           "name": "languageLinks"
         },
         {
           "component": "container",
-          "itemType": "footerPolicyLink",
+          "items": [
+            {
+              "component": "footerPolicyLink"
+            }
+          ],
           "label": "Policy Links",
           "name": "policyLinks"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Copyright",
           "name": "copyright",
           "valueType": "string"
@@ -125,9 +141,15 @@
       "description": "",
       "fields": [
         {
+          "component": "text",
+          "label": "Icon",
+          "name": "icon",
+          "valueType": "string"
+        },
+        {
           "component": "reference",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -139,13 +161,19 @@
       ]
     },
     {
-      "id": "footerNavigationLink",
+      "id": "footerNavLink",
       "description": "",
       "fields": [
         {
+          "component": "text",
+          "label": "Text",
+          "name": "text",
+          "valueType": "string"
+        },
+        {
           "component": "reference",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -161,9 +189,15 @@
       "description": "",
       "fields": [
         {
+          "component": "text",
+          "label": "Text",
+          "name": "text",
+          "valueType": "string"
+        },
+        {
           "component": "reference",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -175,7 +209,7 @@
         {
           "component": "text",
           "label": "Language Code",
-          "name": "langCode",
+          "name": "lang",
           "valueType": "string"
         }
       ]
@@ -185,9 +219,15 @@
       "description": "",
       "fields": [
         {
+          "component": "text",
+          "label": "Text",
+          "name": "text",
+          "valueType": "string"
+        },
+        {
           "component": "reference",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -204,7 +244,7 @@
       "id": "footer",
       "components": [
         "footerSocialLink",
-        "footerNavigationLink",
+        "footerNavLink",
         "footerLanguageLink",
         "footerPolicyLink"
       ]

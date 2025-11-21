@@ -37,7 +37,10 @@
       "mediaComponent",
       "scarpComponent",
       "statsByTheNumber",
-      "footer"
+      "footer",
+      "heroFullWidth",
+      "scarp",
+      "statsByTheNumbers"
     ]
   },
   {
@@ -84,7 +87,7 @@
     "id": "footer",
     "components": [
       "footerSocialLink",
-      "footerNavLink",
+      "footerNavigationLink",
       "footerLanguageLink",
       "footerPolicyLink"
     ]
@@ -107,8 +110,20 @@
   {
     "id": "headerNavigation",
     "components": [
-      "menuItem",
+      "navMenu",
       "languageOption"
+    ]
+  },
+  {
+    "id": "navMenu",
+    "components": [
+      "subMenuItem"
+    ]
+  },
+  {
+    "id": "heroFullWidth",
+    "components": [
+      "heroFullWidth"
     ]
   },
   {
@@ -124,9 +139,12 @@
     ]
   },
   {
-    "id": "mediaComponent",
+    "id": "mediaComponent"
+  },
+  {
+    "id": "scarp",
     "components": [
-      "mediaComponent"
+      "scarp"
     ]
   },
   {
@@ -134,6 +152,12 @@
   },
   {
     "id": "statsByTheNumber",
+    "components": [
+      "statCard"
+    ]
+  },
+  {
+    "id": "statsByTheNumbers",
     "components": [
       "statCard"
     ]

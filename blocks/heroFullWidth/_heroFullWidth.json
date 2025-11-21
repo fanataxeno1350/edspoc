@@ -1,16 +1,16 @@
 {
   "definitions": [
     {
-      "title": "Text-And-Media",
-      "id": "textAndMedia",
+      "title": "Hero-Full-Width",
+      "id": "heroFullWidth",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "textAndMedia",
-              "model": "textAndMedia",
-              "name": "Text-And-Media"
+              "filter": "heroFullWidth",
+              "model": "heroFullWidth",
+              "name": "Hero-Full-Width"
             }
           }
         }
@@ -19,13 +19,13 @@
   ],
   "models": [
     {
-      "id": "textAndMedia",
+      "id": "heroFullWidth",
       "description": "",
       "fields": [
         {
           "component": "reference",
-          "label": "Image",
-          "name": "image",
+          "label": "Background Video Source",
+          "name": "videoSrc",
           "valueType": "string"
         },
         {
@@ -42,14 +42,26 @@
         },
         {
           "component": "text",
-          "label": "CTA Label",
-          "name": "ctaLabel",
+          "label": "Primary CTA Label",
+          "name": "primaryCtaLabel",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "CTA URL",
-          "name": "ctaUrl",
+          "label": "Primary CTA Link",
+          "name": "primaryCtaLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Label",
+          "name": "secondaryCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Link",
+          "name": "secondaryCtaLink",
           "valueType": "string"
         }
       ]
@@ -57,9 +69,9 @@
   ],
   "filters": [
     {
-      "id": "textAndMedia",
+      "id": "heroFullWidth",
       "components": [
-        "textAndMedia"
+        "heroFullWidth"
       ]
     }
   ]

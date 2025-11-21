@@ -8,175 +8,170 @@ export default function decorate(block) {
   // Footer Navigation Section
   const footerNavigation = document.createElement('div');
   footerNavigation.classList.add('footer-navigation');
-  const footerNavigationWrapper = document.createElement('div');
-  footerNavigationWrapper.classList.add('footer-navigation__wrapper');
+  footerWrapper.append(footerNavigation);
 
-  // Logo
-  const logoCell = block.children[0]?.children[0];
-  if (logoCell) {
-    const logoLinkElement = logoCell.querySelector('a');
-    if (logoLinkElement) {
-      const footerNavigationLogo = document.createElement('div');
-      footerNavigationLogo.classList.add('footer-navigation__logo');
-      const newLogoLink = document.createElement('a');
-      newLogoLink.href = logoLinkElement.href;
-      newLogoLink.target = '_self';
-      const qdIcon = document.createElement('span');
-      qdIcon.classList.add('qd-icon', 'qd-icon--logo', 'footer-qd-logo');
-      // Recreate all path spans
-      for (let i = 1; i <= 25; i += 1) {
-        const pathSpan = document.createElement('span');
-        pathSpan.classList.add(`path${i}`);
-        qdIcon.append(pathSpan);
-      }
-      newLogoLink.append(qdIcon);
-      footerNavigationLogo.append(newLogoLink);
-      footerNavigationWrapper.append(footerNavigationLogo);
-      moveInstrumentation(logoCell, footerNavigationLogo);
+  // Logo Link (first row, first cell)
+  const logoLinkCell = block.children[0]?.children[0];
+  if (logoLinkCell) {
+    const footerNavigationLogo = document.createElement('div');
+    footerNavigationLogo.classList.add('footer-navigation__logo');
+    const logoAnchor = logoLinkCell.querySelector('a');
+    if (logoAnchor) {
+      const newLogoAnchor = document.createElement('a');
+      newLogoAnchor.href = logoAnchor.href;
+      newLogoAnchor.target = logoAnchor.target;
+      newLogoAnchor.innerHTML = '<span class="qd-icon qd-icon--logo qd-logo-footer"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span><span class="path24"></span><span class="path25"></span></span>';
+      moveInstrumentation(logoAnchor, newLogoAnchor);
+      footerNavigationLogo.append(newLogoAnchor);
     }
+    footerNavigation.append(footerNavigationLogo);
   }
 
   const footerNavigationContent = document.createElement('div');
   footerNavigationContent.classList.add('footer-navigation__content');
+  footerNavigation.append(footerNavigationContent);
 
-  // Social Links
-  const socialLinksCell = block.children[1]?.children[0];
+  // Social Links (first row, second cell)
+  const socialLinksCell = block.children[0]?.children[1];
   if (socialLinksCell) {
     const footerSocialLinks = document.createElement('div');
     footerSocialLinks.classList.add('footer-social-links');
     const socialLinksList = document.createElement('ul');
     socialLinksList.classList.add('footer-social-links__list');
 
-    [...socialLinksCell.children].forEach((row) => {
-      const link = row.querySelector('a');
-      if (link) {
-        const socialLinkItem = document.createElement('li');
-        socialLinkItem.classList.add('footer-social-links__item');
-        const socialLinkAnchor = document.createElement('a');
-        socialLinkAnchor.classList.add('footer-social-links__icon', ...link.classList);
-        socialLinkAnchor.href = link.href;
-        socialLinkAnchor.target = '_blank';
-        socialLinkAnchor.setAttribute('aria-label', link.getAttribute('aria-label'));
-        socialLinkItem.append(socialLinkAnchor);
-        socialLinksList.append(socialLinkItem);
-        moveInstrumentation(row, socialLinkItem);
+    const socialLinkItems = socialLinksCell.querySelectorAll('li');
+    socialLinkItems.forEach((item) => {
+      const li = document.createElement('li');
+      li.classList.add('footer-social-links__item');
+      moveInstrumentation(item, li);
+      const anchor = item.querySelector('a');
+      if (anchor) {
+        const newAnchor = document.createElement('a');
+        newAnchor.href = anchor.href;
+        newAnchor.target = anchor.target;
+        newAnchor.setAttribute('aria-label', anchor.getAttribute('aria-label'));
+        newAnchor.classList.add('footer-social-links__icon');
+        // Extract the icon class from the original anchor
+        const iconClass = [...anchor.classList].find((cls) => cls.startsWith('qd-icon--'));
+        if (iconClass) {
+          newAnchor.classList.add('qd-icon', iconClass);
+        }
+        moveInstrumentation(anchor, newAnchor);
+        li.append(newAnchor);
       }
+      socialLinksList.append(li);
     });
     footerSocialLinks.append(socialLinksList);
     footerNavigationContent.append(footerSocialLinks);
   }
 
-  // Navigation Links
-  const navLinksCell = block.children[2]?.children[0];
-  if (navLinksCell) {
-    const navLinksList = document.createElement('ul');
-    navLinksList.classList.add('footer-navigation__links');
+  // Navigation Links (first row, third cell)
+  const navigationLinksCell = block.children[0]?.children[2];
+  if (navigationLinksCell) {
+    const navigationLinksList = document.createElement('ul');
+    navigationLinksList.classList.add('footer-navigation__links');
 
-    [...navLinksCell.children].forEach((row) => {
-      const link = row.querySelector('a');
-      if (link) {
-        const navLinkItem = document.createElement('li');
-        const navLinkAnchor = document.createElement('a');
-        navLinkAnchor.classList.add('footer-navigation__link-item');
-        navLinkAnchor.setAttribute('tabindex', '0');
-        navLinkAnchor.target = '_self';
-        navLinkAnchor.title = link.title;
-        navLinkAnchor.href = link.href;
-        navLinkAnchor.textContent = link.textContent.trim();
-        navLinkItem.append(navLinkAnchor);
-        navLinksList.append(navLinkItem);
-        moveInstrumentation(row, navLinkItem);
+    const navLinkItems = navigationLinksCell.querySelectorAll('li');
+    navLinkItems.forEach((item) => {
+      const li = document.createElement('li');
+      moveInstrumentation(item, li);
+      const anchor = item.querySelector('a');
+      if (anchor) {
+        const newAnchor = document.createElement('a');
+        newAnchor.href = anchor.href;
+        newAnchor.target = anchor.target;
+        newAnchor.title = anchor.title;
+        newAnchor.textContent = anchor.textContent;
+        newAnchor.classList.add('footer-navigation__link-item');
+        newAnchor.setAttribute('tabindex', '0');
+        moveInstrumentation(anchor, newAnchor);
+        li.append(newAnchor);
       }
+      navigationLinksList.append(li);
     });
-    footerNavigationContent.append(navLinksList);
+    footerNavigationContent.append(navigationLinksList);
   }
 
-  footerNavigationWrapper.append(footerNavigationContent);
-  footerNavigation.append(footerNavigationWrapper);
-  footerWrapper.append(footerNavigation);
-
-  // Divider
+  // Footer Divider
   const footerDivider = document.createElement('div');
   footerDivider.classList.add('footer-divider');
   footerWrapper.append(footerDivider);
 
-  // Footer Bottom
+  // Footer Bottom Section
   const footerBottom = document.createElement('div');
   footerBottom.classList.add('footer-bottom');
+  footerWrapper.append(footerBottom);
 
-  // Language Selector
-  const languageLinksCell = block.children[3]?.children[0];
-  if (languageLinksCell) {
+  // Language Selector (first row, fourth cell)
+  const languageSelectorCell = block.children[0]?.children[3];
+  if (languageSelectorCell) {
     const footerLanguageSelector = document.createElement('div');
     footerLanguageSelector.classList.add('footer-language-selector');
     const languageSelectorList = document.createElement('ul');
     languageSelectorList.classList.add('footer-language-selector__list');
 
-    [...languageLinksCell.children].forEach((row) => {
-      const link = row.querySelector('a');
-      if (link) {
-        const languageItem = document.createElement('li');
-        if (row.textContent.includes('active')) {
-          languageItem.classList.add('active');
-        }
-        const languageAnchor = document.createElement('a');
-        languageAnchor.href = link.href;
-        languageAnchor.setAttribute('aria-label', link.getAttribute('aria-label'));
-        languageAnchor.classList.add('footer-language-selector__link');
-        languageAnchor.setAttribute('data-lang', link.getAttribute('data-lang'));
-        languageAnchor.textContent = link.textContent.trim();
-        languageItem.append(languageAnchor);
-        languageSelectorList.append(languageItem);
-        moveInstrumentation(row, languageItem);
+    const langLinkItems = languageSelectorCell.querySelectorAll('li');
+    langLinkItems.forEach((item) => {
+      const li = document.createElement('li');
+      li.classList.add('footer-language-selector__item');
+      if (item.classList.contains('active')) {
+        li.classList.add('active');
       }
+      moveInstrumentation(item, li);
+      const anchor = item.querySelector('a');
+      if (anchor) {
+        const newAnchor = document.createElement('a');
+        newAnchor.href = anchor.href;
+        newAnchor.setAttribute('aria-label', anchor.getAttribute('aria-label'));
+        newAnchor.classList.add('footer-language-selector__link');
+        newAnchor.setAttribute('data-lang', anchor.getAttribute('data-lang'));
+        newAnchor.textContent = anchor.textContent;
+        moveInstrumentation(anchor, newAnchor);
+        li.append(newAnchor);
+      }
+      languageSelectorList.append(li);
     });
     footerLanguageSelector.append(languageSelectorList);
     footerBottom.append(footerLanguageSelector);
   }
 
-  // Policy Links and Copyright
-  const policyLinksCell = block.children[4]?.children[0];
-  const copyrightCell = block.children[5]?.children[0];
-
-  if (policyLinksCell || copyrightCell) {
+  // Policy Links and Copyright (first row, fifth cell)
+  const policyLinksCell = block.children[0]?.children[4];
+  if (policyLinksCell) {
     const footerPolicyLinks = document.createElement('div');
     footerPolicyLinks.classList.add('footer-policy-links');
     const footerPolicyLinksWrapper = document.createElement('div');
     footerPolicyLinksWrapper.classList.add('footer-policy-links__wrapper');
 
-    if (policyLinksCell) {
-      const footerPolicyLinksContent = document.createElement('div');
-      footerPolicyLinksContent.classList.add('footer-policy-links__content');
+    const footerPolicyLinksContent = document.createElement('div');
+    footerPolicyLinksContent.classList.add('footer-policy-links__content');
 
-      [...policyLinksCell.children].forEach((row) => {
-        const link = row.querySelector('a');
-        if (link) {
-          const policyLinkAnchor = document.createElement('a');
-          policyLinkAnchor.setAttribute('tabindex', '0');
-          policyLinkAnchor.classList.add('footer-policy-links__item');
-          policyLinkAnchor.title = link.title;
-          policyLinkAnchor.href = link.href;
-          policyLinkAnchor.target = '_self';
-          policyLinkAnchor.textContent = link.textContent.trim();
-          footerPolicyLinksContent.append(policyLinkAnchor);
-          moveInstrumentation(row, policyLinkAnchor);
-        }
-      });
-      footerPolicyLinksWrapper.append(footerPolicyLinksContent);
+    const policyLinkItems = policyLinksCell.querySelectorAll('a');
+    policyLinkItems.forEach((anchor) => {
+      const newAnchor = document.createElement('a');
+      newAnchor.href = anchor.href;
+      newAnchor.target = anchor.target;
+      newAnchor.title = anchor.title;
+      newAnchor.textContent = anchor.textContent;
+      newAnchor.classList.add('footer-policy-links__item');
+      newAnchor.setAttribute('tabindex', '0');
+      moveInstrumentation(anchor, newAnchor);
+      footerPolicyLinksContent.append(newAnchor);
+    });
+    footerPolicyLinksWrapper.append(footerPolicyLinksContent);
+
+    const copyrightP = policyLinksCell.querySelector('p');
+    if (copyrightP) {
+      const newCopyrightP = document.createElement('p');
+      newCopyrightP.classList.add('footer-policy-links__copyright');
+      newCopyrightP.textContent = copyrightP.textContent;
+      moveInstrumentation(copyrightP, newCopyrightP);
+      footerPolicyLinksWrapper.append(newCopyrightP);
     }
 
-    if (copyrightCell) {
-      const copyrightParagraph = document.createElement('p');
-      copyrightParagraph.classList.add('footer-policy-links__copyright');
-      copyrightParagraph.textContent = copyrightCell.textContent.trim();
-      footerPolicyLinksWrapper.append(copyrightParagraph);
-      moveInstrumentation(copyrightCell, copyrightParagraph);
-    }
     footerPolicyLinks.append(footerPolicyLinksWrapper);
     footerBottom.append(footerPolicyLinks);
   }
-
-  footerWrapper.append(footerBottom);
 
   block.textContent = '';
   block.append(footerWrapper);

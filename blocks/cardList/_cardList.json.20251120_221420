@@ -34,6 +34,24 @@
   ],
   "models": [
     {
+      "id": "cardList",
+      "description": "",
+      "fields": [
+        {
+          "component": "richtext",
+          "label": "Heading",
+          "name": "heading",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "CTA",
+          "name": "cta",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
       "id": "card",
       "description": "",
       "fields": [
