@@ -14,39 +14,7 @@
       "title",
       "hero",
       "cards",
-      "columns",
-      "header",
-      "carousel",
-      "featureCards",
-      "latestBlogs",
-      "spaceadderContainer",
-      "footerBrand",
-      "Header",
-      "Carousel",
-      "Featurecards",
-      "Latest-Blogs",
-      "Spaceadder",
-      "Footer-Brand",
-      "Sticky-Navigation-Bottom-Nav",
-      "Feature-Cards",
-      "Sticky-Bottom-Nav",
-      "headerNavigation",
-      "heroFullwidth",
-      "textAndMedia",
-      "cardList",
-      "mediaComponent",
-      "scarpComponent",
-      "statsByTheNumber",
-      "footer",
-      "heroFullWidth",
-      "scarp",
-      "statsByTheNumbers"
-    ]
-  },
-  {
-    "id": "cardList",
-    "components": [
-      "card"
+      "columns"
     ]
   },
   {
@@ -68,49 +36,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "footer",
-    "components": [
-      "footerSocialLink",
-      "footerNavLink",
-      "footerLanguageLink",
-      "footerPolicyLink"
-    ]
-  },
-  {
-    "id": "headerNavigation",
-    "components": [
-      "menuItem",
-      "language"
-    ]
-  },
-  {
-    "id": "heroFullWidth",
-    "components": [
-      "heroFullWidth"
-    ]
-  },
-  {
-    "id": "mediaComponent"
-  },
-  {
-    "id": "scarp",
-    "components": [
-      "scarp"
-    ]
-  },
-  {
-    "id": "statsByTheNumber",
-    "components": [
-      "statsCard"
-    ]
-  },
-  {
-    "id": "text-and-media",
-    "components": [
-      "textAndMedia"
     ]
   }
 ]
