@@ -1,4 +1,4 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
+import { moveInstrumentation } from '../../../scripts/scripts.js';
 
 export default function decorate(block) {
   const mainDiv = document.createElement('div');

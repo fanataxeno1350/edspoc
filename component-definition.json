@@ -175,45 +175,45 @@
           }
         },
         {
-          "title": "Social Link",
-          "id": "socialLink",
+          "title": "Footer Social Link",
+          "id": "footerSocialLink",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "socialLink",
-                  "name": "Social Link"
+                  "model": "footerSocialLink",
+                  "name": "Footer Social Link"
                 }
               }
             }
           }
         },
         {
-          "title": "Footer Nav Link",
-          "id": "footerNavLink",
+          "title": "Footer Navigation Link",
+          "id": "footerNavigationLink",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "footerNavLink",
-                  "name": "Footer Nav Link"
+                  "model": "footerNavigationLink",
+                  "name": "Footer Navigation Link"
                 }
               }
             }
           }
         },
         {
-          "title": "Language Link",
-          "id": "languageLink",
+          "title": "Footer Language Link",
+          "id": "footerLanguageLink",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "languageLink",
-                  "name": "Language Link"
+                  "model": "footerLanguageLink",
+                  "name": "Footer Language Link"
                 }
               }
             }
@@ -251,45 +251,45 @@
           }
         },
         {
-          "title": "Header-Navigation-Menu",
-          "id": "headerNavigationMenu",
+          "title": "Nav-Menu",
+          "id": "navMenu",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "headerNavigationMenu",
-                  "name": "Header-Navigation-Menu"
+                  "model": "navMenu",
+                  "name": "Nav-Menu"
                 }
               }
             }
           }
         },
         {
-          "title": "Header-Navigation-Submenu-Item",
-          "id": "headerNavigationSubmenuItem",
+          "title": "Sub-Menu-Item",
+          "id": "subMenuItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "headerNavigationSubmenuItem",
-                  "name": "Header-Navigation-Submenu-Item"
+                  "model": "subMenuItem",
+                  "name": "Sub-Menu-Item"
                 }
               }
             }
           }
         },
         {
-          "title": "Header-Language-Option",
-          "id": "headerLanguageOption",
+          "title": "Language",
+          "id": "language",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "headerLanguageOption",
-                  "name": "Header-Language-Option"
+                  "model": "language",
+                  "name": "Language"
                 }
               }
             }
@@ -328,23 +328,23 @@
           }
         },
         {
-          "title": "Scarp",
-          "id": "scarp",
+          "title": "Scarp-Component",
+          "id": "scarpComponent",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "filter": "scarp",
-                  "model": "scarp",
-                  "name": "Scarp"
+                  "filter": "scarpComponent",
+                  "model": "scarpComponent",
+                  "name": "Scarp-Component"
                 }
               }
             }
           }
         },
         {
-          "title": "Stats-by-the-number",
+          "title": "Stats-By-The-Number",
           "id": "statsByTheNumber",
           "plugins": {
             "xwalk": {
@@ -353,22 +353,22 @@
                 "template": {
                   "filter": "statsByTheNumber",
                   "model": "statsByTheNumber",
-                  "name": "Stats-by-the-number"
+                  "name": "Stats-By-The-Number"
                 }
               }
             }
           }
         },
         {
-          "title": "Stats Card",
-          "id": "statsCard",
+          "title": "Stat-Card",
+          "id": "statCard",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "statsCard",
-                  "name": "Stats Card"
+                  "model": "statCard",
+                  "name": "Stat-Card"
                 }
               }
             }
@@ -384,7 +384,7 @@
                 "template": {
                   "filter": "textAndMedia",
                   "model": "textAndMedia",
-                  "name": "Text-And-Media"
+                  "name": "Text-and-Media"
                 }
               }
             }

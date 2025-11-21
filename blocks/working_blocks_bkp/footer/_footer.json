@@ -17,45 +17,45 @@
       }
     },
     {
-      "title": "Footer Social Link",
-      "id": "footerSocialLink",
+      "title": "Social Link",
+      "id": "socialLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerSocialLink",
-              "name": "Footer Social Link"
+              "model": "socialLink",
+              "name": "Social Link"
             }
           }
         }
       }
     },
     {
-      "title": "Footer Navigation Link",
-      "id": "footerNavigationLink",
+      "title": "Footer Nav Link",
+      "id": "footerNavLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerNavigationLink",
-              "name": "Footer Navigation Link"
+              "model": "footerNavLink",
+              "name": "Footer Nav Link"
             }
           }
         }
       }
     },
     {
-      "title": "Footer Language Link",
-      "id": "footerLanguageLink",
+      "title": "Language Link",
+      "id": "languageLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerLanguageLink",
-              "name": "Footer Language Link"
+              "model": "languageLink",
+              "name": "Language Link"
             }
           }
         }
@@ -88,34 +88,56 @@
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "Logo Icon Class",
-          "name": "logoIconClass",
-          "valueType": "string"
-        },
-        {
           "component": "container",
-          "items": "footerSocialLink",
+          "items": [
+            {
+              "component": "reference",
+              "label": "Social Link",
+              "name": "socialLink",
+              "valueType": "string"
+            }
+          ],
           "label": "Social Links",
           "name": "socialLinks"
         },
         {
           "component": "container",
-          "items": "footerNavigationLink",
-          "label": "Navigation Links",
-          "name": "navigationLinks"
+          "items": [
+            {
+              "component": "reference",
+              "label": "Footer Nav Link",
+              "name": "footerNavLink",
+              "valueType": "string"
+            }
+          ],
+          "label": "Footer Navigation Links",
+          "name": "footerNavLinks"
         },
         {
           "component": "container",
-          "items": "footerLanguageLink",
+          "items": [
+            {
+              "component": "reference",
+              "label": "Language Link",
+              "name": "languageLink",
+              "valueType": "string"
+            }
+          ],
           "label": "Language Links",
           "name": "languageLinks"
         },
         {
           "component": "container",
-          "items": "footerPolicyLink",
-          "label": "Policy Links",
-          "name": "policyLinks"
+          "items": [
+            {
+              "component": "reference",
+              "label": "Footer Policy Link",
+              "name": "footerPolicyLink",
+              "valueType": "string"
+            }
+          ],
+          "label": "Footer Policy Links",
+          "name": "footerPolicyLinks"
         },
         {
           "component": "text",
@@ -126,64 +148,52 @@
       ]
     },
     {
-      "id": "footerSocialLink",
+      "id": "socialLink",
       "fields": [
         {
-          "component": "reference",
-          "label": "Link URL",
-          "name": "href",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Icon Class",
-          "name": "iconClass",
-          "valueType": "string"
-        },
-        {
           "component": "text",
-          "label": "Aria Label",
-          "name": "ariaLabel",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "footerNavigationLink",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Link URL",
-          "name": "href",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Link Title",
-          "name": "title",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "footerLanguageLink",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Language URL",
-          "name": "href",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Language Label",
+          "label": "Label",
           "name": "label",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Data Lang",
-          "name": "dataLang",
+          "label": "URL",
+          "name": "href",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footerNavLink",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "URL",
+          "name": "href",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "languageLink",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "URL",
+          "name": "href",
           "valueType": "string"
         }
       ]
@@ -192,15 +202,15 @@
       "id": "footerPolicyLink",
       "fields": [
         {
-          "component": "reference",
-          "label": "Policy URL",
-          "name": "href",
+          "component": "text",
+          "label": "Label",
+          "name": "label",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Policy Title",
-          "name": "title",
+          "component": "reference",
+          "label": "URL",
+          "name": "href",
           "valueType": "string"
         }
       ]
@@ -210,9 +220,9 @@
     {
       "id": "footer",
       "components": [
-        "footerSocialLink",
-        "footerNavigationLink",
-        "footerLanguageLink",
+        "socialLink",
+        "footerNavLink",
+        "languageLink",
         "footerPolicyLink"
       ]
     }
