@@ -56,12 +56,6 @@
     ]
   },
   {
-    "id": "carousel",
-    "components": [
-      "carouselItem"
-    ]
-  },
-  {
     "id": "columns",
     "components": [
       "column"
@@ -77,65 +71,25 @@
     ]
   },
   {
-    "id": "featureCards",
-    "components": [
-      "featureCard",
-      "bolteSitareCard"
-    ]
-  },
-  {
     "id": "footer",
     "components": [
       "footerSocialLink",
-      "footerNavigationLink",
+      "footerNavLink",
       "footerLanguageLink",
       "footerPolicyLink"
     ]
   },
   {
-    "id": "footerBrand",
-    "components": [
-      "footerLink",
-      "footerSocial"
-    ]
-  },
-  {
-    "id": "header",
-    "components": [
-      "sidebarMenuItem",
-      "footerLink",
-      "socialLink"
-    ]
-  },
-  {
     "id": "headerNavigation",
     "components": [
-      "navMenu",
-      "languageOption"
-    ]
-  },
-  {
-    "id": "navMenu",
-    "components": [
-      "subMenuItem"
+      "menuItem",
+      "language"
     ]
   },
   {
     "id": "heroFullWidth",
     "components": [
       "heroFullWidth"
-    ]
-  },
-  {
-    "id": "heroFullwidth",
-    "components": [
-      "heroFullwidth"
-    ]
-  },
-  {
-    "id": "latestBlogs",
-    "components": [
-      "blogItem"
     ]
   },
   {
@@ -148,28 +102,13 @@
     ]
   },
   {
-    "id": "scarpComponent"
-  },
-  {
     "id": "statsByTheNumber",
     "components": [
-      "statCard"
+      "statsCard"
     ]
   },
   {
-    "id": "statsByTheNumbers",
-    "components": [
-      "statCard"
-    ]
-  },
-  {
-    "id": "stickyBottomNav",
-    "components": [
-      "navItem"
-    ]
-  },
-  {
-    "id": "textAndMedia",
+    "id": "text-and-media",
     "components": [
       "textAndMedia"
     ]

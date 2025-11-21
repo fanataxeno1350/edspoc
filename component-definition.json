@@ -144,37 +144,6 @@
           }
         },
         {
-          "title": "Carousel",
-          "id": "carousel",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "carousel",
-                  "model": "carousel",
-                  "name": "Carousel"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Carousel Item",
-          "id": "carouselItem",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "carouselItem",
-                  "name": "Carousel Item"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Columns",
           "id": "columns",
           "plugins": {
@@ -184,52 +153,6 @@
                 "template": {
                   "columns": "2",
                   "rows": "1"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Feature-Cards",
-          "id": "featureCards",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "featureCards",
-                  "model": "featureCards",
-                  "name": "Feature-Cards"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Feature Card",
-          "id": "featureCard",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "featureCard",
-                  "name": "Feature Card"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Bolte Sitare Card",
-          "id": "bolteSitareCard",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "bolteSitareCard",
-                  "name": "Bolte Sitare Card"
                 }
               }
             }
@@ -252,7 +175,7 @@
           }
         },
         {
-          "title": "Footer Social Link",
+          "title": "Footer-Social-Link",
           "id": "footerSocialLink",
           "plugins": {
             "xwalk": {
@@ -260,29 +183,29 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "footerSocialLink",
-                  "name": "Footer Social Link"
+                  "name": "Footer-Social-Link"
                 }
               }
             }
           }
         },
         {
-          "title": "Footer Navigation Link",
-          "id": "footerNavigationLink",
+          "title": "Footer-Navigation-Link",
+          "id": "footerNavLink",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "footerNavigationLink",
-                  "name": "Footer Navigation Link"
+                  "model": "footerNavLink",
+                  "name": "Footer-Navigation-Link"
                 }
               }
             }
           }
         },
         {
-          "title": "Footer Language Link",
+          "title": "Footer-Language-Link",
           "id": "footerLanguageLink",
           "plugins": {
             "xwalk": {
@@ -290,14 +213,14 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "footerLanguageLink",
-                  "name": "Footer Language Link"
+                  "name": "Footer-Language-Link"
                 }
               }
             }
           }
         },
         {
-          "title": "Footer Policy Link",
+          "title": "Footer-Policy-Link",
           "id": "footerPolicyLink",
           "plugins": {
             "xwalk": {
@@ -305,114 +228,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "footerPolicyLink",
-                  "name": "Footer Policy Link"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Footer-Brand",
-          "id": "footerBrand",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "footerBrand",
-                  "model": "footerBrand",
-                  "name": "Footer-Brand"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Footer-Link",
-          "id": "footerLink",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "footerLink",
-                  "name": "Footer-Link"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Footer-Social",
-          "id": "footerSocial",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "footerSocial",
-                  "name": "Footer-Social"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Header",
-          "id": "header",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "header",
-                  "model": "header",
-                  "name": "Header"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Sidebar Menu Item",
-          "id": "sidebarMenuItem",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "sidebarMenuItem",
-                  "name": "Sidebar Menu Item"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Footer Link",
-          "id": "footerLink",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "footerLink",
-                  "name": "Footer Link"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Social Link",
-          "id": "socialLink",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "socialLink",
-                  "name": "Social Link"
+                  "name": "Footer-Policy-Link"
                 }
               }
             }
@@ -435,45 +251,30 @@
           }
         },
         {
-          "title": "Nav-Menu",
-          "id": "navMenu",
+          "title": "Menu-Item",
+          "id": "menuItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "navMenu",
-                  "name": "Nav-Menu"
+                  "model": "menuItem",
+                  "name": "Menu-Item"
                 }
               }
             }
           }
         },
         {
-          "title": "Sub-Menu-Item",
-          "id": "subMenuItem",
+          "title": "Language",
+          "id": "language",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "subMenuItem",
-                  "name": "Sub-Menu-Item"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Language-Option",
-          "id": "languageOption",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "languageOption",
-                  "name": "Language-Option"
+                  "model": "language",
+                  "name": "Language"
                 }
               }
             }
@@ -490,53 +291,6 @@
                   "filter": "heroFullWidth",
                   "model": "heroFullWidth",
                   "name": "Hero-Full-Width"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Hero-Fullwidth",
-          "id": "heroFullwidth",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "heroFullwidth",
-                  "model": "heroFullwidth",
-                  "name": "Hero-Fullwidth"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Latest-Blogs",
-          "id": "latestBlogs",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "latestBlogs",
-                  "model": "latestBlogs",
-                  "name": "Latest-Blogs"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Blog-Item",
-          "id": "blogItem",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "blogItem",
-                  "name": "Blog-Item"
                 }
               }
             }
@@ -575,22 +329,6 @@
           }
         },
         {
-          "title": "Scarp-Component",
-          "id": "scarpComponent",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "scarpComponent",
-                  "model": "scarpComponent",
-                  "name": "Scarp-Component"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Stats-By-The-Number",
           "id": "statsByTheNumber",
           "plugins": {
@@ -607,84 +345,22 @@
           }
         },
         {
-          "title": "Stat-Card",
-          "id": "statCard",
+          "title": "Stats-Card",
+          "id": "statsCard",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "statCard",
-                  "name": "Stat-Card"
+                  "model": "statsCard",
+                  "name": "Stats-Card"
                 }
               }
             }
           }
         },
         {
-          "title": "Stats-By-The-Numbers",
-          "id": "statsByTheNumbers",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "statsByTheNumbers",
-                  "model": "statsByTheNumbers",
-                  "name": "Stats-By-The-Numbers"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Stat-Card",
-          "id": "statCard",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "statCard",
-                  "name": "Stat-Card"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Sticky-Bottom-Nav",
-          "id": "stickyBottomNav",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "filter": "stickyBottomNav",
-                  "model": "stickyBottomNav",
-                  "name": "Sticky-Bottom-Nav"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Nav-Item",
-          "id": "navItem",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "navItem",
-                  "name": "Nav-Item"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Text-And-Media",
+          "title": "Text-and-Media",
           "id": "textAndMedia",
           "plugins": {
             "xwalk": {
@@ -693,7 +369,7 @@
                 "template": {
                   "filter": "textAndMedia",
                   "model": "textAndMedia",
-                  "name": "Text-And-Media"
+                  "name": "Text-and-Media"
                 }
               }
             }
