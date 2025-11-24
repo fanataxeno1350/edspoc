@@ -49,7 +49,15 @@
         "title",
         "hero",
         "cards",
-        "columns"
+        "columns",
+        "headerNavigation",
+        "heroFullWidth",
+        "textAndMedia",
+        "cardList",
+        "mediaComponent",
+        "scarpComponent",
+        "statsByTheNumbers",
+        "footer"
       ]
     }
   ]
