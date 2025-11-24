@@ -5,68 +5,74 @@ export default function decorate(block) {
   // 1. Create the main outer wrapper based on the HTML structure
   const cardListCmp = document.createElement('div');
   cardListCmp.className = 'card-list-cmp-card-list parallax-child';
-  moveInstrumentation(block, cardListCmp); // Transfer block instrumentation to the new outer element
+  moveInstrumentation(block, cardListCmp);
 
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'card-list-cmp-card-list__content';
   cardListCmp.append(contentWrapper);
 
   // The first row of the block contains the main 'Card-List' model's fields
-  const cardListRow = block.children[0];
-  const cardListCells = [...cardListRow.children];
+  // Ensure we handle cases where the first row might not exist or is empty
+  const blockChildren = [...block.children];
+  const cardListRow = blockChildren[0]; // Access the first row for cardList model fields
 
-  // --- Process CardList Heading and CTA --- 
-  const slideWrap = document.createElement('div');
-  slideWrap.className = 'card-list-slide-wrap';
-  const topContent = document.createElement('div');
-  topContent.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
-  topContent.setAttribute('data-slide-type', 'slide-up');
-  slideWrap.append(topContent);
-  contentWrapper.append(slideWrap);
+  if (cardListRow) {
+    const cardListCells = [...cardListRow.children];
 
-  // Heading (from the first cell of the first row)
-  const headingCell = cardListCells[0];
-  if (headingCell) {
-    const headingWrapper = document.createElement('div');
-    headingWrapper.className = 'card-list-cmp-card-list__content__heading is-visible';
-    const headingTitle = document.createElement('div');
-    headingTitle.id = 'card-list-heading';
-    headingTitle.className = 'card-list-cmp-card-list__content__heading__title';
-    headingTitle.setAttribute('tabindex', '0');
-    // 'heading' is richtext, so use innerHTML
-    headingTitle.innerHTML = headingCell.innerHTML.trim();
-    headingWrapper.append(headingTitle);
-    topContent.append(headingWrapper);
-  }
+    // --- Process CardList Heading and CTA --- 
+    const slideWrap = document.createElement('div');
+    slideWrap.className = 'card-list-slide-wrap';
+    const topContent = document.createElement('div');
+    topContent.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
+    topContent.setAttribute('data-slide-type', 'slide-up');
+    slideWrap.append(topContent);
+    contentWrapper.append(slideWrap);
 
-  // CTA (from the second cell of the first row)
-  const ctaCell = cardListCells[1];
-  if (ctaCell) {
-    const ctaWrapper = document.createElement('div');
-    ctaWrapper.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
-    const ctaLink = ctaCell.querySelector('a');
-    if (ctaLink) {
-      const newCta = document.createElement('a');
-      newCta.href = ctaLink.href;
-      newCta.className = 'card-list-cta card-list-cta__primary';
-      newCta.setAttribute('target', '_self');
-      // Use existing aria-label or fallback to textContent
-      newCta.setAttribute('aria-label', ctaLink.getAttribute('aria-label') || ctaLink.textContent.trim());
-      newCta.setAttribute('data-palette', 'palette-1');
-
-      const iconSpan = document.createElement('span');
-      iconSpan.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
-      iconSpan.setAttribute('aria-hidden', 'true');
-      newCta.append(iconSpan);
-
-      const labelSpan = document.createElement('span');
-      labelSpan.className = 'card-list-cta__label';
-      labelSpan.textContent = ctaLink.textContent.trim();
-      newCta.append(labelSpan);
-
-      ctaWrapper.append(newCta);
+    // Heading (from the first cell of the first row)
+    const headingCell = cardListCells[0];
+    if (headingCell) {
+      const headingWrapper = document.createElement('div');
+      headingWrapper.className = 'card-list-cmp-card-list__content__heading is-visible';
+      const headingTitle = document.createElement('div');
+      headingTitle.id = 'card-list-heading';
+      headingTitle.className = 'card-list-cmp-card-list__content__heading__title';
+      headingTitle.setAttribute('tabindex', '0');
+      // 'heading' is richtext, so use innerHTML
+      headingTitle.innerHTML = headingCell.innerHTML.trim();
+      headingWrapper.append(headingTitle);
+      topContent.append(headingWrapper);
     }
-    topContent.append(ctaWrapper);
+
+    // CTA (from the second cell of the first row)
+    const ctaCell = cardListCells[1];
+    if (ctaCell) {
+      const ctaWrapper = document.createElement('div');
+      ctaWrapper.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
+      const ctaLink = ctaCell.querySelector('a');
+      if (ctaLink) {
+        const newCta = document.createElement('a');
+        newCta.href = ctaLink.href;
+        newCta.className = 'card-list-cta card-list-cta__primary';
+        newCta.setAttribute('target', '_self');
+        // Use existing aria-label or fallback to textContent
+        newCta.setAttribute('aria-label', ctaLink.getAttribute('aria-label') || ctaLink.textContent.trim());
+        newCta.setAttribute('data-palette', 'palette-1');
+        moveInstrumentation(ctaLink, newCta);
+
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
+        iconSpan.setAttribute('aria-hidden', 'true');
+        newCta.append(iconSpan);
+
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'card-list-cta__label';
+        labelSpan.textContent = ctaLink.textContent.trim();
+        newCta.append(labelSpan);
+
+        ctaWrapper.append(newCta);
+      }
+      topContent.append(ctaWrapper);
+    }
   }
 
   // --- Process Card Items --- 
@@ -75,7 +81,9 @@ export default function decorate(block) {
   contentWrapper.append(cardItemsWrapper);
 
   // Loop through the remaining rows for 'card' items (skipping the first row which is cardList data)
-  [...block.children].slice(1).forEach((row, index) => {
+  // If cardListRow exists, start from the second row; otherwise, start from the first row.
+  const startIndex = cardListRow ? 1 : 0;
+  blockChildren.slice(startIndex).forEach((row, index) => {
     const cardItem = document.createElement('div');
     cardItem.className = 'card-list-cmp-card-list__content__card-item is-visible card-list-slide-up';
     cardItem.setAttribute('data-animation', 'card');
@@ -98,8 +106,11 @@ export default function decorate(block) {
       if (img) {
         // createOptimizedPicture handles picture and img tags, and lazy loading.
         const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
-        moveInstrumentation(img, optimizedPic.querySelector('img')); // Transfer instrumentation from original img
-        optimizedPic.querySelector('img').className = 'card-list-cmp-card-list__content__card-item__image';
+        const newImg = optimizedPic.querySelector('img');
+        if (newImg) {
+            moveInstrumentation(img, newImg); // Transfer instrumentation from original img
+            newImg.className = 'card-list-cmp-card-list__content__card-item__image';
+        }
         cardItem.append(optimizedPic);
       }
     }
