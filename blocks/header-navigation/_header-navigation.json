@@ -1,0 +1,168 @@
+{
+  "definitions": [
+    {
+      "title": "Header-Navigation",
+      "id": "headerNavigation",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "headerNavigation",
+              "model": "headerNavigation",
+              "name": "Header-Navigation"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav-Menu",
+      "id": "navMenu",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "navMenu",
+              "name": "Nav-Menu"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav-Link",
+      "id": "navLink",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "navLink",
+              "name": "Nav-Link"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Language-Link",
+      "id": "languageLink",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "languageLink",
+              "name": "Language-Link"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "headerNavigation",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Logo Link",
+          "name": "logoLink",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "items": "navMenu",
+          "label": "Menus",
+          "name": "menus"
+        },
+        {
+          "component": "container",
+          "items": "languageLink",
+          "label": "Languages",
+          "name": "languages"
+        },
+        {
+          "component": "reference",
+          "label": "Contact Us Link",
+          "name": "contactUsLink",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "navMenu",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Menu Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Menu Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "items": "navLink",
+          "label": "Sub Links",
+          "name": "subLinks"
+        }
+      ]
+    },
+    {
+      "id": "navLink",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Link Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Link URL",
+          "name": "link",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "languageLink",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Language Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Language Link",
+          "name": "link",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "headerNavigation",
+      "components": [
+        "navMenu",
+        "languageLink"
+      ]
+    },
+    {
+      "id": "navMenu",
+      "components": [
+        "navLink"
+      ]
+    }
+  ]
+}

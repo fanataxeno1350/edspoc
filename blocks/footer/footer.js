@@ -3,183 +3,187 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const footerWrapper = document.createElement('div');
   footerWrapper.classList.add('footer-wrapper');
-  moveInstrumentation(block, footerWrapper);
 
+  // Footer Navigation
   const footerNavigation = document.createElement('div');
   footerNavigation.classList.add('footer-navigation');
-  footerWrapper.append(footerNavigation);
 
-  // Logo
-  const logoCell = block.children[0]?.children[0];
-  if (logoCell) {
-    const logoLink = logoCell.querySelector('a');
-    if (logoLink) {
-      const footerNavigationLogo = document.createElement('div');
-      footerNavigationLogo.classList.add('footer-navigation__logo');
-      const newLogoLink = document.createElement('a');
-      newLogoLink.href = logoLink.href;
-      newLogoLink.target = '_self';
-      const qdIcon = logoLink.querySelector('.qd-icon');
-      if (qdIcon) {
-        const newQdIcon = qdIcon.cloneNode(true);
-        newLogoLink.append(newQdIcon);
-      }
-      footerNavigationLogo.append(newLogoLink);
-      footerNavigation.append(footerNavigationLogo);
-      moveInstrumentation(logoCell, footerNavigationLogo);
-    }
+  const footerNavigationLogo = document.createElement('div');
+  footerNavigationLogo.classList.add('footer-navigation__logo');
+  const logoLink = document.createElement('a');
+  logoLink.href = '/'; // Default or get from block if available
+  logoLink.target = '_self';
+  const logoSpan = document.createElement('span');
+  logoSpan.classList.add('qd-icon', 'qd-icon--logo', 'qd-logo-footer');
+  for (let i = 1; i <= 25; i += 1) {
+    const pathSpan = document.createElement('span');
+    pathSpan.classList.add(`path${i}`);
+    logoSpan.append(pathSpan);
   }
+  logoLink.append(logoSpan);
+  footerNavigationLogo.append(logoLink);
+  footerNavigation.append(footerNavigationLogo);
 
   const footerNavigationContent = document.createElement('div');
   footerNavigationContent.classList.add('footer-navigation__content');
-  footerNavigation.append(footerNavigationContent);
 
   // Social Links
-  const socialLinksCell = block.children[0]?.children[1];
-  if (socialLinksCell) {
-    const socialLinksUl = document.createElement('ul');
-    socialLinksUl.classList.add('footer-social-links__list');
+  const footerSocialLinks = document.createElement('div');
+  footerSocialLinks.classList.add('footer-social-links');
+  const footerSocialLinksList = document.createElement('ul');
+  footerSocialLinksList.classList.add('footer-social-links__list');
 
-    const socialLinksDiv = document.createElement('div');
-    socialLinksDiv.classList.add('footer-social-links');
-    socialLinksDiv.append(socialLinksUl);
-    footerNavigationContent.append(socialLinksDiv);
-    moveInstrumentation(socialLinksCell, socialLinksDiv);
-
-    [...socialLinksCell.children].forEach((socialLinkRow) => {
-      const socialLink = socialLinkRow.querySelector('a');
-      if (socialLink) {
+  // Find the social links row in the block
+  const socialLinksRow = [...block.children].find((row) => row.children[0]?.textContent.toLowerCase() === 'social links');
+  if (socialLinksRow) {
+    const socialLinksCells = [...socialLinksRow.children].slice(1); // Skip the label cell
+    socialLinksCells.forEach((cell) => {
+      const link = cell.querySelector('a');
+      if (link) {
         const li = document.createElement('li');
+        moveInstrumentation(cell, li);
         li.classList.add('footer-social-links__item');
-        moveInstrumentation(socialLinkRow, li);
-
         const newLink = document.createElement('a');
         newLink.classList.add('footer-social-links__icon');
-        newLink.href = socialLink.href;
         newLink.target = '_blank';
-        newLink.setAttribute('aria-label', socialLink.getAttribute('aria-label'));
-        const iconClass = socialLink.className.split(' ').find(cls => cls.startsWith('qd-icon--'));
-        if (iconClass) {
-          newLink.classList.add('qd-icon', iconClass);
+        newLink.href = link.href;
+        newLink.setAttribute('aria-label', link.textContent);
+
+        // Determine icon class based on link text content
+        const iconClassMap = {
+          x: 'qd-icon--x',
+          instagram: 'qd-icon--instagram',
+          youtube: 'qd-icon--youtube',
+          tiktok: 'qd-icon--tiktok',
+          linkedin: 'qd-icon--linkedin',
+        };
+        const iconName = link.textContent.toLowerCase();
+        if (iconClassMap[iconName]) {
+          newLink.classList.add('qd-icon', iconClassMap[iconName]);
         }
         li.append(newLink);
-        socialLinksUl.append(li);
+        footerSocialLinksList.append(li);
       }
     });
   }
+  footerSocialLinks.append(footerSocialLinksList);
+  footerNavigationContent.append(footerSocialLinks);
 
   // Navigation Links
-  const navigationLinksCell = block.children[0]?.children[2];
-  if (navigationLinksCell) {
-    const navigationLinksUl = document.createElement('ul');
-    navigationLinksUl.classList.add('footer-navigation__links');
-    footerNavigationContent.append(navigationLinksUl);
-    moveInstrumentation(navigationLinksCell, navigationLinksUl);
+  const footerNavigationLinks = document.createElement('ul');
+  footerNavigationLinks.classList.add('footer-navigation__links');
 
-    [...navigationLinksCell.children].forEach((navLinkRow) => {
-      const navLink = navLinkRow.querySelector('a');
-      if (navLink) {
+  // Find the navigation links row in the block
+  const navLinksRow = [...block.children].find((row) => row.children[0]?.textContent.toLowerCase() === 'navigation links');
+  if (navLinksRow) {
+    const navLinksCells = [...navLinksRow.children].slice(1); // Skip the label cell
+    navLinksCells.forEach((cell) => {
+      const link = cell.querySelector('a');
+      if (link) {
         const li = document.createElement('li');
-        moveInstrumentation(navLinkRow, li);
-
+        moveInstrumentation(cell, li);
         const newLink = document.createElement('a');
         newLink.classList.add('footer-navigation__link-item');
-        newLink.href = navLink.href;
-        newLink.textContent = navLink.textContent;
+        newLink.tabIndex = 0;
         newLink.target = '_self';
-        newLink.setAttribute('tabindex', '0');
-        newLink.setAttribute('title', navLink.textContent);
+        newLink.title = link.textContent;
+        newLink.href = link.href;
+        newLink.textContent = link.textContent;
         li.append(newLink);
-        navigationLinksUl.append(li);
+        footerNavigationLinks.append(li);
       }
     });
   }
+  footerNavigationContent.append(footerNavigationLinks);
+
+  footerNavigation.append(footerNavigationContent);
+  footerWrapper.append(footerNavigation);
 
   // Footer Divider
   const footerDivider = document.createElement('div');
   footerDivider.classList.add('footer-divider');
   footerWrapper.append(footerDivider);
 
+  // Footer Bottom
   const footerBottom = document.createElement('div');
   footerBottom.classList.add('footer-bottom');
-  footerWrapper.append(footerBottom);
 
   // Language Selector
-  const languageSelectorCell = block.children[0]?.children[3];
-  if (languageSelectorCell) {
-    const languageSelectorDiv = document.createElement('div');
-    languageSelectorDiv.classList.add('footer-language-selector');
-    footerBottom.append(languageSelectorDiv);
-    moveInstrumentation(languageSelectorCell, languageSelectorDiv);
+  const footerLanguageSelector = document.createElement('div');
+  footerLanguageSelector.classList.add('footer-language-selector');
+  const footerLanguageSelectorList = document.createElement('ul');
+  footerLanguageSelectorList.classList.add('footer-language-selector__list');
 
-    const languageUl = document.createElement('ul');
-    languageUl.classList.add('footer-language-selector__list');
-    languageSelectorDiv.append(languageUl);
-
-    [...languageSelectorCell.children].forEach((langLinkRow) => {
-      const langLink = langLinkRow.querySelector('a');
-      if (langLink) {
+  // Find the language links row in the block
+  const languageLinksRow = [...block.children].find((row) => row.children[0]?.textContent.toLowerCase() === 'language links');
+  if (languageLinksRow) {
+    const languageLinksCells = [...languageLinksRow.children].slice(1);
+    languageLinksCells.forEach((cell) => {
+      const link = cell.querySelector('a');
+      if (link) {
         const li = document.createElement('li');
+        moveInstrumentation(cell, li);
         li.classList.add('footer-language-selector__item');
-        if (langLink.parentElement.classList.contains('active')) {
+        if (link.dataset.lang === 'en') { // Assuming 'en' is default active
           li.classList.add('active');
         }
-        moveInstrumentation(langLinkRow, li);
-
         const newLink = document.createElement('a');
+        newLink.href = link.href;
+        newLink.setAttribute('aria-label', link.textContent);
         newLink.classList.add('footer-language-selector__link');
-        newLink.href = langLink.href;
-        newLink.textContent = langLink.textContent;
-        newLink.setAttribute('aria-label', langLink.getAttribute('aria-label'));
-        newLink.setAttribute('data-lang', langLink.getAttribute('data-lang'));
+        newLink.setAttribute('data-lang', link.dataset.lang || ''); // Ensure data-lang is transferred
+        newLink.textContent = link.textContent;
         li.append(newLink);
-        languageUl.append(li);
+        footerLanguageSelectorList.append(li);
       }
     });
   }
+  footerLanguageSelector.append(footerLanguageSelectorList);
+  footerBottom.append(footerLanguageSelector);
 
   // Policy Links and Copyright
-  const policyLinksCell = block.children[0]?.children[4];
-  if (policyLinksCell) {
-    const footerPolicyLinks = document.createElement('div');
-    footerPolicyLinks.classList.add('footer-policy-links');
-    footerBottom.append(footerPolicyLinks);
-    moveInstrumentation(policyLinksCell, footerPolicyLinks);
+  const footerPolicyLinks = document.createElement('div');
+  footerPolicyLinks.classList.add('footer-policy-links');
+  const footerPolicyLinksWrapper = document.createElement('div');
+  footerPolicyLinksWrapper.classList.add('footer-policy-links__wrapper');
+  const footerPolicyLinksContent = document.createElement('div');
+  footerPolicyLinksContent.classList.add('footer-policy-links__content');
 
-    const policyLinksWrapper = document.createElement('div');
-    policyLinksWrapper.classList.add('footer-policy-links__wrapper');
-    footerPolicyLinks.append(policyLinksWrapper);
-
-    const policyLinksContent = document.createElement('div');
-    policyLinksContent.classList.add('footer-policy-links__content');
-    policyLinksWrapper.append(policyLinksContent);
-
-    // Policy Links
-    [...policyLinksCell.children].forEach((policyLinkRow) => {
-      const policyLink = policyLinkRow.querySelector('a');
-      if (policyLink) {
+  // Find the policy links row in the block
+  const policyLinksRow = [...block.children].find((row) => row.children[0]?.textContent.toLowerCase() === 'policy links');
+  if (policyLinksRow) {
+    const policyLinksCells = [...policyLinksRow.children].slice(1);
+    policyLinksCells.forEach((cell) => {
+      const link = cell.querySelector('a');
+      if (link) {
         const newLink = document.createElement('a');
+        moveInstrumentation(cell, newLink);
+        newLink.tabIndex = 0;
         newLink.classList.add('footer-policy-links__item');
-        newLink.href = policyLink.href;
-        newLink.textContent = policyLink.textContent;
+        newLink.title = link.textContent;
+        newLink.href = link.href;
         newLink.target = '_self';
-        newLink.setAttribute('tabindex', '0');
-        newLink.setAttribute('title', policyLink.textContent);
-        policyLinksContent.append(newLink);
-        moveInstrumentation(policyLinkRow, newLink);
+        newLink.textContent = link.textContent;
+        footerPolicyLinksContent.append(newLink);
       }
     });
-
-    // Copyright
-    const copyrightP = policyLinksCell.querySelector('p');
-    if (copyrightP) {
-      const newCopyrightP = document.createElement('p');
-      newCopyrightP.classList.add('footer-policy-links__copyright');
-      newCopyrightP.textContent = copyrightP.textContent;
-      policyLinksWrapper.append(newCopyrightP);
-      moveInstrumentation(copyrightP, newCopyrightP);
-    }
   }
+  footerPolicyLinksWrapper.append(footerPolicyLinksContent);
+
+  // Copyright
+  const copyrightRow = [...block.children].find((row) => row.children[0]?.textContent.toLowerCase() === 'copyright');
+  if (copyrightRow && copyrightRow.children[1]) {
+    const copyrightP = document.createElement('p');
+    moveInstrumentation(copyrightRow.children[1], copyrightP);
+    copyrightP.classList.add('footer-policy-links__copyright');
+    copyrightP.textContent = copyrightRow.children[1].textContent;
+    footerPolicyLinksWrapper.append(copyrightP);
+  }
+
+  footerPolicyLinks.append(footerPolicyLinksWrapper);
+  footerBottom.append(footerPolicyLinks);
+
+  footerWrapper.append(footerBottom);
 
   block.textContent = '';
   block.append(footerWrapper);

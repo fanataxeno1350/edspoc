@@ -33,6 +33,12 @@
     ]
   },
   {
+    "id": "cardList",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
@@ -56,10 +62,23 @@
   {
     "id": "footer",
     "components": [
+      "footerNavLink",
       "footerSocialLink",
-      "footerNavigationLink",
       "footerLanguageLink",
       "footerPolicyLink"
+    ]
+  },
+  {
+    "id": "headerNavigation",
+    "components": [
+      "navMenu",
+      "languageLink"
+    ]
+  },
+  {
+    "id": "navMenu",
+    "components": [
+      "navLink"
     ]
   },
   {
@@ -82,9 +101,24 @@
     ]
   },
   {
+    "id": "heroFullWidth",
+    "components": [
+      "heroFullWidth"
+    ]
+  },
+  {
+    "id": "mediaComponent"
+  },
+  {
     "id": "mediaComponent",
     "components": [
       "mediaComponent"
+    ]
+  },
+  {
+    "id": "scarp",
+    "components": [
+      "scarp"
     ]
   },
   {
@@ -96,7 +130,19 @@
   {
     "id": "statsByTheNumber",
     "components": [
+      "statsCard"
+    ]
+  },
+  {
+    "id": "statsByTheNumber",
+    "components": [
       "statCard"
+    ]
+  },
+  {
+    "id": "textAndMedia",
+    "components": [
+      "textAndMedia"
     ]
   },
   {
