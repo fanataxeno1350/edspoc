@@ -35,12 +35,6 @@
     ]
   },
   {
-    "id": "cardList",
-    "components": [
-      "card"
-    ]
-  },
-  {
     "id": "cards",
     "components": [
       "card"
@@ -65,7 +59,7 @@
     "id": "footer",
     "components": [
       "footerSocialLink",
-      "footerNavigationLink",
+      "footerNavLink",
       "footerLanguageLink",
       "footerPolicyLink"
     ]
@@ -73,38 +67,12 @@
   {
     "id": "headerNavigation",
     "components": [
-      "navMenu",
-      "languageLink"
+      "menuItem",
+      "languageItem"
     ]
   },
   {
-    "id": "navMenu",
-    "components": [
-      "navLink"
-    ]
-  },
-  {
-    "id": "headerNavigation",
-    "components": [
-      "navMenu",
-      "language"
-    ]
-  },
-  {
-    "id": "navMenu",
-    "components": [
-      "subMenuItem"
-    ]
-  },
-  {
-    "id": "header",
-    "components": [
-      "navMenu",
-      "language"
-    ]
-  },
-  {
-    "id": "navMenu",
+    "id": "menuItem",
     "components": [
       "submenuItem"
     ]
@@ -116,30 +84,9 @@
     ]
   },
   {
-    "id": "heroFullWidth",
-    "components": [
-      "heroFullWidth"
-    ]
-  },
-  {
     "id": "mediaComponent",
     "components": [
       "mediaComponent"
-    ]
-  },
-  {
-    "id": "mediaComponent",
-    "components": [
-      "mediaComponent"
-    ]
-  },
-  {
-    "id": "scarpComponent"
-  },
-  {
-    "id": "scarp",
-    "components": [
-      "scarp"
     ]
   },
   {
@@ -151,25 +98,7 @@
   {
     "id": "statsByTheNumber",
     "components": [
-      "statsByTheNumberCard"
-    ]
-  },
-  {
-    "id": "statsByTheNumber",
-    "components": [
       "statCard"
-    ]
-  },
-  {
-    "id": "text-and-media-section",
-    "components": [
-      "textAndMediaSection"
-    ]
-  },
-  {
-    "id": "textAndMedia",
-    "components": [
-      "textAndMedia"
     ]
   },
   {

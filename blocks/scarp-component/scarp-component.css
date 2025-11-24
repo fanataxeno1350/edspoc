@@ -1,0 +1,618 @@
+.scarp-component,
+.scarp-container {
+  position: relative;
+  z-index: 1;
+}
+
+.scarp-separator-scarp {
+  position: absolute;
+}
+.scarp-separator-scarp.gold-scarp {
+  right: 0;
+}
+.scarp-separator-scarp.green-scarp {
+  right: 0;
+}
+.scarp-separator-scarp.news-scarp {
+  right: 0;
+}
+.scarp-separator-scarp.press-purple-scarp {
+  right: 0;
+}
+.scarp-separator-scarp.purple-mix-scarp {
+  right: 0;
+}
+
+[dir="rtl"] .scarp-container {
+  transform: scaleX(-1);
+}
+[dir="rtl"] .scarp-separator-scarp.gold-mix-scarp {
+  left: 0;
+}
+[dir="rtl"] .scarp-separator-scarp.pink-mix-scarp {
+  left: 0;
+}
+[dir="rtl"] .scarp-separator-scarp.press-gold-scarp {
+  left: 0;
+}
+[dir="rtl"] .scarp-separator-scarp.purple-horizontal-scarp {
+  left: 0;
+}
+[dir="rtl"] .scarp-separator-scarp.purple-scarp {
+  left: 0;
+}
+[dir="rtl"] .scarp-separator-scarp.voilet-mix-scarp {
+  left: 0;
+}
+[dir="rtl"] .scarp-separator-scarp.overview-scarp {
+  left: 0;
+}
+
+@media (max-width: 1024px) {
+  .cmp-list .cmp-list__content__heading.header-visible {
+    max-width: 800px;
+  }
+}
+@media (min-width: 1920px) {
+  .scarp-container .gold-scarp {
+    height: 567px;
+    bottom: -250px;
+    margin-right: -208px;
+  }
+  .scarp-container .green-scarp {
+    height: 410px;
+  }
+  .scarp-container .purple-scarp {
+    height: 878px;
+  }
+  .scarp-container .purple-mix-scarp {
+    height: 570px;
+    bottom: -570px;
+  }
+  .scarp-container .pink-mix-scarp {
+    height: 347px;
+    top: -347px;
+  }
+  .scarp-container .gold-mix-scarp {
+    height: 360px;
+    top: -115px;
+  }
+  .scarp-container .voilet-mix-scarp {
+    height: 898px;
+    top: -290px;
+  }
+  .scarp-container .purple-horizontal-scarp {
+    height: 898px;
+  }
+  .scarp-container .news-scarp {
+    height: 626px;
+  }
+  .scarp-container .press-gold-scarp {
+    height: 535px;
+    top: -230px;
+  }
+  .scarp-container .press-purple-scarp {
+    height: 535px;
+  }
+  .scarp-container .overview-scarp {
+    height: 650px;
+    top: -320px;
+  }
+  body[data-pageid="press-room-page"] .scarp-container .gold-scarp {
+    height: 460px;
+    bottom: -150px;
+    margin-right: -176px;
+  }
+  body[data-pageid="about_company"] .scarp-container .gold-scarp {
+    height: 250px;
+    top: -150px;
+    margin-right: -230px;
+  }
+  body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 329px;
+    bottom: -145px;
+    margin-right: -13px;
+  }
+  body[data-pageid="leadership-page"] .scarp-container .purple-mix-scarp {
+    height: 570px;
+    bottom: -305px;
+  }
+  body[data-pageid="sustainability-page"] .scarp-container .purple-mix-scarp {
+    height: 570px;
+    bottom: -245px;
+  }
+  body[data-pageid="sustainability-page"] .scarp-container .voilet-mix-scarp {
+    height: 898px;
+    bottom: 502px;
+  }
+  body[data-pageid="training-programmes-page"] .scarp-container .green-scarp {
+    height: 410px;
+    top: -15px;
+  }
+  body[data-pageid="careers-page"] .scarp-container .voilet-mix-scarp {
+    height: 898px;
+    top: -354px;
+  }
+  body[data-pageid="progress-page"] .scarp-container .green-scarp {
+    height: 270px;
+    top: -33px;
+  }
+  body[data-pageid="qiddiya-city-page"] .scarp-container .gold-scarp {
+    height: 485px;
+    bottom: -398px;
+    margin-right: -208px;
+  }
+  body[data-pageid="careers-page"] .scarp-container .press-purple-scarp {
+    top: -123px;
+  }
+  body[data-pageid="Living-PageId"] .scarp-container .gold-scarp {
+    height: 475px;
+    bottom: -300px;
+    margin-right: -208px;
+  }
+  body[data-pageid="qiddiya-city-page"] .scarp-container .overview-scarp {
+    height: 626px;
+    top: -280px;
+  }
+  body[data-pageid="dragon-ball-page"] .scarp-container .gold-scarp,
+  body[data-pageid="aquarabia-page"] .scarp-container .gold-scarp,
+  body[data-pageid="sixflags-page"] .scarp-container .gold-scarp {
+    height: 475px;
+    bottom: -500px;
+    margin-right: -208px;
+  }
+  [dir="rtl"] body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 525px;
+    bottom: -260px;
+    margin-right: -250px;
+  }
+  [dir="rtl"] body[data-pageid="press-room-page"] .scarp-container .green-scarp {
+    bottom: -200px;
+    margin-right: 0;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1919px) {
+  .scarp-container .gold-scarp {
+    height: 245px;
+    bottom: -110px;
+    margin-right: -95px;
+  }
+  .scarp-container .green-scarp {
+    height: 226px;
+    top: 0;
+  }
+  .scarp-container .purple-scarp {
+    height: 578px;
+  }
+  .scarp-container .purple-mix-scarp {
+    height: 290px;
+    bottom: -290px;
+  }
+  .scarp-container .pink-mix-scarp {
+    height: 130px;
+    top: -175px;
+    margin-left: -30px;
+  }
+  .scarp-container .gold-mix-scarp {
+    height: 303px;
+    top: -130px;
+  }
+  .scarp-container .voilet-mix-scarp {
+    height: 647px;
+    top: -215px;
+  }
+  .scarp-container .purple-horizontal-scarp {
+    height: 622px;
+  }
+  .scarp-container .news-scarp {
+    height: 305px;
+  }
+  .scarp-container .press-gold-scarp {
+    height: 300px;
+    top: -120px;
+  }
+  .scarp-container .press-purple-scarp {
+    height: 240px;
+    top: -90px;
+  }
+  .scarp-container .overview-scarp {
+    height: 470px;
+    top: -200px;
+  }
+  body[data-pageid="about_company"] .scarp-container .gold-scarp {
+    height: 250px;
+    top: -150px;
+  }
+  body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 245px;
+    top: -153px;
+    margin-right: -95px;
+  }
+  body[data-pageid="qiddiya-city-page"] .scarp-container .overview-scarp {
+    height: 618px;
+    top: -256px;
+  }
+  body[data-pageid="leadership-page"] .scarp-container .gold-mix-scarp {
+    height: 250px;
+    top: -109px;
+  }
+  body[data-pageid="press-room-page"] .scarp-container .gold-scarp {
+    height: 360px;
+    bottom: -217px;
+    margin-right: -138px;
+  }
+  body[data-pageid="training-programmes-page"] .scarp-container .press-gold-scarp {
+    height: 270px;
+    top: -77px;
+  }
+  body[data-pageid="careers-page"] .scarp-container .voilet-mix-scarp {
+    height: 577px;
+    top: -183px;
+  }
+  body[data-pageid="progress-page"] .scarp-container .green-scarp {
+    height: 160px;
+    top: -16px;
+  }
+  body[data-pageid="sustainability-page"] .scarp-container .purple-mix-scarp {
+    height: 323px;
+    bottom: -205px;
+  }
+  body[data-pageid="sustainability-page"] .scarp-container .voilet-mix-scarp {
+    height: 574px;
+    top: -187px;
+  }
+  body[data-pageid="leadership-page"] .scarp-container .purple-mix-scarp {
+    height: 420px;
+    bottom: -250px;
+  }
+  body[data-pageid="dragon-ball-page"] .scarp-container .gold-scarp,
+  body[data-pageid="aquarabia-page"] .scarp-container .gold-scarp,
+  body[data-pageid="sixflags-page"] .scarp-container .gold-scarp {
+    bottom: -245px;
+    margin-right: -194px;
+  }
+  body[data-pageid="qiddiya-city-page"] .scarp-container .gold-scarp {
+    bottom: -214px;
+    margin-right: 0;
+  }
+  body[data-pageid="aquarabia-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -60px;
+  }
+  body[data-pageid="sixflags-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -108px;
+  }
+  body[data-pageid="dragon-ball-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -108px;
+  }
+  body[data-pageid="careers-page"] .scarp-container .press-purple-scarp {
+    top: -49px;
+  }
+  body[data-pageid="Living-PageId"] .scarp-container .gold-scarp {
+    height: 300px;
+    bottom: -175px;
+    margin-right: -115px;
+  }
+  [dir="rtl"] body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 245px;
+    bottom: -110px;
+    margin-right: -95px;
+  }
+  [dir="rtl"] body[data-pageid="qiddiya-city-page"] .scarp-container .purple-mix-scarp {
+    height: 306px;
+    top: -5px;
+  }
+  [dir="rtl"] body[data-pageid="training-programmes-page"] .scarp-container .green-scarp {
+    height: 200px;
+    top: -30px;
+  }
+  [dir="rtl"] body[data-pageid="press-room-page"] .scarp-container .green-scarp {
+    margin-right: 0;
+  }
+  [dir="rtl"] body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 210px;
+    bottom: -115px;
+    margin-right: -108px;
+  }
+  [dir="rtl"] body[data-pageid="sustainability-page"] .scarp-container .voilet-mix-scarp {
+    top: 0;
+  }
+  body[data-pageid="qiddiya-city-assest-page"] .scarp-container .gold-scarp {
+    height: 200px;
+    bottom: -200px;
+  }
+  body[data-pageid="qiddiya-city-assest-page"] .scarp-container .purple-mix-scarp {
+    height: 200px;
+    bottom: -200px;
+  }
+  [dir="rtl"] body[data-pageid="qiddiya-city-assest-page"] .scarp-container .purple-mix-scarp {
+    height: 200px;
+    bottom: -200px;
+  }
+}
+@media (min-width: 1440px) and (max-width: 1919px) {
+  body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 250px;
+    bottom: -80px;
+    margin-right: -13px;
+  }
+  body[data-pageid="leadership-page"] .scarp-container .purple-mix-scarp {
+    height: 471px;
+    bottom: -255px;
+  }
+  body[data-pageid="sustainability-page"] .scarp-container .purple-mix-scarp {
+    height: 370px;
+    bottom: -157px;
+  }
+  body[data-pageid="sustainability-page"] .scarp-container .voilet-mix-scarp {
+    height: 673px;
+    top: -241px;
+  }
+  body[data-pageid="progress-page"] .scarp-container .green-scarp {
+    height: 200px;
+    top: -16px;
+  }
+  body[data-pageid="press-room-page"] .scarp-container .gold-scarp {
+    height: 360px;
+    bottom: -190px;
+    margin-right: -138px;
+  }
+  body[data-pageid="careers-page"] .scarp-container .press-purple-scarp {
+    height: 346px;
+    top: -80px;
+  }
+  body[data-pageid="training-programmes-page"] .scarp-container .green-scarp {
+    height: 263px;
+    top: -15px;
+  }
+  [dir="rtl"] body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 288px;
+    bottom: -110px;
+    margin-right: -110px;
+  }
+  [dir="rtl"] body[data-pageid="qiddiya-city-page"] .scarp-container .purple-mix-scarp {
+    height: 494px;
+    top: -116px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .scarp-container .gold-scarp {
+    height: 160px;
+    bottom: -160px;
+    margin-right: -60px;
+  }
+  .scarp-container .green-scarp {
+    height: 133px;
+  }
+  .scarp-container .purple-scarp {
+    height: 204px;
+  }
+  .scarp-container .purple-mix-scarp {
+    height: 205px;
+    bottom: -205px;
+  }
+  .scarp-container .pink-mix-scarp {
+    height: 100px;
+    top: -86px;
+    margin-left: -21px;
+  }
+  .scarp-container .gold-mix-scarp {
+    height: 208px;
+    top: -100px;
+  }
+  .scarp-container .voilet-mix-scarp {
+    height: 281px;
+    top: -85px;
+  }
+  .scarp-container .purple-horizontal-scarp {
+    height: 130px;
+  }
+  .scarp-container .news-scarp {
+    height: 238px;
+  }
+  .scarp-container .press-gold-scarp {
+    height: 156px;
+    top: -50px;
+  }
+  .scarp-container .press-purple-scarp {
+    height: 278px;
+  }
+  .scarp-container .overview-scarp {
+    height: 200px;
+    top: -70px;
+  }
+  .cmp-list .cmp-list__content__heading.header-visible {
+    max-width: 350px;
+  }
+  body[data-pageid="about_company"] .scarp-container .gold-scarp {
+    top: -70px;
+  }
+  body[data-pageid="dragon-ball-page"] .scarp-container .gold-scarp,
+  body[data-pageid="aquarabia-page"] .scarp-container .gold-scarp {
+    height: 143px;
+    bottom: -190px;
+    margin-right: -108px;
+  }
+  body[data-pageid="sixflags-page"] .scarp-container .gold-scarp {
+    height: 143px;
+    bottom: -160px;
+    margin-right: -108px;
+  }
+  body[data-pageid="progress-page"] .scarp-container .green-scarp {
+    height: 105px;
+  }
+  body[data-pageid="sustainability-page"] .scarp-container .purple-mix-scarp {
+    height: 170px;
+    bottom: -98px;
+  }
+  body[data-pageid="leadership-page"] .scarp-container .purple-mix-scarp {
+    height: 258px;
+    bottom: -178px;
+  }
+  body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 130px;
+    bottom: -75px;
+  }
+  body[data-pageid="aquarabia-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -56px;
+  }
+  body[data-pageid="sixflags-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    height: 143px;
+    bottom: -160px;
+    margin-right: -108px;
+  }
+  body[data-pageid="aquarabia-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -108px;
+  }
+  body[data-pageid="sixflags-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -40px;
+  }
+  body[data-pageid="dragon-ball-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -68px;
+    top: 10px;
+  }
+  body[data-pageid="careers-page"] .scarp-container .press-purple-scarp {
+    height: 200px;
+    top: -49px;
+  }
+  body[data-pageid="press-room-page"] .scarp-container .gold-scarp {
+    height: 296px;
+    bottom: -198px;
+    margin-right: -112px;
+  }
+  body[data-pageid="training-programmes-page"] .scarp-container .press-gold-scarp {
+    height: 210px;
+    top: -91px;
+  }
+  [dir="rtl"] body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    height: 165px;
+    bottom: -98px;
+  }
+  body[data-pageid="qiddiya-city-page"] .scarp-container .gold-scarp {
+    margin-right: 0;
+  }
+  [dir="rtl"] body[data-pageid="qiddiya-city-page"] .scarp-container .purple-mix-scarp {
+    height: 155px;
+    bottom: -140px;
+  }
+  .hidden-xs {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none;
+  }
+  .scarp-component .scarp-container .gold-scarp {
+    height: 110px;
+    bottom: -110px;
+    margin-right: -40px;
+  }
+  .scarp-component .scarp-container .green-scarp {
+    height: 75px;
+  }
+  .scarp-component .scarp-container .purple-scarp {
+    height: 120px;
+  }
+  .scarp-component .scarp-container .purple-mix-scarp {
+    height: 90px;
+    bottom: -90px;
+  }
+  .scarp-component .scarp-container .pink-mix-scarp {
+    height: 65px;
+    top: -57px;
+    margin-left: -19px;
+  }
+  .scarp-component .scarp-container .gold-mix-scarp {
+    height: 132px;
+    top: -75px;
+  }
+  .scarp-component .scarp-container .voilet-mix-scarp {
+    height: 281px;
+    top: -85px;
+  }
+  .scarp-component .scarp-container .purple-horizontal-scarp {
+    height: 110px;
+  }
+  .scarp-component .scarp-container .news-scarp {
+    height: 108px;
+  }
+  .scarp-component .scarp-container .press-gold-scarp {
+    height: 118px;
+    top: -60px;
+  }
+  .scarp-component .scarp-container .press-purple-scarp {
+    height: 140px;
+    top: -25px;
+  }
+  .scarp-component .scarp-container .overview-scarp {
+    height: 125px;
+    top: -50px;
+  }
+  body[data-pageid="about_company"] .scarp-container .gold-scarp {
+    top: -70px;
+  }
+  body[data-pageid="dragon-ball-page"] .scarp-container .gold-scarp {
+    height: 143px;
+    bottom: -165px;
+    margin-right: -84px;
+  }
+  body[data-pageid="aquarabia-page"] .scarp-container .gold-scarp {
+    height: 143px;
+    bottom: -165px;
+    margin-right: -110px;
+  }
+  body[data-pageid="sixflags-page"] .scarp-container .gold-scarp {
+    height: 115px;
+    bottom: -128px;
+    margin-right: -92px;
+  }
+  body[data-pageid="training-programmes-page"] .scarp-container .green-scarp {
+    height: 86px;
+  }
+  body[data-pageid="progress-page"] .scarp-container .green-scarp {
+    height: 70px;
+  }
+  body[data-pageid="aquarabia-page"] .cmp-text-and-media--content__title {
+    max-width: 310px;
+  }
+  body[data-pageid="qiddiya-city-page"] .scarp-container .gold-scarp {
+    height: 126px;
+    bottom: -108px;
+    margin-right: 0;
+  }
+  body[data-pageid="about-page"] .scarp-container .gold-scarp {
+    bottom: -60px;
+  }
+  body[data-pageid="aquarabia-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -60px;
+  }
+  body[data-pageid="sixflags-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -45px;
+  }
+  body[data-pageid="dragon-ball-page"] .faq.accordion + .scarp .scarp-container .gold-scarp {
+    margin-right: -60px;
+    top: 2px;
+  }
+  body[data-pageid="leadership-page"] .scarp-container .purple-mix-scarp,
+  body[data-pageid="sustainability-page"] .scarp-container .purple-mix-scarp {
+    height: 130px;
+    bottom: -90px;
+  }
+  body[data-pageid="qiddiya-city-assest-page"] .scarp-container .purple-mix-scarp {
+    height: 114px;
+    bottom: -105px;
+  }
+  body[data-pageid="press-room-page"] .scarp-container .gold-scarp {
+    height: 175px;
+    bottom: -110px;
+    margin-right: -67px;
+  }
+  body[data-pageid="training-programmes-page"] .scarp-container .press-gold-scarp {
+    height: 154px;
+    top: -46px;
+  }
+  body[data-pageid="qiddiya-city-page"] .scarp-container .overview-scarp {
+    height: 160px;
+    top: -68px;
+  }
+}
