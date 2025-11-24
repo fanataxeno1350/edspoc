@@ -5,7 +5,7 @@ export default function decorate(block) {
   // 1. Create the main outer wrapper based on the HTML structure
   const cardListCmp = document.createElement('div');
   cardListCmp.className = 'card-list-cmp-card-list parallax-child';
-  moveInstrumentation(block, cardListCmp);
+  moveInstrumentation(block, cardListCmp); // Transfer block instrumentation to the new outer element
 
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'card-list-cmp-card-list__content';
@@ -13,7 +13,7 @@ export default function decorate(block) {
 
   // The first row of the block typically contains the main 'Card-List' model's fields
   const blockChildren = [...block.children];
-  const cardListRow = blockChildren[0];
+  const cardListRow = blockChildren[0]; // Access the first row for cardList model fields
 
   // --- Process CardList Heading and CTA (if the first row exists) ---
   if (cardListRow) {
@@ -38,7 +38,7 @@ export default function decorate(block) {
       headingTitle.setAttribute('tabindex', '0');
       // 'heading' is richtext, so use innerHTML
       headingTitle.innerHTML = headingCell.innerHTML.trim();
-      moveInstrumentation(headingCell, headingTitle);
+      moveInstrumentation(headingCell, headingTitle); // Transfer instrumentation from original cell to new title div
       headingWrapper.append(headingTitle);
       topContent.append(headingWrapper);
     }
@@ -48,26 +48,44 @@ export default function decorate(block) {
     if (ctaCell) {
       const ctaWrapper = document.createElement('div');
       ctaWrapper.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
-      const ctaLink = ctaCell.querySelector('a');
+      const ctaLink = ctaCell.querySelector('a'); // Original <a> element within the cell
       if (ctaLink) {
-        const newCta = document.createElement('a');
-        newCta.href = ctaLink.href;
-        newCta.className = 'card-list-cta card-list-cta__primary';
-        newCta.setAttribute('target', '_self');
-        // Use existing aria-label or fallback to textContent
-        newCta.setAttribute('aria-label', ctaLink.getAttribute('aria-label') || ctaLink.textContent.trim());
-        newCta.setAttribute('data-palette', 'palette-1');
-        moveInstrumentation(ctaLink, newCta);
+        const newCta = document.createElement('a'); // New <a> element
+        newCta.href = ctaLink.href; // Copy href property
+        newCta.className = ctaLink.className; // Copy all classes
+        // Copy specific attributes if they exist on the original link
+        ['target', 'aria-label', 'data-palette'].forEach(attr => {
+            if (ctaLink.hasAttribute(attr)) {
+                newCta.setAttribute(attr, ctaLink.getAttribute(attr));
+            }
+        });
+        moveInstrumentation(ctaLink, newCta); // Transfer instrumentation from original anchor to new anchor
 
-        const iconSpan = document.createElement('span');
-        iconSpan.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
-        iconSpan.setAttribute('aria-hidden', 'true');
-        newCta.append(iconSpan);
+        // Recreate icon span, copying its classes and attributes
+        const originalIconSpan = ctaLink.querySelector('.card-list-cta__icon');
+        if (originalIconSpan) {
+            const iconSpan = document.createElement('span');
+            iconSpan.className = originalIconSpan.className;
+            if (originalIconSpan.hasAttribute('aria-hidden')) {
+                iconSpan.setAttribute('aria-hidden', originalIconSpan.getAttribute('aria-hidden'));
+            }
+            newCta.append(iconSpan);
+        }
 
-        const labelSpan = document.createElement('span');
-        labelSpan.className = 'card-list-cta__label';
-        labelSpan.textContent = ctaLink.textContent.trim();
-        newCta.append(labelSpan);
+        // Recreate label span, copying its classes and text content
+        const originalLabelSpan = ctaLink.querySelector('.card-list-cta__label');
+        if (originalLabelSpan) {
+            const labelSpan = document.createElement('span');
+            labelSpan.className = originalLabelSpan.className;
+            labelSpan.textContent = originalLabelSpan.textContent.trim();
+            newCta.append(labelSpan);
+        } else {
+            // Fallback: If the specific label span is not found, take the text content directly from the link
+            const labelSpan = document.createElement('span');
+            labelSpan.className = 'card-list-cta__label'; // Apply default class as per HTML
+            labelSpan.textContent = ctaLink.textContent.trim(); // Use full link text as fallback
+            newCta.append(labelSpan);
+        }
 
         ctaWrapper.append(newCta);
       }
@@ -81,6 +99,7 @@ export default function decorate(block) {
   contentWrapper.append(cardItemsWrapper);
 
   // Loop through the remaining rows for 'card' items (skipping the first row if it contained cardList data)
+  // If cardListRow exists, start from the second row (index 1); otherwise, start from the first row (index 0).
   const startIndex = cardListRow ? 1 : 0;
   blockChildren.slice(startIndex).forEach((row, index) => {
     const cardItem = document.createElement('div');
@@ -91,10 +110,10 @@ export default function decorate(block) {
 
     // Calculate data-slide-delay and transition-delay based on index
     const delayMs = index * 100;
-    cardItem.setAttribute('data-slide-delay', String(delayMs).padStart(3, '0'));
-    cardItem.style.transitionDelay = `${delayMs / 1000}s`;
+    cardItem.setAttribute('data-slide-delay', String(delayMs).padStart(3, '0')); // Formats to '000', '100', '200'
+    cardItem.style.transitionDelay = `${delayMs / 1000}s`; // Formats to '0s', '0.1s', '0.2s'
 
-    moveInstrumentation(row, cardItem);
+    moveInstrumentation(row, cardItem); // Transfer editor instrumentation from the original row
 
     const cells = [...row.children];
 
@@ -107,7 +126,7 @@ export default function decorate(block) {
         const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
         const newImg = optimizedPic.querySelector('img');
         if (newImg) {
-            moveInstrumentation(img, newImg); // Transfer instrumentation from original img
+            moveInstrumentation(img, newImg); // Transfer instrumentation from original img to new img
             newImg.className = 'card-list-cmp-card-list__content__card-item__image';
         }
         cardItem.append(optimizedPic);
@@ -128,7 +147,7 @@ export default function decorate(block) {
       titleDiv.className = 'card-list-cmp-card-list__content__card-item-content__title';
       titleDiv.setAttribute('aria-hidden', 'false');
       titleDiv.textContent = titleCell.textContent.trim();
-      moveInstrumentation(titleCell, titleDiv);
+      moveInstrumentation(titleCell, titleDiv); // Transfer instrumentation from original cell to new title div
       titleWrapper.append(titleDiv);
       cardItemContent.append(titleWrapper);
     }
@@ -139,11 +158,14 @@ export default function decorate(block) {
       const descriptionDiv = document.createElement('div');
       descriptionDiv.className = 'card-list-cmp-card-list__content__card-item-content__description';
       descriptionDiv.setAttribute('tabindex', '0');
-      // 'description' is richtext, so use innerHTML for content and aria-label
+
+      // The authored HTML for the description div has an aria-label attribute whose value is richtext (contains <p> tag).
+      // The descriptionCell.innerHTML.trim() contains this full richtext content.
+      // We apply this content directly as the aria-label value and innerHTML.
       descriptionDiv.setAttribute('aria-label', descriptionCell.innerHTML.trim());
-      descriptionDiv.setAttribute('aria-hidden', 'false');
+      descriptionDiv.setAttribute('aria-hidden', 'false'); // Fixed attribute from HTML
       descriptionDiv.innerHTML = descriptionCell.innerHTML.trim();
-      moveInstrumentation(descriptionCell, descriptionDiv);
+      moveInstrumentation(descriptionCell, descriptionDiv); // Transfer instrumentation from original cell to new description div
       cardItemContent.append(descriptionDiv);
     }
 
