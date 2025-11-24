@@ -58,7 +58,9 @@
         "scarp",
         "statsByTheNumber",
         "footer",
-        "scarpComponent"
+        "scarpComponent",
+        "header",
+        "textAndMediaSection"
       ]
     }
   ]

@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Stats-by-the-number",
+      "title": "Stats-By-The-Number",
       "id": "statsByTheNumber",
       "plugins": {
         "xwalk": {
@@ -10,22 +10,22 @@
             "template": {
               "filter": "statsByTheNumber",
               "model": "statsByTheNumber",
-              "name": "Stats-by-the-number"
+              "name": "Stats-By-The-Number"
             }
           }
         }
       }
     },
     {
-      "title": "Stats-by-the-number-card",
-      "id": "statsByTheNumberCard",
+      "title": "Stats-Card",
+      "id": "statsCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "statsByTheNumberCard",
-              "name": "Stats-by-the-number-card"
+              "model": "statsCard",
+              "name": "Stats-Card"
             }
           }
         }
@@ -34,20 +34,8 @@
   ],
   "models": [
     {
-      "id": "statsByTheNumberCard",
+      "id": "statsCard",
       "fields": [
-        {
-          "component": "richtext",
-          "label": "Number",
-          "name": "number",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Description",
-          "name": "description",
-          "valueType": "string"
-        },
         {
           "component": "reference",
           "label": "Hover Image",
@@ -58,6 +46,18 @@
           "component": "richtext",
           "label": "Hover Details",
           "name": "hoverDetails",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Number",
+          "name": "number",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Description",
+          "name": "description",
           "valueType": "string"
         }
       ]
@@ -85,23 +85,20 @@
         },
         {
           "component": "container",
-          "item": {
-            "type": "statsByTheNumberCard"
-          },
-          "label": "Stats Cards",
-          "name": "cards",
-          "valueType": "array"
+          "itemResourceType": "statsCard",
+          "label": "Cards",
+          "name": "cards"
+        },
+        {
+          "component": "aem-tag",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "valueType": "string"
         },
         {
           "component": "text",
           "label": "CTA Label",
           "name": "ctaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "CTA URL",
-          "name": "ctaUrl",
           "valueType": "string"
         }
       ]
@@ -111,7 +108,7 @@
     {
       "id": "statsByTheNumber",
       "components": [
-        "statsByTheNumberCard"
+        "statsCard"
       ]
     }
   ]

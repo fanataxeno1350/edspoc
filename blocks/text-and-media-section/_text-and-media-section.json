@@ -1,16 +1,16 @@
 {
   "definitions": [
     {
-      "title": "Hero-Full-Width",
-      "id": "heroFullWidth",
+      "title": "Text-and-Media-Section",
+      "id": "textAndMediaSection",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "heroFullWidth",
-              "model": "heroFullWidth",
-              "name": "Hero-Full-Width"
+              "filter": "textAndMediaSection",
+              "model": "textAndMediaSection",
+              "name": "Text-and-Media-Section"
             }
           }
         }
@@ -19,12 +19,12 @@
   ],
   "models": [
     {
-      "id": "heroFullWidth",
+      "id": "textAndMediaSection",
       "fields": [
         {
           "component": "reference",
-          "label": "Background Video",
-          "name": "backgroundVideo",
+          "label": "Image",
+          "name": "image",
           "valueType": "string"
         },
         {
@@ -41,26 +41,14 @@
         },
         {
           "component": "text",
-          "label": "Primary CTA Label",
-          "name": "primaryCtaLabel",
+          "label": "CTA Label",
+          "name": "ctaLabel",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Primary CTA Link",
-          "name": "primaryCtaLink",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Secondary CTA Label",
-          "name": "secondaryCtaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Secondary CTA Link",
-          "name": "secondaryCtaLink",
+          "label": "CTA Link",
+          "name": "ctaLink",
           "valueType": "string"
         }
       ]
@@ -68,9 +56,9 @@
   ],
   "filters": [
     {
-      "id": "heroFullWidth",
+      "id": "text-and-media-section",
       "components": [
-        "heroFullWidth"
+        "textAndMediaSection"
       ]
     }
   ]

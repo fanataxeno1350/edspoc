@@ -28,6 +28,12 @@
           "valueType": "string"
         },
         {
+          "component": "text",
+          "label": "Background Poster Alt",
+          "name": "backgroundPosterAlt",
+          "valueType": "string"
+        },
+        {
           "component": "richtext",
           "label": "Title",
           "name": "title",
@@ -47,8 +53,8 @@
         },
         {
           "component": "text",
-          "label": "Primary CTA Link",
-          "name": "primaryCtaLink",
+          "label": "Primary CTA URL",
+          "name": "primaryCtaUrl",
           "valueType": "string"
         },
         {
@@ -59,8 +65,8 @@
         },
         {
           "component": "text",
-          "label": "Secondary CTA Link",
-          "name": "secondaryCtaLink",
+          "label": "Secondary CTA URL",
+          "name": "secondaryCtaUrl",
           "valueType": "string"
         }
       ]

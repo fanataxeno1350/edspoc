@@ -206,21 +206,6 @@
           }
         },
         {
-          "title": "Footer Navigation Link",
-          "id": "footerNavLink",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "footerNavLink",
-                  "name": "Footer Navigation Link"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Footer Social Link",
           "id": "footerSocialLink",
           "plugins": {
@@ -230,6 +215,21 @@
                 "template": {
                   "model": "footerSocialLink",
                   "name": "Footer Social Link"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Navigation Link",
+          "id": "footerNavigationLink",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "footerNavigationLink",
+                  "name": "Footer Navigation Link"
                 }
               }
             }
@@ -388,6 +388,67 @@
           }
         },
         {
+          "title": "Header",
+          "id": "header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "header",
+                  "model": "header",
+                  "name": "Header"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav-Menu",
+          "id": "navMenu",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "navMenu",
+                  "name": "Nav-Menu"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Submenu-Item",
+          "id": "submenuItem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "submenuItem",
+                  "name": "Submenu-Item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Language",
+          "id": "language",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "language",
+                  "name": "Language"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero-Full-Width",
           "id": "heroFullWidth",
           "plugins": {
@@ -467,6 +528,22 @@
           }
         },
         {
+          "title": "Scarp-Component",
+          "id": "scarpComponent",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "scarpComponent",
+                  "model": "scarpComponent",
+                  "name": "Scarp-Component"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Scarp",
           "id": "scarp",
           "plugins": {
@@ -499,7 +576,7 @@
           }
         },
         {
-          "title": "Stats-By-The-Number",
+          "title": "Stats-by-the-number",
           "id": "statsByTheNumber",
           "plugins": {
             "xwalk": {
@@ -508,22 +585,22 @@
                 "template": {
                   "filter": "statsByTheNumber",
                   "model": "statsByTheNumber",
-                  "name": "Stats-By-The-Number"
+                  "name": "Stats-by-the-number"
                 }
               }
             }
           }
         },
         {
-          "title": "Stats-Card",
-          "id": "statsCard",
+          "title": "Stats-by-the-number-card",
+          "id": "statsByTheNumberCard",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "statsCard",
-                  "name": "Stats-Card"
+                  "model": "statsByTheNumberCard",
+                  "name": "Stats-by-the-number-card"
                 }
               }
             }
@@ -555,6 +632,22 @@
                 "template": {
                   "model": "statCard",
                   "name": "Stat-Card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Text-and-Media-Section",
+          "id": "textAndMediaSection",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "textAndMediaSection",
+                  "model": "textAndMediaSection",
+                  "name": "Text-and-Media-Section"
                 }
               }
             }

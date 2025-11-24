@@ -38,10 +38,7 @@
   ],
   "filters": [
     {
-      "id": "mediaComponent",
-      "components": [
-        "mediaComponent"
-      ]
+      "id": "mediaComponent"
     }
   ]
 }

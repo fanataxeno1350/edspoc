@@ -44,22 +44,15 @@
         },
         {
           "component": "aem-tag",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Label",
-              "name": "label",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Href",
-              "name": "href",
-              "valueType": "string"
-            }
-          ],
-          "label": "CTA",
-          "name": "cta"
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA Label",
+          "name": "ctaLabel",
+          "valueType": "string"
         }
       ]
     },
