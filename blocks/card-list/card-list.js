@@ -2,144 +2,144 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const mainDiv = document.createElement('div');
-  mainDiv.classList.add('card-list-cmp-card-list', 'parallax-child');
+  // 1. Create the main outer wrapper based on the HTML structure
+  const cardListCmp = document.createElement('div');
+  cardListCmp.className = 'card-list-cmp-card-list parallax-child';
+  moveInstrumentation(block, cardListCmp); // Transfer block instrumentation to the new outer element
 
-  const contentDiv = document.createElement('div');
-  contentDiv.classList.add('card-list-cmp-card-list__content');
+  const contentWrapper = document.createElement('div');
+  contentWrapper.className = 'card-list-cmp-card-list__content';
+  cardListCmp.append(contentWrapper);
 
-  const slideWrapDiv = document.createElement('div');
-  slideWrapDiv.classList.add('card-list-slide-wrap');
+  // The first row of the block contains the main 'Card-List' model's fields
+  const cardListRow = block.children[0];
+  const cardListCells = [...cardListRow.children];
 
-  const topContentDiv = document.createElement('div');
-  topContentDiv.classList.add('card-list-cmp-card-list__content__top', 'card-list-slide-up');
-  topContentDiv.setAttribute('data-slide-type', 'slide-up');
+  // --- Process CardList Heading and CTA --- 
+  const slideWrap = document.createElement('div');
+  slideWrap.className = 'card-list-slide-wrap';
+  const topContent = document.createElement('div');
+  topContent.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
+  topContent.setAttribute('data-slide-type', 'slide-up');
+  slideWrap.append(topContent);
+  contentWrapper.append(slideWrap);
 
-  const headingWrapperDiv = document.createElement('div');
-  headingWrapperDiv.classList.add('card-list-cmp-card-list__content__heading', 'is-visible');
-
-  const headingTitleDiv = document.createElement('div');
-  headingTitleDiv.id = 'card-list-heading';
-  headingTitleDiv.classList.add('card-list-cmp-card-list__content__heading__title');
-  headingTitleDiv.setAttribute('tabindex', '0');
-
-  const ctaWrapperDiv = document.createElement('div');
-  ctaWrapperDiv.classList.add('card-list-cmp-card-list__content__cta-wrapper', 'is-visible');
-
-  const itemsDiv = document.createElement('div');
-  itemsDiv.classList.add('card-list-cmp-card-list__content__items');
-
-  // Process the first row for heading and CTA
-  const firstRow = block.children[0];
-  if (firstRow) {
-    moveInstrumentation(firstRow, topContentDiv);
-    const cells = [...firstRow.children];
-
-    // Heading
-    const headingCell = cells[0];
-    if (headingCell) {
-      const heading = headingCell.querySelector('h1, h2, h3, h4, h5, h6');
-      if (heading) {
-        headingTitleDiv.append(heading);
-        headingWrapperDiv.append(headingTitleDiv);
-        topContentDiv.append(headingWrapperDiv);
-      }
-    }
-
-    // CTA
-    const ctaCell = cells[1];
-    if (ctaCell) {
-      const link = ctaCell.querySelector('a');
-      if (link) {
-        const newLink = document.createElement('a');
-        newLink.href = link.href;
-        newLink.classList.add('card-list-cta', 'card-list-cta__primary');
-        newLink.setAttribute('target', link.target || '_self');
-        newLink.setAttribute('aria-label', link.getAttribute('aria-label') || link.textContent);
-        newLink.setAttribute('data-palette', 'palette-1');
-
-        const iconSpan = document.createElement('span');
-        iconSpan.classList.add('card-list-cta__icon', 'qd-icon', 'qd-icon--cheveron-right');
-        iconSpan.setAttribute('aria-hidden', 'true');
-        newLink.append(iconSpan);
-
-        const labelSpan = document.createElement('span');
-        labelSpan.classList.add('card-list-cta__label');
-        labelSpan.textContent = link.textContent;
-        newLink.append(labelSpan);
-
-        ctaWrapperDiv.append(newLink);
-        topContentDiv.append(ctaWrapperDiv);
-      }
-    }
+  // Heading (from the first cell of the first row)
+  const headingCell = cardListCells[0];
+  if (headingCell) {
+    const headingWrapper = document.createElement('div');
+    headingWrapper.className = 'card-list-cmp-card-list__content__heading is-visible';
+    const headingTitle = document.createElement('div');
+    headingTitle.id = 'card-list-heading';
+    headingTitle.className = 'card-list-cmp-card-list__content__heading__title';
+    headingTitle.setAttribute('tabindex', '0');
+    // 'heading' is richtext, so use innerHTML
+    headingTitle.innerHTML = headingCell.innerHTML.trim();
+    headingWrapper.append(headingTitle);
+    topContent.append(headingWrapper);
   }
 
-  slideWrapDiv.append(topContentDiv);
-  contentDiv.append(slideWrapDiv);
+  // CTA (from the second cell of the first row)
+  const ctaCell = cardListCells[1];
+  if (ctaCell) {
+    const ctaWrapper = document.createElement('div');
+    ctaWrapper.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
+    const ctaLink = ctaCell.querySelector('a');
+    if (ctaLink) {
+      const newCta = document.createElement('a');
+      newCta.href = ctaLink.href;
+      newCta.className = 'card-list-cta card-list-cta__primary';
+      newCta.setAttribute('target', '_self');
+      // Use existing aria-label or fallback to textContent
+      newCta.setAttribute('aria-label', ctaLink.getAttribute('aria-label') || ctaLink.textContent.trim());
+      newCta.setAttribute('data-palette', 'palette-1');
 
-  // Process subsequent rows for card items
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
+      iconSpan.setAttribute('aria-hidden', 'true');
+      newCta.append(iconSpan);
+
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'card-list-cta__label';
+      labelSpan.textContent = ctaLink.textContent.trim();
+      newCta.append(labelSpan);
+
+      ctaWrapper.append(newCta);
+    }
+    topContent.append(ctaWrapper);
+  }
+
+  // --- Process Card Items --- 
+  const cardItemsWrapper = document.createElement('div');
+  cardItemsWrapper.className = 'card-list-cmp-card-list__content__items';
+  contentWrapper.append(cardItemsWrapper);
+
+  // Loop through the remaining rows for 'card' items (skipping the first row which is cardList data)
   [...block.children].slice(1).forEach((row, index) => {
-    const cardItemDiv = document.createElement('div');
-    cardItemDiv.classList.add('card-list-cmp-card-list__content__card-item', 'is-visible', 'card-list-slide-up');
-    cardItemDiv.setAttribute('data-animation', 'card');
-    cardItemDiv.setAttribute('data-slide-type', 'slide-up');
-    cardItemDiv.setAttribute('data-slide-no-wrap', '');
-    cardItemDiv.setAttribute('data-slide-delay', `${index * 100}`);
-    cardItemDiv.style.transitionDelay = `${index * 0.2}s`;
-    moveInstrumentation(row, cardItemDiv);
+    const cardItem = document.createElement('div');
+    cardItem.className = 'card-list-cmp-card-list__content__card-item is-visible card-list-slide-up';
+    cardItem.setAttribute('data-animation', 'card');
+    cardItem.setAttribute('data-slide-type', 'slide-up');
+    cardItem.setAttribute('data-slide-no-wrap', '');
+
+    // Calculate data-slide-delay and transition-delay based on index
+    const delayMs = index * 100;
+    cardItem.setAttribute('data-slide-delay', String(delayMs).padStart(3, '0'));
+    cardItem.style.transitionDelay = `${delayMs / 1000}s`;
+
+    moveInstrumentation(row, cardItem); // Transfer editor instrumentation from the original row
 
     const cells = [...row.children];
 
-    // Image
+    // Image (first cell of the card row)
     const imageCell = cells[0];
     if (imageCell) {
       const img = imageCell.querySelector('img');
       if (img) {
-        const picture = createOptimizedPicture(img.src, img.alt);
-        picture.querySelector('img').classList.add('card-list-cmp-card-list__content__card-item__image');
-        picture.querySelector('img').setAttribute('loading', 'lazy');
-        moveInstrumentation(img, picture.querySelector('img'));
-        cardItemDiv.append(picture);
+        // createOptimizedPicture handles picture and img tags, and lazy loading.
+        const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+        moveInstrumentation(img, optimizedPic.querySelector('img')); // Transfer instrumentation from original img
+        optimizedPic.querySelector('img').className = 'card-list-cmp-card-list__content__card-item__image';
+        cardItem.append(optimizedPic);
       }
     }
 
-    const cardContentDiv = document.createElement('div');
-    cardContentDiv.classList.add('card-list-cmp-card-list__content__card-item-content');
+    // Card Item Content wrapper
+    const cardItemContent = document.createElement('div');
+    cardItemContent.className = 'card-list-cmp-card-list__content__card-item-content';
 
-    // Title
+    // Title (second cell of the card row)
     const titleCell = cells[1];
     if (titleCell) {
-      const headingWrapper = document.createElement('div');
-      headingWrapper.classList.add('card-list-cmp-card-list__content__card-item-content__heading-wrapper');
-      headingWrapper.setAttribute('tabindex', '0');
-
+      const titleWrapper = document.createElement('div');
+      titleWrapper.className = 'card-list-cmp-card-list__content__card-item-content__heading-wrapper';
+      titleWrapper.setAttribute('tabindex', '0');
       const titleDiv = document.createElement('div');
-      titleDiv.classList.add('card-list-cmp-card-list__content__card-item-content__title');
+      titleDiv.className = 'card-list-cmp-card-list__content__card-item-content__title';
       titleDiv.setAttribute('aria-hidden', 'false');
-      titleDiv.innerHTML = titleCell.innerHTML;
-      headingWrapper.append(titleDiv);
-      cardContentDiv.append(headingWrapper);
+      titleDiv.textContent = titleCell.textContent.trim();
+      titleWrapper.append(titleDiv);
+      cardItemContent.append(titleWrapper);
     }
 
-    // Description
+    // Description (third cell of the card row)
     const descriptionCell = cells[2];
     if (descriptionCell) {
       const descriptionDiv = document.createElement('div');
-      descriptionDiv.classList.add('card-list-cmp-card-list__content__card-item-content__description');
+      descriptionDiv.className = 'card-list-cmp-card-list__content__card-item-content__description';
       descriptionDiv.setAttribute('tabindex', '0');
-      descriptionDiv.setAttribute('aria-label', descriptionCell.innerHTML);
+      // 'description' is richtext, so use innerHTML for content and aria-label
+      descriptionDiv.setAttribute('aria-label', descriptionCell.innerHTML.trim());
       descriptionDiv.setAttribute('aria-hidden', 'false');
-      descriptionDiv.innerHTML = descriptionCell.innerHTML;
-      cardContentDiv.append(descriptionDiv);
+      descriptionDiv.innerHTML = descriptionCell.innerHTML.trim();
+      cardItemContent.append(descriptionDiv);
     }
 
-    cardItemDiv.append(cardContentDiv);
-    itemsDiv.append(cardItemDiv);
+    cardItem.append(cardItemContent);
+    cardItemsWrapper.append(cardItem);
   });
 
-  contentDiv.append(itemsDiv);
-  mainDiv.append(contentDiv);
-
+  // 7. Clear the original block content and append the newly created structure
   block.textContent = '';
-  block.append(mainDiv);
+  block.append(cardListCmp);
 }
