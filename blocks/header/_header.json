@@ -1,0 +1,177 @@
+{
+  "definitions": [
+    {
+      "title": "Header",
+      "id": "header",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "header",
+              "model": "header",
+              "name": "Header"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "NavMenu",
+      "id": "navMenu",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "navMenu",
+              "name": "NavMenu"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "NavSubMenuItem",
+      "id": "navSubMenuItem",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "navSubMenuItem",
+              "name": "NavSubMenuItem"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "LanguageOption",
+      "id": "languageOption",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "languageOption",
+              "name": "LanguageOption"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "header",
+      "fields": [
+        {
+          "component": "aem-tag",
+          "label": "Logo Link",
+          "name": "logoLink",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "Contact Us Link",
+          "name": "contactUsLink",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "item": {
+            "type": "navMenu"
+          },
+          "label": "Navigation Menus",
+          "name": "navMenus",
+          "valueType": "array"
+        },
+        {
+          "component": "container",
+          "item": {
+            "type": "languageOption"
+          },
+          "label": "Language Options",
+          "name": "languageOptions",
+          "valueType": "array"
+        }
+      ]
+    },
+    {
+      "id": "navMenu",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Menu Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "Menu Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "item": {
+            "type": "navSubMenuItem"
+          },
+          "label": "Sub Menu Items",
+          "name": "subMenuItems",
+          "valueType": "array"
+        }
+      ]
+    },
+    {
+      "id": "navSubMenuItem",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Sub Menu Item Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "Sub Menu Item Link",
+          "name": "link",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "languageOption",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Language Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "Language Link",
+          "name": "link",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "header",
+      "components": [
+        "navMenu",
+        "languageOption"
+      ]
+    },
+    {
+      "id": "navMenu",
+      "components": [
+        "navSubMenuItem"
+      ]
+    }
+  ]
+}

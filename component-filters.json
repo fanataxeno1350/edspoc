@@ -79,6 +79,19 @@
     ]
   },
   {
+    "id": "header",
+    "components": [
+      "navMenu",
+      "languageOption"
+    ]
+  },
+  {
+    "id": "navMenu",
+    "components": [
+      "navSubMenuItem"
+    ]
+  },
+  {
     "id": "heroFullWidth",
     "components": [
       "heroFullWidth"
@@ -97,9 +110,15 @@
     ]
   },
   {
+    "id": "scarp",
+    "components": [
+      "scarp"
+    ]
+  },
+  {
     "id": "statsByTheNumbers",
     "components": [
-      "statsCard"
+      "statCard"
     ]
   },
   {

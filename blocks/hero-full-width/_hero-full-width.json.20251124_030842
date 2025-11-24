@@ -29,12 +29,6 @@
         },
         {
           "component": "text",
-          "label": "Background Video Type",
-          "name": "backgroundVideoType",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -46,35 +40,28 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Primary CTA Label",
-              "name": "ctaLabel1",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Primary CTA URL",
-              "name": "ctaUrl1",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Secondary CTA Label",
-              "name": "ctaLabel2",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Secondary CTA URL",
-              "name": "ctaUrl2",
-              "valueType": "string"
-            }
-          ],
-          "label": "CTAs",
-          "name": "ctas"
+          "component": "text",
+          "label": "Primary CTA Label",
+          "name": "primaryCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Primary CTA Href",
+          "name": "primaryCtaHref",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Label",
+          "name": "secondaryCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Href",
+          "name": "secondaryCtaHref",
+          "valueType": "string"
         }
       ]
     }

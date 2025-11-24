@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Stats By The Numbers",
+      "title": "Stats-By-The-Numbers",
       "id": "statsByTheNumbers",
       "plugins": {
         "xwalk": {
@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Stat Card",
-      "id": "statCard",
+      "title": "Stats-Card",
+      "id": "statsCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "statCard",
-              "name": "Stat Card"
+              "model": "statsCard",
+              "name": "Stats-Card"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
     {
-      "id": "statCard",
+      "id": "statsCard",
       "fields": [
         {
           "component": "text",
@@ -43,7 +43,7 @@
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Description",
           "name": "description",
           "valueType": "string"
@@ -66,7 +66,7 @@
       "id": "statsByTheNumbers",
       "fields": [
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -79,15 +79,18 @@
         },
         {
           "component": "richtext",
-          "label": "Main Description",
+          "label": "Description",
           "name": "description",
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "CTA URL",
-          "name": "ctaUrl",
-          "valueType": "string"
+          "component": "container",
+          "items": {
+            "type": "statsCard"
+          },
+          "label": "Cards",
+          "name": "cards",
+          "valueType": "array"
         },
         {
           "component": "text",
@@ -96,16 +99,10 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "items": {
-            "component": "reference",
-            "label": "Stat Card Reference",
-            "name": "statCard",
-            "valueType": "string"
-          },
-          "label": "Stat Cards",
-          "name": "statCards",
-          "valueType": "array"
+          "component": "reference",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "valueType": "string"
         }
       ]
     }
@@ -114,7 +111,7 @@
     {
       "id": "statsByTheNumbers",
       "components": [
-        "statCard"
+        "statsCard"
       ]
     }
   ]
