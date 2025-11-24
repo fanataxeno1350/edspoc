@@ -11,15 +11,14 @@ export default function decorate(block) {
   contentWrapper.className = 'card-list-cmp-card-list__content';
   cardListCmp.append(contentWrapper);
 
-  // The first row of the block contains the main 'Card-List' model's fields
-  // Ensure we handle cases where the first row might not exist or is empty
+  // The first row of the block typically contains the main 'Card-List' model's fields
   const blockChildren = [...block.children];
-  const cardListRow = blockChildren[0]; // Access the first row for cardList model fields
+  const cardListRow = blockChildren[0];
 
+  // --- Process CardList Heading and CTA (if the first row exists) ---
   if (cardListRow) {
     const cardListCells = [...cardListRow.children];
 
-    // --- Process CardList Heading and CTA --- 
     const slideWrap = document.createElement('div');
     slideWrap.className = 'card-list-slide-wrap';
     const topContent = document.createElement('div');
@@ -39,6 +38,7 @@ export default function decorate(block) {
       headingTitle.setAttribute('tabindex', '0');
       // 'heading' is richtext, so use innerHTML
       headingTitle.innerHTML = headingCell.innerHTML.trim();
+      moveInstrumentation(headingCell, headingTitle);
       headingWrapper.append(headingTitle);
       topContent.append(headingWrapper);
     }
@@ -80,8 +80,7 @@ export default function decorate(block) {
   cardItemsWrapper.className = 'card-list-cmp-card-list__content__items';
   contentWrapper.append(cardItemsWrapper);
 
-  // Loop through the remaining rows for 'card' items (skipping the first row which is cardList data)
-  // If cardListRow exists, start from the second row; otherwise, start from the first row.
+  // Loop through the remaining rows for 'card' items (skipping the first row if it contained cardList data)
   const startIndex = cardListRow ? 1 : 0;
   blockChildren.slice(startIndex).forEach((row, index) => {
     const cardItem = document.createElement('div');
@@ -95,7 +94,7 @@ export default function decorate(block) {
     cardItem.setAttribute('data-slide-delay', String(delayMs).padStart(3, '0'));
     cardItem.style.transitionDelay = `${delayMs / 1000}s`;
 
-    moveInstrumentation(row, cardItem); // Transfer editor instrumentation from the original row
+    moveInstrumentation(row, cardItem);
 
     const cells = [...row.children];
 
@@ -129,6 +128,7 @@ export default function decorate(block) {
       titleDiv.className = 'card-list-cmp-card-list__content__card-item-content__title';
       titleDiv.setAttribute('aria-hidden', 'false');
       titleDiv.textContent = titleCell.textContent.trim();
+      moveInstrumentation(titleCell, titleDiv);
       titleWrapper.append(titleDiv);
       cardItemContent.append(titleWrapper);
     }
@@ -143,6 +143,7 @@ export default function decorate(block) {
       descriptionDiv.setAttribute('aria-label', descriptionCell.innerHTML.trim());
       descriptionDiv.setAttribute('aria-hidden', 'false');
       descriptionDiv.innerHTML = descriptionCell.innerHTML.trim();
+      moveInstrumentation(descriptionCell, descriptionDiv);
       cardItemContent.append(descriptionDiv);
     }
 
