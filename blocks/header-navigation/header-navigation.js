@@ -1,378 +1,352 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function createHeaderQdIcon(className) {
-  const span = document.createElement('span');
-  span.className = `header-qd-icon ${className}`;
-  for (let i = 1; i <= 25; i += 1) {
-    span.append(document.createElement('span'));
+export default function decorate(block) {
+  // The 'block' element itself is the top-level 'header-container' div.
+  // We first extract all necessary data and non-modeled DOM structures from its current children.
+
+  const headerData = {};
+  // Store original elements for instrumentation transfer and cloning complex, non-modeled structures.
+  const originalElements = {}; 
+
+  // --- Data Extraction & Original Element Storage ---
+
+  // Logo Link and Content
+  const originalLogoAnchor = block.querySelector('.navigation-wrapper__logo > a');
+  if (originalLogoAnchor) {
+    headerData.logoLink = originalLogoAnchor.href;
+    headerData.logoContent = originalLogoAnchor.innerHTML; // Preserve complex SVG-like span structure
+    originalElements.logoAnchor = originalLogoAnchor;
   }
-  return span;
-}
 
-function createHeaderCta(link, label, ariaLabel) {
-  const a = document.createElement('a');
-  a.href = link;
-  a.className = 'header-cta header-cta__ navigation--content__cta';
-  a.target = '_self';
-  a.setAttribute('aria-label', ariaLabel);
+  // Contact Us Link and Label (from the first instance found, typically the mobile/top-level one)
+  const originalContactUsCta = block.querySelector('.navigation-wrapper__contactUs-cta > a');
+  if (originalContactUsCta) {
+    headerData.contactUsLink = originalContactUsCta.href;
+    headerData.contactUsLabel = originalContactUsCta.querySelector('.header-cta__label')?.textContent.trim() || '';
+    originalElements.contactUsCta = originalContactUsCta;
+  }
 
-  const iconSpan = document.createElement('span');
-  iconSpan.className = 'header-cta__icon header-qd-icon header-qd-icon--cheveron-right';
-  iconSpan.setAttribute('aria-hidden', 'true');
+  // Hamburger icon (not explicitly modeled but present in HTML, clone to preserve structure)
+  const originalHamburgerWrapper = block.querySelector('.navigation-wrapper__icon#navigation-toggle');
+  if (originalHamburgerWrapper) {
+    originalElements.hamburgerWrapper = originalHamburgerWrapper;
+    // Clone to preserve entire structure, including inner spans
+    originalElements.hamburgerCloned = originalHamburgerWrapper.cloneNode(true);
+  }
 
-  const labelSpan = document.createElement('span');
-  labelSpan.className = 'header-cta__label';
-  labelSpan.textContent = label;
+  // Nav Menus (desktop structure is typically the most complete for data extraction)
+  // This will be reused for 'mobileNavMenus' as per the authored HTML structure, as there are no distinct selectors for mobile.
+  headerData.navMenus = [];
+  block.querySelectorAll('.navigation-wrapper__navbar-list > li.navigation-wrapper__navbar-menu').forEach((menuLi, menuIndex) => {
+    const menuAnchor = menuLi.querySelector('.navigation-wrapper__navbar-menulink');
+    const menuLabelSpan = menuAnchor?.querySelector('span:not(.header-qd-icon-wrapper)'); // Exclude icon wrapper
+    const menu = {
+      label: menuLabelSpan?.textContent.trim() || '',
+      link: menuAnchor?.href || '',
+      submenus: [],
+    };
+    originalElements[`menuAnchor_${menuIndex}`] = menuAnchor;
 
-  a.append(iconSpan, labelSpan);
-  return a;
-}
-
-function createNavSubmenu(submenuData) {
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  a.setAttribute('aria-expanded', 'false');
-  a.target = '_self';
-  a.href = submenuData.link;
-  const span = document.createElement('span');
-  span.textContent = submenuData.label;
-  a.append(span);
-  li.append(a);
-  return li;
-}
-
-function createMobileNavSubmenu(submenuData) {
-  const li = document.createElement('li');
-  li.className = 'navigation-wrapper__mobilenavbar-menu';
-  const a = document.createElement('a');
-  a.className = 'navigation-wrapper__mobilenavbar-menulink';
-  a.target = '_self';
-  a.href = submenuData.link;
-  const span = document.createElement('span');
-  span.textContent = submenuData.label;
-  a.append(span);
-  li.append(a);
-  return li;
-}
-
-function createLanguageSelector(languagesData, isMobile = false) {
-  const headerLanguageSelector = document.createElement('div');
-  headerLanguageSelector.className = `header-language-selector header-lang-css-from-wrapper`;
-  headerLanguageSelector.style.visibility = 'visible';
-
-  const ul = document.createElement('ul');
-  ul.className = 'header-cmp-language-selector';
-
-  languagesData.forEach((lang, index) => {
-    const li = document.createElement('li');
-    if (index === 0) {
-      li.className = 'active';
-    }
-    const a = document.createElement('a');
-    a.href = lang.link;
-    a.setAttribute('aria-label', lang.label);
-    a.className = 'header-cmp-language-selector__link';
-    a.setAttribute('data-lang', lang.link.split('/').filter(Boolean).pop() || 'en'); // Simple logic for data-lang
-    a.textContent = lang.label;
-    li.append(a);
-    ul.append(li);
+    menuLi.querySelectorAll('.navigation-wrapper__navbar-submenu > li > a').forEach((submenuAnchor, subMenuIndex) => {
+      menu.submenus.push({
+        label: submenuAnchor.querySelector('span')?.textContent.trim() || '',
+        link: submenuAnchor.href || '',
+      });
+      originalElements[`submenuAnchor_${menuIndex}_${subMenuIndex}`] = submenuAnchor;
+    });
+    headerData.navMenus.push(menu);
   });
 
-  headerLanguageSelector.append(ul);
-  return headerLanguageSelector;
-}
-
-export default async function decorate(block) {
-  const headerNavigationData = {};
-
-  // Extract logoLink
-  const logoLinkEl = block.querySelector(':scope > div:first-child > div:first-child > div:first-child > div:first-child > div:first-child > a');
-  if (logoLinkEl) {
-    headerNavigationData.logoLink = logoLinkEl.href;
+  // Desktop Contact Us CTA (duplicate as per authored HTML structure, clone to preserve)
+  const desktopCtaLink = block.querySelector('nav#navbar-desktop > a.header-cta');
+  if (desktopCtaLink) {
+    originalElements.desktopCtaLink = desktopCtaLink;
+    originalElements.desktopCtaLinkCloned = desktopCtaLink.cloneNode(true);
   }
 
-  // Extract contactUsLink and contactUsLabel
-  const contactUsCtaEl = block.querySelector(':scope > div:first-child > div:first-child > div:first-child > div:first-child > div:nth-child(2) > a');
-  if (contactUsCtaEl) {
-    headerNavigationData.contactUsLink = contactUsCtaEl.href;
-    headerNavigationData.contactUsLabel = contactUsCtaEl.querySelector('.header-cta__label')?.textContent;
-  }
-
-  // Extract navMenus (desktop)
-  headerNavigationData.navMenus = [];
-  const desktopNavList = block.querySelector(':scope > div:first-child > div:first-child > div:first-child > nav.navigation-wrapper__navbar > ul.navigation-wrapper__navbar-list');
-  if (desktopNavList) {
-    Array.from(desktopNavList.children).forEach((menuLi) => {
-      const menuLinkEl = menuLi.querySelector(':scope > a');
-      if (menuLinkEl) {
-        const menu = {
-          label: menuLinkEl.querySelector('span:first-child')?.textContent,
-          link: menuLinkEl.href,
-          submenus: [],
-        };
-        const submenuUl = menuLi.querySelector(':scope > ul.navigation-wrapper__navbar-submenu');
-        if (submenuUl) {
-          Array.from(submenuUl.children).forEach((submenuLi) => {
-            const submenuLinkEl = submenuLi.querySelector(':scope > a');
-            if (submenuLinkEl) {
-              menu.submenus.push({
-                label: submenuLinkEl.querySelector('span')?.textContent,
-                link: submenuLinkEl.href,
-              });
-            }
-          });
-        }
-        headerNavigationData.navMenus.push(menu);
-      }
+  // Languages
+  headerData.languages = [];
+  block.querySelectorAll('.header-cmp-language-selector > li > a').forEach((langAnchor, langIndex) => {
+    headerData.languages.push({
+      label: langAnchor.textContent.trim(),
+      link: langAnchor.href,
+      isActive: langAnchor.parentElement.classList.contains('active'),
     });
+    originalElements[`langAnchor_${langIndex}`] = langAnchor;
+  });
+
+  // Mobile Nav Back button (not modeled, clone to preserve)
+  const originalMobileBack = block.querySelector('.navigation-wrapper__mobilenavbar-back.nav-back');
+  if (originalMobileBack) {
+    originalElements.mobileBack = originalMobileBack;
+    originalElements.mobileBackCloned = originalMobileBack.cloneNode(true);
   }
 
-  // Extract mobileNavMenus
-  headerNavigationData.mobileNavMenus = [];
-  const mobileNavList = block.querySelector(':scope > div:first-child > div:first-child > div:first-child > nav.navigation-wrapper__mobilenavbar > ul.navigation-wrapper__mobilenavbar-list');
-  if (mobileNavList) {
-    Array.from(mobileNavList.children).forEach((menuLi) => {
-      const menuLinkEl = menuLi.querySelector(':scope > a');
-      if (menuLinkEl) {
-        const menu = {
-          label: menuLinkEl.querySelector('span:first-child')?.textContent,
-          link: '', // Mobile parent links are not direct, but submenus are
-          submenus: [],
-        };
-        const submenuUl = menuLi.querySelector(':scope > ul.navigation-wrapper__mobilenavbar-submenu');
-        if (submenuUl) {
-          Array.from(submenuUl.children).forEach((submenuLi, index) => {
-            if (index === 0) return; // Skip the header
-            const submenuLinkEl = submenuLi.querySelector(':scope > a');
-            if (submenuLinkEl) {
-              menu.submenus.push({
-                label: submenuLinkEl.querySelector('span')?.textContent,
-                link: submenuLinkEl.href,
-              });
-            }
-          });
-        }
-        headerNavigationData.mobileNavMenus.push(menu);
-      }
-    });
-  }
 
-  // Extract languages
-  headerNavigationData.languages = [];
-  const languageSelectorUl = block.querySelector(':scope .header-cmp-language-selector');
-  if (languageSelectorUl) {
-    Array.from(languageSelectorUl.children).forEach((li) => {
-      const a = li.querySelector(':scope > a');
-      if (a) {
-        headerNavigationData.languages.push({
-          label: a.textContent,
-          link: a.href,
-        });
-      }
-    });
-  }
+  // --- DOM Reconstruction ---
 
-  // Rebuild the DOM
-  const headerContainer = document.createElement('div');
-  headerContainer.className = 'header-container';
-  moveInstrumentation(block.firstElementChild, headerContainer);
+  // Clear the original block content, but keep the block element itself (header-container)
+  // All new elements will be appended to this cleared block.
+  block.textContent = '';
 
+  // Recreate the direct children of the block (header-container)
   const headerWrapper = document.createElement('div');
   headerWrapper.className = 'header-wrapper layout-container transparent-header';
-  moveInstrumentation(block.firstElementChild.firstElementChild, headerWrapper);
+  block.append(headerWrapper);
 
   const headerNavigation = document.createElement('div');
   headerNavigation.className = 'header-navigation';
-  moveInstrumentation(block.firstElementChild.firstElementChild.firstElementChild, headerNavigation);
+  headerWrapper.append(headerNavigation);
 
   const navigationWrapper = document.createElement('div');
   navigationWrapper.className = 'navigation-wrapper';
   navigationWrapper.setAttribute('role', 'banner');
   navigationWrapper.setAttribute('aria-label', 'navigation.header.aria.label');
-  moveInstrumentation(block.querySelector('.navigation-wrapper'), navigationWrapper);
-
-  const navigationWrapperLogo = document.createElement('div');
-  navigationWrapperLogo.className = 'navigation-wrapper__logo';
-  moveInstrumentation(block.querySelector('.navigation-wrapper__logo'), navigationWrapperLogo);
-
-  const logoLinkA = document.createElement('a');
-  logoLinkA.href = headerNavigationData.logoLink;
-  logoLinkA.target = '_self';
-  moveInstrumentation(block.querySelector('.navigation-wrapper__logo > a'), logoLinkA);
-
-  const headerQdLogoSpan = createHeaderQdIcon('header-qd-icon--logo header-qd-logo');
-  moveInstrumentation(block.querySelector('.header-qd-logo'), headerQdLogoSpan);
-  logoLinkA.append(headerQdLogoSpan);
-  navigationWrapperLogo.append(logoLinkA);
-
-  const navigationWrapperContactUsCta = document.createElement('div');
-  navigationWrapperContactUsCta.className = 'navigation-wrapper__contactUs-cta';
-  moveInstrumentation(block.querySelector('.navigation-wrapper__contactUs-cta'), navigationWrapperContactUsCta);
-
-  const contactUsCta = createHeaderCta(headerNavigationData.contactUsLink, headerNavigationData.contactUsLabel, 'Contact Us');
-  moveInstrumentation(block.querySelector('.navigation-wrapper__contactUs-cta > a'), contactUsCta);
-  navigationWrapperContactUsCta.append(contactUsCta);
-
-  const navigationWrapperIcon = document.createElement('div');
-  navigationWrapperIcon.className = 'navigation-wrapper__icon';
-  navigationWrapperIcon.id = 'navigation-toggle';
-  moveInstrumentation(block.querySelector('#navigation-toggle'), navigationWrapperIcon);
-
-  const headerHamburgerEllipse = document.createElement('div');
-  headerHamburgerEllipse.className = 'header-hamburger-ellipse';
-  headerHamburgerEllipse.setAttribute('tabindex', '0');
-  moveInstrumentation(block.querySelector('.header-hamburger-ellipse'), headerHamburgerEllipse);
-
-  const hamburgerIcon = document.createElement('span');
-  hamburgerIcon.className = 'header-hamburger-icon header-qd-icon header-qd-icon--hamburger';
-  moveInstrumentation(block.querySelector('.header-qd-icon--hamburger'), hamburgerIcon);
-
-  const closeIcon = document.createElement('span');
-  closeIcon.className = 'header-close-icon header-qd-icon header-qd-icon--cancel';
-  moveInstrumentation(block.querySelector('.header-qd-icon--cancel'), closeIcon);
-
-  headerHamburgerEllipse.append(hamburgerIcon, closeIcon);
-  navigationWrapperIcon.append(headerHamburgerEllipse);
-  navigationWrapperContactUsCta.append(navigationWrapperIcon);
-  navigationWrapperLogo.append(navigationWrapperContactUsCta);
-
-  const navbarDesktop = document.createElement('nav');
-  navbarDesktop.className = 'navigation-wrapper__navbar';
-  navbarDesktop.id = 'navbar-desktop';
-  navbarDesktop.setAttribute('role', 'navigation');
-  navbarDesktop.setAttribute('aria-label', 'navigation.main.aria.label');
-  moveInstrumentation(block.querySelector('#navbar-desktop'), navbarDesktop);
-
-  const navbarDesktopList = document.createElement('ul');
-  navbarDesktopList.className = 'navigation-wrapper__navbar-list';
-  moveInstrumentation(block.querySelector('#navbar-desktop > ul'), navbarDesktopList);
-
-  headerNavigationData.navMenus.forEach((menuData) => {
-    const menuLi = document.createElement('li');
-    menuLi.className = 'navigation-wrapper__navbar-menu';
-
-    const menuLinkA = document.createElement('a');
-    menuLinkA.setAttribute('aria-haspopup', 'true');
-    menuLinkA.setAttribute('aria-expanded', 'false');
-    menuLinkA.className = 'navigation-wrapper__navbar-menulink';
-    menuLinkA.target = '_self';
-    menuLinkA.href = menuData.link;
-
-    const menuLabelSpan = document.createElement('span');
-    menuLabelSpan.textContent = menuData.label;
-
-    const iconWrapperSpan = document.createElement('span');
-    iconWrapperSpan.className = 'header-qd-icon-wrapper';
-
-    const menuIconSpan = document.createElement('span');
-    menuIconSpan.className = 'header-menu-icon header-qd-icon header-qd-icon--cheveron-down';
-
-    iconWrapperSpan.append(menuIconSpan);
-    menuLinkA.append(menuLabelSpan, iconWrapperSpan);
-    menuLi.append(menuLinkA);
-
-    if (menuData.submenus.length > 0) {
-      const submenuUl = document.createElement('ul');
-      submenuUl.className = 'navigation-wrapper__navbar-submenu';
-      menuData.submenus.forEach((submenuData) => {
-        submenuUl.append(createNavSubmenu(submenuData));
-      });
-      menuLi.append(submenuUl);
-    }
-    navbarDesktopList.append(menuLi);
-  });
-  navbarDesktop.append(navbarDesktopList);
-
-  const desktopContactUsCta = createHeaderCta(headerNavigationData.contactUsLink, headerNavigationData.contactUsLabel, '${navigation.contactUsAriaLabel}');
-  moveInstrumentation(block.querySelector('#navbar-desktop > a'), desktopContactUsCta);
-  navbarDesktop.append(desktopContactUsCta);
-
-  const desktopLanguageSelector = createLanguageSelector(headerNavigationData.languages);
-  moveInstrumentation(block.querySelector('#navbar-desktop > .header-language-selector'), desktopLanguageSelector);
-  navbarDesktop.append(desktopLanguageSelector);
-
-  navigationWrapper.append(navbarDesktop);
-
-  const navbarMobile = document.createElement('nav');
-  navbarMobile.className = 'navigation-wrapper__mobilenavbar';
-  navbarMobile.id = 'navbar-mobile';
-  navbarMobile.setAttribute('role', 'navigation');
-  navbarMobile.setAttribute('aria-label', 'navigation.main.aria.label');
-  moveInstrumentation(block.querySelector('#navbar-mobile'), navbarMobile);
-
-  const navbarMobileList = document.createElement('ul');
-  navbarMobileList.className = 'navigation-wrapper__mobilenavbar-list';
-  moveInstrumentation(block.querySelector('#navbar-mobile > ul'), navbarMobileList);
-
-  headerNavigationData.mobileNavMenus.forEach((menuData) => {
-    const menuLi = document.createElement('li');
-    menuLi.className = 'navigation-wrapper__mobilenavbar-menu border';
-
-    const menuLinkA = document.createElement('a');
-    menuLinkA.className = 'navigation-wrapper__mobilenavbar-menulink';
-
-    const menuLabelSpan = document.createElement('span');
-    menuLabelSpan.textContent = menuData.label;
-
-    const menuIconSpan = document.createElement('span');
-    menuIconSpan.className = 'header-qd-icon header-qd-icon--cheveron-right navigation-wrapper__mobilenavbar-menulink-icon';
-
-    menuLinkA.append(menuLabelSpan, menuIconSpan);
-    menuLi.append(menuLinkA);
-
-    if (menuData.submenus.length > 0) {
-      const submenuUl = document.createElement('ul');
-      submenuUl.className = 'navigation-wrapper__mobilenavbar-submenu';
-
-      const submenuHeaderLi = document.createElement('li');
-      submenuHeaderLi.className = 'navigation-wrapper__mobilenavbar-menuheader';
-      const submenuHeaderA = document.createElement('a');
-      const submenuHeaderSpan = document.createElement('span');
-      submenuHeaderSpan.textContent = menuData.label;
-      submenuHeaderA.append(submenuHeaderSpan);
-      submenuHeaderLi.append(submenuHeaderA);
-      submenuUl.append(submenuHeaderLi);
-
-      menuData.submenus.forEach((submenuData) => {
-        submenuUl.append(createMobileNavSubmenu(submenuData));
-      });
-      menuLi.append(submenuUl);
-    }
-    navbarMobileList.append(menuLi);
-  });
-  navbarMobile.append(navbarMobileList);
-
-  const mobileNavBack = document.createElement('div');
-  mobileNavBack.className = 'navigation-wrapper__mobilenavbar-back nav-back';
-  moveInstrumentation(block.querySelector('.navigation-wrapper__mobilenavbar-back'), mobileNavBack);
-
-  const mobileBackIconA = document.createElement('a');
-  mobileBackIconA.className = 'navigation-wrapper__icon';
-  moveInstrumentation(block.querySelector('.navigation-wrapper__mobilenavbar-back > a'), mobileBackIconA);
-
-  const mobileBackIconSpan = document.createElement('span');
-  mobileBackIconSpan.className = 'header-back-icon header-qd-icon header-qd-icon--cheveron-left';
-  moveInstrumentation(block.querySelector('.header-back-icon'), mobileBackIconSpan);
-  mobileBackIconA.append(mobileBackIconSpan);
-
-  const mobileBackLabelSpan = document.createElement('span');
-  mobileBackLabelSpan.className = 'navigation-wrapper__iconlabel';
-  mobileBackLabelSpan.textContent = 'Back';
-  moveInstrumentation(block.querySelector('.navigation-wrapper__iconlabel'), mobileBackLabelSpan);
-
-  mobileNavBack.append(mobileBackIconA, mobileBackLabelSpan);
-  navbarMobile.append(mobileNavBack);
-
-  const mobileLanguageSelector = createLanguageSelector(headerNavigationData.languages, true);
-  moveInstrumentation(block.querySelector('#navbar-mobile > .header-language-selector'), mobileLanguageSelector);
-  navbarMobile.append(mobileLanguageSelector);
-
-  navigationWrapper.append(navbarMobile);
   headerNavigation.append(navigationWrapper);
-  headerWrapper.append(headerNavigation);
-  headerContainer.append(headerWrapper);
 
-  // block.textContent = '';
-  block.append(headerContainer);
+  // Logo Section
+  const logoWrapper = document.createElement('div');
+  logoWrapper.className = 'navigation-wrapper__logo';
+  if (headerData.logoLink) {
+    const newLogoAnchor = document.createElement('a');
+    newLogoAnchor.href = headerData.logoLink;
+    newLogoAnchor.target = '_self';
+    newLogoAnchor.innerHTML = headerData.logoContent; // Re-insert the original complex logo SVG-like structure
+    // Instrumentation for the logo anchor itself
+    if (originalElements.logoAnchor) { // Ensure original element exists before moving instrumentation
+      moveInstrumentation(originalElements.logoAnchor, newLogoAnchor);
+    }
+    logoWrapper.append(newLogoAnchor);
+  }
+  navigationWrapper.append(logoWrapper);
+
+  // Contact Us CTA and Hamburger (for smaller screens/top-right)
+  const contactUsCtaWrapper = document.createElement('div');
+  contactUsCtaWrapper.className = 'navigation-wrapper__contactUs-cta';
+
+  if (headerData.contactUsLink && headerData.contactUsLabel && originalElements.contactUsCta) {
+    const newContactUsCta = document.createElement('a');
+    newContactUsCta.href = headerData.contactUsLink;
+    newContactUsCta.className = originalElements.contactUsCta.className; // Copy all classes
+    newContactUsCta.target = '_self';
+    newContactUsCta.setAttribute('aria-label', originalElements.contactUsCta.getAttribute('aria-label') || headerData.contactUsLabel);
+
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'header-cta__icon header-qd-icon header-qd-icon--cheveron-right';
+    iconSpan.setAttribute('aria-hidden', 'true');
+    newContactUsCta.append(iconSpan);
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'header-cta__label';
+    labelSpan.textContent = headerData.contactUsLabel;
+    newContactUsCta.append(labelSpan);
+
+    moveInstrumentation(originalElements.contactUsCta, newContactUsCta); // Transfer instrumentation
+    contactUsCtaWrapper.append(newContactUsCta);
+  }
+
+  // Re-append cloned Hamburger icon
+  if (originalElements.hamburgerCloned) {
+    // moveInstrumentation from the original wrapper to the cloned one.
+    if (originalElements.hamburgerWrapper) { // Ensure original element exists before moving instrumentation
+      moveInstrumentation(originalElements.hamburgerWrapper, originalElements.hamburgerCloned);
+    }
+    contactUsCtaWrapper.append(originalElements.hamburgerCloned);
+  }
+  logoWrapper.append(contactUsCtaWrapper);
+
+  // --- Desktop Navigation ---
+  const navDesktop = document.createElement('nav');
+  navDesktop.className = 'navigation-wrapper__navbar';
+  navDesktop.id = 'navbar-desktop';
+  navDesktop.setAttribute('role', 'navigation');
+  navDesktop.setAttribute('aria-label', 'navigation.main.aria.label');
+
+  const ulDesktop = document.createElement('ul');
+  ulDesktop.className = 'navigation-wrapper__navbar-list';
+
+  headerData.navMenus.forEach((menu, menuIndex) => {
+    const liMenu = document.createElement('li');
+    liMenu.className = 'navigation-wrapper__navbar-menu';
+
+    const anchorMenu = document.createElement('a');
+    anchorMenu.href = menu.link;
+    anchorMenu.className = 'navigation-wrapper__navbar-menulink';
+    anchorMenu.target = '_self';
+    anchorMenu.setAttribute('aria-haspopup', menu.submenus.length > 0 ? 'true' : 'false');
+    anchorMenu.setAttribute('aria-expanded', 'false'); // Initial state as per authored HTML
+
+    const spanLabel = document.createElement('span');
+    spanLabel.textContent = menu.label;
+    anchorMenu.append(spanLabel);
+
+    if (menu.submenus.length > 0) {
+      const iconWrapper = document.createElement('span');
+      iconWrapper.className = 'header-qd-icon-wrapper';
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'header-menu-icon header-qd-icon header-qd-icon--cheveron-down';
+      iconWrapper.append(iconSpan);
+      anchorMenu.append(iconWrapper);
+    }
+    // Instrumentation for the menu anchor
+    if (originalElements[`menuAnchor_${menuIndex}`]) { // Ensure original element exists
+      moveInstrumentation(originalElements[`menuAnchor_${menuIndex}`], anchorMenu);
+    }
+    liMenu.append(anchorMenu);
+
+    if (menu.submenus.length > 0) {
+      const ulSubmenu = document.createElement('ul');
+      ulSubmenu.className = 'navigation-wrapper__navbar-submenu';
+      menu.submenus.forEach((submenu, subMenuIndex) => {
+        const liSubmenu = document.createElement('li');
+        const anchorSubmenu = document.createElement('a');
+        anchorSubmenu.href = submenu.link;
+        anchorSubmenu.target = '_self';
+        anchorSubmenu.setAttribute('aria-expanded', 'false'); // Initial state
+        const spanSubmenuLabel = document.createElement('span');
+        spanSubmenuLabel.textContent = submenu.label;
+        anchorSubmenu.append(spanSubmenuLabel);
+        // Instrumentation for the submenu anchor
+        if (originalElements[`submenuAnchor_${menuIndex}_${subMenuIndex}`]) { // Ensure original element exists
+          moveInstrumentation(originalElements[`submenuAnchor_${menuIndex}_${subMenuIndex}`], anchorSubmenu);
+        }
+        liSubmenu.append(anchorSubmenu);
+        ulSubmenu.append(liSubmenu);
+      });
+      liMenu.append(ulSubmenu);
+    }
+    ulDesktop.append(liMenu);
+  });
+  navDesktop.append(ulDesktop);
+
+  // Re-append cloned Desktop Contact Us CTA
+  if (originalElements.desktopCtaLinkCloned) {
+    if (originalElements.desktopCtaLink) { // Ensure original element exists
+      moveInstrumentation(originalElements.desktopCtaLink, originalElements.desktopCtaLinkCloned);
+    }
+    navDesktop.append(originalElements.desktopCtaLinkCloned);
+  }
+
+  // Desktop Language Selector
+  const desktopLangSelectorWrapper = document.createElement('div');
+  desktopLangSelectorWrapper.className = 'header-language-selector header-lang-css-from-wrapper';
+  desktopLangSelectorWrapper.style.visibility = 'visible'; // As per authored HTML
+  const ulDesktopLang = document.createElement('ul');
+  ulDesktopLang.className = 'header-cmp-language-selector';
+
+  headerData.languages.forEach((lang, langIndex) => {
+    const liLang = document.createElement('li');
+    if (lang.isActive) liLang.classList.add('active');
+    const anchorLang = document.createElement('a');
+    anchorLang.href = lang.link;
+    anchorLang.setAttribute('aria-label', lang.label);
+    anchorLang.className = 'header-cmp-language-selector__link';
+    // Infer data-lang from href, assuming '/ar/' -> 'ar', '/' -> 'en'
+    anchorLang.setAttribute('data-lang', lang.link.split('/')[1] || 'en');
+    anchorLang.textContent = lang.label;
+    // Instrumentation for the language anchor
+    if (originalElements[`langAnchor_${langIndex}`]) { // Ensure original element exists
+      moveInstrumentation(originalElements[`langAnchor_${langIndex}`], anchorLang);
+    }
+    liLang.append(anchorLang);
+    ulDesktopLang.append(liLang);
+  });
+  desktopLangSelectorWrapper.append(ulDesktopLang);
+  navDesktop.append(desktopLangSelectorWrapper);
+
+  navigationWrapper.append(navDesktop);
+
+  // --- Mobile Navigation ---
+  const navMobile = document.createElement('nav');
+  navMobile.className = 'navigation-wrapper__mobilenavbar';
+  navMobile.id = 'navbar-mobile';
+  navMobile.setAttribute('role', 'navigation');
+  navMobile.setAttribute('aria-label', 'navigation.main.aria.label');
+
+  const ulMobile = document.createElement('ul');
+  ulMobile.className = 'navigation-wrapper__mobilenavbar-list';
+
+  // Re-use desktop nav data for mobile structure, as per authored HTML
+  headerData.navMenus.forEach((menu) => {
+    const liMobileMenuOuter = document.createElement('li');
+    liMobileMenuOuter.className = 'navigation-wrapper__mobilenavbar-menu border';
+
+    const anchorMobileMenu = document.createElement('a');
+    anchorMobileMenu.className = 'navigation-wrapper__mobilenavbar-menulink';
+    // Mobile main menu links are not directly navigable in the authored HTML; they expand submenus.
+    // They don't have href in the authored HTML example for the top-level mobile menu links.
+    // So, we don't set href here, matching the authored mobile structure.
+    const spanMobileLabel = document.createElement('span');
+    spanMobileLabel.textContent = menu.label;
+    anchorMobileMenu.append(spanMobileLabel);
+    const iconMobile = document.createElement('span');
+    iconMobile.className = 'header-qd-icon header-qd-icon--cheveron-right navigation-wrapper__mobilenavbar-menulink-icon';
+    anchorMobileMenu.append(iconMobile);
+    liMobileMenuOuter.append(anchorMobileMenu);
+
+    if (menu.submenus.length > 0) {
+      const ulMobileSubmenu = document.createElement('ul');
+      ulMobileSubmenu.className = 'navigation-wrapper__mobilenavbar-submenu';
+
+      const liMobileSubmenuHeader = document.createElement('li');
+      liMobileSubmenuHeader.className = 'navigation-wrapper__mobilenavbar-menuheader';
+      const anchorMobileSubmenuHeader = document.createElement('a');
+      // Mobile submenu header does not have href in authored HTML
+      const spanMobileSubmenuHeader = document.createElement('span');
+      spanMobileSubmenuHeader.textContent = menu.label; // Mobile submenu header uses parent menu label
+      anchorMobileSubmenuHeader.append(spanMobileSubmenuHeader);
+      liMobileSubmenuHeader.append(anchorMobileSubmenuHeader);
+      ulMobileSubmenu.append(liMobileSubmenuHeader);
+
+      menu.submenus.forEach((submenu) => {
+        const liMobileSub = document.createElement('li');
+        liMobileSub.className = 'navigation-wrapper__mobilenavbar-menu';
+        const anchorMobileSub = document.createElement('a');
+        anchorMobileSub.href = submenu.link;
+        anchorMobileSub.className = 'navigation-wrapper__mobilenavbar-menulink';
+        anchorMobileSub.target = '_self';
+        const spanMobileSubLabel = document.createElement('span');
+        spanMobileSubLabel.textContent = submenu.label;
+        anchorMobileSub.append(spanMobileSubLabel);
+        liMobileSub.append(anchorMobileSub);
+        ulMobileSubmenu.append(liMobileSub);
+      });
+      liMobileMenuOuter.append(ulMobileSubmenu);
+    }
+    ulMobile.append(liMobileMenuOuter);
+  });
+  navMobile.append(ulMobile);
+
+  // Re-append cloned Mobile Nav Back button
+  if (originalElements.mobileBackCloned) {
+    if (originalElements.mobileBack) { // Ensure original element exists
+      moveInstrumentation(originalElements.mobileBack, originalElements.mobileBackCloned);
+    }
+    navMobile.append(originalElements.mobileBackCloned);
+  }
+
+  // Mobile Language Selector (duplicate as per authored HTML structure)
+  const mobileLangSelectorWrapper = document.createElement('div');
+  mobileLangSelectorWrapper.className = 'header-language-selector header-lang-css-from-wrapper';
+  mobileLangSelectorWrapper.style.visibility = 'visible'; // As per authored HTML
+  const ulMobileLang = document.createElement('ul');
+  ulMobileLang.className = 'header-cmp-language-selector';
+
+  headerData.languages.forEach((lang) => {
+    const liLang = document.createElement('li');
+    if (lang.isActive) liLang.classList.add('active');
+    const anchorLang = document.createElement('a');
+    anchorLang.href = lang.link;
+    anchorLang.setAttribute('aria-label', lang.label);
+    anchorLang.className = 'header-cmp-language-selector__link';
+    anchorLang.setAttribute('data-lang', lang.link.split('/')[1] || 'en'); // Infer data-lang from href
+    anchorLang.textContent = lang.label;
+    liLang.append(anchorLang);
+    ulMobileLang.append(liLang);
+  });
+  mobileLangSelectorWrapper.append(ulMobileLang);
+  navMobile.append(mobileLangSelectorWrapper);
+
+  navigationWrapper.append(navMobile);
 }
