@@ -2,7 +2,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // 1. Create the main outer wrapper based on the HTML structure
+  // 1. Create the main outer wrapper based on the authored HTML structure
   const cardListCmp = document.createElement('div');
   cardListCmp.className = 'card-list-cmp-card-list parallax-child';
   moveInstrumentation(block, cardListCmp); // Transfer block instrumentation to the new outer element
@@ -11,9 +11,12 @@ export default function decorate(block) {
   contentWrapper.className = 'card-list-cmp-card-list__content';
   cardListCmp.append(contentWrapper);
 
-  // The first row of the block typically contains the main 'Card-List' model's fields
+  // Get all rows from the block.
   const blockChildren = [...block.children];
-  const cardListRow = blockChildren[0]; // Access the first row for cardList model fields
+
+  // The first row of the block typically contains the main 'Card-List' model's fields (Heading and CTA).
+  // We assume the first row, if present, is for the cardList model.
+  const cardListRow = blockChildren[0];
 
   // --- Process CardList Heading and CTA (if the first row exists) ---
   if (cardListRow) {
@@ -36,7 +39,7 @@ export default function decorate(block) {
       headingTitle.id = 'card-list-heading';
       headingTitle.className = 'card-list-cmp-card-list__content__heading__title';
       headingTitle.setAttribute('tabindex', '0');
-      // 'heading' is richtext, so use innerHTML
+      // 'heading' is richtext, so use innerHTML to preserve formatting
       headingTitle.innerHTML = headingCell.innerHTML.trim();
       moveInstrumentation(headingCell, headingTitle); // Transfer instrumentation from original cell to new title div
       headingWrapper.append(headingTitle);
@@ -52,8 +55,8 @@ export default function decorate(block) {
       if (ctaLink) {
         const newCta = document.createElement('a'); // New <a> element
         newCta.href = ctaLink.href; // Copy href property
-        newCta.className = ctaLink.className; // Copy all classes
-        // Copy specific attributes if they exist on the original link
+        newCta.className = ctaLink.className; // Copy all classes from the original link
+        // Copy specific attributes present in the authored HTML
         ['target', 'aria-label', 'data-palette'].forEach(attr => {
             if (ctaLink.hasAttribute(attr)) {
                 newCta.setAttribute(attr, ctaLink.getAttribute(attr));
@@ -82,7 +85,7 @@ export default function decorate(block) {
         } else {
             // Fallback: If the specific label span is not found, take the text content directly from the link
             const labelSpan = document.createElement('span');
-            labelSpan.className = 'card-list-cta__label'; // Apply default class as per HTML
+            labelSpan.className = 'card-list-cta__label'; // Apply default class as per authored HTML
             labelSpan.textContent = ctaLink.textContent.trim(); // Use full link text as fallback
             newCta.append(labelSpan);
         }
@@ -93,13 +96,14 @@ export default function decorate(block) {
     }
   }
 
-  // --- Process Card Items --- 
+  // --- Process Card Items (multifield) ---
   const cardItemsWrapper = document.createElement('div');
   cardItemsWrapper.className = 'card-list-cmp-card-list__content__items';
   contentWrapper.append(cardItemsWrapper);
 
-  // Loop through the remaining rows for 'card' items (skipping the first row if it contained cardList data)
-  // If cardListRow exists, start from the second row (index 1); otherwise, start from the first row (index 0).
+  // Determine the starting index for card items:
+  // If cardListRow exists (meaning the block has a header row), cards start from the second row (index 1).
+  // Otherwise (if the block only contains card items), cards start from the first row (index 0).
   const startIndex = cardListRow ? 1 : 0;
   blockChildren.slice(startIndex).forEach((row, index) => {
     const cardItem = document.createElement('div');
@@ -108,12 +112,12 @@ export default function decorate(block) {
     cardItem.setAttribute('data-slide-type', 'slide-up');
     cardItem.setAttribute('data-slide-no-wrap', '');
 
-    // Calculate data-slide-delay and transition-delay based on index
+    // Calculate data-slide-delay and transition-delay based on the item's index
     const delayMs = index * 100;
-    cardItem.setAttribute('data-slide-delay', String(delayMs).padStart(3, '0')); // Formats to '000', '100', '200'
-    cardItem.style.transitionDelay = `${delayMs / 1000}s`; // Formats to '0s', '0.1s', '0.2s'
+    cardItem.setAttribute('data-slide-delay', String(delayMs).padStart(3, '0')); // Formats to '000', '100', '200', etc.
+    cardItem.style.transitionDelay = `${delayMs / 1000}s`; // Formats to '0s', '0.1s', '0.2s', etc.
 
-    moveInstrumentation(row, cardItem); // Transfer editor instrumentation from the original row
+    moveInstrumentation(row, cardItem); // Transfer editor instrumentation from the original row to the new card item div
 
     const cells = [...row.children];
 
@@ -158,12 +162,9 @@ export default function decorate(block) {
       const descriptionDiv = document.createElement('div');
       descriptionDiv.className = 'card-list-cmp-card-list__content__card-item-content__description';
       descriptionDiv.setAttribute('tabindex', '0');
-
-      // The authored HTML for the description div has an aria-label attribute whose value is richtext (contains <p> tag).
-      // The descriptionCell.innerHTML.trim() contains this full richtext content.
-      // We apply this content directly as the aria-label value and innerHTML.
+      // 'description' is richtext. The authored HTML shows its content, including <p> tags, used for both innerHTML and aria-label.
       descriptionDiv.setAttribute('aria-label', descriptionCell.innerHTML.trim());
-      descriptionDiv.setAttribute('aria-hidden', 'false'); // Fixed attribute from HTML
+      descriptionDiv.setAttribute('aria-hidden', 'false'); // Fixed attribute from authored HTML
       descriptionDiv.innerHTML = descriptionCell.innerHTML.trim();
       moveInstrumentation(descriptionCell, descriptionDiv); // Transfer instrumentation from original cell to new description div
       cardItemContent.append(descriptionDiv);
