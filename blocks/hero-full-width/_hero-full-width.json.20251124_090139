@@ -23,19 +23,25 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Background Video Source",
-          "name": "videoSrc",
+          "label": "Background Video",
+          "name": "backgroundVideo",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Background Video Type",
+          "name": "backgroundVideoType",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Hero Title",
+          "label": "Title",
           "name": "title",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Hero Description",
+          "label": "Description",
           "name": "description",
           "valueType": "string"
         },
@@ -45,25 +51,25 @@
             {
               "component": "text",
               "label": "Primary CTA Label",
-              "name": "primaryCtaLabel",
+              "name": "ctaLabel1",
               "valueType": "string"
             },
             {
               "component": "text",
-              "label": "Primary CTA Href",
-              "name": "primaryCtaHref",
+              "label": "Primary CTA URL",
+              "name": "ctaUrl1",
               "valueType": "string"
             },
             {
               "component": "text",
               "label": "Secondary CTA Label",
-              "name": "secondaryCtaLabel",
+              "name": "ctaLabel2",
               "valueType": "string"
             },
             {
               "component": "text",
-              "label": "Secondary CTA Href",
-              "name": "secondaryCtaHref",
+              "label": "Secondary CTA URL",
+              "name": "ctaUrl2",
               "valueType": "string"
             }
           ],

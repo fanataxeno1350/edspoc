@@ -60,22 +60,16 @@
     "id": "footer",
     "components": [
       "footerSocialLink",
-      "footerNavigationLink",
-      "footerLanguageLink",
+      "footerNavLink",
+      "footerLanguage",
       "footerPolicyLink"
     ]
   },
   {
-    "id": "headerNavigation",
+    "id": "header-navigation",
     "components": [
       "navMenu",
-      "languageOption"
-    ]
-  },
-  {
-    "id": "navMenu",
-    "components": [
-      "navSubmenuItem"
+      "language"
     ]
   },
   {
@@ -104,15 +98,18 @@
     ]
   },
   {
-    "id": "scarpComponent",
-    "components": [
-      "scarpComponent"
-    ]
+    "id": "scarpComponent"
   },
   {
     "id": "scarp",
     "components": [
       "scarp"
+    ]
+  },
+  {
+    "id": "statsByTheNumber",
+    "components": [
+      "statsByTheNumberCard"
     ]
   },
   {

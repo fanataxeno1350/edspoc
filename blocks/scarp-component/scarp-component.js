@@ -1,36 +1,22 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default function decorate(block) {
-  const imageCell = block.querySelector(':scope > div > div');
-  if (!imageCell) {
-    block.textContent = '';
-    return;
+export default async function decorate(block) {
+  const scarpContainer = document.createElement('div');
+  scarpContainer.classList.add('scarp-container');
+
+  const imageElement = block.querySelector(':scope > div:first-child > div:first-child');
+  if (imageElement) {
+    const img = imageElement.querySelector('img');
+    if (img) {
+      const pic = createOptimizedPicture(img.src, img.alt);
+      pic.classList.add('scarp-separator-scarp', 'green-scarp');
+      pic.querySelector('img').setAttribute('aria-hidden', 'true');
+      moveInstrumentation(img, pic.querySelector('img'));
+      scarpContainer.append(pic);
+    }
   }
-
-  const img = imageCell.querySelector('img');
-  if (!img) {
-    block.textContent = '';
-    return;
-  }
-
-  const scarpComponentDiv = document.createElement('div');
-  scarpComponentDiv.className = 'scarp-component fade-in';
-  scarpComponentDiv.setAttribute('data-fade-in', '');
-  moveInstrumentation(block, scarpComponentDiv);
-
-  const scarpContainerDiv = document.createElement('div');
-  scarpContainerDiv.className = 'scarp-container';
-
-  const pic = createOptimizedPicture(img.src, img.alt);
-  const newImg = pic.querySelector('img');
-  newImg.setAttribute('aria-hidden', 'true');
-  newImg.className = 'scarp-separator-scarp green-scarp ';
-  moveInstrumentation(img, newImg);
-
-  scarpContainerDiv.append(pic);
-  scarpComponentDiv.append(scarpContainerDiv);
 
   block.textContent = '';
-  block.append(scarpComponentDiv);
+  block.append(scarpContainer);
 }

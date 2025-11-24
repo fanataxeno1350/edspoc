@@ -30,7 +30,7 @@
         {
           "component": "reference",
           "label": "Main Video Source",
-          "name": "videoSrc",
+          "name": "mainVideoSrc",
           "valueType": "string"
         }
       ]

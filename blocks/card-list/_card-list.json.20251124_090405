@@ -55,6 +55,29 @@
           "valueType": "string"
         }
       ]
+    },
+    {
+      "id": "cardList",
+      "fields": [
+        {
+          "component": "richtext",
+          "label": "Heading",
+          "name": "heading",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA Label",
+          "name": "ctaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA URL",
+          "name": "ctaUrl",
+          "valueType": "string"
+        }
+      ]
     }
   ],
   "filters": [

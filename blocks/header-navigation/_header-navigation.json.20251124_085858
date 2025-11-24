@@ -17,7 +17,7 @@
       }
     },
     {
-      "title": "Nav-Menu",
+      "title": "NavMenu",
       "id": "navMenu",
       "plugins": {
         "xwalk": {
@@ -25,7 +25,22 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "model": "navMenu",
-              "name": "Nav-Menu"
+              "name": "NavMenu"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "NavSubmenuItem",
+      "id": "navSubmenuItem",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "navSubmenuItem",
+              "name": "NavSubmenuItem"
             }
           }
         }
@@ -64,28 +79,42 @@
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Contact Us Label",
           "name": "contactUsLabel",
           "valueType": "string"
         },
         {
-          "component": "container",
-          "items": {
-            "type": "navMenu"
-          },
-          "label": "Navigation Menus",
-          "name": "navMenus",
-          "valueType": "array"
+          "component": "reference",
+          "label": "Contact Us Aria Label",
+          "name": "contactUsAriaLabel",
+          "valueType": "string"
         },
         {
           "component": "container",
-          "items": {
-            "type": "language"
-          },
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Nav Menu Reference",
+              "name": "navMenu",
+              "valueType": "string"
+            }
+          ],
+          "label": "Navigation Menus",
+          "name": "navMenus"
+        },
+        {
+          "component": "container",
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Language Reference",
+              "name": "language",
+              "valueType": "string"
+            }
+          ],
           "label": "Languages",
-          "name": "languages",
-          "valueType": "array"
+          "name": "languages"
         }
       ]
     },
@@ -94,24 +123,45 @@
       "fields": [
         {
           "component": "text",
-          "label": "Menu Label",
-          "name": "label",
+          "label": "Menu Title",
+          "name": "menuTitle",
           "valueType": "string"
         },
         {
           "component": "reference",
           "label": "Menu Link",
-          "name": "link",
+          "name": "menuLink",
           "valueType": "string"
         },
         {
           "component": "container",
-          "items": {
-            "type": "navMenu"
-          },
-          "label": "Sub Menu Items",
-          "name": "subMenus",
-          "valueType": "array"
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Nav Submenu Item Reference",
+              "name": "navSubmenuItem",
+              "valueType": "string"
+            }
+          ],
+          "label": "Submenu Items",
+          "name": "submenuItems"
+        }
+      ]
+    },
+    {
+      "id": "navSubmenuItem",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Submenu Title",
+          "name": "submenuTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Submenu Link",
+          "name": "submenuLink",
+          "valueType": "string"
         }
       ]
     },
@@ -129,16 +179,28 @@
           "label": "Language Link",
           "name": "link",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Language Code",
+          "name": "langCode",
+          "valueType": "string"
         }
       ]
     }
   ],
   "filters": [
     {
-      "id": "header-navigation",
+      "id": "headerNavigation",
       "components": [
         "navMenu",
         "language"
+      ]
+    },
+    {
+      "id": "navMenu",
+      "components": [
+        "navSubmenuItem"
       ]
     }
   ]
