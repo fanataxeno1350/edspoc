@@ -6,16 +6,17 @@ export default function decorate(block) {
   // We first extract all necessary data and non-modeled DOM structures from its current children.
 
   const headerData = {};
-  const clonedElements = {}; // To store complex elements not easily modeled, for re-appending.
+  // Store original elements for instrumentation transfer and cloning complex, non-modeled structures.
+  const originalElements = {}; 
 
-  // --- Data Extraction ---
+  // --- Data Extraction & Original Element Storage ---
 
   // Logo Link and Content
   const originalLogoAnchor = block.querySelector('.navigation-wrapper__logo > a');
   if (originalLogoAnchor) {
     headerData.logoLink = originalLogoAnchor.href;
     headerData.logoContent = originalLogoAnchor.innerHTML; // Preserve complex SVG-like span structure
-    clonedElements.originalLogoAnchor = originalLogoAnchor; // Store for instrumentation
+    originalElements.logoAnchor = originalLogoAnchor;
   }
 
   // Contact Us Link and Label (from the first instance found, typically the mobile/top-level one)
@@ -23,14 +24,14 @@ export default function decorate(block) {
   if (originalContactUsCta) {
     headerData.contactUsLink = originalContactUsCta.href;
     headerData.contactUsLabel = originalContactUsCta.querySelector('.header-cta__label')?.textContent.trim() || '';
-    clonedElements.originalContactUsCta = originalContactUsCta; // Store for instrumentation
+    originalElements.contactUsCta = originalContactUsCta;
   }
 
-  // Hamburger icon (not explicitly modeled but present in HTML, clone to preserve)
-  const originalHamburger = block.querySelector('.navigation-wrapper__icon#navigation-toggle');
-  if (originalHamburger) {
-    clonedElements.hamburger = originalHamburger.cloneNode(true);
-    clonedElements.originalHamburger = originalHamburger; // Store for instrumentation
+  // Hamburger icon (not explicitly modeled but present in HTML, clone to preserve structure)
+  const originalHamburgerWrapper = block.querySelector('.navigation-wrapper__icon#navigation-toggle');
+  if (originalHamburgerWrapper) {
+    originalElements.hamburgerWrapper = originalHamburgerWrapper;
+    originalElements.hamburgerCloned = originalHamburgerWrapper.cloneNode(true);
   }
 
   // Nav Menus (desktop structure is typically the most complete for data extraction)
@@ -43,14 +44,14 @@ export default function decorate(block) {
       link: menuAnchor?.href || '',
       submenus: [],
     };
-    clonedElements[`originalMenuAnchor_${menuIndex}`] = menuAnchor; // Store for instrumentation
+    originalElements[`menuAnchor_${menuIndex}`] = menuAnchor;
 
     menuLi.querySelectorAll('.navigation-wrapper__navbar-submenu > li > a').forEach((submenuAnchor, subMenuIndex) => {
       menu.submenus.push({
         label: submenuAnchor.querySelector('span')?.textContent.trim() || '',
         link: submenuAnchor.href || '',
       });
-      clonedElements[`originalSubmenuAnchor_${menuIndex}_${subMenuIndex}`] = submenuAnchor; // Store for instrumentation
+      originalElements[`submenuAnchor_${menuIndex}_${subMenuIndex}`] = submenuAnchor;
     });
     headerData.navMenus.push(menu);
   });
@@ -58,8 +59,8 @@ export default function decorate(block) {
   // Desktop Contact Us CTA (duplicate as per authored HTML structure, clone to preserve)
   const desktopCtaLink = block.querySelector('nav#navbar-desktop > a.header-cta');
   if (desktopCtaLink) {
-    clonedElements.desktopContactUsCta = desktopCtaLink.cloneNode(true);
-    clonedElements.originalDesktopCtaLink = desktopCtaLink; // Store for instrumentation
+    originalElements.desktopCtaLink = desktopCtaLink;
+    originalElements.desktopCtaLinkCloned = desktopCtaLink.cloneNode(true);
   }
 
   // Languages
@@ -70,14 +71,14 @@ export default function decorate(block) {
       link: langAnchor.href,
       isActive: langAnchor.parentElement.classList.contains('active'),
     });
-    clonedElements[`originalLangAnchor_${langIndex}`] = langAnchor; // Store for instrumentation
+    originalElements[`langAnchor_${langIndex}`] = langAnchor;
   });
 
   // Mobile Nav Back button (not modeled, clone to preserve)
   const originalMobileBack = block.querySelector('.navigation-wrapper__mobilenavbar-back.nav-back');
   if (originalMobileBack) {
-    clonedElements.mobileBack = originalMobileBack.cloneNode(true);
-    clonedElements.originalMobileBack = originalMobileBack; // Store for instrumentation
+    originalElements.mobileBack = originalMobileBack;
+    originalElements.mobileBackCloned = originalMobileBack.cloneNode(true);
   }
 
 
@@ -87,6 +88,8 @@ export default function decorate(block) {
   block.textContent = '';
 
   // Re-append the main wrapper structure inside the block
+  // The 'block' element itself is the header-container, so we don't recreate it,
+  // but rather append its children to it.
   const headerWrapper = document.createElement('div');
   headerWrapper.className = 'header-wrapper layout-container transparent-header';
   block.append(headerWrapper);
@@ -101,7 +104,7 @@ export default function decorate(block) {
   navigationWrapper.setAttribute('aria-label', 'navigation.header.aria.label');
   headerNavigation.append(navigationWrapper);
 
-  // Logo
+  // Logo Section
   const logoWrapper = document.createElement('div');
   logoWrapper.className = 'navigation-wrapper__logo';
   if (headerData.logoLink) {
@@ -109,7 +112,7 @@ export default function decorate(block) {
     newLogoAnchor.href = headerData.logoLink;
     newLogoAnchor.target = '_self';
     newLogoAnchor.innerHTML = headerData.logoContent; // Re-insert the original complex logo SVG-like structure
-    moveInstrumentation(clonedElements.originalLogoAnchor, newLogoAnchor); // Transfer instrumentation
+    moveInstrumentation(originalElements.logoAnchor, newLogoAnchor); // Transfer instrumentation
     logoWrapper.append(newLogoAnchor);
   }
   navigationWrapper.append(logoWrapper);
@@ -118,12 +121,12 @@ export default function decorate(block) {
   const contactUsCtaWrapper = document.createElement('div');
   contactUsCtaWrapper.className = 'navigation-wrapper__contactUs-cta';
 
-  if (headerData.contactUsLink && headerData.contactUsLabel) {
+  if (headerData.contactUsLink && headerData.contactUsLabel && originalElements.contactUsCta) {
     const newContactUsCta = document.createElement('a');
     newContactUsCta.href = headerData.contactUsLink;
-    newContactUsCta.className = clonedElements.originalContactUsCta.className; // Copy all classes
+    newContactUsCta.className = originalElements.contactUsCta.className; // Copy all classes
     newContactUsCta.target = '_self';
-    newContactUsCta.setAttribute('aria-label', clonedElements.originalContactUsCta.getAttribute('aria-label') || headerData.contactUsLabel);
+    newContactUsCta.setAttribute('aria-label', originalElements.contactUsCta.getAttribute('aria-label') || headerData.contactUsLabel);
 
     const iconSpan = document.createElement('span');
     iconSpan.className = 'header-cta__icon header-qd-icon header-qd-icon--cheveron-right';
@@ -135,14 +138,14 @@ export default function decorate(block) {
     labelSpan.textContent = headerData.contactUsLabel;
     newContactUsCta.append(labelSpan);
 
-    moveInstrumentation(clonedElements.originalContactUsCta, newContactUsCta); // Transfer instrumentation
+    moveInstrumentation(originalElements.contactUsCta, newContactUsCta); // Transfer instrumentation
     contactUsCtaWrapper.append(newContactUsCta);
   }
 
   // Re-append cloned Hamburger icon
-  if (clonedElements.hamburger) {
-    moveInstrumentation(clonedElements.originalHamburger, clonedElements.hamburger); // Transfer instrumentation
-    contactUsCtaWrapper.append(clonedElements.hamburger);
+  if (originalElements.hamburgerCloned) {
+    moveInstrumentation(originalElements.hamburgerWrapper, originalElements.hamburgerCloned); // Transfer instrumentation
+    contactUsCtaWrapper.append(originalElements.hamburgerCloned);
   }
   logoWrapper.append(contactUsCtaWrapper);
 
@@ -179,7 +182,7 @@ export default function decorate(block) {
       iconWrapper.append(iconSpan);
       anchorMenu.append(iconWrapper);
     }
-    moveInstrumentation(clonedElements[`originalMenuAnchor_${menuIndex}`], anchorMenu); // Transfer instrumentation
+    moveInstrumentation(originalElements[`menuAnchor_${menuIndex}`], anchorMenu); // Transfer instrumentation
     liMenu.append(anchorMenu);
 
     if (menu.submenus.length > 0) {
@@ -194,7 +197,7 @@ export default function decorate(block) {
         const spanSubmenuLabel = document.createElement('span');
         spanSubmenuLabel.textContent = submenu.label;
         anchorSubmenu.append(spanSubmenuLabel);
-        moveInstrumentation(clonedElements[`originalSubmenuAnchor_${menuIndex}_${subMenuIndex}`], anchorSubmenu); // Transfer instrumentation
+        moveInstrumentation(originalElements[`submenuAnchor_${menuIndex}_${subMenuIndex}`], anchorSubmenu); // Transfer instrumentation
         liSubmenu.append(anchorSubmenu);
         ulSubmenu.append(liSubmenu);
       });
@@ -205,9 +208,9 @@ export default function decorate(block) {
   navDesktop.append(ulDesktop);
 
   // Re-append cloned Desktop Contact Us CTA
-  if (clonedElements.desktopContactUsCta) {
-    moveInstrumentation(clonedElements.originalDesktopCtaLink, clonedElements.desktopContactUsCta);
-    navDesktop.append(clonedElements.desktopContactUsCta);
+  if (originalElements.desktopCtaLinkCloned) {
+    moveInstrumentation(originalElements.desktopCtaLink, originalElements.desktopCtaLinkCloned);
+    navDesktop.append(originalElements.desktopCtaLinkCloned);
   }
 
   // Desktop Language Selector
@@ -226,7 +229,7 @@ export default function decorate(block) {
     anchorLang.className = 'header-cmp-language-selector__link';
     anchorLang.setAttribute('data-lang', lang.link.split('/')[1] || 'en'); // Infer data-lang from href
     anchorLang.textContent = lang.label;
-    moveInstrumentation(clonedElements[`originalLangAnchor_${langIndex}`], anchorLang); // Transfer instrumentation
+    moveInstrumentation(originalElements[`langAnchor_${langIndex}`], anchorLang); // Transfer instrumentation
     liLang.append(anchorLang);
     ulDesktopLang.append(liLang);
   });
@@ -296,9 +299,9 @@ export default function decorate(block) {
   navMobile.append(ulMobile);
 
   // Re-append cloned Mobile Nav Back button
-  if (clonedElements.mobileBack) {
-    moveInstrumentation(clonedElements.originalMobileBack, clonedElements.mobileBack);
-    navMobile.append(clonedElements.mobileBack);
+  if (originalElements.mobileBackCloned) {
+    moveInstrumentation(originalElements.mobileBack, originalElements.mobileBackCloned);
+    navMobile.append(originalElements.mobileBackCloned);
   }
 
   // Mobile Language Selector (duplicate as per authored HTML structure)
