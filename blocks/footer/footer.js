@@ -2,104 +2,112 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // 1. Extract data from the authored block's children based on the JSON model fields.
-  // We'll iterate through the block's children (rows) and map them to fields.
+  // The 'block' element itself is the top-level 'footer-wrapper' in the provided HTML.
+  // We will reconstruct its inner children.
 
   const blockChildren = [...block.children];
   const footerData = {};
   const originalElements = {}; // To store original elements for instrumentation transfer
 
-  // --- Extract Logo Link ---
-  // The logo is in the first row, first cell, as an anchor within a div.
-  const logoCell = blockChildren[0]?.children[0];
-  const originalLogoAnchor = logoCell?.querySelector('a');
-  if (originalLogoAnchor) {
-    footerData.logoLink = originalLogoAnchor.href;
-    // The logo itself is a complex SVG-like span structure, which we'll copy directly
-    footerData.logoContent = originalLogoAnchor.innerHTML;
-    originalElements.logoAnchor = originalLogoAnchor;
+  // --- Data Extraction & Original Element Storage ---
+
+  // Assuming the structure from the provided HTML, the footer content is within the first child of the block.
+  // The actual block itself IS the .footer-wrapper.
+  // So we directly query within the block for its children's children.
+
+  // --- Footer Navigation Section ---
+  const originalFooterNavigation = block.querySelector('.footer-navigation');
+  if (originalFooterNavigation) {
+    originalElements.footerNavigation = originalFooterNavigation;
+
+    // Logo Link and Content
+    const originalLogoAnchor = originalFooterNavigation.querySelector('.footer-navigation__logo > a');
+    if (originalLogoAnchor) {
+      footerData.logoLink = originalLogoAnchor.href;
+      // Preserve complex SVG-like span structure inside the anchor
+      footerData.logoContent = originalLogoAnchor.innerHTML; 
+      originalElements.logoAnchor = originalLogoAnchor;
+    }
+
+    const originalFooterNavigationContent = originalFooterNavigation.querySelector('.footer-navigation__content');
+    if (originalFooterNavigationContent) {
+      // Social Links
+      footerData.socialLinks = [];
+      originalFooterNavigationContent.querySelectorAll('.footer-social-links__list > li > a').forEach((linkElement, index) => {
+        const iconClass = [...linkElement.classList].find(cls => cls.startsWith('qd-icon--'));
+        footerData.socialLinks.push({
+          label: linkElement.getAttribute('aria-label') || iconClass?.replace('qd-icon--', '') || '', // Prioritize aria-label
+          url: linkElement.href,
+          iconClass: iconClass || '', // Store the specific icon class
+        });
+        originalElements[`socialLink_${index}`] = linkElement;
+      });
+
+      // Navigation Links
+      footerData.navLinks = [];
+      originalFooterNavigationContent.querySelectorAll('.footer-navigation__links > li > a').forEach((linkElement, index) => {
+        footerData.navLinks.push({
+          title: linkElement.title || linkElement.textContent.trim(), // Prioritize title attribute
+          url: linkElement.href,
+        });
+        originalElements[`navLink_${index}`] = linkElement;
+      });
+    }
   }
 
-  // --- Extract Social Links ---
-  // Social links are in the first row, second cell, within .footer-social-links__list
-  const socialLinksCell = blockChildren[0]?.children[1];
-  footerData.socialLinks = [];
-  socialLinksCell?.querySelectorAll('.footer-social-links__list > li > a').forEach((linkElement, index) => {
-    const iconClass = linkElement.className.split(' ').find(cls => cls.startsWith('qd-icon--'));
-    footerData.socialLinks.push({
-      label: linkElement.getAttribute('aria-label') || iconClass?.replace('qd-icon--', '') || '',
-      url: linkElement.href,
-      iconClass: iconClass, // Store the specific icon class
-    });
-    originalElements[`socialLink_${index}`] = linkElement;
-  });
-
-  // --- Extract Navigation Links ---
-  // Navigation links are in the first row, second cell, within .footer-navigation__links
-  footerData.navLinks = [];
-  socialLinksCell?.querySelectorAll('.footer-navigation__links > li > a').forEach((linkElement, index) => {
-    footerData.navLinks.push({
-      title: linkElement.title || linkElement.textContent.trim(),
-      url: linkElement.href,
-    });
-    originalElements[`navLink_${index}`] = linkElement;
-  });
-
-  // --- Extract Languages ---
-  // Languages are in the second row, first cell, within .footer-language-selector__list
-  const languagesCell = blockChildren[1]?.children[0];
-  footerData.languages = [];
-  languagesCell?.querySelectorAll('.footer-language-selector__list > li > a').forEach((linkElement, index) => {
-    footerData.languages.push({
-      label: linkElement.textContent.trim(),
-      url: linkElement.href,
-      langCode: linkElement.getAttribute('data-lang'),
-      active: linkElement.parentElement.classList.contains('active'),
-    });
-    originalElements[`languageLink_${index}`] = linkElement;
-  });
-
-  // --- Extract Policy Links ---
-  // Policy links are in the second row, second cell, within .footer-policy-links__content
-  const policyLinksCell = blockChildren[1]?.children[1];
-  footerData.policyLinks = [];
-  policyLinksCell?.querySelectorAll('.footer-policy-links__content > a').forEach((linkElement, index) => {
-    footerData.policyLinks.push({
-      title: linkElement.title || linkElement.textContent.trim(),
-      url: linkElement.href,
-    });
-    originalElements[`policyLink_${index}`] = linkElement;
-  });
-
-  // --- Extract Copyright ---
-  // Copyright is in the second row, second cell, within .footer-policy-links__copyright
-  const originalCopyrightP = policyLinksCell?.querySelector('.footer-policy-links__copyright');
-  if (originalCopyrightP) {
-    footerData.copyright = originalCopyrightP.textContent.trim();
-    originalElements.copyrightP = originalCopyrightP;
+  // --- Footer Divider ---
+  const originalFooterDivider = block.querySelector('.footer-divider');
+  if (originalFooterDivider) {
+    originalElements.footerDivider = originalFooterDivider;
   }
+
+  // --- Footer Bottom Section ---
+  const originalFooterBottom = block.querySelector('.footer-bottom');
+  if (originalFooterBottom) {
+    originalElements.footerBottom = originalFooterBottom;
+
+    // Languages
+    footerData.languages = [];
+    originalFooterBottom.querySelectorAll('.footer-language-selector__list > li > a').forEach((linkElement, index) => {
+      footerData.languages.push({
+        label: linkElement.textContent.trim(),
+        url: linkElement.href,
+        langCode: linkElement.getAttribute('data-lang'),
+        active: linkElement.parentElement.classList.contains('active'),
+      });
+      originalElements[`languageLink_${index}`] = linkElement;
+    });
+
+    // Policy Links
+    footerData.policyLinks = [];
+    originalFooterBottom.querySelectorAll('.footer-policy-links__content > a').forEach((linkElement, index) => {
+      footerData.policyLinks.push({
+        title: linkElement.title || linkElement.textContent.trim(), // Prioritize title attribute
+        url: linkElement.href,
+      });
+      originalElements[`policyLink_${index}`] = linkElement;
+    });
+
+    // Copyright
+    const originalCopyrightP = originalFooterBottom.querySelector('.footer-policy-links__copyright');
+    if (originalCopyrightP) {
+      footerData.copyright = originalCopyrightP.textContent.trim();
+      originalElements.copyrightP = originalCopyrightP;
+    }
+  }
+
 
   // --- DOM Reconstruction ---
 
-  // Clear the original block content
+  // Clear the original block content. The `block` element itself (`.footer-wrapper`) remains.
   block.textContent = '';
 
-  // Create the main .footer-wrapper
-  const footerWrapper = document.createElement('div');
-  footerWrapper.className = 'footer-wrapper';
-  // Note: The block itself is the .footer-wrapper, so we append the content directly
-  // and move instrumentation from the original block to this new wrapper.
-  // However, the provided HTML already has .footer-wrapper as the block's inner content.
-  // We'll reconstruct the content *within* the block, and the block itself will retain its original ID/classes.
-  // Move instrumentation from the original block to the new footerWrapper if the block is just a container.
-  // If the block *is* the footer-wrapper, then the block itself already has instrumentation.
-
-  // The provided HTML shows `block` as `div class="footer-wrapper"`.
-  // So we reconstruct its *inner* structure.
-
-  // --- Footer Navigation Section ---
+  // --- Reconstruct Footer Navigation Section ---
   const footerNavigation = document.createElement('div');
   footerNavigation.className = 'footer-navigation';
+  if (originalElements.footerNavigation) {
+    moveInstrumentation(originalElements.footerNavigation, footerNavigation);
+  }
 
   const footerLogo = document.createElement('div');
   footerLogo.className = 'footer-navigation__logo';
@@ -109,7 +117,7 @@ export default function decorate(block) {
     newLogoAnchor.target = '_self';
     newLogoAnchor.innerHTML = footerData.logoContent;
     if (originalElements.logoAnchor) {
-        moveInstrumentation(originalElements.logoAnchor, newLogoAnchor);
+      moveInstrumentation(originalElements.logoAnchor, newLogoAnchor);
     }
     footerLogo.append(newLogoAnchor);
   }
@@ -134,7 +142,7 @@ export default function decorate(block) {
       anchor.href = socialLink.url;
       anchor.setAttribute('aria-label', socialLink.label);
       if (originalElements[`socialLink_${index}`]) {
-          moveInstrumentation(originalElements[`socialLink_${index}`], anchor);
+        moveInstrumentation(originalElements[`socialLink_${index}`], anchor);
       }
       listItem.append(anchor);
       socialLinksList.append(listItem);
@@ -158,7 +166,7 @@ export default function decorate(block) {
       anchor.href = navLink.url;
       anchor.textContent = navLink.title;
       if (originalElements[`navLink_${index}`]) {
-          moveInstrumentation(originalElements[`navLink_${index}`], anchor);
+        moveInstrumentation(originalElements[`navLink_${index}`], anchor);
       }
       listItem.append(anchor);
       navLinksList.append(listItem);
@@ -168,14 +176,20 @@ export default function decorate(block) {
   footerNavigation.append(footerContent);
   block.append(footerNavigation);
 
-  // --- Footer Divider ---
+  // --- Reconstruct Footer Divider ---
   const footerDivider = document.createElement('div');
   footerDivider.className = 'footer-divider';
+  if (originalElements.footerDivider) {
+    moveInstrumentation(originalElements.footerDivider, footerDivider);
+  }
   block.append(footerDivider);
 
-  // --- Footer Bottom Section ---
+  // --- Reconstruct Footer Bottom Section ---
   const footerBottom = document.createElement('div');
   footerBottom.className = 'footer-bottom';
+  if (originalElements.footerBottom) {
+    moveInstrumentation(originalElements.footerBottom, footerBottom);
+  }
 
   // Language Selector
   if (footerData.languages.length > 0) {
@@ -195,7 +209,7 @@ export default function decorate(block) {
       anchor.setAttribute('data-lang', lang.langCode);
       anchor.textContent = lang.label;
       if (originalElements[`languageLink_${index}`]) {
-          moveInstrumentation(originalElements[`languageLink_${index}`], anchor);
+        moveInstrumentation(originalElements[`languageLink_${index}`], anchor);
       }
       listItem.append(anchor);
       langList.append(listItem);
@@ -223,7 +237,7 @@ export default function decorate(block) {
       anchor.target = '_self';
       anchor.textContent = policyLink.title;
       if (originalElements[`policyLink_${index}`]) {
-          moveInstrumentation(originalElements[`policyLink_${index}`], anchor);
+        moveInstrumentation(originalElements[`policyLink_${index}`], anchor);
       }
       policyLinksContent.append(anchor);
     });
@@ -235,7 +249,7 @@ export default function decorate(block) {
     copyrightP.className = 'footer-policy-links__copyright';
     copyrightP.textContent = footerData.copyright;
     if (originalElements.copyrightP) {
-        moveInstrumentation(originalElements.copyrightP, copyrightP);
+      moveInstrumentation(originalElements.copyrightP, copyrightP);
     }
     policyLinksWrapper.append(copyrightP);
   }
