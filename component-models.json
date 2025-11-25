@@ -152,14 +152,14 @@
       },
       {
         "component": "aem-tag",
-        "label": "CTA Link",
-        "name": "ctaLink",
+        "label": "CTA Label",
+        "name": "ctaLabel",
         "valueType": "string"
       },
       {
         "component": "aem-tag",
-        "label": "CTA Label",
-        "name": "ctaLabel",
+        "label": "CTA URL",
+        "name": "ctaUrl",
         "valueType": "string"
       }
     ]
