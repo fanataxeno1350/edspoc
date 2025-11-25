@@ -29,7 +29,7 @@
         },
         {
           "component": "reference",
-          "label": "Video Source",
+          "label": "Main Video Source",
           "name": "videoSrc",
           "valueType": "string"
         }
@@ -38,10 +38,7 @@
   ],
   "filters": [
     {
-      "id": "mediaComponent",
-      "components": [
-        "mediaComponent"
-      ]
+      "id": "mediaComponent"
     }
   ]
 }

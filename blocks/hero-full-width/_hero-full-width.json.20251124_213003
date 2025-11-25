@@ -28,7 +28,7 @@
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -40,34 +40,35 @@
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "Primary CTA Link",
-          "name": "primaryCtaLink",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Primary CTA Label",
-          "name": "primaryCtaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Secondary CTA Link",
-          "name": "secondaryCtaLink",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Secondary CTA Label",
-          "name": "secondaryCtaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Modal Video Source",
-          "name": "modalVideoSrc",
-          "valueType": "string"
+          "component": "container",
+          "fields": [
+            {
+              "component": "aem-tag",
+              "label": "Primary CTA Label",
+              "name": "primaryCtaLabel",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Primary CTA URL",
+              "name": "primaryCtaUrl",
+              "valueType": "string"
+            },
+            {
+              "component": "aem-tag",
+              "label": "Secondary CTA Label",
+              "name": "secondaryCtaLabel",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Secondary CTA URL",
+              "name": "secondaryCtaUrl",
+              "valueType": "string"
+            }
+          ],
+          "label": "CTAs",
+          "name": "ctas"
         }
       ]
     }

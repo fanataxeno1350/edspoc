@@ -1,220 +1,234 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function createLogo(logoLinkField) {
-  const logoLink = logoLinkField.querySelector('a');
-  if (!logoLink) return null;
-
+function createLogo(logoUrl, logoIconClass, originalElement) {
   const logoWrapper = document.createElement('div');
-  logoWrapper.classList.add('footer-navigation__logo');
+  logoWrapper.className = 'footer-navigation__logo';
 
-  const newLogoLink = document.createElement('a');
-  newLogoLink.href = logoLink.href;
-  newLogoLink.target = '_self';
-  moveInstrumentation(logoLink, newLogoLink);
+  const logoLink = document.createElement('a');
+  logoLink.href = logoUrl;
+  logoLink.target = '_self';
 
-  const qdIcon = document.createElement('span');
-  qdIcon.classList.add('qd-icon', 'qd-icon--logo', 'qd-logo-footer');
-  for (let i = 1; i <= 25; i += 1) {
-    const path = document.createElement('span');
-    path.classList.add(`path${i}`);
-    qdIcon.append(path);
-  }
-  newLogoLink.append(qdIcon);
-  logoWrapper.append(newLogoLink);
+  const logoIcon = document.createElement('span');
+  logoIcon.className = logoIconClass;
 
+  logoLink.append(logoIcon);
+  logoWrapper.append(logoLink);
+
+  moveInstrumentation(originalElement, logoWrapper);
   return logoWrapper;
 }
 
-function createSocialLinks(socialLinksField) {
-  const socialLinksWrapper = document.createElement('div');
-  socialLinksWrapper.classList.add('footer-social-links');
+function createSocialLinks(socialLinksData, originalElement) {
+  const socialLinksDiv = document.createElement('div');
+  socialLinksDiv.className = 'footer-social-links';
 
   const socialLinksList = document.createElement('ul');
-  socialLinksList.classList.add('footer-social-links__list');
+  socialLinksList.className = 'footer-social-links__list';
 
-  Array.from(socialLinksField.children).forEach((socialLinkItem) => {
-    const label = socialLinkItem.querySelector('div:first-child');
-    const url = socialLinkItem.querySelector('div:last-child a');
+  socialLinksData.forEach((linkData) => {
+    const listItem = document.createElement('li');
+    listItem.className = 'footer-social-links__item';
 
-    if (label && url) {
-      const listItem = document.createElement('li');
-      listItem.classList.add('footer-social-links__item');
+    const link = document.createElement('a');
+    link.className = `footer-social-links__icon ${linkData.iconClass}`;
+    link.target = '_blank';
+    link.href = linkData.url;
+    link.setAttribute('aria-label', linkData.ariaLabel);
 
-      const link = document.createElement('a');
-      link.classList.add('footer-social-links__icon');
-      link.target = '_blank';
-      link.href = url.href;
-      link.setAttribute('aria-label', label.textContent.trim());
-      moveInstrumentation(url, link);
+    listItem.append(link);
+    socialLinksList.append(listItem);
 
-      // Infer icon class from label
-      const iconClass = `qd-icon--${label.textContent.trim().toLowerCase()}`;
-      link.classList.add('qd-icon', iconClass);
-
-      listItem.append(link);
-      socialLinksList.append(listItem);
-    }
+    moveInstrumentation(linkData.originalElement, listItem);
   });
 
-  socialLinksWrapper.append(socialLinksList);
-  return socialLinksWrapper;
+  socialLinksDiv.append(socialLinksList);
+  moveInstrumentation(originalElement, socialLinksDiv);
+  return socialLinksDiv;
 }
 
-function createNavLinks(navLinksField) {
+function createNavigationLinks(navigationLinksData, originalElement) {
   const navLinksList = document.createElement('ul');
-  navLinksList.classList.add('footer-navigation__links');
+  navLinksList.className = 'footer-navigation__links';
 
-  Array.from(navLinksField.children).forEach((navLinkItem) => {
-    const title = navLinkItem.querySelector('div:first-child');
-    const url = navLinkItem.querySelector('div:last-child a');
+  navigationLinksData.forEach((linkData) => {
+    const listItem = document.createElement('li');
 
-    if (title && url) {
-      const listItem = document.createElement('li');
+    const link = document.createElement('a');
+    link.className = 'footer-navigation__link-item';
+    link.tabIndex = 0;
+    link.target = '_self';
+    link.title = linkData.title;
+    link.href = linkData.url;
+    link.textContent = linkData.title;
 
-      const link = document.createElement('a');
-      link.classList.add('footer-navigation__link-item');
-      link.tabIndex = 0;
-      link.target = '_self';
-      link.title = title.textContent.trim();
-      link.href = url.href;
-      link.textContent = title.textContent.trim();
-      moveInstrumentation(url, link);
+    listItem.append(link);
+    navLinksList.append(listItem);
 
-      listItem.append(link);
-      navLinksList.append(listItem);
-    }
+    moveInstrumentation(linkData.originalElement, listItem);
   });
+
+  moveInstrumentation(originalElement, navLinksList);
   return navLinksList;
 }
 
-function createLanguageSelector(languagesField) {
-  const langSelectorWrapper = document.createElement('div');
-  langSelectorWrapper.classList.add('footer-language-selector');
+function createLanguageSelector(languageLinksData, originalElement) {
+  const langSelectorDiv = document.createElement('div');
+  langSelectorDiv.className = 'footer-language-selector';
 
   const langList = document.createElement('ul');
-  langList.classList.add('footer-language-selector__list');
+  langList.className = 'footer-language-selector__list';
 
-  Array.from(languagesField.children).forEach((langItem) => {
-    const label = langItem.querySelector('div:nth-child(1)');
-    const url = langItem.querySelector('div:nth-child(2) a');
-    const langCode = langItem.querySelector('div:nth-child(3)');
-    const active = langItem.querySelector('div:nth-child(4)')?.textContent?.trim().toLowerCase() === 'true';
-
-    if (label && url && langCode) {
-      const listItem = document.createElement('li');
-      listItem.classList.add('footer-language-selector__item');
-      if (active) {
-        listItem.classList.add('active');
-      }
-
-      const link = document.createElement('a');
-      link.href = url.href;
-      link.setAttribute('aria-label', label.textContent.trim());
-      link.classList.add('footer-language-selector__link');
-      link.setAttribute('data-lang', langCode.textContent.trim());
-      link.textContent = label.textContent.trim();
-      moveInstrumentation(url, link);
-
-      listItem.append(link);
-      langList.append(listItem);
+  languageLinksData.forEach((linkData) => {
+    const listItem = document.createElement('li');
+    listItem.className = 'footer-language-selector__item';
+    if (linkData.originalElement.classList.contains('active')) {
+      listItem.classList.add('active');
     }
+
+    const link = document.createElement('a');
+    link.href = linkData.url;
+    link.setAttribute('aria-label', linkData.label);
+    link.className = 'footer-language-selector__link';
+    link.setAttribute('data-lang', linkData.langCode);
+    link.textContent = linkData.label;
+
+    listItem.append(link);
+    langList.append(listItem);
+
+    moveInstrumentation(linkData.originalElement, listItem);
   });
-  langSelectorWrapper.append(langList);
-  return langSelectorWrapper;
+
+  langSelectorDiv.append(langList);
+  moveInstrumentation(originalElement, langSelectorDiv);
+  return langSelectorDiv;
 }
 
-function createPolicyLinks(policyLinksField, copyrightField) {
-  const policyLinksWrapper = document.createElement('div');
-  policyLinksWrapper.classList.add('footer-policy-links');
+function createPolicyLinks(policyLinksData, copyrightText, originalPolicyLinksElement, originalCopyrightElement) {
+  const policyLinksDiv = document.createElement('div');
+  policyLinksDiv.className = 'footer-policy-links';
 
-  const policyLinksInnerWrapper = document.createElement('div');
-  policyLinksInnerWrapper.classList.add('footer-policy-links__wrapper');
+  const policyLinksWrapper = document.createElement('div');
+  policyLinksWrapper.className = 'footer-policy-links__wrapper ';
 
   const policyLinksContent = document.createElement('div');
-  policyLinksContent.classList.add('footer-policy-links__content');
+  policyLinksContent.className = 'footer-policy-links__content';
 
-  Array.from(policyLinksField.children).forEach((policyLinkItem) => {
-    const title = policyLinkItem.querySelector('div:first-child');
-    const url = policyLinkItem.querySelector('div:last-child a');
-
-    if (title && url) {
-      const link = document.createElement('a');
-      link.tabIndex = 0;
-      link.classList.add('footer-policy-links__item');
-      link.title = title.textContent.trim();
-      link.href = url.href;
-      link.target = '_self';
-      link.textContent = title.textContent.trim();
-      moveInstrumentation(url, link);
-      policyLinksContent.append(link);
-    }
+  policyLinksData.forEach((linkData) => {
+    const link = document.createElement('a');
+    link.tabIndex = 0;
+    link.className = 'footer-policy-links__item';
+    link.title = linkData.title;
+    link.href = linkData.url;
+    link.target = '_self';
+    link.textContent = linkData.title;
+    policyLinksContent.append(link);
+    moveInstrumentation(linkData.originalElement, link);
   });
-  policyLinksInnerWrapper.append(policyLinksContent);
 
-  const copyrightText = copyrightField.querySelector('div:first-child');
-  if (copyrightText) {
-    const copyrightP = document.createElement('p');
-    copyrightP.classList.add('footer-policy-links__copyright');
-    copyrightP.textContent = copyrightText.textContent.trim();
-    moveInstrumentation(copyrightText, copyrightP);
-    policyLinksInnerWrapper.append(copyrightP);
-  }
+  policyLinksWrapper.append(policyLinksContent);
+  moveInstrumentation(originalPolicyLinksElement, policyLinksContent);
 
-  policyLinksWrapper.append(policyLinksInnerWrapper);
-  return policyLinksWrapper;
+  const copyrightP = document.createElement('p');
+  copyrightP.className = 'footer-policy-links__copyright';
+  copyrightP.textContent = copyrightText;
+  policyLinksWrapper.append(copyrightP);
+  moveInstrumentation(originalCopyrightElement, copyrightP);
+
+  policyLinksDiv.append(policyLinksWrapper);
+  return policyLinksDiv;
 }
 
 export default async function decorate(block) {
-  const fields = {};
-  Array.from(block.children).forEach((row) => {
-    const fieldName = row.children[0].textContent.trim();
-    fields[fieldName] = row.children[1];
+  const footerWrapper = document.createElement('div');
+  footerWrapper.className = 'footer-wrapper';
+
+  // Extract data based on model
+  const children = Array.from(block.children);
+
+  // Logo
+  const logoRow = children.shift();
+  const logoUrl = logoRow.querySelector('a')?.href || '';
+  const logoIconClass = logoRow.querySelector('span')?.className || '';
+
+  // Social Links
+  const socialLinksRow = children.shift();
+  const socialLinks = Array.from(socialLinksRow.querySelectorAll('li')).map((li) => {
+    const link = li.querySelector('a');
+    return {
+      url: link?.href || '',
+      iconClass: link?.className.replace('footer-social-links__icon ', '') || '',
+      ariaLabel: link?.getAttribute('aria-label') || '',
+      originalElement: li,
+    };
   });
 
-  const footerWrapper = document.createElement('div');
-  footerWrapper.classList.add('footer-wrapper');
+  // Navigation Links
+  const navigationLinksRow = children.shift();
+  const navigationLinks = Array.from(navigationLinksRow.querySelectorAll('li')).map((li) => {
+    const link = li.querySelector('a');
+    return {
+      url: link?.href || '',
+      title: link?.textContent.trim() || '',
+      originalElement: li,
+    };
+  });
 
+  // Language Links
+  const languageLinksRow = children.shift();
+  const languageLinks = Array.from(languageLinksRow.querySelectorAll('li')).map((li) => {
+    const link = li.querySelector('a');
+    return {
+      url: link?.href || '',
+      label: link?.textContent.trim() || '',
+      langCode: link?.getAttribute('data-lang') || '',
+      originalElement: li,
+    };
+  });
+
+  // Policy Links and Copyright
+  const policyLinksRow = children.shift();
+  const policyLinkElements = Array.from(policyLinksRow.querySelectorAll('a'));
+  const policyLinks = policyLinkElements.map((a) => ({
+    url: a?.href || '',
+    title: a?.textContent.trim() || '',
+    originalElement: a,
+  }));
+
+  const copyrightElement = policyLinksRow.querySelector('p');
+  const copyright = copyrightElement?.textContent.trim() || '';
+
+  // Build the DOM
   const footerNavigation = document.createElement('div');
-  footerNavigation.classList.add('footer-navigation');
+  footerNavigation.className = 'footer-navigation';
 
-  const logo = createLogo(fields.logoLink);
-  if (logo) {
-    footerNavigation.append(logo);
-  }
+  const logo = createLogo(logoUrl, logoIconClass, logoRow);
+  footerNavigation.append(logo);
 
   const footerNavigationContent = document.createElement('div');
-  footerNavigationContent.classList.add('footer-navigation__content');
+  footerNavigationContent.className = 'footer-navigation__content';
 
-  const socialLinks = createSocialLinks(fields.socialLinks);
-  if (socialLinks) {
-    footerNavigationContent.append(socialLinks);
-  }
+  const socialLinksBlock = createSocialLinks(socialLinks, socialLinksRow);
+  footerNavigationContent.append(socialLinksBlock);
 
-  const navLinks = createNavLinks(fields.navLinks);
-  if (navLinks) {
-    footerNavigationContent.append(navLinks);
-  }
+  const navigationLinksBlock = createNavigationLinks(navigationLinks, navigationLinksRow);
+  footerNavigationContent.append(navigationLinksBlock);
 
   footerNavigation.append(footerNavigationContent);
   footerWrapper.append(footerNavigation);
 
   const footerDivider = document.createElement('div');
-  footerDivider.classList.add('footer-divider');
+  footerDivider.className = 'footer-divider';
   footerWrapper.append(footerDivider);
 
   const footerBottom = document.createElement('div');
-  footerBottom.classList.add('footer-bottom');
+  footerBottom.className = 'footer-bottom';
 
-  const languageSelector = createLanguageSelector(fields.languages);
-  if (languageSelector) {
-    footerBottom.append(languageSelector);
-  }
+  const languageSelector = createLanguageSelector(languageLinks, languageLinksRow);
+  footerBottom.append(languageSelector);
 
-  const policyLinks = createPolicyLinks(fields.policyLinks, fields.copyright);
-  if (policyLinks) {
-    footerBottom.append(policyLinks);
-  }
+  const policyLinksBlock = createPolicyLinks(policyLinks, copyright, policyLinksRow.querySelector('.footer-policy-links__content'), copyrightElement);
+  footerBottom.append(policyLinksBlock);
 
   footerWrapper.append(footerBottom);
 
