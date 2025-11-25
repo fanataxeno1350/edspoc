@@ -2,35 +2,29 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const imageCell = block.querySelector(':scope > div > div');
-  if (!imageCell) {
-    return;
-  }
-
-  const img = imageCell.querySelector('img');
-  if (!img) {
-    return;
-  }
-
   const scarpComponentDiv = document.createElement('div');
   scarpComponentDiv.className = 'scarp-component fade-in';
-  scarpComponentDiv.setAttribute('data-fade-in', '');
-  moveInstrumentation(block, scarpComponentDiv);
+  scarpComponentDiv.dataset.fadeIn = '';
 
   const scarpContainerDiv = document.createElement('div');
   scarpContainerDiv.className = 'scarp-container';
 
-  const pic = createOptimizedPicture(img.src, img.alt);
-  const optimizedImg = pic.querySelector('img');
-  if (optimizedImg) {
-    optimizedImg.setAttribute('aria-hidden', 'true');
-    optimizedImg.className = 'scarp-separator-scarp green-scarp ';
-    moveInstrumentation(img, optimizedImg);
+  const imgElement = block.querySelector('[data-aue-prop="image"]');
+  if (imgElement) {
+    const pic = createOptimizedPicture(imgElement.src, imgElement.alt);
+    const img = pic.querySelector('img');
+    img.setAttribute('aria-hidden', 'true');
+    img.className = 'scarp-separator-scarp green-scarp'; // Assuming 'green-scarp' is a static class from expected HTML
+    moveInstrumentation(imgElement, img);
+    scarpContainerDiv.append(pic);
   }
 
-  scarpContainerDiv.append(pic);
   scarpComponentDiv.append(scarpContainerDiv);
 
   block.textContent = '';
   block.append(scarpComponentDiv);
+
+  const blockName = block.dataset.blockName;
+  block.className = `${blockName} block`;
+  block.dataset.blockStatus = "loaded";
 }

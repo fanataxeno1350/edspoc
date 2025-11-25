@@ -24,13 +24,13 @@
         {
           "component": "reference",
           "label": "Poster Video Source",
-          "name": "videoPosterSrc",
+          "name": "posterVideo",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Video Source",
-          "name": "videoSrc",
+          "label": "Main Video Source",
+          "name": "mainVideo",
           "valueType": "string"
         }
       ]
@@ -38,10 +38,7 @@
   ],
   "filters": [
     {
-      "id": "mediaComponent",
-      "components": [
-        "mediaComponent"
-      ]
+      "id": "mediaComponent"
     }
   ]
 }

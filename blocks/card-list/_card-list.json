@@ -49,11 +49,11 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "itemType": "card",
-          "label": "Card Items",
-          "name": "cardItems",
-          "valueType": "array"
+          "component": "reference",
+          "label": "Cards",
+          "multiple": true,
+          "name": "card",
+          "valueType": "string"
         }
       ]
     },

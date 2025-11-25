@@ -59,14 +59,14 @@
   {
     "id": "header",
     "components": [
-      "navMenu",
-      "language"
+      "navigationMenu",
+      "languageOption"
     ]
   },
   {
-    "id": "navMenu",
+    "id": "navigationMenu",
     "components": [
-      "navMenuItem"
+      "navigationSubmenu"
     ]
   },
   {
@@ -76,13 +76,13 @@
     ]
   },
   {
-    "id": "mediaComponent"
+    "id": "mediaComponent",
+    "components": [
+      "mediaComponent"
+    ]
   },
   {
-    "id": "scarpComponent",
-    "components": [
-      "scarpComponent"
-    ]
+    "id": "scarpComponent"
   },
   {
     "id": "scarp",
