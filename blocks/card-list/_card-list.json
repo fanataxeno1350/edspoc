@@ -50,12 +50,10 @@
         },
         {
           "component": "container",
-          "name": "cards",
-          "label": "Cards",
+          "name": "cardItems",
+          "label": "Card Items",
           "valueType": "array",
-          "item": {
-            "type": "card"
-          }
+          "itemType": "card"
         }
       ]
     },
@@ -64,9 +62,9 @@
       "fields": [
         {
           "component": "reference",
-          "valueType": "string",
           "name": "image",
-          "label": "Image"
+          "label": "Image",
+          "valueType": "string"
         },
         {
           "component": "text",
