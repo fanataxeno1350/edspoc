@@ -1,235 +1,209 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function createLogo(logoUrl, logoIconClass, originalElement) {
-  const logoWrapper = document.createElement('div');
-  logoWrapper.className = 'footer-navigation__logo';
+function createFooterLogo(logoLink) {
+  const footerNavigationLogo = document.createElement('div');
+  footerNavigationLogo.className = 'footer-navigation__logo';
 
-  const logoLink = document.createElement('a');
-  logoLink.href = logoUrl;
-  logoLink.target = '_self';
+  const a = document.createElement('a');
+  a.href = logoLink.url.textContent;
+  a.target = '_self';
 
-  const logoIcon = document.createElement('span');
-  logoIcon.className = logoIconClass;
+  const span = document.createElement('span');
+  span.className = 'qd-icon qd-icon--logo qd-logo-footer';
+  for (let i = 1; i <= 25; i += 1) {
+    const pathSpan = document.createElement('span');
+    pathSpan.className = `path${i}`;
+    span.append(pathSpan);
+  }
 
-  logoLink.append(logoIcon);
-  logoWrapper.append(logoLink);
-
-  moveInstrumentation(originalElement, logoWrapper);
-  return logoWrapper;
+  a.append(span);
+  footerNavigationLogo.append(a);
+  moveInstrumentation(logoLink.url.parentElement, footerNavigationLogo);
+  return footerNavigationLogo;
 }
 
-function createSocialLinks(socialLinksData, originalElement) {
-  const socialLinksDiv = document.createElement('div');
-  socialLinksDiv.className = 'footer-social-links';
+function createFooterSocialLinks(socialLinks) {
+  const footerSocialLinks = document.createElement('div');
+  footerSocialLinks.className = 'footer-social-links';
 
-  const socialLinksList = document.createElement('ul');
-  socialLinksList.className = 'footer-social-links__list';
+  const ul = document.createElement('ul');
+  ul.className = 'footer-social-links__list';
 
-  socialLinksData.forEach((linkData) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'footer-social-links__item';
+  socialLinks.querySelectorAll(':scope > div').forEach((socialLink) => {
+    const icon = socialLink.querySelector('div:nth-child(1)');
+    const url = socialLink.querySelector('div:nth-child(2)');
+    const ariaLabel = socialLink.querySelector('div:nth-child(3)');
 
-    const link = document.createElement('a');
-    link.className = `footer-social-links__icon ${linkData.iconClass}`;
-    link.target = '_blank';
-    link.href = linkData.url;
-    link.setAttribute('aria-label', linkData.ariaLabel);
+    if (icon && url && ariaLabel) {
+      const li = document.createElement('li');
+      li.className = 'footer-social-links__item';
 
-    listItem.append(link);
-    socialLinksList.append(listItem);
+      const a = document.createElement('a');
+      a.className = `footer-social-links__icon qd-icon ${icon.textContent}`;
+      a.target = '_blank';
+      a.href = url.textContent;
+      a.setAttribute('aria-label', ariaLabel.textContent);
 
-    moveInstrumentation(linkData.originalElement, listItem);
-  });
-
-  socialLinksDiv.append(socialLinksList);
-  moveInstrumentation(originalElement, socialLinksDiv);
-  return socialLinksDiv;
-}
-
-function createNavigationLinks(navigationLinksData, originalElement) {
-  const navLinksList = document.createElement('ul');
-  navLinksList.className = 'footer-navigation__links';
-
-  navigationLinksData.forEach((linkData) => {
-    const listItem = document.createElement('li');
-
-    const link = document.createElement('a');
-    link.className = 'footer-navigation__link-item';
-    link.tabIndex = 0;
-    link.target = '_self';
-    link.title = linkData.title;
-    link.href = linkData.url;
-    link.textContent = linkData.title;
-
-    listItem.append(link);
-    navLinksList.append(listItem);
-
-    moveInstrumentation(linkData.originalElement, listItem);
-  });
-
-  moveInstrumentation(originalElement, navLinksList);
-  return navLinksList;
-}
-
-function createLanguageSelector(languageLinksData, originalElement) {
-  const langSelectorDiv = document.createElement('div');
-  langSelectorDiv.className = 'footer-language-selector';
-
-  const langList = document.createElement('ul');
-  langList.className = 'footer-language-selector__list';
-
-  languageLinksData.forEach((linkData) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'footer-language-selector__item';
-    if (linkData.originalElement.classList.contains('active')) {
-      listItem.classList.add('active');
+      li.append(a);
+      ul.append(li);
+      moveInstrumentation(socialLink, li);
     }
-
-    const link = document.createElement('a');
-    link.href = linkData.url;
-    link.setAttribute('aria-label', linkData.label);
-    link.className = 'footer-language-selector__link';
-    link.setAttribute('data-lang', linkData.langCode);
-    link.textContent = linkData.label;
-
-    listItem.append(link);
-    langList.append(listItem);
-
-    moveInstrumentation(linkData.originalElement, listItem);
   });
 
-  langSelectorDiv.append(langList);
-  moveInstrumentation(originalElement, langSelectorDiv);
-  return langSelectorDiv;
+  footerSocialLinks.append(ul);
+  return footerSocialLinks;
 }
 
-function createPolicyLinks(policyLinksData, copyrightText, originalPolicyLinksElement, originalCopyrightElement) {
-  const policyLinksDiv = document.createElement('div');
-  policyLinksDiv.className = 'footer-policy-links';
+function createFooterNavigationLinks(footerLinks) {
+  const ul = document.createElement('ul');
+  ul.className = 'footer-navigation__links';
 
-  const policyLinksWrapper = document.createElement('div');
-  policyLinksWrapper.className = 'footer-policy-links__wrapper ';
+  footerLinks.querySelectorAll(':scope > div').forEach((footerLink) => {
+    const label = footerLink.querySelector('div:nth-child(1)');
+    const url = footerLink.querySelector('div:nth-child(2)');
 
-  const policyLinksContent = document.createElement('div');
-  policyLinksContent.className = 'footer-policy-links__content';
+    if (label && url) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.className = 'footer-navigation__link-item';
+      a.tabIndex = 0;
+      a.target = '_self';
+      a.title = label.textContent;
+      a.href = url.textContent;
+      a.textContent = label.textContent;
 
-  policyLinksData.forEach((linkData) => {
-    const link = document.createElement('a');
-    link.tabIndex = 0;
-    link.className = 'footer-policy-links__item';
-    link.title = linkData.title;
-    link.href = linkData.url;
-    link.target = '_self';
-    link.textContent = linkData.title;
-    policyLinksContent.append(link);
-    moveInstrumentation(linkData.originalElement, link);
+      li.append(a);
+      ul.append(li);
+      moveInstrumentation(footerLink, li);
+    }
+  });
+  return ul;
+}
+
+function createFooterLanguageSelector(languages) {
+  const footerLanguageSelector = document.createElement('div');
+  footerLanguageSelector.className = 'footer-language-selector';
+
+  const ul = document.createElement('ul');
+  ul.className = 'footer-language-selector__list';
+
+  languages.querySelectorAll(':scope > div').forEach((language, index) => {
+    const label = language.querySelector('div:nth-child(1)');
+    const url = language.querySelector('div:nth-child(2)');
+    const dataLang = language.querySelector('div:nth-child(3)');
+
+    if (label && url && dataLang) {
+      const li = document.createElement('li');
+      li.className = 'footer-language-selector__item';
+      if (index === 0) {
+        li.classList.add('active');
+      }
+
+      const a = document.createElement('a');
+      a.href = url.textContent;
+      a.setAttribute('aria-label', label.textContent);
+      a.className = 'footer-language-selector__link';
+      a.setAttribute('data-lang', dataLang.textContent);
+      a.textContent = label.textContent;
+
+      li.append(a);
+      ul.append(li);
+      moveInstrumentation(language, li);
+    }
   });
 
-  policyLinksWrapper.append(policyLinksContent);
-  moveInstrumentation(originalPolicyLinksElement, policyLinksContent);
-
-  const copyrightP = document.createElement('p');
-  copyrightP.className = 'footer-policy-links__copyright';
-  copyrightP.textContent = copyrightText;
-  policyLinksWrapper.append(copyrightP);
-  moveInstrumentation(originalCopyrightElement, copyrightP);
-
-  policyLinksDiv.append(policyLinksWrapper);
-  return policyLinksDiv;
+  footerLanguageSelector.append(ul);
+  return footerLanguageSelector;
 }
 
-export default async function decorate(block) {
+function createFooterPolicyLinks(policyLinks, copyright) {
+  const footerPolicyLinks = document.createElement('div');
+  footerPolicyLinks.className = 'footer-policy-links';
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'footer-policy-links__wrapper ';
+
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'footer-policy-links__content';
+
+  policyLinks.querySelectorAll(':scope > div').forEach((policyLink) => {
+    const label = policyLink.querySelector('div:nth-child(1)');
+    const url = policyLink.querySelector('div:nth-child(2)');
+
+    if (label && url) {
+      const a = document.createElement('a');
+      a.tabIndex = 0;
+      a.className = 'footer-policy-links__item';
+      a.title = label.textContent;
+      a.href = url.textContent;
+      a.target = '_self';
+      a.textContent = label.textContent;
+
+      contentDiv.append(a);
+      moveInstrumentation(policyLink, a);
+    }
+  });
+  wrapper.append(contentDiv);
+
+  if (copyright) {
+    const p = document.createElement('p');
+    p.className = 'footer-policy-links__copyright';
+    p.textContent = copyright.textContent;
+    wrapper.append(p);
+    moveInstrumentation(copyright, p);
+  }
+
+  footerPolicyLinks.append(wrapper);
+  return footerPolicyLinks;
+}
+
+export default function decorate(block) {
   const footerWrapper = document.createElement('div');
   footerWrapper.className = 'footer-wrapper';
 
-  // Extract data based on model
-  const children = Array.from(block.children);
+  const [logo, socialLinks, footerLinks, languages, policyLinks, copyright] = block.children;
 
-  // Logo
-  const logoRow = children.shift();
-  const logoUrl = logoRow.querySelector('a')?.href || '';
-  const logoIconClass = logoRow.querySelector('span')?.className || '';
-
-  // Social Links
-  const socialLinksRow = children.shift();
-  const socialLinks = Array.from(socialLinksRow.querySelectorAll('li')).map((li) => {
-    const link = li.querySelector('a');
-    return {
-      url: link?.href || '',
-      iconClass: link?.className.replace('footer-social-links__icon ', '') || '',
-      ariaLabel: link?.getAttribute('aria-label') || '',
-      originalElement: li,
-    };
-  });
-
-  // Navigation Links
-  const navigationLinksRow = children.shift();
-  const navigationLinks = Array.from(navigationLinksRow.querySelectorAll('li')).map((li) => {
-    const link = li.querySelector('a');
-    return {
-      url: link?.href || '',
-      title: link?.textContent.trim() || '',
-      originalElement: li,
-    };
-  });
-
-  // Language Links
-  const languageLinksRow = children.shift();
-  const languageLinks = Array.from(languageLinksRow.querySelectorAll('li')).map((li) => {
-    const link = li.querySelector('a');
-    return {
-      url: link?.href || '',
-      label: link?.textContent.trim() || '',
-      langCode: link?.getAttribute('data-lang') || '',
-      originalElement: li,
-    };
-  });
-
-  // Policy Links and Copyright
-  const policyLinksRow = children.shift();
-  const policyLinkElements = Array.from(policyLinksRow.querySelectorAll('a'));
-  const policyLinks = policyLinkElements.map((a) => ({
-    url: a?.href || '',
-    title: a?.textContent.trim() || '',
-    originalElement: a,
-  }));
-
-  const copyrightElement = policyLinksRow.querySelector('p');
-  const copyright = copyrightElement?.textContent.trim() || '';
-
-  // Build the DOM
+  // Footer Navigation
   const footerNavigation = document.createElement('div');
   footerNavigation.className = 'footer-navigation';
+  moveInstrumentation(logo, footerNavigation);
 
-  const logo = createLogo(logoUrl, logoIconClass, logoRow);
-  footerNavigation.append(logo);
+  if (logo) {
+    footerNavigation.append(createFooterLogo(logo));
+  }
 
   const footerNavigationContent = document.createElement('div');
   footerNavigationContent.className = 'footer-navigation__content';
+  moveInstrumentation(socialLinks, footerNavigationContent);
 
-  const socialLinksBlock = createSocialLinks(socialLinks, socialLinksRow);
-  footerNavigationContent.append(socialLinksBlock);
+  if (socialLinks) {
+    footerNavigationContent.append(createFooterSocialLinks(socialLinks));
+  }
 
-  const navigationLinksBlock = createNavigationLinks(navigationLinks, navigationLinksRow);
-  footerNavigationContent.append(navigationLinksBlock);
-
+  if (footerLinks) {
+    footerNavigationContent.append(createFooterNavigationLinks(footerLinks));
+  }
   footerNavigation.append(footerNavigationContent);
   footerWrapper.append(footerNavigation);
 
+  // Footer Divider
   const footerDivider = document.createElement('div');
   footerDivider.className = 'footer-divider';
   footerWrapper.append(footerDivider);
 
+  // Footer Bottom
   const footerBottom = document.createElement('div');
   footerBottom.className = 'footer-bottom';
+  moveInstrumentation(languages, footerBottom);
 
-  const languageSelector = createLanguageSelector(languageLinks, languageLinksRow);
-  footerBottom.append(languageSelector);
+  if (languages) {
+    footerBottom.append(createFooterLanguageSelector(languages));
+  }
 
-  const policyLinksBlock = createPolicyLinks(policyLinks, copyright, policyLinksRow.querySelector('.footer-policy-links__content'), copyrightElement);
-  footerBottom.append(policyLinksBlock);
-
+  if (policyLinks || copyright) {
+    footerBottom.append(createFooterPolicyLinks(policyLinks, copyright));
+  }
   footerWrapper.append(footerBottom);
 
   block.textContent = '';

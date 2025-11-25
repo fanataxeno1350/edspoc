@@ -47,6 +47,19 @@
           "label": "CTA Link",
           "name": "ctaLink",
           "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "CTA Label",
+          "name": "ctaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "itemType": "card",
+          "label": "Cards",
+          "name": "cardItems",
+          "valueType": "array"
         }
       ]
     },

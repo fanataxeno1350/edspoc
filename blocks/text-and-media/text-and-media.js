@@ -1,43 +1,29 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default async function decorate(block) {
-  const imageCell = block.querySelector('div:nth-child(1) > div');
-  const titleCell = block.querySelector('div:nth-child(2) > div');
-  const descriptionCell = block.querySelector('div:nth-child(3) > div');
-  const ctaLabelCell = block.querySelector('div:nth-child(4) > div');
-  const ctaUrlCell = block.querySelector('div:nth-child(5) > div');
+export default function decorate(block) {
+  const imageEl = block.querySelector('div:nth-child(1) > div');
+  const titleEl = block.querySelector('div:nth-child(2) > div');
+  const descriptionEl = block.querySelector('div:nth-child(3) > div');
+  const ctaLabelEl = block.querySelector('div:nth-child(4) > div');
+  const ctaUrlEl = block.querySelector('div:nth-child(5) > div');
 
-  // Extract content
-  const image = imageCell ? imageCell.querySelector('img') : null;
-  const title = titleCell ? titleCell.innerHTML : '';
-  const description = descriptionCell ? descriptionCell.innerHTML : '';
-  const ctaLabel = ctaLabelCell ? ctaLabelCell.textContent.trim() : '';
-  const ctaUrl = ctaUrlCell ? ctaUrlCell.textContent.trim() : '';
-
-  // Create elements based on HTML structure
   const section = document.createElement('section');
   section.className = 'text-and-media-section';
-  moveInstrumentation(block, section);
 
-  if (image) {
-    const scarpImg = createOptimizedPicture(image.src, image.alt);
-    const originalScarpImg = block.querySelector('.text-and-media-scarp');
-    if (originalScarpImg) {
-      moveInstrumentation(originalScarpImg, scarpImg.querySelector('img'));
-      scarpImg.querySelector('img').className = 'text-and-media-scarp fade-in';
-      scarpImg.querySelector('img').setAttribute('data-fade-in', '');
-      if (originalScarpImg.hasAttribute('is-animated')) {
-        scarpImg.querySelector('img').setAttribute('is-animated', originalScarpImg.getAttribute('is-animated'));
-      }
-      if (originalScarpImg.hasAttribute('data-is-reverse')) {
-        scarpImg.querySelector('img').setAttribute('data-is-reverse', originalScarpImg.getAttribute('data-is-reverse'));
-      }
-      if (originalScarpImg.hasAttribute('aria-label')) {
-        scarpImg.querySelector('img').setAttribute('aria-label', originalScarpImg.getAttribute('aria-label'));
-      }
-    }
-    section.append(scarpImg.querySelector('img'));
+  // Scarp image (if present)
+  const originalScarpImg = block.querySelector('img.text-and-media-scarp');
+  if (originalScarpImg) {
+    const scarpPic = createOptimizedPicture(originalScarpImg.src, originalScarpImg.alt);
+    const scarpImg = scarpPic.querySelector('img');
+    scarpImg.className = 'text-and-media-scarp fade-in';
+    scarpImg.setAttribute('data-fade-in', '');
+    if (originalScarpImg.hasAttribute('loading')) scarpImg.setAttribute('loading', originalScarpImg.getAttribute('loading'));
+    if (originalScarpImg.hasAttribute('aria-label')) scarpImg.setAttribute('aria-label', originalScarpImg.getAttribute('aria-label'));
+    if (originalScarpImg.hasAttribute('is-animated')) scarpImg.setAttribute('is-animated', originalScarpImg.getAttribute('is-animated'));
+    if (originalScarpImg.hasAttribute('data-is-reverse')) scarpImg.setAttribute('data-is-reverse', originalScarpImg.getAttribute('data-is-reverse'));
+    moveInstrumentation(originalScarpImg, scarpImg);
+    section.append(scarpPic);
   }
 
   const textAndMediaComponent = document.createElement('div');
@@ -45,17 +31,8 @@ export default async function decorate(block) {
   textAndMediaComponent.setAttribute('data-cmp-is', 'text-and-media');
   textAndMediaComponent.setAttribute('aria-labelledby', 'text-and-media-title');
   textAndMediaComponent.style.overflow = 'hidden';
-  // Transfer attributes from the original text-and-media-component if it exists
-  const originalTextAndMediaComponent = block.querySelector('.text-and-media-component');
-  if (originalTextAndMediaComponent) {
-    moveInstrumentation(originalTextAndMediaComponent, textAndMediaComponent);
-    if (originalTextAndMediaComponent.hasAttribute('is-animated')) {
-      textAndMediaComponent.setAttribute('is-animated', originalTextAndMediaComponent.getAttribute('is-animated'));
-    }
-    if (originalTextAndMediaComponent.hasAttribute('data-is-reverse')) {
-      textAndMediaComponent.setAttribute('data-is-reverse', originalTextAndMediaComponent.getAttribute('data-is-reverse'));
-    }
-  }
+  textAndMediaComponent.setAttribute('is-animated', 'true');
+  textAndMediaComponent.setAttribute('data-is-reverse', 'true');
 
   const imageContainer = document.createElement('div');
   imageContainer.className = 'text-and-media-image-container animate-image-container-up-fade in-viewport slide-up';
@@ -65,20 +42,22 @@ export default async function decorate(block) {
   const picture = document.createElement('picture');
   picture.className = 'text-and-media-image-container-picture';
 
-  if (image) {
-    const optimizedPicture = createOptimizedPicture(image.src, image.alt, false, [{ width: '500', height: '400' }]);
-    const source = optimizedPicture.querySelector('source');
-    const img = optimizedPicture.querySelector('img');
+  const img = imageEl.querySelector('img');
+  if (img) {
+    const optimizedPic = createOptimizedPicture(img.src, img.alt);
+    const optimizedImg = optimizedPic.querySelector('img');
 
-    if (source) {
-      picture.append(source);
-    }
-    if (img) {
-      img.className = 'text-and-media-image-container-image layout-portrait animate-image-zoom-out in-viewport';
-      img.setAttribute('role', 'img');
-      picture.append(img);
-      moveInstrumentation(image, img);
-    }
+    // Transfer attributes from original img to optimized img
+    optimizedImg.className = 'text-and-media-image-container-image layout-portrait animate-image-zoom-out in-viewport';
+    if (img.hasAttribute('loading')) optimizedImg.setAttribute('loading', img.getAttribute('loading'));
+    if (img.hasAttribute('role')) optimizedImg.setAttribute('role', img.getAttribute('role'));
+
+    // Transfer source elements
+    const sources = imageEl.querySelectorAll('source');
+    sources.forEach((source) => picture.append(source.cloneNode(true)));
+
+    picture.append(optimizedImg);
+    moveInstrumentation(img, optimizedImg);
   }
   imageContainer.append(picture);
   textAndMediaComponent.append(imageContainer);
@@ -93,40 +72,44 @@ export default async function decorate(block) {
   slideUpDiv.setAttribute('data-slide-type', 'slide-up');
   slideUpDiv.className = 'slide-up';
 
-  if (title) {
+  if (titleEl && titleEl.textContent.trim()) {
     const titleDiv = document.createElement('div');
     titleDiv.id = 'text-and-media-title';
     titleDiv.className = 'text-and-media-content-title';
     titleDiv.setAttribute('tabindex', '0');
-    titleDiv.innerHTML = title;
+    titleDiv.innerHTML = titleEl.innerHTML;
+    moveInstrumentation(titleEl, titleDiv);
     slideUpDiv.append(titleDiv);
   }
 
-  if (description) {
+  if (descriptionEl && descriptionEl.textContent.trim()) {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'text-and-media-content-description';
     descriptionDiv.setAttribute('tabindex', '0');
-    descriptionDiv.innerHTML = description;
+    descriptionDiv.innerHTML = descriptionEl.innerHTML;
+    moveInstrumentation(descriptionEl, descriptionDiv);
     slideUpDiv.append(descriptionDiv);
   }
 
-  if (ctaLabel && ctaUrl) {
+  if (ctaLabelEl && ctaLabelEl.textContent.trim() && ctaUrlEl && ctaUrlEl.textContent.trim()) {
     const ctaLink = document.createElement('a');
-    ctaLink.href = ctaUrl;
-    ctaLink.className = 'text-and-media-cta cta__primary text-and-media-content-cta';
-    ctaLink.setAttribute('target', '_self');
-    ctaLink.setAttribute('aria-label', ctaLabel);
+    ctaLink.href = ctaUrlEl.textContent.trim();
+    ctaLink.className = 'text-and-media-cta cta__primary text-and-media-content-cta ';
+    ctaLink.target = '_self';
+    ctaLink.setAttribute('aria-label', ctaLabelEl.textContent.trim());
 
-    const ctaIcon = document.createElement('span');
-    ctaIcon.className = 'text-and-media-cta-icon qd-icon qd-icon--cheveron-right';
-    ctaIcon.setAttribute('aria-hidden', 'true');
-    ctaLink.append(ctaIcon);
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'text-and-media-cta-icon qd-icon qd-icon--cheveron-right';
+    iconSpan.setAttribute('aria-hidden', 'true');
+    ctaLink.append(iconSpan);
 
-    const ctaLabelSpan = document.createElement('span');
-    ctaLabelSpan.className = 'text-and-media-cta-label';
-    ctaLabelSpan.textContent = ctaLabel;
-    ctaLink.append(ctaLabelSpan);
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'text-and-media-cta-label';
+    labelSpan.textContent = ctaLabelEl.textContent.trim();
+    ctaLink.append(labelSpan);
 
+    moveInstrumentation(ctaLabelEl, ctaLink);
+    moveInstrumentation(ctaUrlEl, ctaLink);
     slideUpDiv.append(ctaLink);
   }
 

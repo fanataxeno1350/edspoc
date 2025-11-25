@@ -46,35 +46,28 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Primary CTA Label",
-              "name": "primaryCtaLabel",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Primary CTA Href",
-              "name": "primaryCtaHref",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Secondary CTA Label",
-              "name": "secondaryCtaLabel",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Secondary CTA Href",
-              "name": "secondaryCtaHref",
-              "valueType": "string"
-            }
-          ],
-          "label": "CTAs",
-          "name": "ctas"
+          "component": "text",
+          "label": "Primary CTA Label",
+          "name": "primaryCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Primary CTA Href",
+          "name": "primaryCtaHref",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Label",
+          "name": "secondaryCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Href",
+          "name": "secondaryCtaHref",
+          "valueType": "string"
         },
         {
           "component": "reference",

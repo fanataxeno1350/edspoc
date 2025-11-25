@@ -3,14 +3,10 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const imageCell = block.querySelector(':scope > div > div');
-  if (!imageCell) {
-    return;
-  }
+  if (!imageCell) return;
 
   const img = imageCell.querySelector('img');
-  if (!img) {
-    return;
-  }
+  if (!img) return;
 
   const scarpComponentDiv = document.createElement('div');
   scarpComponentDiv.className = 'scarp-component fade-in';
@@ -22,11 +18,9 @@ export default function decorate(block) {
 
   const pic = createOptimizedPicture(img.src, img.alt);
   const optimizedImg = pic.querySelector('img');
-  if (optimizedImg) {
-    optimizedImg.setAttribute('aria-hidden', 'true');
-    optimizedImg.className = 'scarp-separator-scarp green-scarp ';
-    moveInstrumentation(img, optimizedImg);
-  }
+  optimizedImg.className = 'scarp-separator-scarp green-scarp ';
+  optimizedImg.setAttribute('aria-hidden', 'true');
+  moveInstrumentation(img, optimizedImg);
 
   scarpContainerDiv.append(pic);
   scarpComponentDiv.append(scarpContainerDiv);

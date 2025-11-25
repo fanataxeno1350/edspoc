@@ -36,17 +36,23 @@
   {
     "id": "footer",
     "components": [
+      "footerLink",
       "footerSocialLink",
-      "footerNavLink",
-      "footerLanguageLink",
+      "footerLanguage",
       "footerPolicyLink"
     ]
   },
   {
     "id": "headerNavigation",
     "components": [
-      "navItem",
+      "menu",
       "language"
+    ]
+  },
+  {
+    "id": "menu",
+    "components": [
+      "submenu"
     ]
   },
   {
@@ -56,10 +62,7 @@
     ]
   },
   {
-    "id": "mediaComponent",
-    "components": [
-      "mediaComponent"
-    ]
+    "id": "mediaComponent"
   },
   {
     "id": "scarpComponent",

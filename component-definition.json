@@ -130,6 +130,21 @@
           }
         },
         {
+          "title": "Footer Link",
+          "id": "footerLink",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "footerLink",
+                  "name": "Footer Link"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Footer Social Link",
           "id": "footerSocialLink",
           "plugins": {
@@ -145,30 +160,15 @@
           }
         },
         {
-          "title": "Footer Navigation Link",
-          "id": "footerNavLink",
+          "title": "Footer Language",
+          "id": "footerLanguage",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "footerNavLink",
-                  "name": "Footer Navigation Link"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Footer Language Link",
-          "id": "footerLanguageLink",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "footerLanguageLink",
-                  "name": "Footer Language Link"
+                  "model": "footerLanguage",
+                  "name": "Footer Language"
                 }
               }
             }
@@ -206,15 +206,30 @@
           }
         },
         {
-          "title": "Nav-Item",
-          "id": "navItem",
+          "title": "Menu",
+          "id": "menu",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "navItem",
-                  "name": "Nav-Item"
+                  "model": "menu",
+                  "name": "Menu"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Submenu",
+          "id": "submenu",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "submenu",
+                  "name": "Submenu"
                 }
               }
             }
@@ -300,7 +315,7 @@
           }
         },
         {
-          "title": "Stats-By-The-Number",
+          "title": "Stats-by-the-number",
           "id": "statsByTheNumber",
           "plugins": {
             "xwalk": {
@@ -309,14 +324,14 @@
                 "template": {
                   "filter": "statsByTheNumber",
                   "model": "statsByTheNumber",
-                  "name": "Stats-By-The-Number"
+                  "name": "Stats-by-the-number"
                 }
               }
             }
           }
         },
         {
-          "title": "Stats-Card",
+          "title": "Stats Card",
           "id": "statsCard",
           "plugins": {
             "xwalk": {
@@ -324,7 +339,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "statsCard",
-                  "name": "Stats-Card"
+                  "name": "Stats Card"
                 }
               }
             }
