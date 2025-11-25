@@ -37,18 +37,6 @@
       "id": "statCard",
       "fields": [
         {
-          "component": "reference",
-          "label": "Hover Image",
-          "name": "hoverImage",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Hover Details",
-          "name": "hoverDetails",
-          "valueType": "string"
-        },
-        {
           "component": "text",
           "label": "Number",
           "name": "number",
@@ -58,6 +46,18 @@
           "component": "text",
           "label": "Description",
           "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Hover Image",
+          "name": "hoverImage",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Hover Details",
+          "name": "hoverDetails",
           "valueType": "string"
         }
       ]
@@ -79,15 +79,22 @@
         },
         {
           "component": "richtext",
-          "label": "Main Description",
-          "name": "mainDescription",
+          "label": "Description",
+          "name": "description",
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "CTA Link",
-          "name": "ctaLink",
-          "valueType": "string"
+          "component": "container",
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Stat Card",
+              "name": "statCard",
+              "valueType": "string"
+            }
+          ],
+          "label": "Stat Cards",
+          "name": "statCards"
         },
         {
           "component": "text",
@@ -96,16 +103,10 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "fields": [
-            {
-              "component": "statCard",
-              "label": "Stat Card",
-              "name": "statCard"
-            }
-          ],
-          "label": "Stat Cards",
-          "name": "cards"
+          "component": "reference",
+          "label": "CTA URL",
+          "name": "ctaUrl",
+          "valueType": "string"
         }
       ]
     }

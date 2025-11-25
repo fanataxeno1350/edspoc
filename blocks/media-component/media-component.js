@@ -1,153 +1,135 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const posterVideoRef = block.querySelector(':scope > div:first-child > div');
-  const mainVideoRef = block.querySelector(':scope > div:nth-child(2) > div');
-
-  const posterVideo = posterVideoRef ? posterVideoRef.textContent.trim() : '';
-  const mainVideo = mainVideoRef ? mainVideoRef.textContent.trim() : '';
-
-  const mediaComponentDiv = document.createElement('div');
-  mediaComponentDiv.className = 'media-component';
-
   const backgroundDiv = document.createElement('div');
-  backgroundDiv.className = 'media-component__background';
-  mediaComponentDiv.append(backgroundDiv);
+  backgroundDiv.classList.add('media-component__background');
+  moveInstrumentation(block.children[0], backgroundDiv);
 
   const wrapperDiv = document.createElement('div');
-  wrapperDiv.className = 'media-component__wrapper media-component__wrapper--no-title';
+  wrapperDiv.classList.add('media-component__wrapper', 'media-component__wrapper--no-title');
+  moveInstrumentation(block.children[1], wrapperDiv);
 
   const headerDiv = document.createElement('div');
-  headerDiv.className = 'media-component__header';
-
+  headerDiv.classList.add('media-component__header');
   const headingDiv = document.createElement('div');
-  headingDiv.className = 'media-component__heading';
-
+  headingDiv.classList.add('media-component__heading');
   const titleDiv = document.createElement('div');
-  titleDiv.className = 'media-component__title';
+  titleDiv.classList.add('media-component__title');
   headingDiv.append(titleDiv);
   headerDiv.append(headingDiv);
   wrapperDiv.append(headerDiv);
 
   const videoWrapperDiv = document.createElement('div');
-  videoWrapperDiv.className = 'media-component-video-wrapper';
+  videoWrapperDiv.classList.add('media-component-video-wrapper');
 
-  const videoPosterDiv = document.createElement('div');
-  videoPosterDiv.className = 'media-component-video-poster';
+  const posterDiv = document.createElement('div');
+  posterDiv.classList.add('media-component-video-poster');
 
   const playButton = document.createElement('button');
-  playButton.className = 'media-component-video-poster__play-button';
+  playButton.classList.add('media-component-video-poster__play-button');
+  const playIcon = document.createElement('span');
+  playIcon.classList.add('media-component-video-poster__play-button__icon', 'qd-icon', 'qd-icon--play');
+  const playText = document.createElement('span');
+  playText.classList.add('media-component-video-poster__play-button__text');
+  playText.setAttribute('visually-hidden', '');
+  playText.textContent = ' Watch Video ';
+  playButton.append(playIcon, playText);
+  posterDiv.append(playButton);
 
-  const playIconSpan = document.createElement('span');
-  playIconSpan.className = 'media-component-video-poster__play-button__icon qd-icon qd-icon--play';
-  playButton.append(playIconSpan);
+  const posterVideo = document.createElement('video');
+  posterVideo.classList.add('media-component-video-poster__video');
+  posterVideo.setAttribute('playsinline', '');
+  posterVideo.setAttribute('webkit-playsinline', '');
+  posterVideo.setAttribute('x-webkit-airplay', 'allow');
+  posterVideo.setAttribute('muted', 'true');
+  posterVideo.setAttribute('loop', '');
+  posterVideo.setAttribute('autoplay', '');
 
-  const playTextSpan = document.createElement('span');
-  playTextSpan.className = 'media-component-video-poster__play-button__text';
-  playTextSpan.setAttribute('visually-hidden', '');
-  playTextSpan.textContent = ' Watch Video ';
-  playButton.append(playTextSpan);
-  videoPosterDiv.append(playButton);
-
-  const posterVideoElement = document.createElement('video');
-  posterVideoElement.className = 'media-component-video-poster__video';
-  posterVideoElement.setAttribute('playsinline', '');
-  posterVideoElement.setAttribute('webkit-playsinline', '');
-  posterVideoElement.setAttribute('x-webkit-airplay', 'allow');
-  posterVideoElement.setAttribute('muted', 'true');
-  posterVideoElement.setAttribute('loop', '');
-  posterVideoElement.setAttribute('autoplay', '');
-
-  const posterSource = document.createElement('source');
-  posterSource.setAttribute('src', posterVideo);
-  posterSource.setAttribute('type', 'video/mp4');
-  posterVideoElement.append(posterSource);
-  videoPosterDiv.append(posterVideoElement);
-  videoWrapperDiv.append(videoPosterDiv);
-
-  const videoContainerDiv = document.createElement('div');
-  videoContainerDiv.className = 'media-component-video-container show-controls media-component-video-hide';
+  const mainVideoContainer = document.createElement('div');
+  mainVideoContainer.classList.add('media-component-video-container', 'show-controls', 'media-component-video-hide');
 
   const controlsDiv = document.createElement('div');
-  controlsDiv.className = 'media-component-video-container__controls';
+  controlsDiv.classList.add('media-component-video-container__controls');
 
   const timerDiv = document.createElement('div');
-  timerDiv.className = 'media-component-video-container__controls__timer';
-
-  const progressAreaDiv = document.createElement('div');
-  progressAreaDiv.className = 'media-component-video-container__controls__timer__progress-area';
-
-  const progressBarSpan = document.createElement('span');
-  progressBarSpan.className = 'media-component-video-container__controls__timer__progress-area__progress-bar';
-  progressAreaDiv.append(progressBarSpan);
-
-  const pointerSpan = document.createElement('span');
-  pointerSpan.className = 'media-component-video-container__controls__timer__progress-area__pointer';
-  progressAreaDiv.append(pointerSpan);
-
-  const progressPendingSpan = document.createElement('span');
-  progressPendingSpan.className = 'media-component-video-container__controls__timer__progress-area__progress-pending';
-  progressAreaDiv.append(progressPendingSpan);
-  timerDiv.append(progressAreaDiv);
-
-  const currentTimeP = document.createElement('p');
-  currentTimeP.className = 'media-component-video-container__controls__timer__current-time';
-  currentTimeP.textContent = '00:00';
-  timerDiv.append(currentTimeP);
-
-  const durationP = document.createElement('p');
-  durationP.className = 'media-component-video-container__controls__timer__duration';
-  durationP.textContent = '00:00';
-  timerDiv.append(durationP);
-  controlsDiv.append(timerDiv);
+  timerDiv.classList.add('media-component-video-container__controls__timer');
+  const progressArea = document.createElement('div');
+  progressArea.classList.add('media-component-video-container__controls__timer__progress-area');
+  const progressBar = document.createElement('span');
+  progressBar.classList.add('media-component-video-container__controls__timer__progress-area__progress-bar');
+  const pointer = document.createElement('span');
+  pointer.classList.add('media-component-video-container__controls__timer__progress-area__pointer');
+  const progressPending = document.createElement('span');
+  progressPending.classList.add('media-component-video-container__controls__timer__progress-area__progress-pending');
+  progressArea.append(progressBar, pointer, progressPending);
+  const currentTime = document.createElement('p');
+  currentTime.classList.add('media-component-video-container__controls__timer__current-time');
+  currentTime.textContent = '00:00';
+  const duration = document.createElement('p');
+  duration.classList.add('media-component-video-container__controls__timer__duration');
+  duration.textContent = '00:00';
+  timerDiv.append(progressArea, currentTime, duration);
 
   const buttonsDiv = document.createElement('div');
-  buttonsDiv.className = 'media-component-video-container__controls__buttons';
+  buttonsDiv.classList.add('media-component-video-container__controls__buttons');
 
-  const playButtonControls = document.createElement('button');
-  playButtonControls.className = 'media-component-video-container__controls__buttons__play-button media-component-video-container__controls__buttons--button';
-  const playIconControls = document.createElement('span');
-  playIconControls.className = 'media-component-video-container__controls__buttons__icon qd-icon qd-icon--play';
-  playButtonControls.append(playIconControls);
-  buttonsDiv.append(playButtonControls);
+  const createControlButton = (iconClass) => {
+    const button = document.createElement('button');
+    button.classList.add(`media-component-video-container__controls__buttons__${iconClass.split('--')[1]}-button`, 'media-component-video-container__controls__buttons--button');
+    const icon = document.createElement('span');
+    icon.classList.add('media-component-video-container__controls__buttons__icon', 'qd-icon', iconClass);
+    button.append(icon);
+    return button;
+  };
 
-  const muteButton = document.createElement('button');
-  muteButton.className = 'media-component-video-container__controls__buttons__mute-button media-component-video-container__controls__buttons--button';
-  const muteIcon = document.createElement('span');
-  muteIcon.className = 'media-component-video-container__controls__buttons__icon qd-icon qd-icon--volume';
-  muteButton.append(muteIcon);
-  buttonsDiv.append(muteButton);
+  const playControlButton = createControlButton('qd-icon--play');
+  const muteControlButton = createControlButton('qd-icon--volume');
+  const fullscreenControlButton = createControlButton('qd-icon--fullscreen');
+  buttonsDiv.append(playControlButton, muteControlButton, fullscreenControlButton);
 
-  const fullscreenButton = document.createElement('button');
-  fullscreenButton.className = 'media-component-video-container__controls__buttons__fullscreen-button media-component-video-container__controls__buttons--button';
-  const fullscreenIcon = document.createElement('span');
-  fullscreenIcon.className = 'media-component-video-container__controls__buttons__icon qd-icon qd-icon--fullscreen';
-  fullscreenButton.append(fullscreenIcon);
-  buttonsDiv.append(fullscreenButton);
-  controlsDiv.append(buttonsDiv);
-  videoContainerDiv.append(controlsDiv);
+  controlsDiv.append(timerDiv, buttonsDiv);
+  mainVideoContainer.append(controlsDiv);
 
-  const mainVideoElement = document.createElement('video');
-  mainVideoElement.className = 'media-component-video-container__video';
-  mainVideoElement.setAttribute('playsinline', '');
-  mainVideoElement.setAttribute('webkit-playsinline', '');
-  mainVideoElement.setAttribute('muted', 'true');
-  mainVideoElement.setAttribute('loop', '');
-  mainVideoElement.setAttribute('autoplay', '');
+  const mainVideo = document.createElement('video');
+  mainVideo.classList.add('media-component-video-container__video');
+  mainVideo.setAttribute('playsinline', '');
+  mainVideo.setAttribute('webkit-playsinline', '');
+  mainVideo.setAttribute('muted', 'true');
+  mainVideo.setAttribute('loop', '');
+  mainVideo.setAttribute('autoplay', '');
+  mainVideo.setAttribute('x-webkit-airplay', 'allow');
 
-  const mainSource = document.createElement('source');
-  mainSource.setAttribute('src', mainVideo);
-  mainSource.setAttribute('type', 'video/mp4');
-  mainVideoElement.append(mainSource);
-  videoContainerDiv.append(mainVideoElement);
-  videoWrapperDiv.append(videoContainerDiv);
+  // Iterate through the block children to extract video sources
+  [...block.children].forEach((row, index) => {
+    // Assuming first cell is posterVideo and second is mainVideo
+    const cells = [...row.children];
+    if (cells.length > 0) {
+      const posterVideoLink = cells[0].querySelector('a');
+      if (posterVideoLink && posterVideoLink.href) {
+        const posterSource = document.createElement('source');
+        posterSource.src = posterVideoLink.href;
+        posterSource.type = 'video/mp4';
+        posterVideo.append(posterSource);
+        moveInstrumentation(cells[0], posterVideo);
+      }
+    }
+    if (cells.length > 1) {
+      const mainVideoLink = cells[1].querySelector('a');
+      if (mainVideoLink && mainVideoLink.href) {
+        const mainSource = document.createElement('source');
+        mainSource.src = mainVideoLink.href;
+        mainSource.type = 'video/mp4';
+        mainVideo.append(mainSource);
+        moveInstrumentation(cells[1], mainVideo);
+      }
+    }
+  });
+
+  posterDiv.append(posterVideo);
+  mainVideoContainer.append(mainVideo);
+  videoWrapperDiv.append(posterDiv, mainVideoContainer);
   wrapperDiv.append(videoWrapperDiv);
-  mediaComponentDiv.append(wrapperDiv);
-
-  moveInstrumentation(block.firstElementChild, mediaComponentDiv.querySelector('.media-component-video-poster video source'));
-  moveInstrumentation(block.lastElementChild, mediaComponentDiv.querySelector('.media-component-video-container video source'));
 
   block.textContent = '';
-  block.append(mediaComponentDiv);
+  block.append(backgroundDiv, wrapperDiv);
 }

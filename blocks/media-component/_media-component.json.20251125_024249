@@ -23,13 +23,13 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Poster Video Source",
+          "label": "Poster Video",
           "name": "posterVideo",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Main Video Source",
+          "label": "Main Video",
           "name": "mainVideo",
           "valueType": "string"
         }

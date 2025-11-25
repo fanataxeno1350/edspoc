@@ -17,6 +17,21 @@
       }
     },
     {
+      "title": "Footer Link",
+      "id": "footerLink",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "footerLink",
+              "name": "Footer Link"
+            }
+          }
+        }
+      }
+    },
+    {
       "title": "Footer Social Link",
       "id": "footerSocialLink",
       "plugins": {
@@ -26,21 +41,6 @@
             "template": {
               "model": "footerSocialLink",
               "name": "Footer Social Link"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Footer Navigation Link",
-      "id": "footerNavigationLink",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "model": "footerNavigationLink",
-              "name": "Footer Navigation Link"
             }
           }
         }
@@ -82,22 +82,19 @@
       "id": "footer",
       "fields": [
         {
-          "component": "aem-tag",
-          "label": "Logo Link",
-          "name": "logoLink",
-          "valueType": "string"
-        },
-        {
           "component": "reference",
-          "label": "Logo Icon",
-          "name": "logoIcon",
+          "label": "Logo Link",
+          "name": "logo",
           "valueType": "string"
         },
         {
           "component": "container",
-          "items": [
+          "fields": [
             {
-              "component": "footerSocialLink"
+              "component": "reference",
+              "label": "Footer Social Link",
+              "name": "footerSocialLink",
+              "valueType": "footerSocialLink"
             }
           ],
           "label": "Social Links",
@@ -105,19 +102,25 @@
         },
         {
           "component": "container",
-          "items": [
+          "fields": [
             {
-              "component": "footerNavigationLink"
+              "component": "reference",
+              "label": "Footer Link",
+              "name": "footerLink",
+              "valueType": "footerLink"
             }
           ],
-          "label": "Navigation Links",
-          "name": "navigationLinks"
+          "label": "Footer Links",
+          "name": "footerLinks"
         },
         {
           "component": "container",
-          "items": [
+          "fields": [
             {
-              "component": "footerLanguage"
+              "component": "reference",
+              "label": "Footer Language",
+              "name": "footerLanguage",
+              "valueType": "footerLanguage"
             }
           ],
           "label": "Languages",
@@ -125,9 +128,12 @@
         },
         {
           "component": "container",
-          "items": [
+          "fields": [
             {
-              "component": "footerPolicyLink"
+              "component": "reference",
+              "label": "Footer Policy Link",
+              "name": "footerPolicyLink",
+              "valueType": "footerPolicyLink"
             }
           ],
           "label": "Policy Links",
@@ -142,47 +148,41 @@
       ]
     },
     {
-      "id": "footerSocialLink",
+      "id": "footerLink",
       "fields": [
         {
-          "component": "aem-tag",
-          "label": "Icon Class",
-          "name": "iconClass",
+          "component": "text",
+          "label": "Label",
+          "name": "label",
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-tag",
-          "label": "Aria Label",
-          "name": "ariaLabel",
+          "component": "reference",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "footerNavigationLink",
+      "id": "footerSocialLink",
       "fields": [
         {
-          "component": "aem-tag",
-          "label": "Text",
-          "name": "text",
+          "component": "text",
+          "label": "Icon Class",
+          "name": "icon",
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
-          "label": "Link",
-          "name": "link",
+          "component": "reference",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
-          "label": "Title",
-          "name": "title",
+          "component": "text",
+          "label": "Aria Label",
+          "name": "ariaLabel",
           "valueType": "string"
         }
       ]
@@ -191,27 +191,22 @@
       "id": "footerLanguage",
       "fields": [
         {
-          "component": "aem-tag",
-          "label": "Language Code",
-          "name": "lang",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-tag",
-          "label": "Label",
+          "component": "text",
+          "label": "Language Label",
           "name": "label",
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
-          "label": "Link",
-          "name": "link",
+          "component": "reference",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
-          "component": "boolean",
-          "label": "Active",
-          "name": "active"
+          "component": "text",
+          "label": "Data Lang",
+          "name": "dataLang",
+          "valueType": "string"
         }
       ]
     },
@@ -219,21 +214,15 @@
       "id": "footerPolicyLink",
       "fields": [
         {
-          "component": "aem-tag",
-          "label": "Text",
-          "name": "text",
+          "component": "text",
+          "label": "Policy Label",
+          "name": "label",
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-tag",
-          "label": "Title",
-          "name": "title",
+          "component": "reference",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         }
       ]
@@ -243,8 +232,8 @@
     {
       "id": "footer",
       "components": [
+        "footerLink",
         "footerSocialLink",
-        "footerNavigationLink",
         "footerLanguage",
         "footerPolicyLink"
       ]

@@ -24,7 +24,8 @@
       "statsByTheNumbers",
       "footer",
       "scarp",
-      "statsByTheNumber"
+      "statsByTheNumber",
+      "header"
     ]
   },
   {
@@ -36,8 +37,8 @@
   {
     "id": "footer",
     "components": [
-      "footerLink",
       "footerSocialLink",
+      "footerNavigationLink",
       "footerLanguage",
       "footerPolicyLink"
     ]
@@ -53,6 +54,19 @@
     "id": "menu",
     "components": [
       "submenu"
+    ]
+  },
+  {
+    "id": "header",
+    "components": [
+      "navMenu",
+      "language"
+    ]
+  },
+  {
+    "id": "navMenu",
+    "components": [
+      "navMenuItem"
     ]
   },
   {

@@ -24,13 +24,13 @@
         {
           "component": "reference",
           "label": "Background Video",
-          "name": "video",
+          "name": "backgroundVideo",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Video Type",
-          "name": "videoTypeSelected",
+          "label": "Background Poster Image Alt",
+          "name": "backgroundPosterImageAlt",
           "valueType": "string"
         },
         {
@@ -46,27 +46,40 @@
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Primary CTA Label",
-          "name": "primaryCtaLabel",
-          "valueType": "string"
+          "component": "container",
+          "fields": [
+            {
+              "component": "text",
+              "label": "Primary CTA Label",
+              "name": "primaryCtaLabel",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Primary CTA Href",
+              "name": "primaryCtaHref",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Secondary CTA Label",
+              "name": "secondaryCtaLabel",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "label": "Secondary CTA Href",
+              "name": "secondaryCtaHref",
+              "valueType": "string"
+            }
+          ],
+          "label": "CTAs",
+          "name": "ctas"
         },
         {
-          "component": "text",
-          "label": "Primary CTA URL",
-          "name": "primaryCtaUrl",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Secondary CTA Label",
-          "name": "secondaryCtaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Secondary CTA URL",
-          "name": "secondaryCtaUrl",
+          "component": "reference",
+          "label": "Modal Video",
+          "name": "modalVideo",
           "valueType": "string"
         }
       ]

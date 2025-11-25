@@ -1,172 +1,175 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default async function decorate(block) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'stats-by-the-number-wrapper animate-ready animate-in';
-  wrapper.setAttribute('role', 'region');
-  wrapper.setAttribute('aria-label', 'Statistics by the numbers');
-  moveInstrumentation(block, wrapper);
+export default function decorate(block) {
+  const statsByTheNumberWrapper = document.createElement('div');
+  statsByTheNumberWrapper.classList.add('stats-by-the-number-wrapper', 'animate-ready', 'animate-in');
+  statsByTheNumberWrapper.setAttribute('role', 'region');
+  statsByTheNumberWrapper.setAttribute('aria-label', 'Statistics by the numbers');
 
-  const container = document.createElement('div');
-  container.className = 'stats-by-the-number-container';
+  const statsByTheNumberContainer = document.createElement('div');
+  statsByTheNumberContainer.classList.add('stats-by-the-number-container');
+  statsByTheNumberWrapper.append(statsByTheNumberContainer);
 
-  const titleDiv = block.querySelector(':scope > div:first-child > div');
-  if (titleDiv) {
-    const titleWrapper = document.createElement('div');
-    titleWrapper.className = 'stats-by-the-number-title';
-    const h2 = document.createElement('h2');
-    h2.innerHTML = titleDiv.innerHTML;
-    moveInstrumentation(titleDiv, h2);
-    titleWrapper.append(h2);
-    container.append(titleWrapper);
+  const rows = [...block.children];
+
+  // Row 1: Title
+  if (rows[0]) {
+    const titleRow = rows[0];
+    const titleCell = titleRow.children[0];
+    const statsByTheNumberTitle = document.createElement('div');
+    statsByTheNumberTitle.classList.add('stats-by-the-number-title');
+    statsByTheNumberTitle.innerHTML = titleCell.innerHTML;
+    moveInstrumentation(titleRow, statsByTheNumberTitle);
+    statsByTheNumberContainer.append(statsByTheNumberTitle);
   }
 
-  const mainContent = document.createElement('div');
-  mainContent.className = 'stats-by-the-number-main-content';
+  const statsByTheNumberMainContent = document.createElement('div');
+  statsByTheNumberMainContent.classList.add('stats-by-the-number-main-content');
+  statsByTheNumberContainer.append(statsByTheNumberMainContent);
 
-  const imageSection = document.createElement('div');
-  imageSection.className = 'stats-by-the-number-image-section';
+  const statsByTheNumberImageSection = document.createElement('div');
+  statsByTheNumberImageSection.classList.add('stats-by-the-number-image-section');
+  statsByTheNumberMainContent.append(statsByTheNumberImageSection);
 
-  const mainImageCell = block.querySelector(':scope > div:nth-child(2) > div:first-child');
-  if (mainImageCell) {
-    const imageContainer = document.createElement('div');
-    imageContainer.className = 'stats-by-the-number-image-container stats-by-the-number-image-container--active';
-    imageContainer.setAttribute('data-tab-content', '0');
+  const statsByTheNumberContentSection = document.createElement('div');
+  statsByTheNumberContentSection.classList.add('stats-by-the-number-content-section');
+  statsByTheNumberMainContent.append(statsByTheNumberContentSection);
 
-    const img = mainImageCell.querySelector('img');
+  const statsByTheNumberTabContent = document.createElement('div');
+  statsByTheNumberTabContent.classList.add('stats-by-the-number-tab-content', 'stats-by-the-number-tab-content--active');
+  statsByTheNumberTabContent.setAttribute('data-tab-content', '0');
+  statsByTheNumberContentSection.append(statsByTheNumberTabContent);
+
+  // Row 2: Main Image
+  if (rows[1]) {
+    const mainImageRow = rows[1];
+    const imageCell = mainImageRow.children[0];
+    const img = imageCell.querySelector('img');
     if (img) {
-      imageContainer.setAttribute('data-image-path', img.src);
-      const pic = createOptimizedPicture(img.src, img.alt);
-      const optimizedImg = pic.querySelector('img');
-      optimizedImg.className = 'stats-by-the-number-main-image';
-      optimizedImg.setAttribute('data-tab-image', '0');
-      optimizedImg.style.opacity = '1';
-      moveInstrumentation(img, optimizedImg);
-      imageContainer.append(pic);
+      const statsByTheNumberImageContainer = document.createElement('div');
+      statsByTheNumberImageContainer.classList.add('stats-by-the-number-image-container', 'stats-by-the-number-image-container--active');
+      statsByTheNumberImageContainer.setAttribute('data-tab-content', '0');
+      statsByTheNumberImageContainer.setAttribute('data-image-path', img.src);
+
+      const optimizedPic = createOptimizedPicture(img.src, img.alt);
+      const mainImage = optimizedPic.querySelector('img');
+      mainImage.classList.add('stats-by-the-number-main-image');
+      mainImage.setAttribute('data-tab-image', '0');
+      mainImage.style.opacity = '1';
+      moveInstrumentation(img, mainImage);
+      statsByTheNumberImageContainer.append(optimizedPic);
+      statsByTheNumberImageSection.append(statsByTheNumberImageContainer);
     }
-    imageSection.append(imageContainer);
+    moveInstrumentation(mainImageRow, statsByTheNumberImageSection);
   }
-  mainContent.append(imageSection);
 
-  const contentSection = document.createElement('div');
-  contentSection.className = 'stats-by-the-number-content-section';
+  // Row 3: Main Description
+  if (rows[2]) {
+    const descriptionRow = rows[2];
+    const descriptionCell = descriptionRow.children[0];
+    const statsByTheNumberDescription = document.createElement('div');
+    statsByTheNumberDescription.classList.add('stats-by-the-number-description');
+    statsByTheNumberDescription.innerHTML = descriptionCell.innerHTML;
+    moveInstrumentation(descriptionRow, statsByTheNumberDescription);
+    statsByTheNumberTabContent.append(statsByTheNumberDescription);
+  }
 
-  const tabContent = document.createElement('div');
-  tabContent.className = 'stats-by-the-number-tab-content stats-by-the-number-tab-content--active';
-  tabContent.setAttribute('data-tab-content', '0');
+  const statsByTheNumberCards = document.createElement('div');
+  statsByTheNumberCards.classList.add('stats-by-the-number-cards');
+  statsByTheNumberCards.setAttribute('role', 'list');
+  statsByTheNumberTabContent.append(statsByTheNumberCards);
 
-  const descriptionCell = block.querySelector(':scope > div:nth-child(3) > div:first-child');
-  if (descriptionCell) {
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'stats-by-the-number-description';
-    const p = descriptionCell.querySelector('p');
-    if (p) {
-      descriptionDiv.append(p);
-      moveInstrumentation(descriptionCell, descriptionDiv);
+  // Rows 4 onwards: Stat Cards
+  for (let i = 3; i < rows.length - 1; i += 1) {
+    const cardRow = rows[i];
+    const cells = [...cardRow.children];
+    if (cells.length >= 4) { // Ensure all card fields are present
+      const statsByTheNumberCard = document.createElement('div');
+      statsByTheNumberCard.classList.add('stats-by-the-number-card');
+      statsByTheNumberCard.setAttribute('role', 'img');
+      statsByTheNumberCard.setAttribute('tabindex', '0');
+      moveInstrumentation(cardRow, statsByTheNumberCard);
+
+      const hoverImageCell = cells[0];
+      const hoverDetailsCell = cells[1];
+      const numberCell = cells[2];
+      const descriptionCell = cells[3];
+
+      const hoverImageLink = hoverImageCell.querySelector('a');
+      if (hoverImageLink) {
+        statsByTheNumberCard.setAttribute('data-hover-image', hoverImageLink.href);
+      }
+
+      if (hoverDetailsCell) {
+        statsByTheNumberCard.setAttribute('data-hover-details', hoverDetailsCell.innerHTML.trim());
+      }
+
+      if (descriptionCell) {
+        statsByTheNumberCard.setAttribute('aria-label', `${numberCell.textContent.trim()}: ${descriptionCell.textContent.trim()}`);
+      }
+
+      // Hidden readOnlyAuthor span
+      const readOnlyAuthorSpan = document.createElement('span');
+      readOnlyAuthorSpan.classList.add('readOnlyAuthor');
+      readOnlyAuthorSpan.style.display = 'none';
+      readOnlyAuthorSpan.innerHTML = numberCell.innerHTML.trim();
+      statsByTheNumberCard.append(readOnlyAuthorSpan);
+
+      const statsByTheNumberCardNumber = document.createElement('div');
+      statsByTheNumberCardNumber.classList.add('stats-by-the-number-card__number');
+      statsByTheNumberCardNumber.setAttribute('data-count', numberCell.innerHTML.trim());
+      statsByTheNumberCardNumber.innerHTML = numberCell.innerHTML;
+      statsByTheNumberCard.append(statsByTheNumberCardNumber);
+
+      const statsByTheNumberCardDescription = document.createElement('div');
+      statsByTheNumberCardDescription.classList.add('stats-by-the-number-card__description');
+      statsByTheNumberCardDescription.innerHTML = descriptionCell.innerHTML;
+      statsByTheNumberCard.append(statsByTheNumberCardDescription);
+
+      statsByTheNumberCards.append(statsByTheNumberCard);
     }
-    tabContent.append(descriptionDiv);
   }
 
-  const cardsWrapper = document.createElement('div');
-  cardsWrapper.className = 'stats-by-the-number-cards';
-  cardsWrapper.setAttribute('role', 'list');
+  // Last Row: CTA
+  const lastRow = rows[rows.length - 1];
+  if (lastRow) {
+    const ctaCell = lastRow.children[0];
+    const ctaLink = ctaCell.querySelector('a');
+    if (ctaLink) {
+      const statsByTheNumberCta = document.createElement('div');
+      statsByTheNumberCta.classList.add('stats-by-the-number-cta');
 
-  const statCardsContainer = block.querySelector(':scope > div:nth-child(4)');
-  if (statCardsContainer) {
-    Array.from(statCardsContainer.children).forEach((cardCell, index) => {
-      const card = document.createElement('div');
-      card.className = 'stats-by-the-number-card';
-      card.setAttribute('role', 'img');
-      card.setAttribute('tabindex', '0');
-
-      const numberElement = cardCell.querySelector('div:first-child');
-      const descriptionElement = cardCell.querySelector('div:nth-child(2)');
-      const hoverImageElement = cardCell.querySelector('div:nth-child(3)');
-      const hoverDetailsElement = cardCell.querySelector('div:nth-child(4)');
-
-      if (hoverImageElement) {
-        card.setAttribute('data-hover-image', hoverImageElement.textContent.trim());
+      const newCtaLink = document.createElement('a');
+      newCtaLink.href = ctaLink.href;
+      newCtaLink.classList.add('cta', 'cta__primary');
+      if (ctaLink.target) {
+        newCtaLink.target = ctaLink.target;
       }
-      if (hoverDetailsElement) {
-        card.setAttribute('data-hover-details', hoverDetailsElement.innerHTML.trim());
+      if (ctaLink.getAttribute('aria-label')) {
+        newCtaLink.setAttribute('aria-label', ctaLink.getAttribute('aria-label'));
+      }
+      if (ctaLink.getAttribute('data-palette')) {
+        newCtaLink.setAttribute('data-palette', ctaLink.getAttribute('data-palette'));
       }
 
-      let ariaLabelText = '';
-      if (numberElement) {
-        ariaLabelText += numberElement.textContent.trim();
-      }
-      if (descriptionElement) {
-        ariaLabelText += `: ${descriptionElement.textContent.trim()}`;
-      }
-      card.setAttribute('aria-label', ariaLabelText);
+      const ctaIcon = document.createElement('span');
+      ctaIcon.classList.add('cta__icon', 'qd-icon', 'qd-icon--cheveron-right');
+      ctaIcon.setAttribute('aria-hidden', 'true');
+      newCtaLink.append(ctaIcon);
 
-      const readOnlyAuthor = document.createElement('span');
-      readOnlyAuthor.className = 'readOnlyAuthor';
-      readOnlyAuthor.style.display = 'none';
-      if (numberElement) {
-        readOnlyAuthor.innerHTML = numberElement.innerHTML;
-      }
-      card.append(readOnlyAuthor);
+      const ctaLabel = document.createElement('span');
+      ctaLabel.classList.add('cta__label');
+      ctaLabel.textContent = ctaLink.textContent;
+      newCtaLink.append(ctaLabel);
 
-      const numberDiv = document.createElement('div');
-      numberDiv.className = 'stats-by-the-number-card__number';
-      if (numberElement) {
-        numberDiv.setAttribute('data-count', numberElement.innerHTML.trim());
-        numberDiv.innerHTML = numberElement.innerHTML;
-      }
-      card.append(numberDiv);
-
-      const descriptionDiv = document.createElement('div');
-      descriptionDiv.className = 'stats-by-the-number-card__description';
-      if (descriptionElement) {
-        descriptionDiv.innerHTML = descriptionElement.innerHTML;
-      }
-      card.append(descriptionDiv);
-
-      moveInstrumentation(cardCell, card);
-      cardsWrapper.append(card);
-    });
-  }
-  tabContent.append(cardsWrapper);
-
-  const ctaCell = block.querySelector(':scope > div:nth-child(5)');
-  if (ctaCell) {
-    const ctaDiv = document.createElement('div');
-    ctaDiv.className = 'stats-by-the-number-cta';
-
-    const ctaLabel = ctaCell.querySelector('div:first-child');
-    const ctaUrl = ctaCell.querySelector('div:nth-child(2)');
-
-    if (ctaLabel && ctaUrl) {
-      const a = document.createElement('a');
-      a.href = ctaUrl.textContent.trim();
-      a.className = 'cta cta__primary';
-      a.target = '_self';
-      a.setAttribute('aria-label', ctaLabel.textContent.trim());
-      a.setAttribute('data-palette', 'palette-1');
-
-      const icon = document.createElement('span');
-      icon.className = 'cta__icon qd-icon qd-icon--cheveron-right';
-      icon.setAttribute('aria-hidden', 'true');
-      a.append(icon);
-
-      const labelSpan = document.createElement('span');
-      labelSpan.className = 'cta__label';
-      labelSpan.textContent = ctaLabel.textContent.trim();
-      a.append(labelSpan);
-
-      ctaDiv.append(a);
-      moveInstrumentation(ctaCell, ctaDiv);
+      moveInstrumentation(ctaLink, newCtaLink);
+      statsByTheNumberCta.append(newCtaLink);
+      statsByTheNumberTabContent.append(statsByTheNumberCta);
     }
-    tabContent.append(ctaDiv);
+    moveInstrumentation(lastRow, statsByTheNumberTabContent);
   }
-
-  contentSection.append(tabContent);
-  mainContent.append(contentSection);
-  container.append(mainContent);
-  wrapper.append(container);
 
   block.textContent = '';
-  block.append(wrapper);
+  block.append(statsByTheNumberWrapper);
 }
