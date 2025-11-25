@@ -206,30 +206,15 @@
           }
         },
         {
-          "title": "Nav-Menu",
-          "id": "navMenu",
+          "title": "Nav-Item",
+          "id": "navItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "navMenu",
-                  "name": "Nav-Menu"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Sub-Menu-Item",
-          "id": "subMenuItem",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "subMenuItem",
-                  "name": "Sub-Menu-Item"
+                  "model": "navItem",
+                  "name": "Nav-Item"
                 }
               }
             }

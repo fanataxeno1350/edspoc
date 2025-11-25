@@ -1,202 +1,190 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default async function decorate(block) {
-  const backgroundVideo = block.querySelector('div:nth-child(1) > div');
-  const title = block.querySelector('div:nth-child(2) > div');
-  const description = block.querySelector('div:nth-child(3) > div');
-  const primaryCtaLink = block.querySelector('div:nth-child(4) > div');
-  const primaryCtaLabel = block.querySelector('div:nth-child(5) > div');
-  const secondaryCtaLink = block.querySelector('div:nth-child(6) > div');
-  const secondaryCtaLabel = block.querySelector('div:nth-child(7) > div');
-  const modalVideoSrc = block.querySelector('div:nth-child(8) > div');
+export default function decorate(block) {
+  // Create a container for the reconstructed block content
+  const finalRootElement = document.createElement('div');
+  finalRootElement.className = 'hero-full-width parallax-child-2 hero-in-view';
 
-  block.setAttribute('data-media-type', 'videoTypeSelected');
-  block.setAttribute('aria-label', title.innerHTML.trim());
-  block.setAttribute('aria-hidden', 'true');
+  // --- Background Video and Poster Image ---
+  const backgroundVideoSrc = block.querySelector('.hero-full-width__background-video source')?.src;
+  const backgroundPosterImageAlt = block.querySelector('.hero-full-width__background-poster')?.alt;
 
-  const heroFullWidthCover = document.createElement('div');
-  heroFullWidthCover.className = 'hero-full-width__cover';
+  const heroCover = document.createElement('div');
+  heroCover.className = 'hero-full-width__cover';
+  finalRootElement.append(heroCover);
 
-  const heroFullWidthBackground = document.createElement('div');
-  heroFullWidthBackground.className = 'hero-full-width__background';
+  const heroBackground = document.createElement('div');
+  heroBackground.className = 'hero-full-width__background';
+  finalRootElement.append(heroBackground);
 
-  const heroFullWidthBackgroundWrapper = document.createElement('div');
-  heroFullWidthBackgroundWrapper.className = 'hero-full-width__background-wrapper zoom-out';
+  const heroBackgroundWrapper = document.createElement('div');
+  heroBackgroundWrapper.className = 'hero-full-width__background-wrapper zoom-out';
+  heroBackground.append(heroBackgroundWrapper);
 
-  const backgroundVideoElement = document.createElement('video');
-  backgroundVideoElement.className = 'hero-full-width__background-video';
-  backgroundVideoElement.setAttribute('aria-label', title.innerHTML.trim());
-  backgroundVideoElement.setAttribute('aria-hidden', 'true');
-  backgroundVideoElement.setAttribute('playsinline', '');
-  backgroundVideoElement.setAttribute('muted', '');
-  backgroundVideoElement.setAttribute('loop', '');
-  backgroundVideoElement.setAttribute('autoplay', '');
-  const backgroundVideoSource = document.createElement('source');
-  backgroundVideoSource.setAttribute('src', backgroundVideo.textContent.trim());
-  backgroundVideoSource.setAttribute('type', 'video/mp4');
-  backgroundVideoElement.append(backgroundVideoSource);
-  moveInstrumentation(backgroundVideo, backgroundVideoElement.querySelector('source'));
+  if (backgroundVideoSrc) {
+    const backgroundVideo = document.createElement('video');
+    backgroundVideo.className = 'hero-full-width__background-video';
+    backgroundVideo.setAttribute('playsinline', '');
+    backgroundVideo.setAttribute('muted', '');
+    backgroundVideo.setAttribute('loop', '');
+    backgroundVideo.setAttribute('autoplay', '');
+    // Transfer aria-label and aria-hidden from the authored block root if present
+    const blockAriaLabel = block.getAttribute('aria-label');
+    const blockAriaHidden = block.getAttribute('aria-hidden');
+    if (blockAriaLabel) backgroundVideo.setAttribute('aria-label', blockAriaLabel);
+    if (blockAriaHidden) backgroundVideo.setAttribute('aria-hidden', blockAriaHidden);
 
+    const source = document.createElement('source');
+    source.src = backgroundVideoSrc;
+    source.type = 'video/mp4';
+    backgroundVideo.append(source);
+    heroBackgroundWrapper.append(backgroundVideo);
+  }
+
+  // Background Poster Image
   const backgroundPosterImg = document.createElement('img');
-  backgroundPosterImg.setAttribute('alt', 'Background poster image');
-  backgroundPosterImg.setAttribute('loading', 'lazy');
   backgroundPosterImg.className = 'hero-full-width__background-poster';
+  backgroundPosterImg.setAttribute('loading', 'lazy');
   backgroundPosterImg.style.display = 'none';
   backgroundPosterImg.setAttribute('aria-hidden', 'true');
+  if (backgroundPosterImageAlt) {
+    backgroundPosterImg.alt = backgroundPosterImageAlt;
+  } else {
+    backgroundPosterImg.alt = 'Background poster image'; // Default from authored HTML
+  }
+  heroBackgroundWrapper.append(backgroundPosterImg);
 
-  heroFullWidthBackgroundWrapper.append(backgroundVideoElement, backgroundPosterImg);
-  heroFullWidthBackground.append(heroFullWidthBackgroundWrapper);
+  // --- Content Section ---
+  const heroContent = document.createElement('div');
+  heroContent.className = 'hero-full-width__content';
+  finalRootElement.append(heroContent);
 
-  const heroFullWidthContent = document.createElement('div');
-  heroFullWidthContent.className = 'hero-full-width__content';
+  // Title
+  const titleElement = block.querySelector('.hero-full-width__content__title');
+  if (titleElement) {
+    const slideWrap = document.createElement('div');
+    slideWrap.className = 'slide-wrap';
+    const slideUp = document.createElement('div');
+    slideUp.className = 'slide-up';
+    slideUp.setAttribute('data-slide-type', 'slide-up');
+    const newTitle = document.createElement('div');
+    newTitle.className = 'hero-full-width__content__title';
+    newTitle.setAttribute('tabindex', '0');
+    newTitle.innerHTML = titleElement.innerHTML;
+    moveInstrumentation(titleElement, newTitle);
+    slideUp.append(newTitle);
+    slideWrap.append(slideUp);
+    heroContent.append(slideWrap);
+  }
 
-  const slideWrap1 = document.createElement('div');
-  slideWrap1.className = 'slide-wrap';
-  const slideUp1 = document.createElement('div');
-  slideUp1.setAttribute('data-slide-type', 'slide-up');
-  slideUp1.className = 'slide-up';
+  // Description
+  const descriptionElement = block.querySelector('.hero-full-width__content__description');
+  if (descriptionElement) {
+    const slideWrap = document.createElement('div');
+    slideWrap.className = 'slide-wrap';
+    const slideUp = document.createElement('div');
+    slideUp.className = 'slide-up';
+    slideUp.setAttribute('data-slide-type', 'slide-up');
+    const newDescription = document.createElement('div');
+    newDescription.className = 'hero-full-width__content__description';
+    newDescription.setAttribute('tabindex', '0');
+    newDescription.innerHTML = descriptionElement.innerHTML;
+    moveInstrumentation(descriptionElement, newDescription);
+    slideUp.append(newDescription);
+    slideWrap.append(slideUp);
+    heroContent.append(slideWrap);
+  }
 
-  const heroFullWidthContentTitle = document.createElement('div');
-  heroFullWidthContentTitle.className = 'hero-full-width__content__title';
-  heroFullWidthContentTitle.setAttribute('tabindex', '0');
-  heroFullWidthContentTitle.innerHTML = title.innerHTML;
-  moveInstrumentation(title, heroFullWidthContentTitle);
+  // CTAs
+  const ctasContainer = block.querySelector('.hero-full-width__content--ctas');
+  if (ctasContainer) {
+    const slideWrap = document.createElement('div');
+    slideWrap.className = 'slide-wrap';
+    const slideUp = document.createElement('div');
+    slideUp.className = 'slide-up';
+    slideUp.setAttribute('data-slide-type', 'slide-up');
+    const newCtasContainer = document.createElement('div');
+    newCtasContainer.className = 'hero-full-width__content--ctas';
 
-  const heroFullWidthContentDescription = document.createElement('div');
-  heroFullWidthContentDescription.className = 'hero-full-width__content__description';
-  heroFullWidthContentDescription.setAttribute('tabindex', '0');
-  heroFullWidthContentDescription.innerHTML = description.innerHTML;
-  moveInstrumentation(description, heroFullWidthContentDescription);
+    // Primary CTA
+    const primaryCta = ctasContainer.querySelector('a.primaryCta');
+    if (primaryCta) {
+      const newPrimaryCta = document.createElement('a');
+      newPrimaryCta.href = primaryCta.href;
+      newPrimaryCta.className = primaryCta.className;
+      newPrimaryCta.target = primaryCta.target;
+      newPrimaryCta.setAttribute('aria-label', primaryCta.getAttribute('aria-label') || '');
+      newPrimaryCta.setAttribute('data-palette', primaryCta.getAttribute('data-palette') || '');
+      const span = document.createElement('span');
+      span.className = 'cta__label';
+      span.textContent = primaryCta.querySelector('.cta__label')?.textContent || '';
+      newPrimaryCta.append(span);
+      moveInstrumentation(primaryCta, newPrimaryCta);
+      newCtasContainer.append(newPrimaryCta);
+    }
 
-  slideUp1.append(heroFullWidthContentTitle, heroFullWidthContentDescription);
-  slideWrap1.append(slideUp1);
+    // Secondary CTA (Watch Video)
+    const secondaryCtaWrapper = ctasContainer.querySelector('.chevron-wrapper');
+    if (secondaryCtaWrapper) {
+      const newSecondaryCtaWrapper = document.createElement('div');
+      newSecondaryCtaWrapper.className = 'chevron-wrapper';
 
-  const slideWrap2 = document.createElement('div');
-  slideWrap2.className = 'slide-wrap';
-  const slideUp2 = document.createElement('div');
-  slideUp2.setAttribute('data-slide-type', 'slide-up');
-  slideUp2.className = 'slide-up';
+      const chevronButton = secondaryCtaWrapper.querySelector('button.chevron-icon');
+      if (chevronButton) {
+        const newChevronButton = document.createElement('button');
+        newChevronButton.type = 'button';
+        newChevronButton.className = 'chevron-icon';
+        newChevronButton.setAttribute('aria-label', chevronButton.getAttribute('aria-label') || 'Open video modal');
+        moveInstrumentation(chevronButton, newChevronButton);
+        newSecondaryCtaWrapper.append(newChevronButton);
+      }
 
-  const heroFullWidthContentCtas = document.createElement('div');
-  heroFullWidthContentCtas.className = 'hero-full-width__content--ctas';
+      const secondaryCtaLink = secondaryCtaWrapper.querySelector('a.secondaryCta');
+      if (secondaryCtaLink) {
+        const newSecondaryCtaLink = document.createElement('a');
+        newSecondaryCtaLink.href = secondaryCtaLink.href;
+        newSecondaryCtaLink.className = secondaryCtaLink.className;
+        newSecondaryCtaLink.target = secondaryCtaLink.target;
+        newSecondaryCtaLink.setAttribute('aria-label', secondaryCtaLink.getAttribute('aria-label') || '');
+        newSecondaryCtaLink.setAttribute('data-palette', secondaryCtaLink.getAttribute('data-palette') || '');
 
-  const primaryCtaAnchor = document.createElement('a');
-  primaryCtaAnchor.setAttribute('href', primaryCtaLink.textContent.trim());
-  primaryCtaAnchor.className = 'cta cta__secondary primaryCta ';
-  primaryCtaAnchor.setAttribute('target', '_self');
-  primaryCtaAnchor.setAttribute('aria-label', primaryCtaLabel.textContent.trim());
-  primaryCtaAnchor.setAttribute('data-palette', 'palette-light');
-  const primaryCtaSpan = document.createElement('span');
-  primaryCtaSpan.className = 'cta__label';
-  primaryCtaSpan.textContent = primaryCtaLabel.textContent.trim();
-  primaryCtaAnchor.append(primaryCtaSpan);
-  moveInstrumentation(primaryCtaLink, primaryCtaAnchor);
-  moveInstrumentation(primaryCtaLabel, primaryCtaSpan);
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'cta__icon qd-icon qd-icon--cheveron-right';
+        iconSpan.setAttribute('aria-hidden', 'true');
+        newSecondaryCtaLink.append(iconSpan);
 
-  const chevronWrapper = document.createElement('div');
-  chevronWrapper.className = 'chevron-wrapper';
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'cta__label';
+        labelSpan.textContent = secondaryCtaLink.querySelector('.cta__label')?.textContent || '';
+        newSecondaryCtaLink.append(labelSpan);
+        moveInstrumentation(secondaryCtaLink, newSecondaryCtaLink);
+        newSecondaryCtaWrapper.append(newSecondaryCtaLink);
+      }
+      newCtasContainer.append(newSecondaryCtaWrapper);
+    }
 
-  const chevronButton = document.createElement('button');
-  chevronButton.setAttribute('type', 'button');
-  chevronButton.className = 'chevron-icon';
-  chevronButton.setAttribute('aria-label', 'Open video modal');
+    slideUp.append(newCtasContainer);
+    slideWrap.append(slideUp);
+    heroContent.append(slideWrap);
+  }
 
-  const secondaryCtaAnchor = document.createElement('a');
-  secondaryCtaAnchor.setAttribute('href', secondaryCtaLink.textContent.trim());
-  secondaryCtaAnchor.className = 'cta cta__link secondaryCta ';
-  secondaryCtaAnchor.setAttribute('target', '_self');
-  secondaryCtaAnchor.setAttribute('aria-label', secondaryCtaLabel.textContent.trim());
-  secondaryCtaAnchor.setAttribute('data-palette', 'palette-light');
-  const secondaryCtaIcon = document.createElement('span');
-  secondaryCtaIcon.className = 'cta__icon qd-icon qd-icon--cheveron-right';
-  secondaryCtaIcon.setAttribute('aria-hidden', 'true');
-  const secondaryCtaSpan = document.createElement('span');
-  secondaryCtaSpan.className = 'cta__label';
-  secondaryCtaSpan.textContent = secondaryCtaLabel.textContent.trim();
-  secondaryCtaAnchor.append(secondaryCtaIcon, secondaryCtaSpan);
-  moveInstrumentation(secondaryCtaLink, secondaryCtaAnchor);
-  moveInstrumentation(secondaryCtaLabel, secondaryCtaSpan);
+  // Video Modal
+  const modalElement = block.querySelector('dialog.hero-full-width__content--modal');
+  if (modalElement) {
+    const newModal = modalElement.cloneNode(true); // Clone the entire dialog as-is
+    moveInstrumentation(modalElement, newModal);
+    heroContent.append(newModal);
+  }
 
-  chevronWrapper.append(chevronButton, secondaryCtaAnchor);
-  heroFullWidthContentCtas.append(primaryCtaAnchor, chevronWrapper);
-
-  slideUp2.append(heroFullWidthContentCtas);
-  slideWrap2.append(slideUp2);
-
-  const dialog = document.createElement('dialog');
-  dialog.className = 'hero-full-width__content--modal';
-  dialog.setAttribute('id', 'home-page-video-dialog');
-  dialog.setAttribute('closedby', 'any');
-  dialog.setAttribute('aria-modal', 'true');
-  dialog.setAttribute('aria-label', 'Video Modal');
-
-  const dialogForm = document.createElement('form');
-  dialogForm.setAttribute('method', 'dialog');
-  const closeButton = document.createElement('button');
-  closeButton.className = 'hero-full-width__content--modal__close-button';
-  closeButton.setAttribute('aria-label', 'Close Video');
-  closeButton.setAttribute('tabindex', '0');
-  closeButton.textContent = 'X';
-  dialogForm.append(closeButton);
-
-  const videoDiv = document.createElement('div');
-  videoDiv.className = 'video hero-full-width__content--modal__video';
-
-  const videoContainer = document.createElement('div');
-  videoContainer.className = 'video-container show-controls ';
-
-  const videoContainerControls = document.createElement('div');
-  videoContainerControls.className = 'video-container__controls';
-
-  const timerDiv = document.createElement('div');
-  timerDiv.className = 'video-container__controls__timer';
-  const progressArea = document.createElement('div');
-  progressArea.className = 'video-container__controls__timer__progress-area';
-  progressArea.innerHTML = '<span class="video-container__controls__timer__progress-area__progress-bar"></span><span class="video-container__controls__timer__progress-area__pointer"></span><span class="video-container__controls__timer__progress-area__progress-pending"></span>';
-  const currentTime = document.createElement('p');
-  currentTime.className = 'video-container__controls__timer__current-time';
-  currentTime.textContent = '00:00';
-  const duration = document.createElement('p');
-  duration.className = 'video-container__controls__timer__duration';
-  duration.textContent = '00:00';
-  timerDiv.append(progressArea, currentTime, duration);
-
-  const buttonsDiv = document.createElement('div');
-  buttonsDiv.className = 'video-container__controls__buttons';
-  buttonsDiv.innerHTML = '<button class="video-container__controls__buttons__play-button video-container__controls__buttons--button"><span class="video-container__controls__buttons__icon qd-icon qd-icon--play"></span></button><button class="video-container__controls__buttons__mute-button video-container__controls__buttons--button"><span class="video-container__controls__buttons__icon qd-icon qd-icon--volume"></span></button><button class="video-container__controls__buttons__fullscreen-button video-container__controls__buttons--button"><span class="video-container__controls__buttons__icon qd-icon qd-icon--fullscreen"></span></button>';
-
-  videoContainerControls.append(timerDiv, buttonsDiv);
-
-  const modalVideoElement = document.createElement('video');
-  modalVideoElement.className = 'video-container__video';
-  modalVideoElement.setAttribute('playsinline', '');
-  modalVideoElement.setAttribute('webkit-playsinline', '');
-  modalVideoElement.setAttribute('muted', 'true');
-  modalVideoElement.setAttribute('autoplay', '');
-  const modalVideoSource = document.createElement('source');
-  modalVideoSource.setAttribute('src', modalVideoSrc.textContent.trim());
-  modalVideoSource.setAttribute('type', 'video/mp4');
-  modalVideoElement.append(modalVideoSource);
-  modalVideoElement.append('webkit-playsinline', 'x-webkit-airplay="allow"');
-  moveInstrumentation(modalVideoSrc, modalVideoElement.querySelector('source'));
-
-  videoContainer.append(videoContainerControls, modalVideoElement);
-  videoDiv.append(videoContainer);
-  dialog.append(dialogForm, videoDiv);
-
-  heroFullWidthContent.append(slideWrap1, slideWrap2, dialog);
-
+  // Replace the block content with the new structure
   block.textContent = '';
-  block.append(heroFullWidthCover, heroFullWidthBackground, heroFullWidthContent);
+  block.append(finalRootElement);
 
-  // Remove the original content cells
-  backgroundVideo.remove();
-  title.remove();
-  description.remove();
-  primaryCtaLink.remove();
-  primaryCtaLabel.remove();
-  secondaryCtaLink.remove();
-  secondaryCtaLabel.remove();
-  modalVideoSrc.remove();
+  // Transfer data attributes from original block to finalRootElement
+  Array.from(block.attributes).forEach(attr => {
+    if (attr.name.startsWith('data-') || ['aria-label', 'aria-hidden'].includes(attr.name)) {
+      finalRootElement.setAttribute(attr.name, attr.value);
+    }
+  });
 }

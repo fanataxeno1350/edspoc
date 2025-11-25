@@ -45,14 +45,8 @@
   {
     "id": "headerNavigation",
     "components": [
-      "navMenu",
+      "navItem",
       "language"
-    ]
-  },
-  {
-    "id": "navMenu",
-    "components": [
-      "subMenuItem"
     ]
   },
   {
