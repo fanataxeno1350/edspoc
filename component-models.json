@@ -146,22 +146,22 @@
     "fields": [
       {
         "component": "richtext",
-        "name": "heading",
         "label": "Heading",
+        "name": "heading",
         "valueType": "string"
       },
       {
         "component": "aem-tag",
-        "name": "cta",
         "label": "CTA",
+        "name": "cta",
         "valueType": "string"
       },
       {
         "component": "container",
-        "name": "cardItems",
+        "itemType": "card",
         "label": "Card Items",
-        "valueType": "array",
-        "itemType": "card"
+        "name": "cardItems",
+        "valueType": "array"
       }
     ]
   },
@@ -170,20 +170,20 @@
     "fields": [
       {
         "component": "reference",
-        "name": "image",
         "label": "Image",
+        "name": "image",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "title",
         "label": "Title",
+        "name": "title",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "description",
         "label": "Description",
+        "name": "description",
         "valueType": "string"
       }
     ]
