@@ -44,14 +44,14 @@
         },
         {
           "component": "aem-tag",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "CTA Label",
+          "name": "ctaLabel",
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
-          "label": "CTA Text",
-          "name": "ctaText",
+          "component": "text",
+          "label": "CTA Link",
+          "name": "ctaLink",
           "valueType": "string"
         }
       ]
