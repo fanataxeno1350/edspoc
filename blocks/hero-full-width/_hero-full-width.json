@@ -40,27 +40,27 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Primary CTA Label",
-          "name": "primaryCtaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
+          "component": "reference",
           "label": "Primary CTA Link",
           "name": "primaryCtaLink",
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Secondary CTA Label",
-          "name": "secondaryCtaLabel",
+          "component": "richtext",
+          "label": "Primary CTA Label",
+          "name": "primaryCtaLabel",
           "valueType": "string"
         },
         {
-          "component": "aem-content",
+          "component": "reference",
           "label": "Secondary CTA Link",
           "name": "secondaryCtaLink",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Secondary CTA Label",
+          "name": "secondaryCtaLabel",
           "valueType": "string"
         }
       ]
