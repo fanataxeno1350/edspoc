@@ -44,22 +44,16 @@
         },
         {
           "component": "aem-tag",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Label",
-              "name": "label",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Href",
-              "name": "href",
-              "valueType": "string"
-            }
-          ],
           "label": "CTA",
-          "name": "cta"
+          "name": "cta",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "itemType": "card",
+          "label": "Cards",
+          "name": "cards",
+          "valueType": "array"
         }
       ]
     },
