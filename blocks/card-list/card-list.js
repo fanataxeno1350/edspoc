@@ -2,133 +2,145 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const finalRoot = document.createElement('div');
-  finalRoot.className = 'card-list-cmp-card-list parallax-child';
+  const blockName = block.dataset.blockName;
 
-  const contentWrapper = document.createElement('div');
-  contentWrapper.className = 'card-list-cmp-card-list__content';
-  finalRoot.append(contentWrapper);
+  // Step 1: Read Block JSON (already done mentally)
+  // Fields: heading (richtext), cta (aem-tag with label, href)
+  // Multifield: card (image, title, description)
 
-  // Top section (heading and CTA)
-  const slideWrap = document.createElement('div');
-  slideWrap.className = 'card-list-slide-wrap';
-  contentWrapper.append(slideWrap);
+  // Step 2: Read Expected HTML (already done mentally)
+  // Defines the structure and classes.
 
-  const topContent = document.createElement('div');
-  topContent.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
-  topContent.setAttribute('data-slide-type', 'slide-up');
-  slideWrap.append(topContent);
+  // Step 3: Extract authored content from block
+  const headingElement = block.querySelector('[data-aue-prop="heading"]');
+  const ctaLabelElement = block.querySelector('[data-aue-prop="cta-label"]');
+  const ctaHrefElement = block.querySelector('[data-aue-prop="cta-href"]');
+  const cardElements = block.querySelectorAll('[data-aue-model="card"]');
 
-  // Heading
-  const headingWrapper = document.createElement('div');
-  headingWrapper.className = 'card-list-cmp-card-list__content__heading is-visible';
-  topContent.append(headingWrapper);
+  // Step 4: Build final DOM
+  const cardListCmpCardList = document.createElement('div');
+  cardListCmpCardList.className = 'card-list-cmp-card-list parallax-child';
 
-  const headingTitle = document.createElement('div');
-  headingTitle.id = 'card-list-heading';
-  headingTitle.className = 'card-list-cmp-card-list__content__heading__title';
-  headingTitle.setAttribute('tabindex', '0');
-  headingWrapper.append(headingTitle);
+  const cardListCmpCardListContent = document.createElement('div');
+  cardListCmpCardListContent.className = 'card-list-cmp-card-list__content';
 
-  const heading = block.querySelector('[data-aue-prop="heading"]');
-  if (heading) {
-    moveInstrumentation(heading, headingTitle);
-    headingTitle.append(heading);
+  const cardListSlideWrap = document.createElement('div');
+  cardListSlideWrap.className = 'card-list-slide-wrap';
+
+  const cardListCmpCardListContentTop = document.createElement('div');
+  cardListCmpCardListContentTop.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
+  cardListCmpCardListContentTop.dataset.slideType = 'slide-up';
+
+  const cardListCmpCardListContentHeading = document.createElement('div');
+  cardListCmpCardListContentHeading.className = 'card-list-cmp-card-list__content__heading is-visible';
+
+  const cardListCmpCardListContentHeadingTitle = document.createElement('div');
+  cardListCmpCardListContentHeadingTitle.id = 'card-list-heading';
+  cardListCmpCardListContentHeadingTitle.className = 'card-list-cmp-card-list__content__heading__title';
+  cardListCmpCardListContentHeadingTitle.tabIndex = 0;
+
+  if (headingElement) {
+    moveInstrumentation(headingElement, cardListCmpCardListContentHeadingTitle);
+    cardListCmpCardListContentHeadingTitle.append(...headingElement.children);
   }
 
-  // CTA
-  const ctaWrapper = document.createElement('div');
-  ctaWrapper.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
-  topContent.append(ctaWrapper);
+  cardListCmpCardListContentHeading.append(cardListCmpCardListContentHeadingTitle);
 
-  const cta = block.querySelector('[data-aue-prop="cta"]');
-  if (cta) {
-    moveInstrumentation(cta, ctaWrapper);
-    cta.className = 'card-list-cta card-list-cta__primary';
-    cta.setAttribute('target', '_self');
-    cta.setAttribute('aria-label', cta.textContent.trim()); // Assuming textContent is the label
-    cta.setAttribute('data-palette', 'palette-1');
+  const cardListCmpCardListContentCtaWrapper = document.createElement('div');
+  cardListCmpCardListContentCtaWrapper.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
+
+  if (ctaLabelElement && ctaHrefElement) {
+    const ctaLink = document.createElement('a');
+    ctaLink.className = 'card-list-cta card-list-cta__primary';
+    ctaLink.target = '_self';
+    ctaLink.dataset.palette = 'palette-1';
+
+    const ctaLabel = ctaLabelElement.textContent.trim();
+    const ctaHref = ctaHrefElement.textContent.trim();
+
+    ctaLink.href = ctaHref;
+    ctaLink.ariaLabel = ctaLabel;
 
     const ctaIcon = document.createElement('span');
     ctaIcon.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
-    ctaIcon.setAttribute('aria-hidden', 'true');
-    cta.prepend(ctaIcon);
+    ctaIcon.ariaHidden = 'true';
 
-    const ctaLabel = document.createElement('span');
-    ctaLabel.className = 'card-list-cta__label';
-    ctaLabel.textContent = cta.textContent.trim(); // Re-extract text for label span
-    cta.textContent = ''; // Clear original text
-    cta.append(ctaIcon, ctaLabel);
+    const ctaLabelSpan = document.createElement('span');
+    ctaLabelSpan.className = 'card-list-cta__label';
+    ctaLabelSpan.textContent = ctaLabel;
 
-    ctaWrapper.append(cta);
+    ctaLink.append(ctaIcon, ctaLabelSpan);
+    moveInstrumentation(ctaLabelElement, ctaLink);
+    moveInstrumentation(ctaHrefElement, ctaLink);
+    cardListCmpCardListContentCtaWrapper.append(ctaLink);
   }
 
-  // Cards section
-  const itemsWrapper = document.createElement('div');
-  itemsWrapper.className = 'card-list-cmp-card-list__content__items';
-  contentWrapper.append(itemsWrapper);
+  cardListCmpCardListContentTop.append(cardListCmpCardListContentHeading, cardListCmpCardListContentCtaWrapper);
+  cardListSlideWrap.append(cardListCmpCardListContentTop);
 
-  const cards = block.querySelectorAll('[data-aue-model="card"]');
-  cards.forEach((card, index) => {
+  const cardListCmpCardListContentItems = document.createElement('div');
+  cardListCmpCardListContentItems.className = 'card-list-cmp-card-list__content__items';
+
+  cardElements.forEach((cardElement, index) => {
     const cardItem = document.createElement('div');
     cardItem.className = 'card-list-cmp-card-list__content__card-item is-visible card-list-slide-up';
-    cardItem.setAttribute('data-animation', 'card');
-    cardItem.setAttribute('data-slide-type', 'slide-up');
-    cardItem.setAttribute('data-slide-no-wrap', '');
-    cardItem.setAttribute('data-slide-delay', `${index * 100}`);
+    cardItem.dataset.animation = 'card';
+    cardItem.dataset.slideType = 'slide-up';
+    cardItem.dataset.slideNoWrap = '';
+    cardItem.dataset.slideDelay = `${index * 100}`.padStart(3, '0');
     cardItem.style.transitionDelay = `${index * 0.2}s`;
-    moveInstrumentation(card, cardItem);
+    moveInstrumentation(cardElement, cardItem);
 
-    const imageContainer = card.querySelector('[data-aue-prop="image"]');
-    if (imageContainer) {
-      const img = imageContainer.querySelector('img');
+    const imageElement = cardElement.querySelector('[data-aue-prop="image"]');
+    if (imageElement) {
+      const img = imageElement.querySelector('img');
       if (img) {
-        const pic = createOptimizedPicture(img.src, img.alt);
-        moveInstrumentation(img, pic.querySelector('img'));
+        const pic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
         pic.querySelector('img').className = 'card-list-cmp-card-list__content__card-item__image';
+        moveInstrumentation(img, pic.querySelector('img'));
         cardItem.append(pic);
       }
     }
 
-    const cardContent = document.createElement('div');
-    cardContent.className = 'card-list-cmp-card-list__content__card-item-content';
-    cardItem.append(cardContent);
+    const cardItemContent = document.createElement('div');
+    cardItemContent.className = 'card-list-cmp-card-list__content__card-item-content';
 
-    const titleWrapper = document.createElement('div');
-    titleWrapper.className = 'card-list-cmp-card-list__content__card-item-content__heading-wrapper';
-    titleWrapper.setAttribute('tabindex', '0');
-    cardContent.append(titleWrapper);
+    const cardItemContentHeadingWrapper = document.createElement('div');
+    cardItemContentHeadingWrapper.className = 'card-list-cmp-card-list__content__card-item-content__heading-wrapper';
+    cardItemContentHeadingWrapper.tabIndex = 0;
 
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'card-list-cmp-card-list__content__card-item-content__title';
-    titleDiv.setAttribute('aria-hidden', 'false');
-    titleWrapper.append(titleDiv);
+    const cardItemContentTitle = document.createElement('div');
+    cardItemContentTitle.className = 'card-list-cmp-card-list__content__card-item-content__title';
+    cardItemContentTitle.ariaHidden = 'false';
+    const titleElement = cardElement.querySelector('[data-aue-prop="title"]');
+    if (titleElement) {
+      moveInstrumentation(titleElement, cardItemContentTitle);
+      cardItemContentTitle.textContent = titleElement.textContent.trim();
+    }
+    cardItemContentHeadingWrapper.append(cardItemContentTitle);
 
-    const title = card.querySelector('[data-aue-prop="title"]');
-    if (title) {
-      moveInstrumentation(title, titleDiv);
-      titleDiv.append(title);
+    const cardItemContentDescription = document.createElement('div');
+    cardItemContentDescription.className = 'card-list-cmp-card-list__content__card-item-content__description';
+    cardItemContentDescription.tabIndex = 0;
+    cardItemContentDescription.ariaHidden = 'false';
+    const descriptionElement = cardElement.querySelector('[data-aue-prop="description"]');
+    if (descriptionElement) {
+      moveInstrumentation(descriptionElement, cardItemContentDescription);
+      cardItemContentDescription.append(...descriptionElement.children);
+      cardItemContentDescription.ariaLabel = descriptionElement.innerHTML.trim();
     }
 
-    const description = card.querySelector('[data-aue-prop="description"]');
-    if (description) {
-      const descriptionDiv = document.createElement('div');
-      descriptionDiv.className = 'card-list-cmp-card-list__content__card-item-content__description';
-      descriptionDiv.setAttribute('tabindex', '0');
-      descriptionDiv.setAttribute('aria-label', description.innerHTML.trim());
-      descriptionDiv.setAttribute('aria-hidden', 'false');
-      moveInstrumentation(description, descriptionDiv);
-      descriptionDiv.append(description);
-      cardContent.append(descriptionDiv);
-    }
-
-    itemsWrapper.append(cardItem);
+    cardItemContent.append(cardItemContentHeadingWrapper, cardItemContentDescription);
+    cardItem.append(cardItemContent);
+    cardListCmpCardListContentItems.append(cardItem);
   });
 
-  block.textContent = '';
-  block.append(finalRoot);
+  cardListCmpCardListContent.append(cardListSlideWrap, cardListCmpCardListContentItems);
+  cardListCmpCardList.append(cardListCmpCardListContent);
 
-  const blockName = block.dataset.blockName;
+  // Step 5: Replace block content and restore identity
+  block.textContent = '';
+  block.append(cardListCmpCardList);
   block.className = `${blockName} block`;
-  block.dataset.blockStatus = "loaded";
+  block.dataset.blockStatus = 'loaded';
 }

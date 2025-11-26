@@ -23,20 +23,20 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Background",
-          "name": "background",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
           "label": "Poster Video Source",
-          "name": "posterVideo",
+          "name": "videoPosterSrc",
           "valueType": "string"
         },
         {
           "component": "reference",
           "label": "Main Video Source",
-          "name": "mainVideo",
+          "name": "mainVideoSrc",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Watch Video Button Text",
+          "name": "watchVideoText",
           "valueType": "string"
         }
       ]

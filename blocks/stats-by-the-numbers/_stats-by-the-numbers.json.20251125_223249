@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Stats-Card",
-      "id": "statsCard",
+      "title": "Stat-Card",
+      "id": "statCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "statsCard",
-              "name": "Stats-Card"
+              "model": "statCard",
+              "name": "Stat-Card"
             }
           }
         }
@@ -34,20 +34,8 @@
   ],
   "models": [
     {
-      "id": "statsCard",
+      "id": "statCard",
       "fields": [
-        {
-          "component": "text",
-          "label": "Number",
-          "name": "number",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Description",
-          "name": "description",
-          "valueType": "string"
-        },
         {
           "component": "reference",
           "label": "Hover Image",
@@ -58,6 +46,18 @@
           "component": "richtext",
           "label": "Hover Details",
           "name": "hoverDetails",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Number",
+          "name": "number",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Description",
+          "name": "description",
           "valueType": "string"
         }
       ]
@@ -99,13 +99,12 @@
           "component": "container",
           "fields": [
             {
-              "component": "reference",
-              "label": "Stats Card",
-              "name": "statsCard",
-              "valueType": "string"
+              "component": "statCard",
+              "label": "Stat Card",
+              "name": "statCard"
             }
           ],
-          "label": "Cards",
+          "label": "Stat Cards",
           "name": "cards"
         }
       ]
@@ -115,7 +114,7 @@
     {
       "id": "statsByTheNumbers",
       "components": [
-        "statsCard"
+        "statCard"
       ]
     }
   ]

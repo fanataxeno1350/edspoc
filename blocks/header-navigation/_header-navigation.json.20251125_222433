@@ -17,15 +17,30 @@
       }
     },
     {
-      "title": "Nav-Menu",
-      "id": "navMenu",
+      "title": "Menu",
+      "id": "menu",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "navMenu",
-              "name": "Nav-Menu"
+              "model": "menu",
+              "name": "Menu"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Submenu",
+      "id": "submenu",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "submenu",
+              "name": "Submenu"
             }
           }
         }
@@ -53,65 +68,79 @@
       "fields": [
         {
           "component": "reference",
+          "label": "Logo Url",
+          "name": "logoUrl",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
           "label": "Logo Link",
           "name": "logoLink",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Logo Aria Label",
-          "name": "logoAriaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Contact Us Link",
-          "name": "contactUsLink",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
           "label": "Contact Us Label",
           "name": "contactUsLabel",
           "valueType": "string"
         },
         {
-          "component": "container",
-          "label": "Navigation Menus",
-          "name": "navMenus",
-          "of": "navMenu",
+          "component": "reference",
+          "label": "Contact Us Url",
+          "name": "contactUsUrl",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Menu",
+          "name": "menu",
           "valueType": "array"
         },
         {
-          "component": "container",
-          "label": "Languages",
-          "name": "languages",
-          "of": "language",
+          "component": "reference",
+          "label": "Language",
+          "name": "language",
           "valueType": "array"
         }
       ]
     },
     {
-      "id": "navMenu",
+      "id": "menu",
       "fields": [
         {
           "component": "text",
-          "label": "Menu Label",
-          "name": "menuLabel",
+          "label": "Label",
+          "name": "label",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Menu Link",
-          "name": "menuLink",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {
-          "component": "container",
-          "label": "Submenu Items",
-          "name": "submenuItems",
-          "of": "navMenu",
+          "component": "reference",
+          "label": "Submenu",
+          "name": "submenu",
           "valueType": "array"
+        }
+      ]
+    },
+    {
+      "id": "submenu",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
         }
       ]
     },
@@ -120,18 +149,18 @@
       "fields": [
         {
           "component": "text",
-          "label": "Language Label",
-          "name": "langLabel",
+          "label": "Label",
+          "name": "label",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Language Link",
-          "name": "langLink",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "reference",
           "label": "Language Code",
           "name": "langCode",
           "valueType": "string"
@@ -143,8 +172,14 @@
     {
       "id": "headerNavigation",
       "components": [
-        "navMenu",
+        "menu",
         "language"
+      ]
+    },
+    {
+      "id": "menu",
+      "components": [
+        "submenu"
       ]
     }
   ]

@@ -46,14 +46,8 @@
   {
     "id": "headerNavigation",
     "components": [
-      "menu",
+      "navMenu",
       "language"
-    ]
-  },
-  {
-    "id": "menu",
-    "components": [
-      "submenu"
     ]
   },
   {
@@ -99,11 +93,11 @@
   {
     "id": "statsByTheNumbers",
     "components": [
-      "statCard"
+      "statsCard"
     ]
   },
   {
-    "id": "textAndMedia",
+    "id": "text-and-media",
     "components": [
       "textAndMedia"
     ]

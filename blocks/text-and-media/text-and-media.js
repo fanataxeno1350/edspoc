@@ -9,108 +9,94 @@ export default function decorate(block) {
   const ctaUrl = block.querySelector('[data-aue-prop="ctaUrl"]');
 
   const section = document.createElement('section');
-  section.classList.add('text-and-media-section');
+  section.className = 'text-and-media-section';
 
   if (image) {
-    const scarpImg = image.querySelector('img');
-    if (scarpImg) {
-      const scarp = document.createElement('img');
-      scarp.classList.add('text-and-media-scarp', 'fade-in');
-      scarp.dataset.fadeIn = '';
-      scarp.src = scarpImg.src;
-      scarp.alt = scarpImg.alt;
-      scarp.loading = 'lazy';
-      scarp.setAttribute('aria-label', scarpImg.alt);
-      scarp.setAttribute('is-animated', 'true');
-      scarp.dataset.isReverse = 'true';
-      moveInstrumentation(scarpImg, scarp);
-      section.append(scarp);
-    }
+    const scarpImg = document.createElement('img');
+    scarpImg.className = 'text-and-media-scarp fade-in';
+    scarpImg.setAttribute('data-fade-in', '');
+    scarpImg.setAttribute('is-animated', 'true');
+    scarpImg.setAttribute('data-is-reverse', 'true');
+    scarpImg.setAttribute('loading', 'lazy');
+    scarpImg.src = image.src;
+    scarpImg.alt = image.alt;
+    scarpImg.setAttribute('aria-label', image.alt);
+    moveInstrumentation(image, scarpImg);
+    section.append(scarpImg);
   }
 
   const textAndMediaComponent = document.createElement('div');
-  textAndMediaComponent.classList.add('text-and-media-component');
-  textAndMediaComponent.dataset.cmpIs = 'text-and-media';
+  textAndMediaComponent.className = 'text-and-media-component';
+  textAndMediaComponent.setAttribute('data-cmp-is', 'text-and-media');
   textAndMediaComponent.setAttribute('aria-labelledby', 'text-and-media-title');
   textAndMediaComponent.style.overflow = 'hidden';
   textAndMediaComponent.setAttribute('is-animated', 'true');
-  textAndMediaComponent.dataset.isReverse = 'true';
+  textAndMediaComponent.setAttribute('data-is-reverse', 'true');
 
   const imageContainer = document.createElement('div');
-  imageContainer.classList.add('text-and-media-image-container', 'animate-image-container-up-fade', 'in-viewport', 'slide-up');
-  imageContainer.dataset.slideType = 'slide-up';
-  imageContainer.dataset.slideNoWrap = '';
+  imageContainer.className = 'text-and-media-image-container animate-image-container-up-fade in-viewport slide-up';
+  imageContainer.setAttribute('data-slide-type', 'slide-up');
+  imageContainer.setAttribute('data-slide-no-wrap', '');
 
   if (image) {
-    const imgElement = image.querySelector('img');
-    if (imgElement) {
-      const picture = createOptimizedPicture(imgElement.src, imgElement.alt);
-      picture.classList.add('text-and-media-image-container-picture');
-      const imgInPicture = picture.querySelector('img');
-      if (imgInPicture) {
-        imgInPicture.classList.add('text-and-media-image-container-image', 'layout-portrait', 'animate-image-zoom-out', 'in-viewport');
-        imgInPicture.setAttribute('role', 'img');
-      }
-      moveInstrumentation(imgElement, picture.querySelector('img'));
-      imageContainer.append(picture);
-    }
+    const picture = createOptimizedPicture(image.src, image.alt);
+    picture.className = 'text-and-media-image-container-picture';
+    const imgElement = picture.querySelector('img');
+    imgElement.className = 'text-and-media-image-container-image layout-portrait animate-image-zoom-out in-viewport';
+    imgElement.setAttribute('role', 'img');
+    moveInstrumentation(image, imgElement);
+    imageContainer.append(picture);
   }
+
   textAndMediaComponent.append(imageContainer);
 
   const contentDiv = document.createElement('div');
-  contentDiv.classList.add('text-and-media-content', 'in-viewport');
+  contentDiv.className = 'text-and-media-content in-viewport';
 
   const slideWrap = document.createElement('div');
-  slideWrap.classList.add('slide-wrap');
-
+  slideWrap.className = 'slide-wrap';
   const slideUpDiv = document.createElement('div');
-  slideUpDiv.dataset.slideType = 'slide-up';
-  slideUpDiv.classList.add('slide-up');
+  slideUpDiv.setAttribute('data-slide-type', 'slide-up');
+  slideUpDiv.className = 'slide-up';
 
-  const titleDiv = document.createElement('div');
-  titleDiv.id = 'text-and-media-title';
-  titleDiv.classList.add('text-and-media-content-title');
-  titleDiv.setAttribute('tabindex', '0');
   if (title) {
-    moveInstrumentation(title, titleDiv);
+    const titleDiv = document.createElement('div');
+    titleDiv.id = 'text-and-media-title';
+    titleDiv.className = 'text-and-media-content-title';
+    titleDiv.setAttribute('tabindex', '0');
     titleDiv.append(...title.children);
+    moveInstrumentation(title, titleDiv);
+    slideUpDiv.append(titleDiv);
   }
-  slideUpDiv.append(titleDiv);
 
-  const descriptionDiv = document.createElement('div');
-  descriptionDiv.classList.add('text-and-media-content-description');
-  descriptionDiv.setAttribute('tabindex', '0');
   if (description) {
-    moveInstrumentation(description, descriptionDiv);
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'text-and-media-content-description';
+    descriptionDiv.setAttribute('tabindex', '0');
     descriptionDiv.append(...description.children);
+    moveInstrumentation(description, descriptionDiv);
+    slideUpDiv.append(descriptionDiv);
   }
-  slideUpDiv.append(descriptionDiv);
 
   if (ctaLabel && ctaUrl) {
     const ctaLink = document.createElement('a');
-    ctaLink.href = ctaUrl.textContent.trim();
-    ctaLink.classList.add('text-and-media-cta', 'cta__primary', 'text-and-media-content-cta');
-    ctaLink.target = '_self';
-    ctaLink.setAttribute('aria-label', ctaLabel.textContent.trim());
+    ctaLink.href = ctaUrl.textContent;
+    ctaLink.className = 'text-and-media-cta cta__primary text-and-media-content-cta ';
+    ctaLink.setAttribute('target', '_self');
+    ctaLink.setAttribute('aria-label', ctaLabel.textContent);
 
-    const ctaIcon = document.createElement('span');
-    ctaIcon.classList.add('text-and-media-cta-icon', 'qd-icon', 'qd-icon--cheveron-right');
-    ctaIcon.setAttribute('aria-hidden', 'true');
-    ctaLink.append(ctaIcon);
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'text-and-media-cta-icon qd-icon qd-icon--cheveron-right';
+    iconSpan.setAttribute('aria-hidden', 'true');
+    ctaLink.append(iconSpan);
 
-    const ctaLabelSpan = document.createElement('span');
-    ctaLabelSpan.classList.add('text-and-media-cta-label');
-    ctaLabelSpan.textContent = ctaLabel.textContent.trim();
-    moveInstrumentation(ctaLabel, ctaLabelSpan);
-    ctaLink.append(ctaLabelSpan);
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'text-and-media-cta-label';
+    labelSpan.textContent = ctaLabel.textContent;
+    ctaLink.append(labelSpan);
 
-    // Move instrumentation from ctaUrl if it's a separate node
-    if (ctaUrl !== ctaLabel) { // Avoid moving instrumentation twice if they are the same node
-      const tempDiv = document.createElement('div');
-      tempDiv.append(ctaUrl.cloneNode(true));
-      moveInstrumentation(ctaUrl, tempDiv.children[0]);
-    }
-
+    moveInstrumentation(ctaLabel, labelSpan);
+    moveInstrumentation(ctaUrl, ctaLink);
     slideUpDiv.append(ctaLink);
   }
 
@@ -119,7 +105,7 @@ export default function decorate(block) {
   textAndMediaComponent.append(contentDiv);
 
   const overflowFix = document.createElement('div');
-  overflowFix.classList.add('text-and-media-overflow-fix');
+  overflowFix.className = 'text-and-media-overflow-fix';
   textAndMediaComponent.append(overflowFix);
 
   section.append(textAndMediaComponent);
@@ -129,5 +115,5 @@ export default function decorate(block) {
 
   const blockName = block.dataset.blockName;
   block.className = `${blockName} block`;
-  block.dataset.blockStatus = "loaded";
+  block.dataset.blockStatus = 'loaded';
 }

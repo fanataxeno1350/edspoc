@@ -3,173 +3,158 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const statsByTheNumberWrapper = document.createElement('div');
-  statsByTheNumberWrapper.classList.add('stats-by-the-number-wrapper', 'animate-ready', 'animate-in');
+  statsByTheNumberWrapper.className = 'stats-by-the-number-wrapper animate-ready animate-in';
   statsByTheNumberWrapper.setAttribute('role', 'region');
   statsByTheNumberWrapper.setAttribute('aria-label', 'Statistics by the numbers');
 
   const statsByTheNumberContainer = document.createElement('div');
-  statsByTheNumberContainer.classList.add('stats-by-the-number-container');
+  statsByTheNumberContainer.className = 'stats-by-the-number-container';
   statsByTheNumberWrapper.append(statsByTheNumberContainer);
 
-  const rows = [...block.children];
-
-  // Row 1: Title
-  if (rows[0]) {
-    const titleRow = rows[0];
-    const titleCell = titleRow.children[0];
-    const statsByTheNumberTitle = document.createElement('div');
-    statsByTheNumberTitle.classList.add('stats-by-the-number-title');
-    statsByTheNumberTitle.innerHTML = titleCell.innerHTML;
-    moveInstrumentation(titleRow, statsByTheNumberTitle);
-    statsByTheNumberContainer.append(statsByTheNumberTitle);
+  const statsByTheNumberTitle = document.createElement('div');
+  statsByTheNumberTitle.className = 'stats-by-the-number-title';
+  const title = block.querySelector('[data-aue-prop="title"]');
+  if (title) {
+    const h2 = document.createElement('h2');
+    moveInstrumentation(title, h2);
+    h2.innerHTML = title.innerHTML;
+    statsByTheNumberTitle.append(h2);
   }
+  statsByTheNumberContainer.append(statsByTheNumberTitle);
 
   const statsByTheNumberMainContent = document.createElement('div');
-  statsByTheNumberMainContent.classList.add('stats-by-the-number-main-content');
+  statsByTheNumberMainContent.className = 'stats-by-the-number-main-content';
   statsByTheNumberContainer.append(statsByTheNumberMainContent);
 
   const statsByTheNumberImageSection = document.createElement('div');
-  statsByTheNumberImageSection.classList.add('stats-by-the-number-image-section');
+  statsByTheNumberImageSection.className = 'stats-by-the-number-image-section';
   statsByTheNumberMainContent.append(statsByTheNumberImageSection);
 
+  const statsByTheNumberImageContainer = document.createElement('div');
+  statsByTheNumberImageContainer.className = 'stats-by-the-number-image-container stats-by-the-number-image-container--active';
+  statsByTheNumberImageContainer.setAttribute('data-tab-content', '0');
+  statsByTheNumberImageSection.append(statsByTheNumberImageContainer);
+
+  const mainImage = block.querySelector('[data-aue-prop="mainImage"]');
+  if (mainImage && mainImage.querySelector('img')) {
+    const img = mainImage.querySelector('img');
+    const pic = createOptimizedPicture(img.src, img.alt);
+    const mainImgElement = pic.querySelector('img');
+    mainImgElement.className = 'stats-by-the-number-main-image';
+    mainImgElement.setAttribute('data-tab-image', '0');
+    mainImgElement.style.opacity = '1';
+    moveInstrumentation(img, mainImgElement);
+    statsByTheNumberImageContainer.append(pic);
+    statsByTheNumberImageContainer.setAttribute('data-image-path', img.src);
+  }
+
   const statsByTheNumberContentSection = document.createElement('div');
-  statsByTheNumberContentSection.classList.add('stats-by-the-number-content-section');
+  statsByTheNumberContentSection.className = 'stats-by-the-number-content-section';
   statsByTheNumberMainContent.append(statsByTheNumberContentSection);
 
   const statsByTheNumberTabContent = document.createElement('div');
-  statsByTheNumberTabContent.classList.add('stats-by-the-number-tab-content', 'stats-by-the-number-tab-content--active');
+  statsByTheNumberTabContent.className = 'stats-by-the-number-tab-content stats-by-the-number-tab-content--active';
   statsByTheNumberTabContent.setAttribute('data-tab-content', '0');
   statsByTheNumberContentSection.append(statsByTheNumberTabContent);
 
-  // Row 2: Main Image
-  if (rows[1]) {
-    const mainImageRow = rows[1];
-    const imageCell = mainImageRow.children[0];
-    const img = imageCell.querySelector('img');
-    if (img) {
-      const statsByTheNumberImageContainer = document.createElement('div');
-      statsByTheNumberImageContainer.classList.add('stats-by-the-number-image-container', 'stats-by-the-number-image-container--active');
-      statsByTheNumberImageContainer.setAttribute('data-tab-content', '0');
-      statsByTheNumberImageContainer.setAttribute('data-image-path', img.src);
-
-      const optimizedPic = createOptimizedPicture(img.src, img.alt);
-      const mainImage = optimizedPic.querySelector('img');
-      mainImage.classList.add('stats-by-the-number-main-image');
-      mainImage.setAttribute('data-tab-image', '0');
-      mainImage.style.opacity = '1';
-      moveInstrumentation(img, mainImage);
-      statsByTheNumberImageContainer.append(optimizedPic);
-      statsByTheNumberImageSection.append(statsByTheNumberImageContainer);
-    }
-    moveInstrumentation(mainImageRow, statsByTheNumberImageSection);
+  const statsByTheNumberDescription = document.createElement('div');
+  statsByTheNumberDescription.className = 'stats-by-the-number-description';
+  const mainDescription = block.querySelector('[data-aue-prop="mainDescription"]');
+  if (mainDescription) {
+    moveInstrumentation(mainDescription, statsByTheNumberDescription);
+    statsByTheNumberDescription.innerHTML = mainDescription.innerHTML;
   }
-
-  // Row 3: Main Description
-  if (rows[2]) {
-    const descriptionRow = rows[2];
-    const descriptionCell = descriptionRow.children[0];
-    const statsByTheNumberDescription = document.createElement('div');
-    statsByTheNumberDescription.classList.add('stats-by-the-number-description');
-    statsByTheNumberDescription.innerHTML = descriptionCell.innerHTML;
-    moveInstrumentation(descriptionRow, statsByTheNumberDescription);
-    statsByTheNumberTabContent.append(statsByTheNumberDescription);
-  }
+  statsByTheNumberTabContent.append(statsByTheNumberDescription);
 
   const statsByTheNumberCards = document.createElement('div');
-  statsByTheNumberCards.classList.add('stats-by-the-number-cards');
+  statsByTheNumberCards.className = 'stats-by-the-number-cards';
   statsByTheNumberCards.setAttribute('role', 'list');
   statsByTheNumberTabContent.append(statsByTheNumberCards);
 
-  // Rows 4 onwards: Stat Cards
-  for (let i = 3; i < rows.length - 1; i += 1) {
-    const cardRow = rows[i];
-    const cells = [...cardRow.children];
-    if (cells.length >= 4) { // Ensure all card fields are present
-      const statsByTheNumberCard = document.createElement('div');
-      statsByTheNumberCard.classList.add('stats-by-the-number-card');
-      statsByTheNumberCard.setAttribute('role', 'img');
-      statsByTheNumberCard.setAttribute('tabindex', '0');
-      moveInstrumentation(cardRow, statsByTheNumberCard);
+  const cards = block.querySelectorAll('[data-aue-model="statsCard"]');
+  cards.forEach((card, index) => {
+    const statsByTheNumberCard = document.createElement('div');
+    statsByTheNumberCard.className = 'stats-by-the-number-card';
+    statsByTheNumberCard.setAttribute('role', 'img');
+    statsByTheNumberCard.setAttribute('tabindex', '0');
+    moveInstrumentation(card, statsByTheNumberCard);
 
-      const hoverImageCell = cells[0];
-      const hoverDetailsCell = cells[1];
-      const numberCell = cells[2];
-      const descriptionCell = cells[3];
+    const numberElement = card.querySelector('[data-aue-prop="number"]');
+    const descriptionElement = card.querySelector('[data-aue-prop="description"]');
+    const hoverImageElement = card.querySelector('[data-aue-prop="hoverImage"]');
+    const hoverDetailsElement = card.querySelector('[data-aue-prop="hoverDetails"]');
 
-      const hoverImageLink = hoverImageCell.querySelector('a');
-      if (hoverImageLink) {
-        statsByTheNumberCard.setAttribute('data-hover-image', hoverImageLink.href);
-      }
-
-      if (hoverDetailsCell) {
-        statsByTheNumberCard.setAttribute('data-hover-details', hoverDetailsCell.innerHTML.trim());
-      }
-
-      if (descriptionCell) {
-        statsByTheNumberCard.setAttribute('aria-label', `${numberCell.textContent.trim()}: ${descriptionCell.textContent.trim()}`);
-      }
-
-      // Hidden readOnlyAuthor span
-      const readOnlyAuthorSpan = document.createElement('span');
-      readOnlyAuthorSpan.classList.add('readOnlyAuthor');
-      readOnlyAuthorSpan.style.display = 'none';
-      readOnlyAuthorSpan.innerHTML = numberCell.innerHTML.trim();
-      statsByTheNumberCard.append(readOnlyAuthorSpan);
-
-      const statsByTheNumberCardNumber = document.createElement('div');
-      statsByTheNumberCardNumber.classList.add('stats-by-the-number-card__number');
-      statsByTheNumberCardNumber.setAttribute('data-count', numberCell.innerHTML.trim());
-      statsByTheNumberCardNumber.innerHTML = numberCell.innerHTML;
-      statsByTheNumberCard.append(statsByTheNumberCardNumber);
-
-      const statsByTheNumberCardDescription = document.createElement('div');
-      statsByTheNumberCardDescription.classList.add('stats-by-the-number-card__description');
-      statsByTheNumberCardDescription.innerHTML = descriptionCell.innerHTML;
-      statsByTheNumberCard.append(statsByTheNumberCardDescription);
-
-      statsByTheNumberCards.append(statsByTheNumberCard);
+    if (hoverImageElement) {
+      statsByTheNumberCard.setAttribute('data-hover-image', hoverImageElement.textContent.trim());
     }
-  }
-
-  // Last Row: CTA
-  const lastRow = rows[rows.length - 1];
-  if (lastRow) {
-    const ctaCell = lastRow.children[0];
-    const ctaLink = ctaCell.querySelector('a');
-    if (ctaLink) {
-      const statsByTheNumberCta = document.createElement('div');
-      statsByTheNumberCta.classList.add('stats-by-the-number-cta');
-
-      const newCtaLink = document.createElement('a');
-      newCtaLink.href = ctaLink.href;
-      newCtaLink.classList.add('cta', 'cta__primary');
-      if (ctaLink.target) {
-        newCtaLink.target = ctaLink.target;
-      }
-      if (ctaLink.getAttribute('aria-label')) {
-        newCtaLink.setAttribute('aria-label', ctaLink.getAttribute('aria-label'));
-      }
-      if (ctaLink.getAttribute('data-palette')) {
-        newCtaLink.setAttribute('data-palette', ctaLink.getAttribute('data-palette'));
-      }
-
-      const ctaIcon = document.createElement('span');
-      ctaIcon.classList.add('cta__icon', 'qd-icon', 'qd-icon--cheveron-right');
-      ctaIcon.setAttribute('aria-hidden', 'true');
-      newCtaLink.append(ctaIcon);
-
-      const ctaLabel = document.createElement('span');
-      ctaLabel.classList.add('cta__label');
-      ctaLabel.textContent = ctaLink.textContent;
-      newCtaLink.append(ctaLabel);
-
-      moveInstrumentation(ctaLink, newCtaLink);
-      statsByTheNumberCta.append(newCtaLink);
-      statsByTheNumberTabContent.append(statsByTheNumberCta);
+    if (hoverDetailsElement) {
+      statsByTheNumberCard.setAttribute('data-hover-details', hoverDetailsElement.innerHTML.trim());
     }
-    moveInstrumentation(lastRow, statsByTheNumberTabContent);
+    if (numberElement && descriptionElement) {
+      statsByTheNumberCard.setAttribute('aria-label', `${numberElement.textContent.trim()}: ${descriptionElement.textContent.trim()}`);
+    }
+
+    const readOnlyAuthorSpan = document.createElement('span');
+    readOnlyAuthorSpan.className = 'readOnlyAuthor';
+    readOnlyAuthorSpan.style.display = 'none';
+    if (numberElement) {
+      readOnlyAuthorSpan.innerHTML = numberElement.innerHTML;
+    }
+    statsByTheNumberCard.append(readOnlyAuthorSpan);
+
+    const cardNumber = document.createElement('div');
+    cardNumber.className = 'stats-by-the-number-card__number';
+    if (numberElement) {
+      cardNumber.setAttribute('data-count', numberElement.innerHTML.trim());
+      moveInstrumentation(numberElement, cardNumber);
+      cardNumber.innerHTML = numberElement.innerHTML;
+    }
+    statsByTheNumberCard.append(cardNumber);
+
+    const cardDescription = document.createElement('div');
+    cardDescription.className = 'stats-by-the-number-card__description';
+    if (descriptionElement) {
+      moveInstrumentation(descriptionElement, cardDescription);
+      cardDescription.innerHTML = descriptionElement.innerHTML;
+    }
+    statsByTheNumberCard.append(cardDescription);
+
+    statsByTheNumberCards.append(statsByTheNumberCard);
+  });
+
+  const statsByTheNumberCta = document.createElement('div');
+  statsByTheNumberCta.className = 'stats-by-the-number-cta';
+  const ctaLink = block.querySelector('[data-aue-prop="ctaLink"]');
+  const ctaLabel = block.querySelector('[data-aue-prop="ctaLabel"]');
+
+  if (ctaLink && ctaLabel) {
+    const a = document.createElement('a');
+    a.className = 'cta cta__primary';
+    a.setAttribute('target', '_self');
+    a.setAttribute('data-palette', 'palette-1');
+    a.setAttribute('href', ctaLink.textContent.trim());
+    a.setAttribute('aria-label', ctaLabel.textContent.trim());
+    moveInstrumentation(ctaLink, a);
+    moveInstrumentation(ctaLabel, a);
+
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'cta__icon qd-icon qd-icon--cheveron-right';
+    iconSpan.setAttribute('aria-hidden', 'true');
+    a.append(iconSpan);
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'cta__label';
+    labelSpan.textContent = ctaLabel.textContent.trim();
+    a.append(labelSpan);
+
+    statsByTheNumberCta.append(a);
   }
+  statsByTheNumberTabContent.append(statsByTheNumberCta);
 
   block.textContent = '';
   block.append(statsByTheNumberWrapper);
+
+  const blockName = block.dataset.blockName;
+  block.className = `${blockName} block`;
+  block.dataset.blockStatus = 'loaded';
 }

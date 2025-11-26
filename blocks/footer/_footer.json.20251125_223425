@@ -82,52 +82,54 @@
       "id": "footer",
       "fields": [
         {
-          "component": "reference",
+          "component": "aem-tag",
           "label": "Logo Link",
-          "name": "logo",
+          "name": "logoLink",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Logo Icon",
+          "name": "logoIcon",
           "valueType": "string"
         },
         {
           "component": "container",
-          "field": {
-            "component": "reference",
-            "label": "Footer Social Link Reference",
-            "name": "footerSocialLink",
-            "valueType": "string"
-          },
+          "items": [
+            {
+              "component": "footerSocialLink"
+            }
+          ],
           "label": "Social Links",
           "name": "socialLinks"
         },
         {
           "component": "container",
-          "field": {
-            "component": "reference",
-            "label": "Footer Navigation Link Reference",
-            "name": "footerNavigationLink",
-            "valueType": "string"
-          },
+          "items": [
+            {
+              "component": "footerNavigationLink"
+            }
+          ],
           "label": "Navigation Links",
           "name": "navigationLinks"
         },
         {
           "component": "container",
-          "field": {
-            "component": "reference",
-            "label": "Footer Language Reference",
-            "name": "footerLanguage",
-            "valueType": "string"
-          },
-          "label": "Language Links",
-          "name": "languageLinks"
+          "items": [
+            {
+              "component": "footerLanguage"
+            }
+          ],
+          "label": "Languages",
+          "name": "languages"
         },
         {
           "component": "container",
-          "field": {
-            "component": "reference",
-            "label": "Footer Policy Link Reference",
-            "name": "footerPolicyLink",
-            "valueType": "string"
-          },
+          "items": [
+            {
+              "component": "footerPolicyLink"
+            }
+          ],
           "label": "Policy Links",
           "name": "policyLinks"
         },
@@ -143,13 +145,19 @@
       "id": "footerSocialLink",
       "fields": [
         {
-          "component": "reference",
-          "label": "URL",
-          "name": "url",
+          "component": "aem-tag",
+          "label": "Icon Class",
+          "name": "iconClass",
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "aem-tag",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
           "label": "Aria Label",
           "name": "ariaLabel",
           "valueType": "string"
@@ -160,13 +168,19 @@
       "id": "footerNavigationLink",
       "fields": [
         {
-          "component": "reference",
-          "label": "URL",
-          "name": "url",
+          "component": "aem-tag",
+          "label": "Text",
+          "name": "text",
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "aem-tag",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -177,22 +191,27 @@
       "id": "footerLanguage",
       "fields": [
         {
-          "component": "reference",
-          "label": "URL",
-          "name": "url",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Aria Label",
-          "name": "ariaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
+          "component": "aem-tag",
           "label": "Language Code",
           "name": "lang",
           "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "boolean",
+          "label": "Active",
+          "name": "active"
         }
       ]
     },
@@ -200,13 +219,19 @@
       "id": "footerPolicyLink",
       "fields": [
         {
-          "component": "reference",
-          "label": "URL",
-          "name": "url",
+          "component": "aem-tag",
+          "label": "Text",
+          "name": "text",
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "aem-tag",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-tag",
           "label": "Title",
           "name": "title",
           "valueType": "string"

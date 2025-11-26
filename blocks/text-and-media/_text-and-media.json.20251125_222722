@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Text-And-Media",
+      "title": "Text-and-Media",
       "id": "textAndMedia",
       "plugins": {
         "xwalk": {
@@ -10,7 +10,7 @@
             "template": {
               "filter": "textAndMedia",
               "model": "textAndMedia",
-              "name": "Text-And-Media"
+              "name": "Text-and-Media"
             }
           }
         }
@@ -56,7 +56,7 @@
   ],
   "filters": [
     {
-      "id": "text-and-media",
+      "id": "textAndMedia",
       "components": [
         "textAndMedia"
       ]
