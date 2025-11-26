@@ -158,9 +158,11 @@
       },
       {
         "component": "container",
-        "itemType": "card",
-        "label": "Cards",
-        "name": "cards",
+        "item": {
+          "type": "card"
+        },
+        "label": "Card Items",
+        "name": "cardItems",
         "valueType": "array"
       }
     ]
