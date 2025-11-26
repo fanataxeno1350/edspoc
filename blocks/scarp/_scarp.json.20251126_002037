@@ -32,7 +32,7 @@
   ],
   "filters": [
     {
-      "id": "Scarp",
+      "id": "scarp",
       "components": [
         "scarp"
       ]

@@ -145,7 +145,7 @@
           }
         },
         {
-          "title": "Footer Navigation Link",
+          "title": "Footer Nav Link",
           "id": "footerNavLink",
           "plugins": {
             "xwalk": {
@@ -153,7 +153,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "footerNavLink",
-                  "name": "Footer Navigation Link"
+                  "name": "Footer Nav Link"
                 }
               }
             }
@@ -267,45 +267,30 @@
           }
         },
         {
-          "title": "Navigation Menu",
-          "id": "navigationMenu",
+          "title": "Nav-Item",
+          "id": "navItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "navigationMenu",
-                  "name": "Navigation Menu"
+                  "model": "navItem",
+                  "name": "Nav-Item"
                 }
               }
             }
           }
         },
         {
-          "title": "Navigation Submenu",
-          "id": "navigationSubmenu",
+          "title": "Language",
+          "id": "language",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "navigationSubmenu",
-                  "name": "Navigation Submenu"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Language Option",
-          "id": "languageOption",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "languageOption",
-                  "name": "Language Option"
+                  "model": "language",
+                  "name": "Language"
                 }
               }
             }

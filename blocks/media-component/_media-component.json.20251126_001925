@@ -32,22 +32,13 @@
           "label": "Main Video Source",
           "name": "mainVideo",
           "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Watch Video Label",
-          "name": "watchVideoLabel",
-          "valueType": "string"
         }
       ]
     }
   ],
   "filters": [
     {
-      "id": "mediaComponent",
-      "components": [
-        "mediaComponent"
-      ]
+      "id": "mediaComponent"
     }
   ]
 }

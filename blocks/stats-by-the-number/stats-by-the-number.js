@@ -1,30 +1,31 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default async function decorate(block) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'stats-by-the-number-wrapper animate-ready animate-in';
-  wrapper.setAttribute('role', 'region');
-  wrapper.setAttribute('aria-label', 'Statistics by the numbers');
+export default function decorate(block) {
+  const statsByTheNumberWrapper = document.createElement('div');
+  statsByTheNumberWrapper.className = 'stats-by-the-number-wrapper animate-ready animate-in';
+  statsByTheNumberWrapper.setAttribute('role', 'region');
+  statsByTheNumberWrapper.setAttribute('aria-label', 'Statistics by the numbers');
 
-  const container = document.createElement('div');
-  container.className = 'stats-by-the-number-container';
-  wrapper.append(container);
+  const statsByTheNumberContainer = document.createElement('div');
+  statsByTheNumberContainer.className = 'stats-by-the-number-container';
+  statsByTheNumberWrapper.append(statsByTheNumberContainer);
 
   // Title
   const titleDiv = document.createElement('div');
   titleDiv.className = 'stats-by-the-number-title';
-  const titleElement = block.querySelector('[data-aue-prop="title"]');
-  if (titleElement) {
+  const titleContent = block.querySelector('[data-aue-prop="title"]');
+  if (titleContent) {
     const h2 = document.createElement('h2');
-    h2.append(...titleElement.childNodes);
-    moveInstrumentation(titleElement, h2);
+    h2.append(...titleContent.childNodes);
+    moveInstrumentation(titleContent, h2);
     titleDiv.append(h2);
   }
-  container.append(titleDiv);
+  statsByTheNumberContainer.append(titleDiv);
 
   const mainContent = document.createElement('div');
   mainContent.className = 'stats-by-the-number-main-content';
-  container.append(mainContent);
+  statsByTheNumberContainer.append(mainContent);
 
   // Image Section
   const imageSection = document.createElement('div');
@@ -36,17 +37,16 @@ export default async function decorate(block) {
   imageContainer.setAttribute('data-tab-content', '0');
   imageSection.append(imageContainer);
 
-  const mainImageElement = block.querySelector('[data-aue-prop="mainImage"]');
-  if (mainImageElement) {
-    const imgSrc = mainImageElement.textContent.trim();
-    imageContainer.setAttribute('data-image-path', imgSrc);
-    const pic = createOptimizedPicture(imgSrc, '', false, [{ width: '750' }]);
+  const authoredImage = block.querySelector('[data-aue-prop="image"] img');
+  if (authoredImage) {
+    const pic = createOptimizedPicture(authoredImage.src, authoredImage.alt);
     const img = pic.querySelector('img');
     img.className = 'stats-by-the-number-main-image';
     img.setAttribute('data-tab-image', '0');
     img.style.opacity = '1';
-    moveInstrumentation(mainImageElement, img);
     imageContainer.append(pic);
+    moveInstrumentation(authoredImage, img);
+    imageContainer.setAttribute('data-image-path', authoredImage.src);
   }
 
   // Content Section
@@ -62,118 +62,102 @@ export default async function decorate(block) {
   // Description
   const descriptionDiv = document.createElement('div');
   descriptionDiv.className = 'stats-by-the-number-description';
-  const descriptionElement = block.querySelector('[data-aue-prop="description"]');
-  if (descriptionElement) {
-    const p = document.createElement('p');
-    p.append(...descriptionElement.childNodes);
-    moveInstrumentation(descriptionElement, p);
-    descriptionDiv.append(p);
+  const descriptionContent = block.querySelector('[data-aue-prop="description"]');
+  if (descriptionContent) {
+    descriptionDiv.append(...descriptionContent.childNodes);
+    moveInstrumentation(descriptionContent, descriptionDiv);
   }
   tabContent.append(descriptionDiv);
 
-  // Stat Cards
+  // Cards
   const cardsDiv = document.createElement('div');
   cardsDiv.className = 'stats-by-the-number-cards';
   cardsDiv.setAttribute('role', 'list');
   tabContent.append(cardsDiv);
 
   const statCards = block.querySelectorAll('[data-aue-model="statCard"]');
-  statCards.forEach((cardElement) => {
-    const card = document.createElement('div');
-    card.className = 'stats-by-the-number-card';
-    card.setAttribute('role', 'img');
-    card.setAttribute('tabindex', '0');
+  statCards.forEach((card) => {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'stats-by-the-number-card';
+    cardDiv.setAttribute('role', 'img');
+    cardDiv.setAttribute('tabindex', '0');
 
-    const hoverImage = cardElement.querySelector('[data-aue-prop="hoverImage"]');
+    const hoverImage = card.querySelector('[data-aue-prop="hoverImage"]');
     if (hoverImage) {
-      card.setAttribute('data-hover-image', hoverImage.textContent.trim());
+      cardDiv.setAttribute('data-hover-image', hoverImage.textContent.trim());
     }
 
-    const hoverDetails = cardElement.querySelector('[data-aue-prop="hoverDetails"]');
+    const hoverDetails = card.querySelector('[data-aue-prop="hoverDetails"]');
     if (hoverDetails) {
-      card.setAttribute('data-hover-details', hoverDetails.innerHTML.trim());
+      cardDiv.setAttribute('data-hover-details', hoverDetails.innerHTML.trim());
     }
 
-    const numberElement = cardElement.querySelector('[data-aue-prop="number"]');
-    const descriptionElement = cardElement.querySelector('[data-aue-prop="description"]');
-
-    let ariaLabelText = '';
-    if (numberElement) {
-      ariaLabelText += numberElement.textContent.trim();
-    }
-    if (descriptionElement) {
-      ariaLabelText += `: ${descriptionElement.textContent.trim()}`;
-    }
-    card.setAttribute('aria-label', ariaLabelText);
-
-    // ReadOnlyAuthor span (if present in authored content)
-    const readOnlyAuthorSpan = cardElement.querySelector('span.readOnlyAuthor');
-    if (readOnlyAuthorSpan) {
-      const newSpan = document.createElement('span');
-      newSpan.className = 'readOnlyAuthor';
-      newSpan.style.display = 'none';
-      newSpan.append(...readOnlyAuthorSpan.childNodes);
-      moveInstrumentation(readOnlyAuthorSpan, newSpan);
-      card.append(newSpan);
+    const ariaLabel = card.querySelector('[data-aue-prop="ariaLabel"]');
+    if (ariaLabel) {
+      cardDiv.setAttribute('aria-label', ariaLabel.textContent.trim());
     }
 
-    const numberDiv = document.createElement('div');
-    numberDiv.className = 'stats-by-the-number-card__number';
-    if (numberElement) {
-      numberDiv.setAttribute('data-count', numberElement.innerHTML.trim());
-      const p = document.createElement('p');
-      p.append(...numberElement.childNodes);
-      moveInstrumentation(numberElement, p);
-      numberDiv.append(p);
-    }
-    card.append(numberDiv);
+    const numberContent = card.querySelector('[data-aue-prop="number"]');
+    if (numberContent) {
+      const readOnlyAuthorSpan = document.createElement('span');
+      readOnlyAuthorSpan.className = 'readOnlyAuthor';
+      readOnlyAuthorSpan.style.display = 'none';
+      readOnlyAuthorSpan.innerHTML = numberContent.innerHTML;
+      cardDiv.append(readOnlyAuthorSpan);
 
-    const descriptionDivCard = document.createElement('div');
-    descriptionDivCard.className = 'stats-by-the-number-card__description';
-    if (descriptionElement) {
-      const p = document.createElement('p');
-      p.append(...descriptionElement.childNodes);
-      moveInstrumentation(descriptionElement, p);
-      descriptionDivCard.append(p);
+      const numberDiv = document.createElement('div');
+      numberDiv.className = 'stats-by-the-number-card__number';
+      numberDiv.setAttribute('data-count', numberContent.innerHTML.trim());
+      numberDiv.append(...numberContent.childNodes);
+      moveInstrumentation(numberContent, numberDiv);
+      cardDiv.append(numberDiv);
     }
-    card.append(descriptionDivCard);
 
-    cardsDiv.append(card);
+    const descriptionContent = card.querySelector('[data-aue-prop="description"]');
+    if (descriptionContent) {
+      const descriptionDiv = document.createElement('div');
+      descriptionDiv.className = 'stats-by-the-number-card__description';
+      descriptionDiv.append(...descriptionContent.childNodes);
+      moveInstrumentation(descriptionContent, descriptionDiv);
+      cardDiv.append(descriptionDiv);
+    }
+
+    cardsDiv.append(cardDiv);
   });
 
   // CTA
   const ctaDiv = document.createElement('div');
   ctaDiv.className = 'stats-by-the-number-cta';
-  tabContent.append(ctaDiv);
+  const ctaLink = block.querySelector('[data-aue-prop="ctaLink"]');
+  const ctaLabel = block.querySelector('[data-aue-prop="ctaLabel"]');
 
-  const ctaLinkElement = block.querySelector('[data-aue-prop="ctaLink"]');
-  const ctaLabelElement = block.querySelector('[data-aue-prop="ctaLabel"]');
-
-  if (ctaLinkElement && ctaLabelElement) {
-    const a = document.createElement('a');
-    a.className = 'cta cta__primary';
-    a.target = '_self';
-    a.setAttribute('data-palette', 'palette-1');
-    a.href = ctaLinkElement.textContent.trim();
-    a.setAttribute('aria-label', ctaLabelElement.textContent.trim());
-    moveInstrumentation(ctaLinkElement, a);
+  if (ctaLink && ctaLabel) {
+    const anchor = document.createElement('a');
+    anchor.href = ctaLink.textContent.trim();
+    anchor.className = 'cta cta__primary';
+    anchor.setAttribute('target', '_self');
+    anchor.setAttribute('aria-label', ctaLabel.textContent.trim());
+    anchor.setAttribute('data-palette', 'palette-1');
 
     const iconSpan = document.createElement('span');
     iconSpan.className = 'cta__icon qd-icon qd-icon--cheveron-right';
     iconSpan.setAttribute('aria-hidden', 'true');
-    a.append(iconSpan);
+    anchor.append(iconSpan);
 
     const labelSpan = document.createElement('span');
     labelSpan.className = 'cta__label';
-    labelSpan.append(...ctaLabelElement.childNodes);
-    moveInstrumentation(ctaLabelElement, labelSpan);
-    a.append(labelSpan);
+    labelSpan.textContent = ctaLabel.textContent.trim();
+    anchor.append(labelSpan);
 
-    ctaDiv.append(a);
+    moveInstrumentation(ctaLink, anchor);
+    moveInstrumentation(ctaLabel, labelSpan);
+
+    ctaDiv.append(anchor);
   }
+  tabContent.append(ctaDiv);
 
   block.textContent = '';
-  block.append(wrapper);
+  block.append(statsByTheNumberWrapper);
   block.className = `${block.dataset.blockName} block`;
   block.dataset.blockStatus = 'loaded';
 }

@@ -28,12 +28,6 @@
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Background Poster Image",
-          "name": "backgroundPosterImage",
-          "valueType": "string"
-        },
-        {
           "component": "richtext",
           "label": "Title",
           "name": "title",

@@ -59,14 +59,8 @@
   {
     "id": "header",
     "components": [
-      "navigationMenu",
-      "languageOption"
-    ]
-  },
-  {
-    "id": "navigationMenu",
-    "components": [
-      "navigationSubmenu"
+      "navItem",
+      "language"
     ]
   },
   {
@@ -76,13 +70,16 @@
     ]
   },
   {
-    "id": "mediaComponent"
+    "id": "mediaComponent",
+    "components": [
+      "mediaComponent"
+    ]
   },
   {
     "id": "scarpComponent"
   },
   {
-    "id": "scarp",
+    "id": "Scarp",
     "components": [
       "scarp"
     ]

@@ -1,136 +1,121 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
-function moveInstrumentation(source, target) {
-  const dataset = source.dataset;
-  Object.keys(dataset).forEach((key) => {
-    if (key.startsWith('aue')) {
-      target.dataset[key] = dataset[key];
-    }
-  });
-}
-
 export default function decorate(block) {
   const rootDiv = document.createElement('div');
-  rootDiv.classList.add('card-list-cmp-card-list', 'parallax-child');
+  rootDiv.className = 'card-list-cmp-card-list parallax-child';
 
   const contentDiv = document.createElement('div');
-  contentDiv.classList.add('card-list-cmp-card-list__content');
-  rootDiv.append(contentDiv);
+  contentDiv.className = 'card-list-cmp-card-list__content';
 
-  const slideWrap = document.createElement('div');
-  slideWrap.classList.add('card-list-slide-wrap');
-  contentDiv.append(slideWrap);
+  const slideWrapDiv = document.createElement('div');
+  slideWrapDiv.className = 'card-list-slide-wrap';
 
-  const topContent = document.createElement('div');
-  topContent.classList.add('card-list-cmp-card-list__content__top', 'card-list-slide-up');
-  topContent.dataset.slideType = 'slide-up';
-  slideWrap.append(topContent);
+  const topContentDiv = document.createElement('div');
+  topContentDiv.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
+  topContentDiv.setAttribute('data-slide-type', 'slide-up');
 
-  const headingWrapper = document.createElement('div');
-  headingWrapper.classList.add('card-list-cmp-card-list__content__heading', 'is-visible');
-  topContent.append(headingWrapper);
+  const headingWrapperDiv = document.createElement('div');
+  headingWrapperDiv.className = 'card-list-cmp-card-list__content__heading is-visible';
 
-  const headingTitle = document.createElement('div');
-  headingTitle.id = 'card-list-heading';
-  headingTitle.classList.add('card-list-cmp-card-list__content__heading__title');
-  headingTitle.tabIndex = 0;
-  headingWrapper.append(headingTitle);
+  const headingTitleDiv = document.createElement('div');
+  headingTitleDiv.id = 'card-list-heading';
+  headingTitleDiv.className = 'card-list-cmp-card-list__content__heading__title';
+  headingTitleDiv.setAttribute('tabindex', '0');
 
   const headingElement = block.querySelector('[data-aue-prop="heading"]');
   if (headingElement) {
-    const h2 = document.createElement('h2');
-    h2.append(...headingElement.childNodes);
-    moveInstrumentation(headingElement, h2);
-    headingTitle.append(h2);
+    headingTitleDiv.append(...headingElement.childNodes);
+    moveInstrumentation(headingElement, headingTitleDiv);
   }
 
-  const ctaWrapper = document.createElement('div');
-  ctaWrapper.classList.add('card-list-cmp-card-list__content__cta-wrapper', 'is-visible');
-  topContent.append(ctaWrapper);
+  headingWrapperDiv.append(headingTitleDiv);
+
+  const ctaWrapperDiv = document.createElement('div');
+  ctaWrapperDiv.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
 
   const ctaLinkElement = block.querySelector('[data-aue-prop="ctaLink"]');
-  if (ctaLinkElement) {
-    const a = document.createElement('a');
-    a.classList.add('card-list-cta', 'card-list-cta__primary');
-    a.target = '_self';
-    a.dataset.palette = 'palette-1';
-    a.href = ctaLinkElement.href;
-    a.ariaLabel = ctaLinkElement.textContent;
-    moveInstrumentation(ctaLinkElement, a);
+  const ctaLabelElement = block.querySelector('[data-aue-prop="ctaLabel"]');
 
-    const iconSpan = document.createElement('span');
-    iconSpan.classList.add('card-list-cta__icon', 'qd-icon', 'qd-icon--cheveron-right');
-    iconSpan.ariaHidden = 'true';
-    a.append(iconSpan);
+  if (ctaLinkElement && ctaLabelElement) {
+    const ctaAnchor = document.createElement('a');
+    ctaAnchor.className = 'card-list-cta card-list-cta__primary';
+    ctaAnchor.target = '_self';
+    ctaAnchor.setAttribute('data-palette', 'palette-1');
+    ctaAnchor.href = ctaLinkElement.textContent;
+    moveInstrumentation(ctaLinkElement, ctaAnchor);
 
-    const labelSpan = document.createElement('span');
-    labelSpan.classList.add('card-list-cta__label');
-    labelSpan.textContent = ctaLinkElement.textContent;
-    a.append(labelSpan);
+    const ctaIconSpan = document.createElement('span');
+    ctaIconSpan.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
+    ctaIconSpan.setAttribute('aria-hidden', 'true');
 
-    ctaWrapper.append(a);
+    const ctaLabelSpan = document.createElement('span');
+    ctaLabelSpan.className = 'card-list-cta__label';
+    ctaLabelSpan.textContent = ctaLabelElement.textContent;
+    moveInstrumentation(ctaLabelElement, ctaLabelSpan);
+
+    ctaAnchor.append(ctaIconSpan, ctaLabelSpan);
+    ctaWrapperDiv.append(ctaAnchor);
   }
 
+  topContentDiv.append(headingWrapperDiv, ctaWrapperDiv);
+  slideWrapDiv.append(topContentDiv);
+
   const itemsDiv = document.createElement('div');
-  itemsDiv.classList.add('card-list-cmp-card-list__content__items');
-  contentDiv.append(itemsDiv);
+  itemsDiv.className = 'card-list-cmp-card-list__content__items';
 
-  const cardItems = block.querySelectorAll('[data-aue-model="card"]');
-  cardItems.forEach((cardItem, index) => {
-    const delay = index * 100;
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('card-list-cmp-card-list__content__card-item', 'is-visible', 'card-list-slide-up');
-    cardDiv.dataset.animation = 'card';
-    cardDiv.dataset.slideType = 'slide-up';
-    cardDiv.dataset.slideNoWrap = '';
-    cardDiv.dataset.slideDelay = String(delay).padStart(3, '0');
-    cardDiv.style.transitionDelay = `${delay / 1000}s`;
-    moveInstrumentation(cardItem, cardDiv);
+  const cards = block.querySelectorAll('[data-aue-model="card"]');
+  cards.forEach((card, index) => {
+    const cardItemDiv = document.createElement('div');
+    cardItemDiv.className = 'card-list-cmp-card-list__content__card-item is-visible card-list-slide-up';
+    cardItemDiv.setAttribute('data-animation', 'card');
+    cardItemDiv.setAttribute('data-slide-type', 'slide-up');
+    cardItemDiv.setAttribute('data-slide-no-wrap', '');
+    cardItemDiv.setAttribute('data-slide-delay', `${index * 100}`.padStart(3, '0'));
+    cardItemDiv.style.transitionDelay = `${index * 0.2}s`;
 
-    const imageElement = cardItem.querySelector('[data-aue-prop="image"]');
+    const imageElement = card.querySelector('[data-aue-prop="image"] img');
     if (imageElement) {
-      const img = imageElement.querySelector('img');
-      if (img) {
-        const pic = createOptimizedPicture(img.src, img.alt);
-        pic.querySelector('img').classList.add('card-list-cmp-card-list__content__card-item__image');
-        moveInstrumentation(img, pic.querySelector('img'));
-        cardDiv.append(pic);
-      }
+      const picture = createOptimizedPicture(imageElement.src, imageElement.alt);
+      picture.querySelector('img').className = 'card-list-cmp-card-list__content__card-item__image';
+      moveInstrumentation(imageElement, picture.querySelector('img'));
+      cardItemDiv.append(picture);
     }
 
-    const cardContent = document.createElement('div');
-    cardContent.classList.add('card-list-cmp-card-list__content__card-item-content');
-    cardDiv.append(cardContent);
+    const cardItemContentDiv = document.createElement('div');
+    cardItemContentDiv.className = 'card-list-cmp-card-list__content__card-item-content';
 
-    const cardHeadingWrapper = document.createElement('div');
-    cardHeadingWrapper.classList.add('card-list-cmp-card-list__content__card-item-content__heading-wrapper');
-    cardHeadingWrapper.tabIndex = 0;
-    cardContent.append(cardHeadingWrapper);
+    const cardHeadingWrapperDiv = document.createElement('div');
+    cardHeadingWrapperDiv.className = 'card-list-cmp-card-list__content__card-item-content__heading-wrapper';
+    cardHeadingWrapperDiv.setAttribute('tabindex', '0');
 
     const cardTitleDiv = document.createElement('div');
-    cardTitleDiv.classList.add('card-list-cmp-card-list__content__card-item-content__title');
-    cardTitleDiv.ariaHidden = 'false';
-    const titleElement = cardItem.querySelector('[data-aue-prop="title"]');
+    cardTitleDiv.className = 'card-list-cmp-card-list__content__card-item-content__title';
+    cardTitleDiv.setAttribute('aria-hidden', 'false');
+    const titleElement = card.querySelector('[data-aue-prop="title"]');
     if (titleElement) {
       cardTitleDiv.textContent = titleElement.textContent;
       moveInstrumentation(titleElement, cardTitleDiv);
     }
-    cardHeadingWrapper.append(cardTitleDiv);
+    cardHeadingWrapperDiv.append(cardTitleDiv);
 
     const cardDescriptionDiv = document.createElement('div');
-    cardDescriptionDiv.classList.add('card-list-cmp-card-list__content__card-item-content__description');
-    cardDescriptionDiv.tabIndex = 0;
-    cardDescriptionDiv.ariaHidden = 'false';
-    const descriptionElement = cardItem.querySelector('[data-aue-prop="description"]');
+    cardDescriptionDiv.className = 'card-list-cmp-card-list__content__card-item-content__description';
+    cardDescriptionDiv.setAttribute('tabindex', '0');
+    cardDescriptionDiv.setAttribute('aria-hidden', 'false');
+    const descriptionElement = card.querySelector('[data-aue-prop="description"]');
     if (descriptionElement) {
       cardDescriptionDiv.innerHTML = descriptionElement.innerHTML;
-      cardDescriptionDiv.ariaLabel = descriptionElement.innerHTML;
+      cardDescriptionDiv.setAttribute('aria-label', descriptionElement.innerHTML);
       moveInstrumentation(descriptionElement, cardDescriptionDiv);
     }
-    cardContent.append(cardDescriptionDiv);
 
-    itemsDiv.append(cardDiv);
+    cardItemContentDiv.append(cardHeadingWrapperDiv, cardDescriptionDiv);
+    cardItemDiv.append(cardItemContentDiv);
+    itemsDiv.append(cardItemDiv);
   });
+
+  contentDiv.append(slideWrapDiv, itemsDiv);
+  rootDiv.append(contentDiv);
 
   block.textContent = '';
   block.append(rootDiv);

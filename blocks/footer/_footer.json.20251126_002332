@@ -32,7 +32,7 @@
       }
     },
     {
-      "title": "Footer Nav Link",
+      "title": "Footer Navigation Link",
       "id": "footerNavLink",
       "plugins": {
         "xwalk": {
@@ -40,7 +40,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "model": "footerNavLink",
-              "name": "Footer Nav Link"
+              "name": "Footer Navigation Link"
             }
           }
         }
@@ -88,34 +88,48 @@
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "Logo Icon Class",
-          "name": "logoIconClass",
-          "valueType": "string"
+          "component": "container",
+          "fields": [
+            {
+              "component": "footerSocialLink",
+              "name": "footerSocialLink"
+            }
+          ],
+          "label": "Footer Social Links",
+          "name": "footerSocialLinks"
         },
         {
           "component": "container",
-          "item": "footerSocialLink",
-          "label": "Social Links",
-          "name": "socialLinks"
+          "fields": [
+            {
+              "component": "footerNavLink",
+              "name": "footerNavLink"
+            }
+          ],
+          "label": "Footer Navigation Links",
+          "name": "footerNavLinks"
         },
         {
           "component": "container",
-          "item": "footerNavLink",
-          "label": "Navigation Links",
-          "name": "navLinks"
+          "fields": [
+            {
+              "component": "footerLanguageLink",
+              "name": "footerLanguageLink"
+            }
+          ],
+          "label": "Footer Language Links",
+          "name": "footerLanguageLinks"
         },
         {
           "component": "container",
-          "item": "footerLanguageLink",
-          "label": "Language Links",
-          "name": "languageLinks"
-        },
-        {
-          "component": "container",
-          "item": "footerPolicyLink",
-          "label": "Policy Links",
-          "name": "policyLinks"
+          "fields": [
+            {
+              "component": "footerPolicyLink",
+              "name": "footerPolicyLink"
+            }
+          ],
+          "label": "Footer Policy Links",
+          "name": "footerPolicyLinks"
         },
         {
           "component": "text",
@@ -130,20 +144,14 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Icon Class",
-          "name": "iconClass",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "URL",
-          "name": "url",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Label",
-          "name": "label",
+          "label": "Aria Label",
+          "name": "ariaLabel",
           "valueType": "string"
         }
       ]
@@ -153,8 +161,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "URL",
-          "name": "url",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {
@@ -170,18 +178,18 @@
       "fields": [
         {
           "component": "reference",
-          "label": "URL",
-          "name": "url",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Label",
-          "name": "label",
+          "label": "Aria Label",
+          "name": "ariaLabel",
           "valueType": "string"
         },
         {
-          "component": "reference",
+          "component": "text",
           "label": "Language Code",
           "name": "langCode",
           "valueType": "string"
@@ -193,8 +201,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "URL",
-          "name": "url",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {

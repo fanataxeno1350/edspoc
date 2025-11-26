@@ -47,21 +47,6 @@
           "label": "CTA Link",
           "name": "ctaLink",
           "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "CTA Label",
-          "name": "ctaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "container",
-          "items": {
-            "$ref": "card"
-          },
-          "label": "Cards",
-          "name": "cards",
-          "valueType": "array"
         }
       ]
     },

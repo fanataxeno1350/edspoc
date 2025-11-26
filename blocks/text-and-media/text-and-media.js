@@ -1,30 +1,30 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  const imageEl = block.querySelector('[data-aue-prop="image"]');
-  const titleEl = block.querySelector('[data-aue-prop="title"]');
-  const descriptionEl = block.querySelector('[data-aue-prop="description"]');
-  const ctaTextEl = block.querySelector('[data-aue-prop="ctaText"]');
-  const ctaLinkEl = block.querySelector('[data-aue-prop="ctaLink"]');
+  const image = block.querySelector('[data-aue-prop="image"]');
+  const title = block.querySelector('[data-aue-prop="title"]');
+  const description = block.querySelector('[data-aue-prop="description"]');
+  const ctaLabel = block.querySelector('[data-aue-prop="ctaLabel"]');
+  const ctaHref = block.querySelector('[data-aue-prop="ctaHref"]');
 
   const section = document.createElement('section');
   section.className = 'text-and-media-section';
 
-  // Scarp Image
-  if (imageEl) {
+  // Scarp Image (decorative)
+  if (image) {
     const scarpImg = document.createElement('img');
     scarpImg.className = 'text-and-media-scarp fade-in';
     scarpImg.setAttribute('data-fade-in', '');
     scarpImg.setAttribute('is-animated', 'true');
     scarpImg.setAttribute('data-is-reverse', 'true');
-    scarpImg.loading = 'lazy';
+    scarpImg.setAttribute('loading', 'lazy');
 
-    const imgSource = imageEl.querySelector('img');
-    if (imgSource) {
-      scarpImg.src = imgSource.src;
-      scarpImg.alt = imgSource.alt;
-      scarpImg.setAttribute('aria-label', imgSource.alt);
-      moveInstrumentation(imgSource, scarpImg);
+    const authoredImg = image.querySelector('img');
+    if (authoredImg) {
+      scarpImg.src = authoredImg.src;
+      scarpImg.alt = authoredImg.alt;
+      scarpImg.setAttribute('aria-label', authoredImg.alt);
+      moveInstrumentation(authoredImg, scarpImg);
     }
     section.append(scarpImg);
   }
@@ -32,82 +32,71 @@ export default function decorate(block) {
   const textAndMediaComponent = document.createElement('div');
   textAndMediaComponent.className = 'text-and-media-component';
   textAndMediaComponent.setAttribute('data-cmp-is', 'text-and-media');
-  textAndMediaComponent.id = 'text-and-media-component'; // Added ID for consistency
   textAndMediaComponent.setAttribute('aria-labelledby', 'text-and-media-title');
   textAndMediaComponent.style.overflow = 'hidden';
   textAndMediaComponent.setAttribute('is-animated', 'true');
   textAndMediaComponent.setAttribute('data-is-reverse', 'true');
 
-  // Image Container
   const imageContainer = document.createElement('div');
   imageContainer.className = 'text-and-media-image-container animate-image-container-up-fade in-viewport slide-up';
   imageContainer.setAttribute('data-slide-type', 'slide-up');
   imageContainer.setAttribute('data-slide-no-wrap', '');
 
-  const picture = document.createElement('picture');
-  picture.className = 'text-and-media-image-container-picture';
+  const pictureContainer = document.createElement('picture');
+  pictureContainer.className = 'text-and-media-image-container-picture';
 
-  if (imageEl) {
-    const img = imageEl.querySelector('img');
-    if (img) {
-      const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '500', height: '400', format: 'webp' }]);
-      const source = optimizedPic.querySelector('source');
-      const optimizedImg = optimizedPic.querySelector('img');
-
-      if (source) {
-        picture.append(source);
-      }
-      if (optimizedImg) {
-        optimizedImg.className = 'text-and-media-image-container-image layout-portrait animate-image-zoom-out in-viewport';
-        optimizedImg.setAttribute('role', 'img');
-        moveInstrumentation(img, optimizedImg);
-        picture.append(optimizedImg);
-      }
+  if (image) {
+    const authoredImg = image.querySelector('img');
+    if (authoredImg) {
+      const pic = createOptimizedPicture(authoredImg.src, authoredImg.alt);
+      pic.querySelector('img').className = 'text-and-media-image-container-image layout-portrait animate-image-zoom-out in-viewport';
+      pic.querySelector('img').setAttribute('role', 'img');
+      moveInstrumentation(authoredImg, pic.querySelector('img'));
+      pictureContainer.append(...pic.children);
     }
   }
-  imageContainer.append(picture);
+
+  imageContainer.append(pictureContainer);
   textAndMediaComponent.append(imageContainer);
 
-  // Content
-  const contentDiv = document.createElement('div');
-  contentDiv.className = 'text-and-media-content in-viewport';
+  const content = document.createElement('div');
+  content.className = 'text-and-media-content in-viewport';
 
   const slideWrap = document.createElement('div');
   slideWrap.className = 'slide-wrap';
+  const slideUp = document.createElement('div');
+  slideUp.setAttribute('data-slide-type', 'slide-up');
+  slideUp.className = 'slide-up';
 
-  const slideUpDiv = document.createElement('div');
-  slideUpDiv.setAttribute('data-slide-type', 'slide-up');
-  slideUpDiv.className = 'slide-up';
-
-  // Title
-  if (titleEl) {
-    const titleDiv = document.createElement('div');
-    titleDiv.id = 'text-and-media-title';
-    titleDiv.className = 'text-and-media-content-title';
-    titleDiv.setAttribute('tabindex', '0');
-    titleDiv.append(...titleEl.childNodes);
-    moveInstrumentation(titleEl, titleDiv);
-    slideUpDiv.append(titleDiv);
+  const titleDiv = document.createElement('div');
+  titleDiv.id = 'text-and-media-title';
+  titleDiv.className = 'text-and-media-content-title';
+  titleDiv.setAttribute('tabindex', '0');
+  if (title) {
+    titleDiv.append(...title.childNodes);
+    moveInstrumentation(title, titleDiv);
   }
+  slideUp.append(titleDiv);
 
-  // Description
-  if (descriptionEl) {
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'text-and-media-content-description';
-    descriptionDiv.setAttribute('tabindex', '0');
-    descriptionDiv.append(...descriptionEl.childNodes);
-    moveInstrumentation(descriptionEl, descriptionDiv);
-    slideUpDiv.append(descriptionDiv);
+  const descriptionDiv = document.createElement('div');
+  descriptionDiv.className = 'text-and-media-content-description';
+  descriptionDiv.setAttribute('tabindex', '0');
+  if (description) {
+    descriptionDiv.append(...description.childNodes);
+    moveInstrumentation(description, descriptionDiv);
   }
+  slideUp.append(descriptionDiv);
 
-  // CTA
-  if (ctaTextEl && ctaLinkEl) {
-    const ctaLink = document.createElement('a');
-    ctaLink.className = 'text-and-media-cta cta__primary text-and-media-content-cta';
-    ctaLink.target = '_self';
-    ctaLink.href = ctaLinkEl.textContent;
-    ctaLink.setAttribute('aria-label', ctaTextEl.textContent);
+  const ctaLink = document.createElement('a');
+  ctaLink.className = 'text-and-media-cta cta__primary text-and-media-content-cta ';
+  ctaLink.setAttribute('target', '_self');
 
+  if (ctaHref) {
+    ctaLink.href = ctaHref.textContent;
+    moveInstrumentation(ctaHref, ctaLink);
+  }
+  if (ctaLabel) {
+    ctaLink.setAttribute('aria-label', ctaLabel.textContent);
     const iconSpan = document.createElement('span');
     iconSpan.className = 'text-and-media-cta-icon qd-icon qd-icon--cheveron-right';
     iconSpan.setAttribute('aria-hidden', 'true');
@@ -115,18 +104,15 @@ export default function decorate(block) {
 
     const labelSpan = document.createElement('span');
     labelSpan.className = 'text-and-media-cta-label';
-    labelSpan.textContent = ctaTextEl.textContent;
+    labelSpan.append(...ctaLabel.childNodes);
+    moveInstrumentation(ctaLabel, labelSpan);
     ctaLink.append(labelSpan);
-
-    moveInstrumentation(ctaTextEl, labelSpan);
-    moveInstrumentation(ctaLinkEl, ctaLink);
-
-    slideUpDiv.append(ctaLink);
   }
+  slideUp.append(ctaLink);
 
-  slideWrap.append(slideUpDiv);
-  contentDiv.append(slideWrap);
-  textAndMediaComponent.append(contentDiv);
+  slideWrap.append(slideUp);
+  content.append(slideWrap);
+  textAndMediaComponent.append(content);
 
   const overflowFix = document.createElement('div');
   overflowFix.className = 'text-and-media-overflow-fix';

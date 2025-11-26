@@ -41,14 +41,14 @@
         },
         {
           "component": "text",
-          "label": "CTA Label",
-          "name": "ctaLabel",
+          "label": "CTA Text",
+          "name": "ctaText",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "CTA Href",
-          "name": "ctaHref",
+          "label": "CTA Link",
+          "name": "ctaLink",
           "valueType": "string"
         }
       ]
