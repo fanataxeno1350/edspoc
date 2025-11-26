@@ -24,13 +24,19 @@
         {
           "component": "reference",
           "label": "Poster Video Source",
-          "name": "videoPosterSrc",
+          "name": "posterVideo",
           "valueType": "string"
         },
         {
           "component": "reference",
           "label": "Main Video Source",
-          "name": "mainVideoSrc",
+          "name": "mainVideo",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Watch Video Label",
+          "name": "watchVideoLabel",
           "valueType": "string"
         }
       ]

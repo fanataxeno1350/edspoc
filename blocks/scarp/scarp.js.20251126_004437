@@ -13,7 +13,7 @@ export default function decorate(block) {
     const pic = createOptimizedPicture(authoredImage.src, authoredImage.alt);
     const img = pic.querySelector('img');
     img.setAttribute('aria-hidden', 'true');
-    img.className = 'scarp-separator-scarp green-scarp ';
+    img.className = 'scarp-separator-scarp green-scarp';
     scarpContainer.append(pic);
     moveInstrumentation(authoredImage, img);
   }

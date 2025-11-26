@@ -23,8 +23,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Main Image",
-          "name": "mainImage",
+          "label": "Image",
+          "name": "image",
           "valueType": "string"
         },
         {
@@ -47,8 +47,8 @@
         },
         {
           "component": "text",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "CTA Href",
+          "name": "ctaHref",
           "valueType": "string"
         }
       ]

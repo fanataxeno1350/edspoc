@@ -1,4 +1,5 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const rootDiv = document.createElement('div');
@@ -7,114 +8,127 @@ export default function decorate(block) {
   const contentDiv = document.createElement('div');
   contentDiv.className = 'card-list-cmp-card-list__content';
 
-  const slideWrapDiv = document.createElement('div');
-  slideWrapDiv.className = 'card-list-slide-wrap';
+  // Top section
+  const slideWrap = document.createElement('div');
+  slideWrap.className = 'card-list-slide-wrap';
 
-  const topContentDiv = document.createElement('div');
-  topContentDiv.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
-  topContentDiv.setAttribute('data-slide-type', 'slide-up');
+  const topContent = document.createElement('div');
+  topContent.className = 'card-list-cmp-card-list__content__top card-list-slide-up';
+  topContent.setAttribute('data-slide-type', 'slide-up');
 
-  const headingWrapperDiv = document.createElement('div');
-  headingWrapperDiv.className = 'card-list-cmp-card-list__content__heading is-visible';
+  const headingWrapper = document.createElement('div');
+  headingWrapper.className = 'card-list-cmp-card-list__content__heading is-visible';
 
-  const headingTitleDiv = document.createElement('div');
-  headingTitleDiv.id = 'card-list-heading';
-  headingTitleDiv.className = 'card-list-cmp-card-list__content__heading__title';
-  headingTitleDiv.setAttribute('tabindex', '0');
+  const headingTitle = document.createElement('div');
+  headingTitle.id = 'card-list-heading';
+  headingTitle.className = 'card-list-cmp-card-list__content__heading__title';
+  headingTitle.setAttribute('tabindex', '0');
 
-  const headingElement = block.querySelector('[data-aue-prop="heading"]');
-  if (headingElement) {
-    headingTitleDiv.append(...headingElement.childNodes);
-    moveInstrumentation(headingElement, headingTitleDiv);
+  const authoredHeading = block.querySelector('[data-aue-prop="heading"]');
+  if (authoredHeading) {
+    headingTitle.append(...authoredHeading.childNodes);
+    moveInstrumentation(authoredHeading, headingTitle);
   }
 
-  headingWrapperDiv.append(headingTitleDiv);
+  headingWrapper.append(headingTitle);
 
-  const ctaWrapperDiv = document.createElement('div');
-  ctaWrapperDiv.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
+  const ctaWrapper = document.createElement('div');
+  ctaWrapper.className = 'card-list-cmp-card-list__content__cta-wrapper is-visible';
 
-  const ctaLinkElement = block.querySelector('[data-aue-prop="ctaLink"]');
-  const ctaLabelElement = block.querySelector('[data-aue-prop="ctaLabel"]');
+  const authoredCta = block.querySelector('[data-aue-prop="cta"]');
+  if (authoredCta) {
+    const ctaLink = document.createElement('a');
+    ctaLink.className = 'card-list-cta card-list-cta__primary';
+    ctaLink.setAttribute('target', '_self');
+    ctaLink.setAttribute('data-palette', 'palette-1');
 
-  if (ctaLinkElement && ctaLabelElement) {
-    const ctaAnchor = document.createElement('a');
-    ctaAnchor.className = 'card-list-cta card-list-cta__primary';
-    ctaAnchor.target = '_self';
-    ctaAnchor.setAttribute('data-palette', 'palette-1');
-    ctaAnchor.href = ctaLinkElement.textContent;
-    moveInstrumentation(ctaLinkElement, ctaAnchor);
+    const ctaLabel = authoredCta.querySelector('[data-aue-prop="label"]');
+    const ctaUrl = authoredCta.querySelector('[data-aue-prop="url"]');
 
-    const ctaIconSpan = document.createElement('span');
-    ctaIconSpan.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
-    ctaIconSpan.setAttribute('aria-hidden', 'true');
+    if (ctaUrl) {
+      ctaLink.href = ctaUrl.textContent.trim();
+      ctaLink.setAttribute('aria-label', ctaLabel ? ctaLabel.textContent.trim() : '');
+      moveInstrumentation(ctaUrl, ctaLink);
+    }
 
-    const ctaLabelSpan = document.createElement('span');
-    ctaLabelSpan.className = 'card-list-cta__label';
-    ctaLabelSpan.textContent = ctaLabelElement.textContent;
-    moveInstrumentation(ctaLabelElement, ctaLabelSpan);
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'card-list-cta__icon qd-icon qd-icon--cheveron-right';
+    iconSpan.setAttribute('aria-hidden', 'true');
+    ctaLink.append(iconSpan);
 
-    ctaAnchor.append(ctaIconSpan, ctaLabelSpan);
-    ctaWrapperDiv.append(ctaAnchor);
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'card-list-cta__label';
+    if (ctaLabel) {
+      labelSpan.append(...ctaLabel.childNodes);
+      moveInstrumentation(ctaLabel, labelSpan);
+    }
+    ctaLink.append(labelSpan);
+
+    ctaWrapper.append(ctaLink);
   }
 
-  topContentDiv.append(headingWrapperDiv, ctaWrapperDiv);
-  slideWrapDiv.append(topContentDiv);
+  topContent.append(headingWrapper, ctaWrapper);
+  slideWrap.append(topContent);
+  contentDiv.append(slideWrap);
 
+  // Cards section
   const itemsDiv = document.createElement('div');
   itemsDiv.className = 'card-list-cmp-card-list__content__items';
 
   const cards = block.querySelectorAll('[data-aue-model="card"]');
   cards.forEach((card, index) => {
-    const cardItemDiv = document.createElement('div');
-    cardItemDiv.className = 'card-list-cmp-card-list__content__card-item is-visible card-list-slide-up';
-    cardItemDiv.setAttribute('data-animation', 'card');
-    cardItemDiv.setAttribute('data-slide-type', 'slide-up');
-    cardItemDiv.setAttribute('data-slide-no-wrap', '');
-    cardItemDiv.setAttribute('data-slide-delay', `${index * 100}`.padStart(3, '0'));
-    cardItemDiv.style.transitionDelay = `${index * 0.2}s`;
+    const cardItem = document.createElement('div');
+    cardItem.className = 'card-list-cmp-card-list__content__card-item is-visible card-list-slide-up';
+    cardItem.setAttribute('data-animation', 'card');
+    cardItem.setAttribute('data-slide-type', 'slide-up');
+    cardItem.setAttribute('data-slide-no-wrap', '');
+    cardItem.setAttribute('data-slide-delay', `${index * 100}`);
+    cardItem.style.transitionDelay = `${index * 0.2}s`;
 
-    const imageElement = card.querySelector('[data-aue-prop="image"] img');
-    if (imageElement) {
-      const picture = createOptimizedPicture(imageElement.src, imageElement.alt);
-      picture.querySelector('img').className = 'card-list-cmp-card-list__content__card-item__image';
-      moveInstrumentation(imageElement, picture.querySelector('img'));
-      cardItemDiv.append(picture);
+    const authoredImage = card.querySelector('[data-aue-prop="image"] img');
+    if (authoredImage) {
+      const pic = createOptimizedPicture(authoredImage.src, authoredImage.alt);
+      pic.querySelector('img').className = 'card-list-cmp-card-list__content__card-item__image';
+      cardItem.append(pic);
+      moveInstrumentation(authoredImage, pic.querySelector('img'));
     }
 
-    const cardItemContentDiv = document.createElement('div');
-    cardItemContentDiv.className = 'card-list-cmp-card-list__content__card-item-content';
+    const cardItemContent = document.createElement('div');
+    cardItemContent.className = 'card-list-cmp-card-list__content__card-item-content';
 
-    const cardHeadingWrapperDiv = document.createElement('div');
-    cardHeadingWrapperDiv.className = 'card-list-cmp-card-list__content__card-item-content__heading-wrapper';
-    cardHeadingWrapperDiv.setAttribute('tabindex', '0');
+    const headingWrapperCard = document.createElement('div');
+    headingWrapperCard.className = 'card-list-cmp-card-list__content__card-item-content__heading-wrapper';
+    headingWrapperCard.setAttribute('tabindex', '0');
 
-    const cardTitleDiv = document.createElement('div');
-    cardTitleDiv.className = 'card-list-cmp-card-list__content__card-item-content__title';
-    cardTitleDiv.setAttribute('aria-hidden', 'false');
-    const titleElement = card.querySelector('[data-aue-prop="title"]');
-    if (titleElement) {
-      cardTitleDiv.textContent = titleElement.textContent;
-      moveInstrumentation(titleElement, cardTitleDiv);
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'card-list-cmp-card-list__content__card-item-content__title';
+    titleDiv.setAttribute('aria-hidden', 'false');
+
+    const authoredTitle = card.querySelector('[data-aue-prop="title"]');
+    if (authoredTitle) {
+      titleDiv.append(...authoredTitle.childNodes);
+      moveInstrumentation(authoredTitle, titleDiv);
     }
-    cardHeadingWrapperDiv.append(cardTitleDiv);
+    headingWrapperCard.append(titleDiv);
 
-    const cardDescriptionDiv = document.createElement('div');
-    cardDescriptionDiv.className = 'card-list-cmp-card-list__content__card-item-content__description';
-    cardDescriptionDiv.setAttribute('tabindex', '0');
-    cardDescriptionDiv.setAttribute('aria-hidden', 'false');
-    const descriptionElement = card.querySelector('[data-aue-prop="description"]');
-    if (descriptionElement) {
-      cardDescriptionDiv.innerHTML = descriptionElement.innerHTML;
-      cardDescriptionDiv.setAttribute('aria-label', descriptionElement.innerHTML);
-      moveInstrumentation(descriptionElement, cardDescriptionDiv);
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'card-list-cmp-card-list__content__card-item-content__description';
+    descriptionDiv.setAttribute('tabindex', '0');
+    descriptionDiv.setAttribute('aria-hidden', 'false');
+
+    const authoredDescription = card.querySelector('[data-aue-prop="description"]');
+    if (authoredDescription) {
+      descriptionDiv.setAttribute('aria-label', authoredDescription.innerHTML.trim());
+      descriptionDiv.append(...authoredDescription.childNodes);
+      moveInstrumentation(authoredDescription, descriptionDiv);
     }
 
-    cardItemContentDiv.append(cardHeadingWrapperDiv, cardDescriptionDiv);
-    cardItemDiv.append(cardItemContentDiv);
-    itemsDiv.append(cardItemDiv);
+    cardItemContent.append(headingWrapperCard, descriptionDiv);
+    cardItem.append(cardItemContent);
+    itemsDiv.append(cardItem);
   });
 
-  contentDiv.append(slideWrapDiv, itemsDiv);
+  contentDiv.append(itemsDiv);
   rootDiv.append(contentDiv);
 
   block.textContent = '';

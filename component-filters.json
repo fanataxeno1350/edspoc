@@ -38,22 +38,22 @@
     "id": "footer",
     "components": [
       "footerSocialLink",
-      "footerNavLink",
-      "footerLanguageLink",
+      "footerNavigationLink",
+      "footerLanguage",
       "footerPolicyLink"
     ]
   },
   {
-    "id": "header-navigation",
+    "id": "headerNavigation",
     "components": [
-      "navMenu",
-      "language"
+      "navigationMenu",
+      "languageOption"
     ]
   },
   {
-    "id": "nav-menu",
+    "id": "navigationMenu",
     "components": [
-      "navSubmenuItem"
+      "submenuItem"
     ]
   },
   {
@@ -79,7 +79,7 @@
     "id": "scarpComponent"
   },
   {
-    "id": "Scarp",
+    "id": "scarp",
     "components": [
       "scarp"
     ]

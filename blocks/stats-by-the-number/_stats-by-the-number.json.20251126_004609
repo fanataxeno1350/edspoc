@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Stats-By-The-Number",
+      "title": "Stats-by-the-number",
       "id": "statsByTheNumber",
       "plugins": {
         "xwalk": {
@@ -10,14 +10,14 @@
             "template": {
               "filter": "statsByTheNumber",
               "model": "statsByTheNumber",
-              "name": "Stats-By-The-Number"
+              "name": "Stats-by-the-number"
             }
           }
         }
       }
     },
     {
-      "title": "Stat-Card",
+      "title": "Stat Card",
       "id": "statCard",
       "plugins": {
         "xwalk": {
@@ -25,7 +25,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "model": "statCard",
-              "name": "Stat-Card"
+              "name": "Stat Card"
             }
           }
         }
@@ -38,13 +38,13 @@
       "fields": [
         {
           "component": "text",
-          "label": "Stat Number",
+          "label": "Number",
           "name": "number",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Stat Description",
+          "label": "Description",
           "name": "description",
           "valueType": "string"
         },
@@ -58,6 +58,12 @@
           "component": "richtext",
           "label": "Hover Details",
           "name": "hoverDetails",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Aria Label",
+          "name": "ariaLabel",
           "valueType": "string"
         }
       ]
@@ -74,7 +80,7 @@
         {
           "component": "reference",
           "label": "Main Image",
-          "name": "mainImage",
+          "name": "image",
           "valueType": "string"
         },
         {
@@ -85,27 +91,25 @@
         },
         {
           "component": "container",
-          "fields": [
-            {
-              "component": "reference",
-              "label": "Stat Card",
-              "name": "statCard",
-              "valueType": "string"
-            }
-          ],
+          "items": {
+            "component": "reference",
+            "name": "statCard",
+            "valueType": "string"
+          },
           "label": "Stat Cards",
-          "name": "statCards"
+          "name": "cards",
+          "valueType": "array"
         },
         {
-          "component": "aem-tag",
+          "component": "text",
           "label": "CTA Label",
           "name": "ctaLabel",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "CTA URL",
-          "name": "ctaUrl",
+          "label": "CTA Link",
+          "name": "ctaLink",
           "valueType": "string"
         }
       ]
