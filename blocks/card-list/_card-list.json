@@ -8,9 +8,9 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Card-List",
               "filter": "cardList",
-              "model": "cardList"
+              "model": "cardList",
+              "name": "Card-List"
             }
           }
         }
@@ -24,8 +24,8 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Card",
-              "model": "card"
+              "model": "card",
+              "name": "Card"
             }
           }
         }
@@ -37,21 +37,21 @@
       "id": "cardList",
       "fields": [
         {
-          "component": "richtext",
-          "name": "heading",
+          "component": "aem-content",
           "label": "Heading",
+          "name": "heading",
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "name": "ctaLink",
-          "label": "CTA Link",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "ctaLabel",
+          "component": "aem-content",
           "label": "CTA Label",
+          "name": "cta-label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "CTA Link",
+          "name": "cta-link",
           "valueType": "string"
         }
       ]
@@ -61,20 +61,20 @@
       "fields": [
         {
           "component": "reference",
-          "name": "image",
           "label": "Image",
+          "name": "image",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "name": "title",
+          "component": "aem-content",
           "label": "Title",
+          "name": "title",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "name": "description",
           "label": "Description",
+          "name": "description",
           "valueType": "string"
         }
       ]
