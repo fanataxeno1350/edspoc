@@ -2,7 +2,6 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  console.log("check1");
   const cardListCmp = document.createElement("div");
   cardListCmp.className = "card-list-cmp-card-list parallax-child";
 
@@ -47,7 +46,6 @@ export default function decorate(block) {
 
   const ctaLinkElement = block.querySelector('[data-aue-prop="ctaLink"]');
   const ctaLabelElement = block.querySelector('[data-aue-prop="ctaLabel"]');
-  console.log("check2");
 
   if (ctaLinkElement && ctaLabelElement) {
     const cta = document.createElement("a");
@@ -77,9 +75,7 @@ export default function decorate(block) {
   cardListContent.append(cardItemsContainer);
 
   const cardModels = block.querySelectorAll('[data-aue-model="card"]');
-  console.log(cardModels);
   cardModels.forEach((cardModel, index) => {
-    console.log(cardModel, index);
     const cardItem = document.createElement("div");
     cardItem.className =
       "card-list-cmp-card-list__content__card-item is-visible card-list-slide-up";
@@ -91,12 +87,12 @@ export default function decorate(block) {
 
     const imageElement = cardModel.querySelector('[data-aue-prop="image"]');
     if (imageElement) {
-      const img = imageElement.querySelector("img");
-      if (img) {
-        const picture = createOptimizedPicture(img.src, img.alt);
+      // const img = imageElement.querySelector("img");
+      if (imageElement) {
+        const picture = createOptimizedPicture(imageElement.src, imageElement.alt);
         picture.querySelector("img").className =
           "card-list-cmp-card-list__content__card-item__image";
-        moveInstrumentation(img, picture.querySelector("img"));
+        moveInstrumentation(imageElement, picture.querySelector("img"));
         cardItem.append(picture);
       }
     }
