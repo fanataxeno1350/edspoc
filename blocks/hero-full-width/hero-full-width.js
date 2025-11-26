@@ -49,11 +49,15 @@ export default async function decorate(block) {
   backgroundVideoElement.setAttribute("autoplay", "");
 
   if (backgroundVideo) {
+    console.log("adding source")
     const source = document.createElement("source");
     source.src = backgroundVideo.textContent.trim();
     source.type = "video/mp4";
     backgroundVideoElement.append(source);
     moveInstrumentation(backgroundVideo, source);
+  } else {
+    console.log("not adding source")
+    console.log(backgroundVideo)
   }
   backgroundWrapper.append(backgroundVideoElement);
 
