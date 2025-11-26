@@ -537,7 +537,7 @@
         "valueType": "string"
       },
       {
-        "component": "aem-content",
+        "component": "richtext",
         "label": "Description",
         "name": "description",
         "valueType": "string"
