@@ -77,7 +77,9 @@ export default function decorate(block) {
   cardListContent.append(cardItemsContainer);
 
   const cardModels = block.querySelectorAll('[data-aue-model="card"]');
+  console.log(cardModels)
   cardModels.forEach((cardModel, index) => {
+    console.log(cardModel, index)
     const cardItem = document.createElement("div");
     cardItem.className =
       "card-list-cmp-card-list__content__card-item is-visible card-list-slide-up";
