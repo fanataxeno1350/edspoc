@@ -44,16 +44,16 @@
     ]
   },
   {
-    "id": "header",
+    "id": "headerNav",
     "components": [
-      "headerMenu",
-      "language"
+      "navMenu",
+      "languageOption"
     ]
   },
   {
-    "id": "headerMenu",
+    "id": "navMenu",
     "components": [
-      "headerSubMenu"
+      "navSubMenuItem"
     ]
   },
   {

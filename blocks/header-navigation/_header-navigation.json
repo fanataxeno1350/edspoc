@@ -1,61 +1,61 @@
 {
   "definitions": [
     {
-      "title": "Header",
-      "id": "header",
+      "title": "Header-Nav",
+      "id": "headerNav",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Header",
-              "filter": "header",
-              "model": "header"
+              "name": "Header-Nav",
+              "filter": "headerNav",
+              "model": "headerNav"
             }
           }
         }
       }
     },
     {
-      "title": "Header-Menu",
-      "id": "headerMenu",
+      "title": "Nav-Menu",
+      "id": "navMenu",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Header-Menu",
-              "model": "headerMenu"
+              "name": "Nav-Menu",
+              "model": "navMenu"
             }
           }
         }
       }
     },
     {
-      "title": "Header-SubMenu",
-      "id": "headerSubMenu",
+      "title": "Nav-SubMenu-Item",
+      "id": "navSubMenuItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Header-SubMenu",
-              "model": "headerSubMenu"
+              "name": "Nav-SubMenu-Item",
+              "model": "navSubMenuItem"
             }
           }
         }
       }
     },
     {
-      "title": "Language",
-      "id": "language",
+      "title": "Language-Option",
+      "id": "languageOption",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Language",
-              "model": "language"
+              "name": "Language-Option",
+              "model": "languageOption"
             }
           }
         }
@@ -64,18 +64,12 @@
   ],
   "models": [
     {
-      "id": "header",
+      "id": "headerNav",
       "fields": [
         {
           "component": "reference",
           "name": "logoLink",
           "label": "Logo Link",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "name": "logoIcon",
-          "label": "Logo Icon",
           "valueType": "string"
         },
         {
@@ -85,30 +79,30 @@
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "name": "contactUsLabel",
           "label": "Contact Us Label",
           "valueType": "string"
         },
         {
-          "component": "container",
-          "name": "menus",
-          "label": "Menus",
-          "itemType": "headerMenu"
+          "component": "checkbox-group",
+          "name": "navMenus",
+          "label": "Navigation Menus",
+          "itemComponent": "navMenu"
         },
         {
-          "component": "container",
+          "component": "checkbox-group",
           "name": "languages",
           "label": "Languages",
-          "itemType": "language"
+          "itemComponent": "languageOption"
         }
       ]
     },
     {
-      "id": "headerMenu",
+      "id": "navMenu",
       "fields": [
         {
-          "component": "richtext",
+          "component": "text",
           "name": "menuLabel",
           "label": "Menu Label",
           "valueType": "string"
@@ -120,18 +114,18 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "name": "subMenus",
-          "label": "Sub Menus",
-          "itemType": "headerSubMenu"
+          "component": "checkbox-group",
+          "name": "subMenuItems",
+          "label": "Sub Menu Items",
+          "itemComponent": "navSubMenuItem"
         }
       ]
     },
     {
-      "id": "headerSubMenu",
+      "id": "navSubMenuItem",
       "fields": [
         {
-          "component": "richtext",
+          "component": "text",
           "name": "subMenuLabel",
           "label": "Sub Menu Label",
           "valueType": "string"
@@ -145,10 +139,10 @@
       ]
     },
     {
-      "id": "language",
+      "id": "languageOption",
       "fields": [
         {
-          "component": "richtext",
+          "component": "text",
           "name": "languageLabel",
           "label": "Language Label",
           "valueType": "string"
@@ -164,16 +158,16 @@
   ],
   "filters": [
     {
-      "id": "header",
+      "id": "headerNav",
       "components": [
-        "headerMenu",
-        "language"
+        "navMenu",
+        "languageOption"
       ]
     },
     {
-      "id": "headerMenu",
+      "id": "navMenu",
       "components": [
-        "headerSubMenu"
+        "navSubMenuItem"
       ]
     }
   ]
