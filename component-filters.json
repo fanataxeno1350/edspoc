@@ -38,22 +38,22 @@
     "id": "footer",
     "components": [
       "footerSocialLink",
-      "footerNavigationLink",
-      "footerLanguage",
+      "footerNavLink",
+      "footerLanguageLink",
       "footerPolicyLink"
     ]
   },
   {
-    "id": "headerNav",
+    "id": "header-navigation",
     "components": [
       "navMenu",
-      "languageOption"
+      "language"
     ]
   },
   {
-    "id": "navMenu",
+    "id": "nav-menu",
     "components": [
-      "navSubMenuItem"
+      "navSubmenuItem"
     ]
   },
   {
@@ -76,10 +76,7 @@
     ]
   },
   {
-    "id": "mediaComponent",
-    "components": [
-      "mediaComponent"
-    ]
+    "id": "mediaComponent"
   },
   {
     "id": "scarpComponent"
@@ -93,7 +90,7 @@
   {
     "id": "statsByTheNumber",
     "components": [
-      "statsCard"
+      "statCard"
     ]
   },
   {
@@ -103,7 +100,7 @@
     ]
   },
   {
-    "id": "text-and-media",
+    "id": "textAndMedia",
     "components": [
       "textAndMedia"
     ]

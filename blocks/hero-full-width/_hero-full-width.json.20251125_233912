@@ -23,8 +23,14 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Background Video",
-          "name": "backgroundVideo",
+          "label": "Video Source",
+          "name": "videoSource",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Background Poster Alt",
+          "name": "backgroundPosterAlt",
           "valueType": "string"
         },
         {
@@ -40,35 +46,28 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "fields": [
-            {
-              "component": "text",
-              "label": "Primary CTA Label",
-              "name": "primaryCtaLabel",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Primary CTA URL",
-              "name": "primaryCtaUrl",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Secondary CTA Label",
-              "name": "secondaryCtaLabel",
-              "valueType": "string"
-            },
-            {
-              "component": "text",
-              "label": "Secondary CTA URL",
-              "name": "secondaryCtaUrl",
-              "valueType": "string"
-            }
-          ],
-          "label": "CTAs",
-          "name": "ctas"
+          "component": "text",
+          "label": "Primary CTA Label",
+          "name": "primaryCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Primary CTA Href",
+          "name": "primaryCtaHref",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Label",
+          "name": "secondaryCtaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Secondary CTA Href",
+          "name": "secondaryCtaHref",
+          "valueType": "string"
         }
       ]
     }

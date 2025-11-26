@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Text-and-Media",
+      "title": "Text-And-Media",
       "id": "textAndMedia",
       "plugins": {
         "xwalk": {
@@ -10,7 +10,7 @@
             "template": {
               "filter": "textAndMedia",
               "model": "textAndMedia",
-              "name": "Text-and-Media"
+              "name": "Text-And-Media"
             }
           }
         }
@@ -41,14 +41,14 @@
         },
         {
           "component": "text",
-          "label": "CTA Text",
-          "name": "ctaText",
+          "label": "CTA Label",
+          "name": "ctaLabel",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "CTA URL",
+          "name": "ctaUrl",
           "valueType": "string"
         }
       ]
@@ -56,7 +56,7 @@
   ],
   "filters": [
     {
-      "id": "textAndMedia",
+      "id": "text-and-media",
       "components": [
         "textAndMedia"
       ]

@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Stat Card",
-      "id": "statCard",
+      "title": "Stats Card",
+      "id": "statsCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "statCard",
-              "name": "Stat Card"
+              "model": "statsCard",
+              "name": "Stats Card"
             }
           }
         }
@@ -34,20 +34,8 @@
   ],
   "models": [
     {
-      "id": "statCard",
+      "id": "statsCard",
       "fields": [
-        {
-          "component": "reference",
-          "label": "Hover Image",
-          "name": "hoverImage",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Hover Details",
-          "name": "hoverDetails",
-          "valueType": "string"
-        },
         {
           "component": "text",
           "label": "Number",
@@ -58,6 +46,18 @@
           "component": "text",
           "label": "Description",
           "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Hover Image",
+          "name": "hoverImage",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Hover Details",
+          "name": "hoverDetails",
           "valueType": "string"
         }
       ]
@@ -85,8 +85,8 @@
         },
         {
           "component": "reference",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "CTA URL",
+          "name": "ctaUrl",
           "valueType": "string"
         },
         {
@@ -94,11 +94,6 @@
           "label": "CTA Label",
           "name": "ctaLabel",
           "valueType": "string"
-        },
-        {
-          "component": "statCard",
-          "label": "Stat Cards",
-          "name": "statCards"
         }
       ]
     }
@@ -107,7 +102,7 @@
     {
       "id": "statsByTheNumber",
       "components": [
-        "statCard"
+        "statsCard"
       ]
     }
   ]

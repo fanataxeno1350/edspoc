@@ -152,18 +152,9 @@
       },
       {
         "component": "aem-tag",
-        "label": "CTA",
-        "name": "cta",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
-      },
-      {
-        "component": "container",
-        "item": {
-          "type": "card"
-        },
-        "label": "Card Items",
-        "name": "cardItems",
-        "valueType": "array"
       }
     ]
   },
@@ -196,52 +187,52 @@
       {
         "component": "reference",
         "label": "Logo Link",
-        "name": "logo",
+        "name": "logoLink",
         "valueType": "string"
       },
       {
         "component": "container",
-        "field": {
-          "component": "reference",
-          "label": "Footer Social Link Reference",
-          "name": "footerSocialLink",
-          "valueType": "string"
-        },
-        "label": "Social Links",
-        "name": "socialLinks"
+        "fields": [
+          {
+            "component": "footerSocialLink",
+            "name": "footerSocialLink"
+          }
+        ],
+        "label": "Footer Social Links",
+        "name": "footerSocialLinks"
       },
       {
         "component": "container",
-        "field": {
-          "component": "reference",
-          "label": "Footer Navigation Link Reference",
-          "name": "footerNavigationLink",
-          "valueType": "string"
-        },
-        "label": "Navigation Links",
-        "name": "navigationLinks"
+        "fields": [
+          {
+            "component": "footerNavLink",
+            "name": "footerNavLink"
+          }
+        ],
+        "label": "Footer Navigation Links",
+        "name": "footerNavLinks"
       },
       {
         "component": "container",
-        "field": {
-          "component": "reference",
-          "label": "Footer Language Reference",
-          "name": "footerLanguage",
-          "valueType": "string"
-        },
-        "label": "Language Links",
-        "name": "languageLinks"
+        "fields": [
+          {
+            "component": "footerLanguageLink",
+            "name": "footerLanguageLink"
+          }
+        ],
+        "label": "Footer Language Links",
+        "name": "footerLanguageLinks"
       },
       {
         "component": "container",
-        "field": {
-          "component": "reference",
-          "label": "Footer Policy Link Reference",
-          "name": "footerPolicyLink",
-          "valueType": "string"
-        },
-        "label": "Policy Links",
-        "name": "policyLinks"
+        "fields": [
+          {
+            "component": "footerPolicyLink",
+            "name": "footerPolicyLink"
+          }
+        ],
+        "label": "Footer Policy Links",
+        "name": "footerPolicyLinks"
       },
       {
         "component": "text",
@@ -256,8 +247,8 @@
     "fields": [
       {
         "component": "reference",
-        "label": "URL",
-        "name": "url",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       },
       {
@@ -269,12 +260,12 @@
     ]
   },
   {
-    "id": "footerNavigationLink",
+    "id": "footerNavLink",
     "fields": [
       {
         "component": "reference",
-        "label": "URL",
-        "name": "url",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       },
       {
@@ -286,12 +277,12 @@
     ]
   },
   {
-    "id": "footerLanguage",
+    "id": "footerLanguageLink",
     "fields": [
       {
         "component": "reference",
-        "label": "URL",
-        "name": "url",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       },
       {
@@ -303,7 +294,7 @@
       {
         "component": "text",
         "label": "Language Code",
-        "name": "lang",
+        "name": "langCode",
         "valueType": "string"
       }
     ]
@@ -313,8 +304,8 @@
     "fields": [
       {
         "component": "reference",
-        "label": "URL",
-        "name": "url",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       },
       {
@@ -326,37 +317,43 @@
     ]
   },
   {
-    "id": "headerNav",
+    "id": "headerNavigation",
     "fields": [
       {
         "component": "reference",
-        "name": "logoLink",
         "label": "Logo Link",
+        "name": "logoLink",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-tag",
+        "label": "Logo Icon",
+        "name": "logoIcon",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "name": "contactUsLink",
         "label": "Contact Us Link",
+        "name": "contactUsLink",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "contactUsLabel",
         "label": "Contact Us Label",
+        "name": "contactUsLabel",
         "valueType": "string"
       },
       {
-        "component": "checkbox-group",
-        "name": "navMenus",
+        "component": "container",
+        "itemType": "navMenu",
         "label": "Navigation Menus",
-        "itemComponent": "navMenu"
+        "name": "navMenus"
       },
       {
-        "component": "checkbox-group",
-        "name": "languages",
+        "component": "container",
+        "itemType": "language",
         "label": "Languages",
-        "itemComponent": "languageOption"
+        "name": "languages"
       }
     ]
   },
@@ -365,54 +362,54 @@
     "fields": [
       {
         "component": "text",
-        "name": "menuLabel",
         "label": "Menu Label",
+        "name": "menuLabel",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "name": "menuLink",
         "label": "Menu Link",
+        "name": "menuLink",
         "valueType": "string"
       },
       {
-        "component": "checkbox-group",
-        "name": "subMenuItems",
-        "label": "Sub Menu Items",
-        "itemComponent": "navSubMenuItem"
+        "component": "container",
+        "itemType": "navSubmenuItem",
+        "label": "Submenu Items",
+        "name": "submenuItems"
       }
     ]
   },
   {
-    "id": "navSubMenuItem",
+    "id": "navSubmenuItem",
     "fields": [
       {
         "component": "text",
-        "name": "subMenuLabel",
-        "label": "Sub Menu Label",
+        "label": "Submenu Label",
+        "name": "submenuLabel",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "name": "subMenuLink",
-        "label": "Sub Menu Link",
+        "label": "Submenu Link",
+        "name": "submenuLink",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "languageOption",
+    "id": "language",
     "fields": [
       {
         "component": "text",
-        "name": "languageLabel",
         "label": "Language Label",
+        "name": "languageLabel",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "name": "languageLink",
         "label": "Language Link",
+        "name": "languageLink",
         "valueType": "string"
       }
     ]
@@ -496,14 +493,8 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Video Source",
-        "name": "videoSource",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Background Poster Alt",
-        "name": "backgroundPosterAlt",
+        "label": "Background Video",
+        "name": "backgroundVideo",
         "valueType": "string"
       },
       {
@@ -519,40 +510,41 @@
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Primary CTA Label",
-        "name": "primaryCtaLabel",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Primary CTA Href",
-        "name": "primaryCtaHref",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Secondary CTA Label",
-        "name": "secondaryCtaLabel",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Secondary CTA Href",
-        "name": "secondaryCtaHref",
-        "valueType": "string"
+        "component": "container",
+        "fields": [
+          {
+            "component": "text",
+            "label": "Primary CTA Label",
+            "name": "primaryCtaLabel",
+            "valueType": "string"
+          },
+          {
+            "component": "text",
+            "label": "Primary CTA URL",
+            "name": "primaryCtaUrl",
+            "valueType": "string"
+          },
+          {
+            "component": "text",
+            "label": "Secondary CTA Label",
+            "name": "secondaryCtaLabel",
+            "valueType": "string"
+          },
+          {
+            "component": "text",
+            "label": "Secondary CTA URL",
+            "name": "secondaryCtaUrl",
+            "valueType": "string"
+          }
+        ],
+        "label": "CTAs",
+        "name": "ctas"
       }
     ]
   },
   {
     "id": "mediaComponent",
     "fields": [
-      {
-        "component": "reference",
-        "label": "Background",
-        "name": "background",
-        "valueType": "string"
-      },
       {
         "component": "reference",
         "label": "Poster Video Source",
@@ -590,20 +582,8 @@
     ]
   },
   {
-    "id": "statsCard",
+    "id": "statCard",
     "fields": [
-      {
-        "component": "text",
-        "label": "Number",
-        "name": "number",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Description",
-        "name": "description",
-        "valueType": "string"
-      },
       {
         "component": "reference",
         "label": "Hover Image",
@@ -614,6 +594,18 @@
         "component": "richtext",
         "label": "Hover Details",
         "name": "hoverDetails",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Number",
+        "name": "number",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Description",
+        "name": "description",
         "valueType": "string"
       }
     ]
@@ -641,8 +633,8 @@
       },
       {
         "component": "reference",
-        "label": "CTA URL",
-        "name": "ctaUrl",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
       },
       {
@@ -650,6 +642,11 @@
         "label": "CTA Label",
         "name": "ctaLabel",
         "valueType": "string"
+      },
+      {
+        "component": "statCard",
+        "label": "Stat Cards",
+        "name": "statCards"
       }
     ]
   },
@@ -753,14 +750,14 @@
       },
       {
         "component": "text",
-        "label": "CTA Label",
-        "name": "ctaLabel",
+        "label": "CTA Text",
+        "name": "ctaText",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "CTA URL",
-        "name": "ctaUrl",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
       }
     ]
