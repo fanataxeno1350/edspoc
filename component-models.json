@@ -146,20 +146,20 @@
     "fields": [
       {
         "component": "richtext",
-        "label": "Heading",
         "name": "heading",
+        "label": "Heading",
         "valueType": "string"
       },
       {
-        "component": "aem-tag",
-        "label": "CTA Link",
+        "component": "reference",
         "name": "ctaLink",
+        "label": "CTA Link",
         "valueType": "string"
       },
       {
-        "component": "aem-tag",
-        "label": "CTA Label",
+        "component": "text",
         "name": "ctaLabel",
+        "label": "CTA Label",
         "valueType": "string"
       }
     ]
@@ -169,20 +169,20 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Image",
         "name": "image",
+        "label": "Image",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "Title",
         "name": "title",
+        "label": "Title",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Description",
         "name": "description",
+        "label": "Description",
         "valueType": "string"
       }
     ]
