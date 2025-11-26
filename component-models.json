@@ -152,22 +152,16 @@
       },
       {
         "component": "aem-tag",
-        "fields": [
-          {
-            "component": "text",
-            "label": "Label",
-            "name": "label",
-            "valueType": "string"
-          },
-          {
-            "component": "text",
-            "label": "Href",
-            "name": "href",
-            "valueType": "string"
-          }
-        ],
         "label": "CTA",
-        "name": "cta"
+        "name": "cta",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "itemType": "card",
+        "label": "Cards",
+        "name": "cards",
+        "valueType": "array"
       }
     ]
   },
@@ -330,69 +324,83 @@
     ]
   },
   {
-    "id": "headerNavigation",
+    "id": "header",
     "fields": [
       {
         "component": "reference",
-        "label": "Logo Link",
         "name": "logoLink",
+        "label": "Logo Link",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "logoIcon",
+        "label": "Logo Icon",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Logo Aria Label",
-        "name": "logoAriaLabel",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "Contact Us Link",
         "name": "contactUsLink",
+        "label": "Contact Us Link",
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Contact Us Label",
+        "component": "richtext",
         "name": "contactUsLabel",
+        "label": "Contact Us Label",
         "valueType": "string"
       },
       {
         "component": "container",
-        "label": "Navigation Menus",
-        "name": "navMenus",
-        "of": "navMenu",
-        "valueType": "array"
+        "name": "menus",
+        "label": "Menus",
+        "itemType": "headerMenu"
       },
       {
         "component": "container",
-        "label": "Languages",
         "name": "languages",
-        "of": "language",
-        "valueType": "array"
+        "label": "Languages",
+        "itemType": "language"
       }
     ]
   },
   {
-    "id": "navMenu",
+    "id": "headerMenu",
     "fields": [
       {
-        "component": "text",
-        "label": "Menu Label",
+        "component": "richtext",
         "name": "menuLabel",
+        "label": "Menu Label",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Menu Link",
         "name": "menuLink",
+        "label": "Menu Link",
         "valueType": "string"
       },
       {
         "component": "container",
-        "label": "Submenu Items",
-        "name": "submenuItems",
-        "of": "navMenu",
-        "valueType": "array"
+        "name": "subMenus",
+        "label": "Sub Menus",
+        "itemType": "headerSubMenu"
+      }
+    ]
+  },
+  {
+    "id": "headerSubMenu",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "subMenuLabel",
+        "label": "Sub Menu Label",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "subMenuLink",
+        "label": "Sub Menu Link",
+        "valueType": "string"
       }
     ]
   },
@@ -400,21 +408,15 @@
     "id": "language",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
+        "name": "languageLabel",
         "label": "Language Label",
-        "name": "langLabel",
         "valueType": "string"
       },
       {
         "component": "reference",
+        "name": "languageLink",
         "label": "Language Link",
-        "name": "langLink",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Language Code",
-        "name": "langCode",
         "valueType": "string"
       }
     ]

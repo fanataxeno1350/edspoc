@@ -44,10 +44,16 @@
     ]
   },
   {
-    "id": "headerNavigation",
+    "id": "header",
     "components": [
-      "navMenu",
+      "headerMenu",
       "language"
+    ]
+  },
+  {
+    "id": "headerMenu",
+    "components": [
+      "headerSubMenu"
     ]
   },
   {
