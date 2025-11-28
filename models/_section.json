@@ -48,19 +48,7 @@
         "button",
         "title",
         "hero",
-        "cards",
-        "columns",
-        "headerNavigation",
-        "heroFullWidth",
-        "textAndMedia",
-        "cardList",
-        "mediaComponent",
-        "scarpComponent",
-        "statsByTheNumbers",
-        "footer",
-        "scarp",
-        "statsByTheNumber",
-        "header"
+        "cards"
       ]
     }
   ]
