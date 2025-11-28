@@ -17,60 +17,60 @@
       }
     },
     {
-      "title": "Social-Link",
-      "id": "socialLink",
+      "title": "Footer Social Link",
+      "id": "footerSocialLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "socialLink",
-              "name": "Social-Link"
+              "model": "footerSocialLink",
+              "name": "Footer Social Link"
             }
           }
         }
       }
     },
     {
-      "title": "Navigation-Link",
-      "id": "navigationLink",
+      "title": "Footer Navigation Link",
+      "id": "footerNavigationLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "navigationLink",
-              "name": "Navigation-Link"
+              "model": "footerNavigationLink",
+              "name": "Footer Navigation Link"
             }
           }
         }
       }
     },
     {
-      "title": "Language-Link",
-      "id": "languageLink",
+      "title": "Footer Language",
+      "id": "footerLanguage",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "languageLink",
-              "name": "Language-Link"
+              "model": "footerLanguage",
+              "name": "Footer Language"
             }
           }
         }
       }
     },
     {
-      "title": "Policy-Link",
-      "id": "policyLink",
+      "title": "Footer Policy Link",
+      "id": "footerPolicyLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "policyLink",
-              "name": "Policy-Link"
+              "model": "footerPolicyLink",
+              "name": "Footer Policy Link"
             }
           }
         }
@@ -82,51 +82,65 @@
       "id": "footer",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "Logo Link",
-          "name": "logoLink",
-          "valueType": "string"
-        },
-        {
           "component": "reference",
-          "label": "Logo Icon",
-          "name": "logoIcon",
+          "label": "Logo Link",
+          "name": "logo",
           "valueType": "string"
         },
         {
           "component": "container",
-          "items": {
-            "$ref": "socialLink"
-          },
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Footer Social Link",
+              "name": "footerSocialLink",
+              "valueType": "string"
+            }
+          ],
           "label": "Social Links",
           "name": "socialLinks"
         },
         {
           "component": "container",
-          "items": {
-            "$ref": "navigationLink"
-          },
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Footer Navigation Link",
+              "name": "footerNavigationLink",
+              "valueType": "string"
+            }
+          ],
           "label": "Navigation Links",
           "name": "navigationLinks"
         },
         {
           "component": "container",
-          "items": {
-            "$ref": "languageLink"
-          },
-          "label": "Language Links",
-          "name": "languageLinks"
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Footer Language",
+              "name": "footerLanguage",
+              "valueType": "string"
+            }
+          ],
+          "label": "Languages",
+          "name": "languages"
         },
         {
           "component": "container",
-          "items": {
-            "$ref": "policyLink"
-          },
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Footer Policy Link",
+              "name": "footerPolicyLink",
+              "valueType": "string"
+            }
+          ],
           "label": "Policy Links",
           "name": "policyLinks"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Copyright",
           "name": "copyright",
           "valueType": "string"
@@ -134,11 +148,11 @@
       ]
     },
     {
-      "id": "socialLink",
+      "id": "footerSocialLink",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "URL",
+          "component": "reference",
+          "label": "Link URL",
           "name": "url",
           "valueType": "string"
         },
@@ -151,11 +165,11 @@
       ]
     },
     {
-      "id": "navigationLink",
+      "id": "footerNavigationLink",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "URL",
+          "component": "reference",
+          "label": "Link URL",
           "name": "url",
           "valueType": "string"
         },
@@ -168,34 +182,34 @@
       ]
     },
     {
-      "id": "languageLink",
+      "id": "footerLanguage",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "URL",
+          "component": "reference",
+          "label": "Language URL",
           "name": "url",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Label",
+          "label": "Language Label",
           "name": "label",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "policyLink",
+      "id": "footerPolicyLink",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "URL",
+          "component": "reference",
+          "label": "Policy URL",
           "name": "url",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Label",
+          "label": "Policy Label",
           "name": "label",
           "valueType": "string"
         }
@@ -206,10 +220,10 @@
     {
       "id": "footer",
       "components": [
-        "socialLink",
-        "navigationLink",
-        "languageLink",
-        "policyLink"
+        "footerSocialLink",
+        "footerNavigationLink",
+        "footerLanguage",
+        "footerPolicyLink"
       ]
     }
   ]

@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Stats-Card",
-      "id": "statsCard",
+      "title": "Stat-Card",
+      "id": "statCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "statsCard",
-              "name": "Stats-Card"
+              "model": "statCard",
+              "name": "Stat-Card"
             }
           }
         }
@@ -33,6 +33,35 @@
     }
   ],
   "models": [
+    {
+      "id": "statCard",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Stat Number",
+          "name": "number",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Stat Description",
+          "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Hover Image",
+          "name": "hoverImage",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Hover Details",
+          "name": "hoverDetails",
+          "valueType": "string"
+        }
+      ]
+    },
     {
       "id": "statsByTheNumber",
       "fields": [
@@ -56,37 +85,27 @@
         },
         {
           "component": "container",
-          "item": "statsCard",
-          "label": "Stats Cards",
-          "name": "statsCards"
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Stat Card",
+              "name": "statCard",
+              "valueType": "string"
+            }
+          ],
+          "label": "Stat Cards",
+          "name": "statCards"
         },
         {
-          "component": "aem-content",
-          "label": "CTA Link",
-          "name": "cta",
+          "component": "aem-tag",
+          "label": "CTA Label",
+          "name": "ctaLabel",
           "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "statsCard",
-      "fields": [
+        },
         {
           "component": "reference",
-          "label": "Hover Image",
-          "name": "hoverImage",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Number",
-          "name": "number",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Card Description",
-          "name": "cardDescription",
+          "label": "CTA URL",
+          "name": "ctaUrl",
           "valueType": "string"
         }
       ]
@@ -96,7 +115,7 @@
     {
       "id": "statsByTheNumber",
       "components": [
-        "statsCard"
+        "statCard"
       ]
     }
   ]

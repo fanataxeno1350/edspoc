@@ -23,8 +23,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Image",
-          "name": "image",
+          "label": "Main Image",
+          "name": "mainImage",
           "valueType": "string"
         },
         {
@@ -40,9 +40,15 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
+          "component": "text",
+          "label": "CTA Label",
+          "name": "ctaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
           "label": "CTA Link",
-          "name": "cta",
+          "name": "ctaLink",
           "valueType": "string"
         }
       ]

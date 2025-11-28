@@ -1,0 +1,189 @@
+{
+  "definitions": [
+    {
+      "title": "Header-Navigation",
+      "id": "headerNavigation",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "headerNavigation",
+              "model": "headerNavigation",
+              "name": "Header-Navigation"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Navigation-Menu",
+      "id": "navigationMenu",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "navigationMenu",
+              "name": "Navigation-Menu"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Submenu-Item",
+      "id": "submenuItem",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "submenuItem",
+              "name": "Submenu-Item"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Language-Option",
+      "id": "languageOption",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "languageOption",
+              "name": "Language-Option"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "headerNavigation",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Logo Link",
+          "name": "logoLink",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Contact Us Link",
+          "name": "contactUsLink",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Navigation Menu",
+              "name": "navigationMenu",
+              "valueType": "string"
+            }
+          ],
+          "label": "Navigation Menus",
+          "name": "navigationMenus"
+        },
+        {
+          "component": "container",
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Language Option",
+              "name": "languageOption",
+              "valueType": "string"
+            }
+          ],
+          "label": "Language Options",
+          "name": "languageOptions"
+        }
+      ]
+    },
+    {
+      "id": "navigationMenu",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Menu Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Menu Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "fields": [
+            {
+              "component": "reference",
+              "label": "Submenu Item",
+              "name": "submenuItem",
+              "valueType": "string"
+            }
+          ],
+          "label": "Submenu Items",
+          "name": "submenuItems"
+        }
+      ]
+    },
+    {
+      "id": "submenuItem",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Submenu Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Submenu Link",
+          "name": "link",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "languageOption",
+      "fields": [
+        {
+          "component": "text",
+          "label": "Language Label",
+          "name": "label",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Language Link",
+          "name": "link",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "headerNavigation",
+      "components": [
+        "navigationMenu",
+        "languageOption"
+      ]
+    },
+    {
+      "id": "navigationMenu",
+      "components": [
+        "submenuItem"
+      ]
+    }
+  ]
+}

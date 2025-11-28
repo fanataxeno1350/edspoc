@@ -37,15 +37,21 @@
       "id": "cardList",
       "fields": [
         {
-          "component": "richtext",
+          "component": "aem-content",
           "label": "Heading",
           "name": "heading",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "CTA",
-          "name": "cta",
+          "label": "CTA Label",
+          "name": "cta-label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "CTA Link",
+          "name": "cta-link",
           "valueType": "string"
         }
       ]
@@ -60,7 +66,7 @@
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "aem-content",
           "label": "Title",
           "name": "title",
           "valueType": "string"

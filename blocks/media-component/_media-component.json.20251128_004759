@@ -23,14 +23,14 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Poster Video",
-          "name": "posterVideo",
+          "label": "Poster Video Source",
+          "name": "videoPosterSrc",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Main Video",
-          "name": "mainVideo",
+          "label": "Main Video Source",
+          "name": "mainVideoSrc",
           "valueType": "string"
         }
       ]
@@ -38,7 +38,10 @@
   ],
   "filters": [
     {
-      "id": "mediaComponent"
+      "id": "mediaComponent",
+      "components": [
+        "mediaComponent"
+      ]
     }
   ]
 }
