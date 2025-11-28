@@ -526,18 +526,18 @@
     "fields": [
       {
         "component": "reference",
+        "valueType": "string",
         "name": "backgroundVideo",
-        "label": "Background Video",
-        "valueType": "string"
+        "label": "Background Video"
       },
       {
-        "component": "aem-content",
+        "component": "richtext",
         "name": "title",
         "label": "Title",
         "valueType": "string"
       },
       {
-        "component": "aem-content",
+        "component": "richtext",
         "name": "description",
         "label": "Description",
         "valueType": "string"
