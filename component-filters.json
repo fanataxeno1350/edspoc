@@ -13,7 +13,92 @@
       "button",
       "title",
       "hero",
-      "cards"
+      "cards",
+      "header",
+      "phoneMenu",
+      "heroSection",
+      "storySequence",
+      "experienceSection",
+      "weekendtrailSection",
+      "reasonsToJoinRockNRoad",
+      "upcomingDrives",
+      "chaptersGallery",
+      "faqs",
+      "registrationFormBegin",
+      "footer",
+      "backToTop"
+    ]
+  },
+  {
+    "id": "backToTop"
+  },
+  {
+    "id": "chaptersGallery",
+    "components": [
+      "chapterImage"
+    ]
+  },
+  {
+    "id": "experienceSection",
+    "components": [
+      "experience"
+    ]
+  },
+  {
+    "id": "faqs",
+    "components": [
+      "faq"
+    ]
+  },
+  {
+    "id": "footer",
+    "components": [
+      "footer"
+    ]
+  },
+  {
+    "id": "header",
+    "components": [
+      "header"
+    ]
+  },
+  {
+    "id": "heroSection",
+    "components": [
+      "heroSection"
+    ]
+  },
+  {
+    "id": "phoneMenu"
+  },
+  {
+    "id": "reasonsToJoinRockNRoad",
+    "components": [
+      "step"
+    ]
+  },
+  {
+    "id": "registrationFormBegin",
+    "components": [
+      "registrationFormBegin"
+    ]
+  },
+  {
+    "id": "storySequence",
+    "components": [
+      "storySequence"
+    ]
+  },
+  {
+    "id": "upcomingDrives",
+    "components": [
+      "drive"
+    ]
+  },
+  {
+    "id": "weekendtrailSection",
+    "components": [
+      "weekendtrailSection"
     ]
   }
 ]

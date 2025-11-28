@@ -1,0 +1,115 @@
+{
+  "definitions": [
+    {
+      "title": "Registration-Form-Begin",
+      "id": "registrationFormBegin",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "registrationFormBegin",
+              "model": "registrationFormBegin",
+              "name": "Registration-Form-Begin"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "registrationFormBegin",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "BG Image Reg Eve",
+          "name": "bgImageRegEve",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "BG Image Reg Eve Car",
+          "name": "bgImageRegEveCar",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Heading",
+          "name": "heading",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Close Icon",
+          "name": "closeIcon",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Full Name",
+          "name": "fullName",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Contact No.",
+          "name": "contactNo",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Email ID",
+          "name": "emailId",
+          "valueType": "string"
+        },
+        {
+          "component": "date-time",
+          "label": "Date of Birth",
+          "name": "dateOfBirth",
+          "valueType": "string"
+        },
+        {
+          "component": "radio-group",
+          "label": "Which SUV Experience you are interested in?",
+          "name": "suvExperienceInterest",
+          "options": [
+            {
+              "label": "Expeditions",
+              "value": "1"
+            },
+            {
+              "label": "Weekend Drives",
+              "value": "2"
+            },
+            {
+              "label": "Conquer 4x4",
+              "value": "3"
+            }
+          ],
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Submit Label",
+          "name": "submitLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Submit Icon",
+          "name": "submitIcon",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "registrationFormBegin",
+      "components": [
+        "registrationFormBegin"
+      ]
+    }
+  ]
+}

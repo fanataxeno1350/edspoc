@@ -1,0 +1,103 @@
+{
+  "definitions": [
+    {
+      "title": "Upcoming-Drives",
+      "id": "upcomingDrives",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "upcomingDrives",
+              "model": "upcomingDrives",
+              "name": "Upcoming-Drives"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Drive",
+      "id": "drive",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "drive",
+              "name": "Drive"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "drive",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Subtitle",
+          "name": "subtitle",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Description",
+          "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA Text",
+          "name": "ctaText",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "CTA Icon",
+          "name": "ctaIcon",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "upcomingDrives",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Backcover",
+          "name": "backcover",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Heading",
+          "name": "heading",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "upcomingDrives",
+      "components": [
+        "drive"
+      ]
+    }
+  ]
+}

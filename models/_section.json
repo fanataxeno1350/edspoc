@@ -48,7 +48,20 @@
         "button",
         "title",
         "hero",
-        "cards"
+        "cards",
+        "header",
+        "phoneMenu",
+        "heroSection",
+        "storySequence",
+        "experienceSection",
+        "weekendtrailSection",
+        "reasonsToJoinRockNRoad",
+        "upcomingDrives",
+        "chaptersGallery",
+        "faqs",
+        "registrationFormBegin",
+        "footer",
+        "backToTop"
       ]
     }
   ]

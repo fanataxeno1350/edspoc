@@ -1,0 +1,107 @@
+{
+  "definitions": [
+    {
+      "title": "Weekendtrail-Section",
+      "id": "weekendtrailSection",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "weekendtrailSection",
+              "model": "weekendtrailSection",
+              "name": "Weekendtrail-Section"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "weekendtrailSection",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Image 1",
+          "name": "image1",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image 2",
+          "name": "image2",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image 3 Desktop",
+          "name": "image3Desktop",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image 3 Mobile",
+          "name": "image3Mobile",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Heading 1",
+          "name": "heading1",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Date",
+          "name": "date",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Heading 2",
+          "name": "heading2",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Location",
+          "name": "location",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA Label",
+          "name": "ctaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "CTA Icon",
+          "name": "ctaIcon",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Bottom Image",
+          "name": "bottomImage",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "weekendtrailSection",
+      "components": [
+        "weekendtrailSection"
+      ]
+    }
+  ]
+}

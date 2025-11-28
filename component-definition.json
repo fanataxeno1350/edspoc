@@ -81,7 +81,291 @@
     {
       "title": "Blocks",
       "id": "blocks",
-      "components": []
+      "components": [
+        {
+          "title": "Back-to-Top",
+          "id": "backToTop",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "backToTop",
+                  "model": "backToTop",
+                  "name": "Back-to-Top"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Chapters-Gallery",
+          "id": "chaptersGallery",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "chaptersGallery",
+                  "model": "chaptersGallery",
+                  "name": "Chapters-Gallery"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Chapter-Image",
+          "id": "chapterImage",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "chapterImage",
+                  "name": "Chapter-Image"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Experience-Section",
+          "id": "experienceSection",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "experienceSection",
+                  "model": "experienceSection",
+                  "name": "Experience-Section"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Experience",
+          "id": "experience",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "experience",
+                  "name": "Experience"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "FAQs",
+          "id": "faqs",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "faqs",
+                  "model": "faqs",
+                  "name": "FAQs"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "FAQ",
+          "id": "faq",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "faq",
+                  "name": "FAQ"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer",
+          "id": "footer",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "footer",
+                  "model": "footer",
+                  "name": "Footer"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Header",
+          "id": "header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "header",
+                  "model": "header",
+                  "name": "Header"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Hero-Section",
+          "id": "heroSection",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "heroSection",
+                  "model": "heroSection",
+                  "name": "Hero-Section"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Phone-Menu",
+          "id": "phoneMenu",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "phoneMenu",
+                  "model": "phoneMenu",
+                  "name": "Phone-Menu"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Reasons-to-Join-Rock-n-Road",
+          "id": "reasonsToJoinRockNRoad",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "reasonsToJoinRockNRoad",
+                  "model": "reasonsToJoinRockNRoad",
+                  "name": "Reasons-to-Join-Rock-n-Road"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Step",
+          "id": "step",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "step",
+                  "name": "Step"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Registration-Form-Begin",
+          "id": "registrationFormBegin",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "registrationFormBegin",
+                  "model": "registrationFormBegin",
+                  "name": "Registration-Form-Begin"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Story-Sequence",
+          "id": "storySequence",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "storySequence",
+                  "model": "storySequence",
+                  "name": "Story-Sequence"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Upcoming-Drives",
+          "id": "upcomingDrives",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "upcomingDrives",
+                  "model": "upcomingDrives",
+                  "name": "Upcoming-Drives"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Drive",
+          "id": "drive",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "model": "drive",
+                  "name": "Drive"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Weekendtrail-Section",
+          "id": "weekendtrailSection",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "filter": "weekendtrailSection",
+                  "model": "weekendtrailSection",
+                  "name": "Weekendtrail-Section"
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }
