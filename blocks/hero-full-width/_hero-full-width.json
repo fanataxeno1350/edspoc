@@ -22,7 +22,7 @@
       "id": "heroFullWidth",
       "fields": [
         {
-          "component": "aem-content",
+          "component": "reference",
           "label": "Background Video",
           "name": "backgroundVideo",
           "valueType": "string"
@@ -55,7 +55,7 @@
               "valueType": "string"
             },
             {
-              "component": "reference",
+              "component": "text",
               "label": "Primary CTA Href",
               "name": "primaryCtaHref",
               "valueType": "string"
@@ -67,7 +67,7 @@
               "valueType": "string"
             },
             {
-              "component": "reference",
+              "component": "text",
               "label": "Secondary CTA Href",
               "name": "secondaryCtaHref",
               "valueType": "string"
