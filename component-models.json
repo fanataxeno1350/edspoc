@@ -526,8 +526,8 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Video",
-        "name": "video",
+        "label": "Background Video",
+        "name": "backgroundVideo",
         "valueType": "string"
       },
       {
@@ -544,26 +544,14 @@
       },
       {
         "component": "aem-content",
-        "label": "Primary CTA Link",
-        "name": "primaryCtaLink",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Primary CTA Label",
-        "name": "primaryCtaLabel",
+        "label": "Primary CTA",
+        "name": "primaryCta",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Secondary CTA Link",
-        "name": "secondaryCtaLink",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Secondary CTA Label",
-        "name": "secondaryCtaLabel",
+        "label": "Secondary CTA",
+        "name": "secondaryCta",
         "valueType": "string"
       }
     ]
