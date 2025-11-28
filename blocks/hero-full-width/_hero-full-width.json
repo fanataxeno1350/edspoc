@@ -22,7 +22,7 @@
       "id": "heroFullWidth",
       "fields": [
         {
-          "component": "reference",
+          "component": "aem-content",
           "valueType": "string",
           "name": "backgroundVideo",
           "label": "Background Video"
