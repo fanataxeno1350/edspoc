@@ -526,14 +526,14 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Background Video",
-        "name": "backgroundVideo",
+        "label": "Video",
+        "name": "video",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Title",
-        "name": "title",
+        "label": "Headline",
+        "name": "headline",
         "valueType": "string"
       },
       {
