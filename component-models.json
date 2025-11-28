@@ -526,44 +526,44 @@
     "fields": [
       {
         "component": "reference",
-        "valueType": "string",
-        "name": "backgroundVideo",
-        "label": "Background Video"
+        "label": "Video",
+        "name": "video",
+        "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "title",
         "label": "Title",
+        "name": "title",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "description",
         "label": "Description",
+        "name": "description",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "name": "primaryCtaLink",
         "label": "Primary CTA Link",
+        "name": "primaryCtaLink",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "primaryCtaLabel",
         "label": "Primary CTA Label",
+        "name": "primaryCtaLabel",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "name": "secondaryCtaLink",
         "label": "Secondary CTA Link",
+        "name": "secondaryCtaLink",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "secondaryCtaLabel",
         "label": "Secondary CTA Label",
+        "name": "secondaryCtaLabel",
         "valueType": "string"
       }
     ]
