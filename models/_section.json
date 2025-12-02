@@ -60,7 +60,12 @@
         "footer",
         "scarp",
         "statsByTheNumber",
-        "header"
+        "header",
+        "carousel",
+        "featurecards",
+        "latestBlogs",
+        "spaceadderContainer",
+        "stickyNavigation"
       ]
     }
   ]

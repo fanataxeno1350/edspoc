@@ -25,72 +25,47 @@
       "footer",
       "scarp",
       "statsByTheNumber",
-      "header"
+      "header",
+      "carousel",
+      "featurecards",
+      "latestBlogs",
+      "spaceadderContainer",
+      "stickyNavigation"
     ]
   },
   {
-    "id": "cardList",
+    "id": "carousel",
     "components": [
-      "card"
+      "slide"
     ]
   },
   {
-    "id": "footer",
+    "id": "featurecards",
     "components": [
-      "socialLink",
-      "navigationLink",
-      "languageLink",
-      "policyLink"
-    ]
-  },
-  {
-    "id": "header-navigation",
-    "components": [
-      "menuItem",
-      "languageOption"
+      "featurecard"
     ]
   },
   {
     "id": "header",
     "components": [
-      "navItem",
-      "language"
+      "headerMenuItem",
+      "footerListItem",
+      "footerSocial"
     ]
   },
   {
-    "id": "heroFullWidth",
+    "id": "latestBlogs",
     "components": [
-      "heroFullWidth"
+      "blogCard"
     ]
   },
   {
-    "id": "mediaComponent"
+    "id": "spaceadderContainer"
   },
   {
-    "id": "scarpComponent"
-  },
-  {
-    "id": "scarp",
+    "id": "stickyNavigation",
     "components": [
-      "scarp"
-    ]
-  },
-  {
-    "id": "statsByTheNumber",
-    "components": [
-      "statsCard"
-    ]
-  },
-  {
-    "id": "statsByTheNumbers",
-    "components": [
-      "statsCard"
-    ]
-  },
-  {
-    "id": "textAndMedia",
-    "components": [
-      "textAndMedia"
+      "navigationItem"
     ]
   }
 ]

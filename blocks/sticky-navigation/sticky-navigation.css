@@ -1,0 +1,87 @@
+.sticky-navigation-section {
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0.125rem -0.25rem 1rem 0 rgba(0, 0, 0, 0.431);
+  height: 4.375rem; /* Equivalent to 70px assuming 16px base */
+  padding: 0.625rem 0; /* Equivalent to 10px 0px assuming 16px base */
+  z-index: 997;
+}
+.sticky-navigation-list {
+  list-style: none;
+  padding: 0; /* Explicitly define padding */
+  margin: 0; /* Explicitly define margin */
+}
+.sticky-navigation-item {
+  flex: 1;
+  text-align: center;
+}
+.sticky-navigation-link {
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.sticky-navigation-link.active {
+  color: #f6bb00;
+}
+.sticky-navigation-link.active::after {
+  background-color: #f6bb00;
+  border: 0.070625rem; /* Equivalent to 1.13px assuming 16px base */
+  bottom: -0.3125rem; /* Equivalent to -5px assuming 16px base */
+  content: "";
+  display: block;
+  height: 0.0625rem; /* Equivalent to 1px assuming 16px base */
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 0.625rem; /* Equivalent to 10px assuming 16px base */
+}
+.sticky-navigation-icon {
+  display: block;
+  height: 1.125rem; /* Equivalent to 18px assuming 16px base */
+  transition: filter 0.3s ease;
+  width: 1.125rem; /* Equivalent to 18px assuming 16px base */
+}
+.sticky-navigation-label {
+  color: #fff;
+  display: block;
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 400;
+  line-height: 0.9rem; /* Equivalent to 14.4px assuming 16px base */
+}
+.sticky-navigation-container {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 33.75rem; /* Equivalent to 540px assuming 16px base */
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  width: 100%;
+}
+.sticky-navigation-position-fixed {
+  position: fixed;
+}
+.sticky-navigation-bottom-0 {
+  bottom: 0;
+}
+.sticky-navigation-p-3 {
+  padding: 0.5rem; /* Equivalent to 8px assuming 16px base */
+}
+.sticky-navigation-d-flex {
+  display: flex;
+}
+.sticky-navigation-align-items-center {
+  align-items: center;
+}
+.sticky-navigation-bg-boing-primary {
+  background-color: #aa1f30;
+}
+.sticky-navigation-justify-content-around {
+  justify-content: space-around;
+}
+.sticky-navigation-flex-grow-1 {
+  flex-grow: 1;
+}
+.sticky-navigation-gap-1 {
+  gap: 0.125rem; /* Equivalent to 2px assuming 16px base */
+}
