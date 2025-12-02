@@ -30,75 +30,60 @@
     ]
   },
   {
-    "id": "backToTop"
-  },
-  {
-    "id": "chaptersGallery",
+    "id": "bloglisting",
     "components": [
-      "chapterImage"
+      "blogCard"
     ]
   },
   {
-    "id": "experienceSection",
+    "id": "cards",
     "components": [
-      "experience"
+      "card"
     ]
   },
   {
-    "id": "faqs",
+    "id": "columns",
     "components": [
-      "faq"
+      "column"
     ]
   },
   {
-    "id": "footer",
+    "id": "column",
     "components": [
-      "footer"
+      "text",
+      "image",
+      "button",
+      "title"
     ]
   },
   {
-    "id": "header",
+    "id": "footerBrand",
     "components": [
-      "header"
+      "footerLink",
+      "footerSocialLink"
     ]
   },
   {
-    "id": "heroSection",
+    "id": "headerSection",
     "components": [
-      "heroSection"
+      "sidebarMenuItem",
+      "footerListItem",
+      "footerSocialItem"
     ]
   },
   {
-    "id": "phoneMenu"
+    "id": "spaceadder-curve-container"
   },
   {
-    "id": "reasonsToJoinRockNRoad",
+    "id": "stickyBottomNav",
     "components": [
-      "step"
+      "navItem"
     ]
   },
   {
-    "id": "registrationFormBegin",
+    "id": "text",
     "components": [
-      "registrationFormBegin"
-    ]
-  },
-  {
-    "id": "storySequence",
-    "components": [
-      "storySequence"
-    ]
-  },
-  {
-    "id": "upcomingDrives",
-    "components": [
-      "drive"
-    ]
-  },
-  {
-    "id": "weekendtrailSection",
-    "components": [
-      "weekendtrailSection"
+      "text"
     ]
   }
 ]
