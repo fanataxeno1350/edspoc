@@ -65,7 +65,11 @@
         "featurecards",
         "latestBlogs",
         "spaceadderContainer",
-        "stickyNavigation"
+        "stickyNavigation",
+        "blogListing",
+        "spaceadderCurveContainer",
+        "footerBrand",
+        "stickyBottomNav"
       ]
     }
   ]

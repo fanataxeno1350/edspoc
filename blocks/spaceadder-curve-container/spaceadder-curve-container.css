@@ -1,0 +1,12 @@
+.spaceadder-curve-container {
+  background-color: #fff;
+  border-radius: 0 0 2rem 2rem;
+  bottom: -3.6875rem; /* Equivalent to -59px assuming 16px base */
+  height: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  transform: skewY(-6.2deg);
+  width: 100%;
+  z-index: 10;
+}
