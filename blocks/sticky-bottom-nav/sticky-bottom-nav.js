@@ -44,6 +44,7 @@ export default function decorate(block) {
       link.href = linkWrapper.href || "#";
       link.classList.add(
         "sticky-navigation-sticky-bottom-nav__link",
+        'sticky-navigation-link',
         "sticky-navigation-d-flex",
         "sticky-navigation-flex-column",
         "sticky-navigation-align-items-center",
