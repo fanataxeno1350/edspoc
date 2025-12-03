@@ -1,0 +1,56 @@
+{
+  "definitions": [
+    {
+      "title": "Home-Dots",
+      "id": "homeDots",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "homeDots",
+              "model": "homeDots",
+              "name": "Home-Dots"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Dot",
+      "id": "dot",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "dot",
+              "name": "Dot"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "dot",
+      "fields": [
+        {
+          "component": "boolean",
+          "label": "Active",
+          "name": "active",
+          "valueType": "boolean"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "homeDots",
+      "components": [
+        "dot"
+      ]
+    }
+  ]
+}

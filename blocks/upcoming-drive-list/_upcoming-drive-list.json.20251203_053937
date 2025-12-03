@@ -1,0 +1,86 @@
+{
+  "definitions": [
+    {
+      "title": "Upcoming-Drive-List",
+      "id": "upcomingDriveList",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "upcomingDriveList",
+              "model": "upcomingDriveList",
+              "name": "Upcoming-Drive-List"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Upcoming-Drive",
+      "id": "upcomingDrive",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "upcomingDrive",
+              "name": "Upcoming-Drive"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "upcomingDrive",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Subtitle",
+          "name": "subtitle",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Description",
+          "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA Text",
+          "name": "ctaText",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "CTA Icon",
+          "name": "ctaIcon",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "upcomingDriveList",
+      "components": [
+        "upcomingDrive"
+      ]
+    }
+  ]
+}

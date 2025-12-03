@@ -15,63 +15,84 @@
           }
         }
       }
+    },
+    {
+      "title": "Contact",
+      "id": "contact",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "contact",
+              "name": "Contact"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
+    {
+      "id": "contact",
+      "fields": [
+        {
+          "component": "richtext",
+          "label": "Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Text",
+          "name": "text",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Email Link",
+          "name": "email",
+          "valueType": "string"
+        }
+      ]
+    },
     {
       "id": "footer",
       "fields": [
         {
           "component": "reference",
-          "label": "Footer Top Image",
-          "name": "footerTopImage",
+          "label": "Top Image",
+          "name": "topImage",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Footer Logo",
-          "name": "footerLogo",
+          "label": "Logo",
+          "name": "logo",
           "valueType": "string"
         },
         {
-          "component": "richtext",
-          "label": "Contact Us Text",
-          "name": "contactUsText",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Expeditions and Weekenders Email",
-          "name": "expeditionsEmail",
-          "valueType": "string"
+          "block": "contact",
+          "component": "container",
+          "fieldType": "block",
+          "label": "Contacts",
+          "name": "contacts"
         },
         {
           "component": "aem-content",
-          "label": "4x4 Masters Email",
-          "name": "mastersEmail",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "More Contact Text",
-          "name": "moreContactText",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Terms of Use Link",
+          "label": "Terms of Use",
           "name": "termsOfUse",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Data Provider Consent Policy Link",
+          "label": "Data Provider Consent Policy",
           "name": "dataProviderConsentPolicy",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Privacy Policy Link",
+          "label": "Privacy Policy",
           "name": "privacyPolicy",
           "valueType": "string"
         },
@@ -79,6 +100,12 @@
           "component": "richtext",
           "label": "Copyright",
           "name": "copyright",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Back To Top Icon",
+          "name": "backToTopIcon",
           "valueType": "string"
         }
       ]
@@ -88,7 +115,7 @@
     {
       "id": "footer",
       "components": [
-        "footer"
+        "contact"
       ]
     }
   ]

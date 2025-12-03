@@ -1,0 +1,161 @@
+.rock-n-road-section {
+  background-color: #000000;
+}
+.rock-n-road-section .rock-n-road-afterLayerTop {
+  position: absolute;
+  z-index: 111;
+  width: 100%;
+  height: auto;
+  top: 0;
+}
+.rock-n-road-section .rock-n-road-afterLayerTop img {
+  position: absolute;
+  bottom: -25px; /* Equivalent to -25px assuming 16px base */
+  left: 0;
+  width: 110vw;
+  max-width: calc(1920px + 10vw);
+  transform: translate(-5vw, 0);
+  height: 50px; /* Equivalent to 50px assuming 16px base */
+  z-index: 4;
+}
+.rock-n-road-section * {
+  position: relative;
+  z-index: 9;
+}
+.rock-n-road-section .rock-n-road-reasonJoin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 10%; /* Equivalent to 100px 10% assuming 16px base */
+}
+.rock-n-road-section .rock-n-road-reason_rock {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px; /* Equivalent to 15px assuming 16px base */
+}
+.rock-n-road-section .rock-n-road-reason_rock span {
+  font-size: 3rem; /* Equivalent to 48px assuming 16px base */
+  font-family: "gothambold";
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+}
+.rock-n-road-section .rock-n-road-reason_rock span::after {
+  content: "";
+  position: absolute;
+  height: 200%;
+  aspect-ratio: 1.2;
+  background: url("/content/dam/aemigrate/uploaded-folder/image/Group%20163@2x.png") no-repeat;
+  background-size: 100% 100%;
+  top: -60%;
+  right: -12%;
+}
+.rock-n-road-section .rock-n-road-tribe_road {
+  font-family: "gothambold";
+  font-size: 6.842rem; /* Equivalent to 109.48px assuming 16px base */
+  color: #ffffff;
+  margin: 10px auto; /* Equivalent to 10px auto assuming 16px base */
+  width: max(50vw, 450px);
+}
+.rock-n-road-section .rock-n-road-tribe_road img {
+  width: 100%;
+}
+.rock-n-road-section .rock-n-road-steps_road {
+  margin-top: 50px; /* Equivalent to 50px assuming 16px base */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+  gap: 30px; /* Equivalent to 30px assuming 16px base */
+  position: relative;
+  width: calc(100% - 90px);
+}
+.rock-n-road-section .rock-n-road-steps_road::after,
+.rock-n-road-section .rock-n-road-steps_road::before {
+  content: "";
+  position: absolute;
+  height: calc(100% + 50px);
+  width: 30px; /* Equivalent to 30px assuming 16px base */
+  background: url("/content/dam/aemigrate/uploaded-folder/image/Group%20176@2x.png");
+  right: -45px; /* Equivalent to -45px assuming 16px base */
+  transform: translate(0px, -50%);
+  top: 50%;
+  background-size: 100% 100% !important;
+}
+.rock-n-road-section .rock-n-road-steps_road::before {
+  background: url("/content/dam/aemigrate/uploaded-folder/image/Group%20174@2x.png");
+  left: -45px; /* Equivalent to -45px assuming 16px base */
+  right: unset;
+}
+.rock-n-road-section .rock-n-road-sub_steps {
+  flex: 1;
+}
+.rock-n-road-section .rock-n-road-sub_steps > div {
+  font-size: 3rem; /* Equivalent to 48px assuming 16px base */
+  font-family: "gothambold";
+  color: #ffffff;
+  margin-bottom: 15px; /* Equivalent to 15px assuming 16px base */
+}
+.rock-n-road-section .rock-n-road-sub_steps > p {
+  color: #b2b2b2;
+  font-size: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  font-family: "gotham", sans-serif;
+  text-align: left;
+}
+.rock-n-road-section .rock-n-road-afterLayerBottom {
+  position: absolute;
+  z-index: 111;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+.rock-n-road-section .rock-n-road-afterLayerBottom img {
+  position: absolute;
+  bottom: -50px; /* Equivalent to -50px assuming 16px base */
+  left: 0;
+  width: 110vw;
+  max-width: calc(1920px + 10vw);
+  transform: translate(-5vw, 0);
+  height: 100px; /* Equivalent to 100px assuming 16px base */
+  z-index: 4;
+}
+@media screen and (max-width: 1400px) {
+  .rock-n-road-section .rock-n-road-afterLayerTop img {
+    bottom: -25px; /* Equivalent to -25px assuming 16px base */
+    height: 50px; /* Equivalent to 50px assuming 16px base */
+  }
+  .rock-n-road-section .rock-n-road-steps_road {
+    gap: 15px; /* Equivalent to 15px assuming 16px base */
+  }
+  .rock-n-road-section .rock-n-road-afterLayerBottom img {
+    bottom: -50px; /* Equivalent to -50px assuming 16px base */
+    height: 100px; /* Equivalent to 100px assuming 16px base */
+  }
+}
+@media screen and (max-width: 1024px) {
+  .rock-n-road-section .rock-n-road-steps_road {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 850px) {
+  .rock-n-road-section .rock-n-road-steps_road {
+    gap: 15px; /* Equivalent to 15px assuming 16px base */
+  }
+}
+@media screen and (max-width: 768px) {
+  .rock-n-road-section .rock-n-road-steps_road {
+    flex-flow: column wrap;
+    justify-content: center;
+    gap: 15px; /* Equivalent to 15px assuming 16px base */
+  }
+  .rock-n-road-section .rock-n-road-steps_road {
+    margin-top: 20px; /* Equivalent to 20px assuming 16px base */
+  }
+  .rock-n-road-section .rock-n-road-steps_road {
+    gap: 30px; /* Equivalent to 30px assuming 16px base */
+  }
+}
+@media screen and (max-width: 600px) {
+  .rock-n-road-section .rock-n-road-steps_road {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -1,0 +1,595 @@
+.begin-form-container {
+  width: 100%;
+  background-color: rgba(16, 26, 52, 0.9); /* Equivalent to #101a34 with 90% opacity */
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  display: none;
+  transform: scale(0);
+  transition: all 0.5s;
+}
+
+#id_category_id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.875rem; /* 30px / 16px */
+}
+
+#beginForm .begin-form-invite-msg .alert {
+  margin-bottom: 0;
+}
+
+.begin-form-error-with-next {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.875rem; /* 30px / 16px */
+}
+
+.begin-form-container * {
+  font-size: 1em !important;
+}
+
+.begin-form-min-width {
+  min-width: 7.5rem !important; /* 120px / 16px */
+}
+
+.begin-form-label {
+  display: inline;
+}
+
+#beginForm {
+  padding: 6.25rem 10%; /* 100px / 16px */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#beginForm input[type='date'],
+#id_date_of_birth {
+  -webkit-appearance: textfield;
+  color: black;
+  filter: invert(1);
+  height: 1.25rem; /* 20px / 16px */
+  padding: 0.625rem; /* 10px / 16px */
+  text-align: left !important;
+  min-height: 1.25rem !important; /* 20px / 16px */
+  display: flex;
+  justify-content: flex-start;
+}
+
+#beginForm .begin-form-field {
+  align-items: center;
+}
+
+#beginForm .begin-form-field .begin-form-min-width-label {
+  width: 12.5rem; /* 200px / 16px */
+}
+
+#beginForm input[type='radio'] {
+  all: revert;
+}
+
+.begin-form-header h2 {
+  font-family: "gothammed";
+  font-size: 2.5em !important;
+}
+
+#msrform .begin-form-header {
+  margin-bottom: 4%;
+  margin-top: 4%;
+  position: relative;
+}
+
+.begin-form-eve-reg-label {
+  color: white;
+}
+
+#msrform input,
+#beginForm input {
+  all: unset;
+  width: -webkit-fill-available;
+  height: 2.5rem; /* 40px / 16px */
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.25rem; /* 20px / 16px */
+  color: #fff;
+  padding: 0 0.9375rem; /* 0 15px / 16px */
+  border: 1px solid #8B8B8B;
+}
+
+#msrform label,
+#beginForm label {
+  color: white;
+}
+
+#msrform .begin-form-field {
+  align-items: center;
+}
+
+#msrform .begin-form-flex-group select {
+  border-radius: 0;
+  width: 100%;
+}
+
+#msrform .begin-form-flex-group > div {
+  flex: 1;
+}
+
+#msrform input[type='radio'] {
+  all: revert;
+}
+
+#msrform input[type='date'] {
+  height: auto;
+  padding: 0.625rem; /* 10px / 16px */
+  color: black;
+  filter: invert(1);
+}
+
+.begin-form-hr-style {
+  margin: 1.5625rem 0px; /* 25px / 16px */
+  border-top: 0;
+  border-color: rgba(57, 57, 57, 0.314) !important;
+}
+
+.begin-form-bg-image,
+.begin-form-bg-car-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  position: absolute;
+  z-index: -1;
+  overflow: unset;
+}
+
+.begin-form-file-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex: 2;
+}
+
+#msrform input[type='file'] {
+  display: none !important;
+}
+
+.begin-form-selected-file {
+  margin-left: 0.625rem; /* 10px / 16px */
+}
+
+#msrform .begin-form-cta {
+  float: right;
+}
+
+.begin-form-file-label {
+  border: 1px solid #707070;
+  height: 2.5rem; /* 40px / 16px */
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem; /* 10px / 16px */
+  padding: 0 1.25rem; /* 0 20px / 16px */
+  border-radius: 1.875rem; /* 30px / 16px */
+  width: -webkit-fill-available;
+  border: 0;
+  justify-content: flex-end;
+}
+
+.begin-form-field-3 .begin-form-eve-reg-label {
+  flex: 1;
+}
+
+#msrform input[type='checkbox'] {
+  all: revert;
+}
+
+#msrform .begin-form-cta {
+  background-color: white;
+  padding: 0.625rem 1.875rem; /* 10px 30px / 16px */
+  border-radius: 1.875rem; /* 30px / 16px */
+  gap: 0;
+}
+
+.begin-form-final-eve {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* 10px / 16px */
+}
+
+#tandc,
+#confiD {
+  width: 1.25rem !important; /* 20px / 16px */
+  height: 1.25rem !important; /* 20px / 16px */
+}
+
+#msrform .begin-form-cta:hover img {
+  box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0);
+}
+
+#msrform .begin-form-flex-group {
+  margin-bottom: 1.25rem; /* 20px / 16px */
+}
+
+#msrform .begin-form-cta p {
+  color: black;
+  font-size: 1em;
+}
+
+#msrform .begin-form-cta img {
+  background: none;
+  filter: invert(1);
+}
+
+#msrform .begin-form-radio-group > div {
+  display: flex;
+  gap: 1.25rem; /* 20px / 16px */
+}
+
+.begin-form-check-box-eve {
+  display: flex;
+  gap: 0.625rem; /* 10px / 16px */
+  align-items: center;
+}
+
+.begin-form-prev-button {
+  position: absolute;
+  z-index: 111;
+  top: -3.125rem; /* -50px / 16px */
+  padding: 0 !important;
+  color: white;
+  background: transparent !important;
+  border: 0 !important;
+  filter: invert(1) !important;
+  flex-direction: row-reverse !important;
+  gap: 0.3125rem !important; /* 5px / 16px */
+}
+
+#msrform .begin-form-prev-button img {
+  padding: 0;
+  width: 0.9375rem !important; /* 15px / 16px */
+  height: 0.9375rem !important; /* 15px / 16px */
+  transform: rotate(-180deg);
+}
+
+#progressbar {
+  margin-bottom: 1.875rem; /* 30px / 16px */
+  overflow: hidden;
+  width: calc(100% + 30%);
+  counter-reset: step;
+  left: -15%;
+  position: relative;
+}
+
+.begin-form-bracket-a {
+  display: flex;
+  align-items: center;
+}
+
+#progressbar li {
+  list-style-type: none;
+  color: white;
+  text-align: center;
+  font-size: 0.5625rem; /* 9px / 16px */
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+
+#progressbar li:before {
+  content: "";
+  counter-increment: step;
+  width: 0.9375rem; /* 15px / 16px */
+  height: 0.9375rem; /* 15px / 16px */
+  line-height: 0.9375rem; /* 15px / 16px */
+  display: block;
+  font-size: 0.625rem; /* 10px / 16px */
+  color: #333;
+  background: #707070;
+  border-radius: 50%;
+  margin: 0 auto 0.1875rem auto; /* 0 0 3px 0 / 16px */
+}
+
+#msrform .begin-form-flex-group select {
+  min-width: 5rem; /* 80px / 16px */
+}
+
+#newUnderline {
+  position: relative;
+}
+
+#newUnderline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  bottom: -0.125rem; /* -2px / 16px */
+  left: 0;
+  z-index: 1111;
+}
+
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #707070;
+  position: absolute;
+  left: -50%;
+  top: 0.4375rem; /* 7px / 16px */
+  z-index: -1;
+}
+
+.begin-form-thankyou-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  color: white;
+  display: none;
+}
+
+.begin-form-thankyou-page h2 {
+  font-family: 'gothammed';
+  font-size: 2rem !important; /* Equivalent to 32px assuming 16px base */
+  text-align: center;
+  line-height: 2.1875rem; /* 35px / 16px */
+}
+
+#progressbar li:first-child:after {
+  content: none;
+}
+
+#progressbar li.EveActive:before,
+#progressbar li.EveActive:after {
+  background: #C3F12F;
+  color: black;
+}
+
+#id_blood_group,
+#id_tshirt_size,
+#id_color,
+#id_city {
+  width: auto;
+  padding: 0.625rem !important; /* 10px / 16px */
+}
+
+.begin-form-gender-eve {
+  justify-content: flex-end;
+}
+
+#id_color {
+  max-width: 18.75rem; /* 300px / 16px */
+}
+
+@media screen and (max-width: 1440px) {
+  #msrform .begin-form-flex-group {
+    margin-bottom: 0.9375rem !important; /* 15px / 16px */
+  }
+  #msrform {
+    justify-content: unset;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .begin-form-radio-group {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.625rem; /* 10px / 16px */
+  }
+  .begin-form-policy-line {
+    flex-direction: column;
+    gap: 0.625rem !important; /* 10px / 16px */
+    align-items: normal !important;
+  }
+  #beginForm .begin-form-field .begin-form-min-width-label {
+    min-width: 11.25rem; /* 180px / 16px */
+  }
+  #beginForm .begin-form-field {
+    width: 100%;
+  }
+  .begin-form-for-slot {
+    flex-direction: column;
+    gap: 0 !important;
+  }
+  #begin .begin-form-label {
+    width: auto;
+    min-width: 18.75rem; /* 300px / 16px */
+  }
+  #beginForm .begin-form-flex-group {
+    flex-direction: column;
+    gap: 0.625rem; /* 10px / 16px */
+    align-items: flex-start;
+    margin-bottom: 0.625rem; /* 10px / 16px */
+  }
+  #id_color {
+    max-width: -webkit-fill-available;
+  }
+  #id_blood_group,
+  #id_tshirt_size,
+  #id_color,
+  #id_city {
+    width: 100%;
+  }
+  .begin-form-gender-eve {
+    justify-content: start;
+  }
+  #msrform .begin-form-flex-group {
+    margin-bottom: 0.625rem; /* 10px / 16px */
+  }
+  .begin-form-for-slot-mobile {
+    width: 100%;
+    gap: 6.25rem !important; /* 100px / 16px */
+  }
+  .begin-form-for-slot-mobile > div {
+    flex: 1 !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #msrform .begin-form-for-slot-mobile {
+    flex-direction: initial;
+  }
+  #msrform {
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .begin-form-for-slot-mobile {
+    gap: 2.5rem !important; /* 40px / 16px */
+  }
+  .begin-form-hr-style {
+    display: none;
+  }
+  .begin-form-error-with-next {
+    flex-direction: column-reverse;
+    gap: 0.625rem; /* 10px / 16px */
+    align-items: flex-end;
+  }
+  #msrform .begin-form-header {
+    margin-bottom: 5%;
+  }
+  #progressbar {
+    margin-bottom: 1.875rem; /* 30px / 16px */
+    overflow: hidden;
+    width: calc(100% + 10%);
+    counter-reset: step;
+    left: -5%;
+    position: relative;
+  }
+  #msrform input[type='date'] {
+    padding: 0.625rem 0.9375rem; /* 10px 15px / 16px */
+  }
+  .begin-form-for-slot-mobile > div {
+    flex-direction: column;
+    align-items: start !important;
+    gap: 0.625rem; /* 10px / 16px */
+  }
+  #msrform .begin-form-after-foot {
+    align-items: flex-start !important;
+    gap: 0.625rem; /* 10px / 16px */
+  }
+  .begin-form-button-set {
+    display: flex;
+    gap: 1.25rem; /* 20px / 16px */
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #msrform .begin-form-field-3 .begin-form-flex-group > div {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #msrform input[type='date'] {
+    padding: 0.3125rem 0.625rem; /* 5px 10px / 16px */
+    min-height: 1.25rem !important; /* 20px / 16px */
+  }
+  .begin-form-bracket-a p {
+    min-width: 11.25rem; /* 180px / 16px */
+  }
+  #msrform input {
+    height: 1.875rem; /* 30px / 16px */
+  }
+  #beginForm .begin-form-field {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem; /* 10px / 16px */
+  }
+  #id_blood_group,
+  #id_tshirt_size,
+  #id_color,
+  #id_city {
+    padding: 0.34375rem 0.9375rem !important; /* 5.5px 15px / 16px */
+  }
+  #id_category_id {
+    flex-direction: column;
+    gap: 0.625rem; /* 10px / 16px */
+    align-items: flex-start !important;
+  }
+  #msrform .begin-form-field-3 input {
+    width: 100%;
+  }
+  .begin-form-file-label {
+    margin: 0;
+  }
+  .begin-form-file-input-container {
+    gap: 0.625rem; /* 10px / 16px */
+  }
+  .begin-form-header h2 {
+    font-size: 1.8em !important;
+  }
+  .begin-form-direction-col {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .begin-form-check-box-eve {
+    display: flex;
+    gap: 0.625rem; /* 10px / 16px */
+    align-items: start;
+  }
+  .begin-form-close {
+    position: relative;
+    top: -1.875rem; /* -30px / 16px */
+  }
+}
+
+@media screen and (min-width: 1200px) and (min-height: 900px) {
+  #msrform {
+    overflow: visible;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #msrform .begin-form-field {
+    gap: 0.3125rem !important; /* 5px / 16px */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #msrform input {
+    width: 100%;
+  }
+  #id_illness_history,
+  #id_emergency_contact_name,
+  #id_emergency_contact_number,
+  #id_nominee_name,
+  #id_relation_with_the_nominee {
+    width: -webkit-fill-available !important;
+  }
+  .begin-form-mobile-eve-change {
+    flex-direction: column !important;
+    gap: 1.25rem !important; /* 20px / 16px */
+  }
+  .begin-form-mobile-eve-change input {
+    width: -webkit-fill-available !important;
+  }
+  .begin-form-mobile-eve-change-inc {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #msrform .begin-form-field-2 input {
+    width: -webkit-fill-available !important;
+  }
+  #msrform input[type='radio'] {
+    width: auto !important;
+  }
+}

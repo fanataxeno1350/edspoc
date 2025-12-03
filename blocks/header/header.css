@@ -3,12 +3,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 9.375rem; /* Equivalent to 150px assuming 16px base */
+  height: 150px;
   padding: 0 10%;
   z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: "gotham";
+  font-weight: 600;
 }
 .header-container > a {
   all: unset;
@@ -19,16 +21,16 @@
 }
 .header-container > a > .header-home-logo {
   width: 24%;
-  min-width: 15.625rem; /* Equivalent to 250px assuming 16px base */
+  min-width: 250px;
 }
 .header-menu {
-  height: 3.125rem; /* Equivalent to 50px assuming 16px base */
-  width: 3.125rem; /* Equivalent to 50px assuming 16px base */
+  height: 50px;
+  width: 50px;
   display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  gap: 4px;
 }
 .header-phone-menu {
   position: fixed;
@@ -37,28 +39,25 @@
   z-index: 9999;
   display: none;
   flex-direction: column;
-  padding: calc(2.5rem + 5%) calc(2.5rem + 5%) calc(2.5rem + 5%); /* Equivalent to 40px + 5% assuming 16px base */
+  padding: calc(40px + 5%) calc(40px + 5%) calc(40px + 5%) calc(40px + 5%);
+  padding-top: 100px;
   align-items: flex-end;
-  gap: 3.125rem; /* Equivalent to 50px assuming 16px base */
-  padding-top: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  gap: 50px;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.87);
-  backdrop-filter: blur(0.625rem); /* Equivalent to 10px assuming 16px base */
-  -webkit-backdrop-filter: blur(0.625rem); /* Equivalent to 10px assuming 16px base */
+  background-color: rgba(0, 0, 0, 0.8705882353);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .header-phone-menu-logo {
   position: absolute;
   bottom: 5%;
-  right: calc(2.5rem + 5%); /* Equivalent to 40px + 5% assuming 16px base */
+  right: calc(40px + 5%);
   width: 50vw;
 }
-.header-insta-icon img {
-  background-color: transparent !important;
-}
 .header-phone-menu .header-insta-icon img {
-  height: 2.8125rem; /* Equivalent to 45px assuming 16px base */
-  width: 2.8125rem; /* Equivalent to 45px assuming 16px base */
+  height: 45px;
+  width: 45px;
 }
 .header-phone-menu-back {
   position: absolute;
@@ -76,13 +75,13 @@
   font-family: "gothambold";
 }
 .header-menuline {
-  height: 0.125rem; /* Equivalent to 2px assuming 16px base */
-  width: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  height: 2px;
+  width: 20px;
   background-color: #ffffff;
 }
 .header-nav {
   display: flex;
-  gap: 1.875rem; /* Equivalent to 30px assuming 16px base */
+  gap: 30px;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
@@ -96,25 +95,27 @@
 }
 .header-nav .header-insta-icon img {
   width: 4vw;
-  min-width: 3.125rem; /* Equivalent to 50px assuming 16px base */
-  max-width: 3.4375rem; /* Equivalent to 55px assuming 16px base */
+  min-width: 50px;
+  max-width: 55px;
   background-color: white;
-  padding: 0.4375rem; /* Equivalent to 7px assuming 16px base */
+  padding: 7px;
   border-radius: 50%;
   aspect-ratio: 1;
 }
 .header-request-invite {
-  border: 0.0625rem solid rgba(255, 255, 255, 0.725) !important; /* Equivalent to 1px assuming 16px base */
-  border-radius: 1.875rem !important; /* Equivalent to 30px assuming 16px base */
-  padding: 0.625rem 0.9375rem !important; /* Equivalent to 10px 15px assuming 16px base */
+  border: 1px solid rgba(255, 255, 255, 0.725) !important;
+  border-radius: 30px !important;
+  padding: 10px 15px !important;
 }
 .header-request-invite:hover {
   background-color: white !important;
   color: black !important;
 }
+
 @media screen and (max-width: 1400px) {
   .header-container {
-    height: 6.25rem; /* Equivalent to 100px assuming 16px base */
+    padding: 0 5%;
+    height: 100px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -127,6 +128,6 @@
 }
 @media screen and (max-width: 500px) {
   .header-container > a > .header-home-logo {
-    min-width: 12.5rem; /* Equivalent to 200px assuming 16px base */
+    min-width: 200px;
   }
 }

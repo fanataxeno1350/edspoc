@@ -33,7 +33,8 @@
       "rockNRoadSection",
       "upcomingDriveList",
       "beginForm",
-      "backToTopContainer"
+      "backToTopContainer",
+      "weekendSpiti"
     ]
   },
   {
@@ -57,19 +58,19 @@
   {
     "id": "experienceSection",
     "components": [
-      "experience"
+      "experienceItem"
     ]
   },
   {
     "id": "faqs",
     "components": [
-      "faq"
+      "faqItem"
     ]
   },
   {
     "id": "footer",
     "components": [
-      "footer"
+      "contact"
     ]
   },
   {
@@ -108,14 +109,11 @@
   {
     "id": "rockNRoadSection",
     "components": [
-      "rockNRoadStep"
+      "step"
     ]
   },
   {
-    "id": "sequenceSection",
-    "components": [
-      "sequenceSection"
-    ]
+    "id": "sequenceSection"
   },
   {
     "id": "spitiSection",
@@ -132,13 +130,19 @@
   {
     "id": "upcomingDriveList",
     "components": [
-      "upcomingDrive"
+      "upcomingDriveItem"
     ]
   },
   {
     "id": "upcomingDrives",
     "components": [
       "drive"
+    ]
+  },
+  {
+    "id": "weekendSpiti",
+    "components": [
+      "weekendSpiti"
     ]
   },
   {

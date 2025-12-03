@@ -10,68 +10,79 @@ export default function decorate(block) {
   let backImage = block.querySelector('[data-aue-prop="backImage"]');
   if (backImage) {
     const pic = createOptimizedPicture(backImage.src, backImage.alt);
-    const newImg = pic.querySelector('img');
-    newImg.classList.add('phone-menu-back');
+    const img = pic.querySelector('img');
+    img.classList.add('phone-menu-back');
+    moveInstrumentation(backImage, img);
     phoneMenuContainer.append(pic);
-    moveInstrumentation(backImage, newImg);
   }
 
   // About Link
   const aboutLink = block.querySelector('[data-aue-prop="aboutLink"]');
   if (aboutLink) {
-    phoneMenuContainer.append(aboutLink);
+    const newAboutLink = document.createElement('a');
+    newAboutLink.href = aboutLink.href;
+    newAboutLink.textContent = aboutLink.textContent;
+    moveInstrumentation(aboutLink, newAboutLink);
+    phoneMenuContainer.append(newAboutLink);
   }
 
   // Experiences Link
   const experiencesLink = block.querySelector('[data-aue-prop="experiencesLink"]');
   if (experiencesLink) {
-    phoneMenuContainer.append(experiencesLink);
+    const newExperiencesLink = document.createElement('a');
+    newExperiencesLink.href = experiencesLink.href;
+    newExperiencesLink.textContent = experiencesLink.textContent;
+    moveInstrumentation(experiencesLink, newExperiencesLink);
+    phoneMenuContainer.append(newExperiencesLink);
   }
 
   // Request Invite Link
   const requestInviteLink = block.querySelector('[data-aue-prop="requestInviteLink"]');
   if (requestInviteLink) {
-    requestInviteLink.classList.add('phone-menu-request-invite');
-    requestInviteLink.setAttribute('onclick', 'beginFormShow()');
-    phoneMenuContainer.append(requestInviteLink);
+    const newRequestInviteLink = document.createElement('a');
+    newRequestInviteLink.href = requestInviteLink.href;
+    newRequestInviteLink.textContent = requestInviteLink.textContent;
+    newRequestInviteLink.classList.add('phone-menu-request-invite');
+    newRequestInviteLink.setAttribute('onclick', 'beginFormShow()');
+    moveInstrumentation(requestInviteLink, newRequestInviteLink);
+    phoneMenuContainer.append(newRequestInviteLink);
   }
 
   // Instagram Link and Icon
   const instagramLink = block.querySelector('[data-aue-prop="instagramLink"]');
   const instagramIcon = block.querySelector('[data-aue-prop="instagramIcon"]');
 
-  if (instagramLink) {
-    instagramLink.classList.add('phone-menu-insta-icon');
-    instagramLink.setAttribute('target', '_blank');
+  if (instagramLink || instagramIcon) {
+    const newInstagramLink = document.createElement('a');
+    newInstagramLink.classList.add('phone-menu-insta-icon');
+    newInstagramLink.target = '_blank';
+
+    if (instagramLink) {
+      newInstagramLink.href = instagramLink.href;
+      moveInstrumentation(instagramLink, newInstagramLink);
+    } else {
+      // If only icon is present, still create a link but with a placeholder href or no href
+      newInstagramLink.href = 'javascript:void(0)';
+    }
+
     if (instagramIcon) {
       const pic = createOptimizedPicture(instagramIcon.src, instagramIcon.alt);
-      const newImg = pic.querySelector('img');
-      instagramLink.prepend(pic);
-      moveInstrumentation(instagramIcon, newImg);
+      const img = pic.querySelector('img');
+      moveInstrumentation(instagramIcon, img);
+      newInstagramLink.append(pic);
     }
-    phoneMenuContainer.append(instagramLink);
-  } else if (instagramIcon) { // If there's an icon but no link, create a dummy link to hold the icon
-    const dummyLink = document.createElement('a');
-    dummyLink.classList.add('phone-menu-insta-icon');
-    dummyLink.setAttribute('target', '_blank');
-    dummyLink.href = '#'; // Fallback href
-    const pic = createOptimizedPicture(instagramIcon.src, instagramIcon.alt);
-    const newImg = pic.querySelector('img');
-    dummyLink.append(pic);
-    phoneMenuContainer.append(dummyLink);
-    moveInstrumentation(instagramIcon, newImg);
+    phoneMenuContainer.append(newInstagramLink);
   }
 
   // Logo Image
   let logoImage = block.querySelector('[data-aue-prop="logoImage"]');
   if (logoImage) {
     const pic = createOptimizedPicture(logoImage.src, logoImage.alt);
-    const newImg = pic.querySelector('img');
-    newImg.classList.add('phone-menu-logo');
+    const img = pic.querySelector('img');
+    img.classList.add('phone-menu-logo');
+    moveInstrumentation(logoImage, img);
     phoneMenuContainer.append(pic);
-    moveInstrumentation(logoImage, newImg);
   }
 
-  block.innerHTML = '';
-  block.append(phoneMenuContainer);
+  block.replaceChildren(phoneMenuContainer);
 }

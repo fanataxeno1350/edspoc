@@ -2,84 +2,101 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const videoContainer = document.createElement('div');
-  videoContainer.classList.add('hero-video-slider');
+  const heroSectionWrapper = document.createElement('section');
+  heroSectionWrapper.classList.add('hero-section-wrapper', 'homeSlot');
+  moveInstrumentation(block, heroSectionWrapper);
 
-  const videoSlides = document.createElement('div');
-  videoSlides.classList.add('hero-slides');
-  videoContainer.append(videoSlides);
+  const heroSectionVideoSlider = document.createElement('div');
+  heroSectionVideoSlider.classList.add('hero-section-video-slider');
 
-  const videoSlide = document.createElement('div');
-  videoSlide.classList.add('hero-slide');
-  videoSlides.append(videoSlide);
+  const heroSectionSlides = document.createElement('div');
+  heroSectionSlides.classList.add('hero-section-slides');
+
+  const heroSectionSlide = document.createElement('div');
+  heroSectionSlide.classList.add('hero-section-slide');
 
   let videoElement = block.querySelector('[data-aue-prop="video"]');
   if (!videoElement) {
     const anchor = block.querySelector('a[href$=".mp4"], a[href$=".mov"], a[href$=".webm"]');
     if (anchor) {
       videoElement = document.createElement('video');
-      videoElement.setAttribute('src', anchor.href);
+      videoElement.setAttribute('autoplay', '');
+      videoElement.setAttribute('muted', '');
+      videoElement.setAttribute('playsinline', '');
+      videoElement.setAttribute('loop', '');
+      const source = document.createElement('source');
+      source.setAttribute('src', anchor.href);
+      source.setAttribute('type', 'video/mp4');
+      videoElement.append(source);
       moveInstrumentation(anchor, videoElement);
     }
   }
 
   if (videoElement) {
-    videoElement.classList.add('hero-slide-video');
-    videoElement.setAttribute('autoplay', '');
-    videoElement.setAttribute('muted', '');
-    videoElement.setAttribute('playsinline', '');
-    videoElement.setAttribute('loop', '');
-    videoSlide.append(videoElement);
+    heroSectionSlide.append(videoElement);
   }
 
-  const overlayContainer = document.createElement('div');
-  overlayContainer.classList.add('hero-overlay');
+  heroSectionSlides.append(heroSectionSlide);
+  heroSectionVideoSlider.append(heroSectionSlides);
+  heroSectionWrapper.append(heroSectionVideoSlider);
 
-  const upcomingEvent = document.createElement('div');
-  upcomingEvent.classList.add('hero-upcoming-event');
-  overlayContainer.append(upcomingEvent);
+  const heroSectionOverlay = document.createElement('div');
+  heroSectionOverlay.classList.add('hero-section-overlay');
 
-  const logoImage = block.querySelector('[data-aue-prop="logoImage"]');
+  const heroSectionUpcomingEvent = document.createElement('div');
+  heroSectionUpcomingEvent.classList.add('hero-section-upcoming-event');
+
+  let logoImage = block.querySelector('[data-aue-prop="logoImage"]');
   if (logoImage) {
     const pic = createOptimizedPicture(logoImage.src, logoImage.alt);
-    pic.classList.add('hero-rock-img');
+    pic.classList.add('hero-section-rock-img');
     moveInstrumentation(logoImage, pic.querySelector('img'));
-    upcomingEvent.append(pic);
+    heroSectionUpcomingEvent.append(pic);
   }
 
-  const advTextContainer = document.createElement('div');
-  advTextContainer.classList.add('hero-adv-text');
-  upcomingEvent.append(advTextContainer);
+  const heroSectionAdvText = document.createElement('div');
+  heroSectionAdvText.classList.add('hero-section-adv-text');
 
   const adventureText = block.querySelector('[data-aue-prop="adventureText"]');
   if (adventureText) {
-    advTextContainer.append(...adventureText.childNodes);
-    moveInstrumentation(adventureText, advTextContainer);
+    heroSectionAdvText.append(...adventureText.childNodes);
+    moveInstrumentation(adventureText, heroSectionAdvText);
   }
 
-  const advTextImage = block.querySelector('[data-aue-prop="adventureTextImage"]');
-  if (advTextImage) {
-    const span = document.createElement('span');
-    span.classList.add('hero-suv-back');
-    const pic = createOptimizedPicture(advTextImage.src, advTextImage.alt);
-    moveInstrumentation(advTextImage, pic.querySelector('img'));
-    span.append(pic);
-    advTextContainer.append(span);
+  const heroSectionSuvBack = document.createElement('span');
+  heroSectionSuvBack.classList.add('hero-section-suv-back');
+
+  let inlineImage = block.querySelector('[data-aue-prop="inlineImage"]');
+  if (inlineImage) {
+    const pic = createOptimizedPicture(inlineImage.src, inlineImage.alt);
+    moveInstrumentation(inlineImage, pic.querySelector('img'));
+    heroSectionSuvBack.append(pic);
   }
 
-  const afterLayerBottom = document.createElement('div');
-  afterLayerBottom.classList.add('hero-afterLayerBottom', 'hero-firstafterLayerBottom');
+  if (heroSectionSuvBack.hasChildNodes()) {
+    heroSectionAdvText.append(heroSectionSuvBack);
+  }
 
-  const bottomImage = block.querySelector('[data-aue-prop="bottomImage"]');
+  heroSectionUpcomingEvent.append(heroSectionAdvText);
+  heroSectionOverlay.append(heroSectionUpcomingEvent);
+  heroSectionWrapper.append(heroSectionOverlay);
+
+  const heroSectionAfterLayerBottom = document.createElement('div');
+  heroSectionAfterLayerBottom.classList.add('hero-section-after-layer-bottom', 'hero-section-first-after-layer-bottom');
+
+  let bottomImage = block.querySelector('[data-aue-prop="bottomImage"]');
   if (bottomImage) {
     const pic = createOptimizedPicture(bottomImage.src, bottomImage.alt);
-    pic.querySelector('img').style.height = '70px';
-    pic.querySelector('img').style.bottom = '-35px';
+    // Assuming style attributes need to be preserved or re-applied if they are part of the desired output
+    // For this example, we'll just append the image without specific style handling from the authored block.
+    // If styles like 'height: 70px; bottom: -35px;' are authored, they should be extracted from the source node.
+    // Here, we just move the instrumentation and append the picture.
     moveInstrumentation(bottomImage, pic.querySelector('img'));
-    afterLayerBottom.append(pic);
+    heroSectionAfterLayerBottom.append(pic);
   }
 
+  heroSectionWrapper.append(heroSectionAfterLayerBottom);
+
   block.innerHTML = '';
-  block.classList.add('hero-section', 'hero-homeSlot');
-  block.append(videoContainer, overlayContainer, afterLayerBottom);
+  block.append(heroSectionWrapper);
 }

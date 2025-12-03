@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Upcoming-Drive",
-      "id": "upcomingDrive",
+      "title": "Upcoming-Drive-Item",
+      "id": "upcomingDriveItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "upcomingDrive",
-              "name": "Upcoming-Drive"
+              "model": "upcomingDriveItem",
+              "name": "Upcoming-Drive-Item"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
     {
-      "id": "upcomingDrive",
+      "id": "upcomingDriveItem",
       "fields": [
         {
           "component": "reference",
@@ -43,13 +43,13 @@
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Subtitle",
           "name": "subtitle",
           "valueType": "string"
@@ -61,7 +61,7 @@
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "richtext",
           "label": "CTA Text",
           "name": "ctaText",
           "valueType": "string"
@@ -79,7 +79,7 @@
     {
       "id": "upcomingDriveList",
       "components": [
-        "upcomingDrive"
+        "upcomingDriveItem"
       ]
     }
   ]

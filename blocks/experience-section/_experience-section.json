@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Experience",
-      "id": "experience",
+      "title": "Experience-Item",
+      "id": "experienceItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "experience",
-              "name": "Experience"
+              "model": "experienceItem",
+              "name": "Experience-Item"
             }
           }
         }
@@ -34,35 +34,12 @@
   ],
   "models": [
     {
-      "id": "experienceSection",
+      "id": "experienceItem",
       "fields": [
         {
           "component": "reference",
-          "label": "Background Top Image",
-          "name": "backgroundTopImage",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Background Main Image",
-          "name": "backgroundMainImage",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Main Heading",
-          "name": "mainHeading",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "experience",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Icon",
-          "name": "icon",
+          "label": "Image",
+          "name": "image",
           "valueType": "string"
         },
         {
@@ -85,8 +62,8 @@
         },
         {
           "component": "text",
-          "label": "CTA Label",
-          "name": "ctaLabel",
+          "label": "CTA Text",
+          "name": "ctaText",
           "valueType": "string"
         },
         {
@@ -102,7 +79,7 @@
     {
       "id": "experienceSection",
       "components": [
-        "experience"
+        "experienceItem"
       ]
     }
   ]
