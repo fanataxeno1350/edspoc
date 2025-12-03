@@ -33,13 +33,16 @@ export default function decorate(block) {
     if (iconWrapper) {
       let img = iconWrapper.querySelector('img');
       if (!img) {
-        const anchor = iconWrapper.querySelector('a');
-        if (anchor && (anchor.href.endsWith('.webp') || anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif')))
-        {
-          img = document.createElement('img');
-          img.src = anchor.href;
-          img.alt = anchor.title || '';
-        }
+          img = item.querySelector('picture img, img');
+          if (!img) {
+            const anchor = iconWrapper.querySelector('a');
+            if (anchor && (anchor.href.endsWith('.webp') || anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif')))
+            {
+              img = document.createElement('img');
+              img.src = anchor.href;
+              img.alt = anchor.title || '';
+            }
+          }
       }
       if (img) {
         const pic = createOptimizedPicture(img.src, img.alt);
