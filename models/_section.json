@@ -69,7 +69,8 @@
         "blogListing",
         "spaceadderCurveContainer",
         "footerBrand",
-        "stickyBottomNav"
+        "stickyBottomNav",
+        "featureCards"
       ]
     }
   ]

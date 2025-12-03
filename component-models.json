@@ -183,7 +183,7 @@
     ]
   },
   {
-    "id": "slide",
+    "id": "carouselSlide",
     "fields": [
       {
         "component": "reference",
@@ -195,6 +195,41 @@
         "component": "reference",
         "label": "Image",
         "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "CTA Link",
+        "name": "ctaLink",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "card",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Alt Text",
+        "name": "alt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Title",
+        "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Description",
+        "name": "description",
         "valueType": "string"
       },
       {
@@ -461,8 +496,49 @@
     ]
   },
   {
-    "id": "blogItem",
+    "id": "latestBlogs",
     "fields": [
+      {
+        "component": "richtext",
+        "label": "Heading",
+        "name": "heading",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Description",
+        "name": "description",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "CTA Link",
+        "name": "ctaLink",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "CTA Text",
+        "name": "ctaText",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "CTA Icon",
+        "name": "ctaIcon",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "blogCard",
+    "fields": [
+      {
+        "component": "aem-content",
+        "label": "Blog Link",
+        "name": "link",
+        "valueType": "string"
+      },
       {
         "component": "reference",
         "label": "Image",
@@ -470,44 +546,15 @@
         "valueType": "string"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "label": "Date",
         "name": "date",
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Title",
-        "name": "title",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "Link",
-        "name": "link",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "latestBlogs",
-    "fields": [
-      {
-        "component": "text",
-        "label": "Section Title",
-        "name": "sectionTitle",
-        "valueType": "string"
-      },
-      {
         "component": "richtext",
-        "label": "Section Description",
-        "name": "sectionDescription",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "CTA Link",
-        "name": "ctaLink",
+        "label": "Blog Title",
+        "name": "title",
         "valueType": "string"
       }
     ]

@@ -34,7 +34,8 @@
       "blogListing",
       "spaceadderCurveContainer",
       "footerBrand",
-      "stickyBottomNav"
+      "stickyBottomNav",
+      "featureCards"
     ]
   },
   {
@@ -46,7 +47,13 @@
   {
     "id": "carousel",
     "components": [
-      "slide"
+      "carouselSlide"
+    ]
+  },
+  {
+    "id": "featureCards",
+    "components": [
+      "card"
     ]
   },
   {
@@ -73,7 +80,7 @@
   {
     "id": "latestBlogs",
     "components": [
-      "blogItem"
+      "blogCard"
     ]
   },
   {

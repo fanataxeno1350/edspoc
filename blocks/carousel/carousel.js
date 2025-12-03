@@ -2,65 +2,69 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
+  const carouselWrapper = document.createElement('div');
+  carouselWrapper.classList.add('carousel-wrapper');
+
   const slidesContainer = document.createElement('div');
   slidesContainer.classList.add('carousel-slides-container');
 
-  Array.from(block.children).forEach((row) => {
-    const slide = document.createElement('div');
-    slide.classList.add('carousel-slide');
+  // Iterate over each carousel slide item using data-aue-model
+  block.querySelectorAll('[data-aue-model="carouselSlide"]').forEach((slide) => {
+    const slideElement = document.createElement('div');
+    slideElement.classList.add('carousel-slide');
 
-    const videoLink = row.querySelector('[data-aue-prop="video"]');
-    const imageLink = row.querySelector('[data-aue-prop="image"]');
-    const link = row.querySelector('[data-aue-prop="link"]');
+    const videoLink = slide.querySelector('[data-aue-prop="video"]');
+    const imageLink = slide.querySelector('[data-aue-prop="image"]');
+    const ctaLink = slide.querySelector('[data-aue-prop="ctaLink"]');
 
     if (videoLink) {
-      const videoElement = document.createElement('video');
-      videoElement.setAttribute('autoplay', '');
-      videoElement.setAttribute('loop', '');
-      videoElement.setAttribute('muted', '');
-      videoElement.setAttribute('playsinline', '');
-      videoElement.setAttribute('preload', 'auto');
-      videoElement.classList.add('carousel-video');
+      const videoWrapper = document.createElement('div');
+      videoWrapper.classList.add('carousel-video-wrapper');
+      const video = document.createElement('video');
+      video.setAttribute('controls', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('autoplay', '');
+      video.setAttribute('loop', '');
+      video.setAttribute('preload', 'metadata');
+      video.setAttribute('fetchpriority', 'high');
 
-      const mp4Source = document.createElement('source');
-      mp4Source.setAttribute('src', videoLink.href || videoLink.textContent.trim());
-      mp4Source.setAttribute('type', 'video/mp4');
-      videoElement.append(mp4Source);
+      const sourceMp4 = document.createElement('source');
+      sourceMp4.setAttribute('src', videoLink.href || videoLink.textContent.trim());
+      sourceMp4.setAttribute('type', 'video/mp4');
+      video.append(sourceMp4);
 
-      const webmSource = document.createElement('source');
-      webmSource.setAttribute('src', videoLink.href || videoLink.textContent.trim());
-      webmSource.setAttribute('type', 'video/webm');
-      videoElement.append(webmSource);
+      const sourceWebm = document.createElement('source');
+      sourceWebm.setAttribute('src', videoLink.href || videoLink.textContent.trim());
+      sourceWebm.setAttribute('type', 'video/webm');
+      video.append(sourceWebm);
 
-      slide.append(videoElement);
-      moveInstrumentation(videoLink, videoElement);
+      moveInstrumentation(videoLink, video);
+      videoWrapper.append(video);
+      slideElement.append(videoWrapper);
     } else if (imageLink) {
-      const img = imageLink.querySelector('img');
-      if (img) {
-        const pic = createOptimizedPicture(img.src, img.alt);
-        slide.append(pic);
-        moveInstrumentation(img, pic.querySelector('img'));
-      } else {
-        const imgElement = document.createElement('img');
-        imgElement.setAttribute('src', imageLink.href || imageLink.textContent.trim());
-        imgElement.setAttribute('alt', '');
-        slide.append(imgElement);
-        moveInstrumentation(imageLink, imgElement);
-      }
+      const picture = createOptimizedPicture(imageLink.href || imageLink.textContent.trim(), 'Carousel image');
+      moveInstrumentation(imageLink, picture.querySelector('img'));
+      slideElement.append(picture);
     }
 
-    if (link) {
+    if (ctaLink) {
       const ctaWrapper = document.createElement('div');
       ctaWrapper.classList.add('carousel-cta-wrapper');
+      const link = document.createElement('a');
+      link.href = ctaLink.href || ctaLink.textContent.trim();
+      link.textContent = ctaLink.textContent.trim();
+      moveInstrumentation(ctaLink, link);
       ctaWrapper.append(link);
-      slide.append(ctaWrapper);
-      moveInstrumentation(link, ctaWrapper.querySelector('a'));
+      slideElement.append(ctaWrapper);
     }
 
-    slidesContainer.append(slide);
-    moveInstrumentation(row, slide);
+    slidesContainer.append(slideElement);
   });
 
+  carouselWrapper.append(slidesContainer);
+
+  // Clear the block's original content and append the new structure
   block.innerHTML = '';
-  block.append(slidesContainer);
+  block.append(carouselWrapper);
 }
