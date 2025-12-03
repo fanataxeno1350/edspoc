@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Back-To-Top",
+      "title": "Back-to-Top",
       "id": "backToTop",
       "plugins": {
         "xwalk": {
@@ -10,7 +10,7 @@
             "template": {
               "filter": "backToTop",
               "model": "backToTop",
-              "name": "Back-To-Top"
+              "name": "Back-to-Top"
             }
           }
         }
@@ -32,10 +32,7 @@
   ],
   "filters": [
     {
-      "id": "back-to-top",
-      "components": [
-        "backToTop"
-      ]
+      "id": "backToTop"
     }
   ]
 }

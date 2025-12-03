@@ -2,99 +2,84 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const heroSectionWrapper = document.createElement('section');
-  heroSectionWrapper.classList.add('hero-section-wrapper', 'homeSlot');
-  moveInstrumentation(block, heroSectionWrapper);
+  const videoContainer = document.createElement('div');
+  videoContainer.classList.add('hero-video-slider');
 
-  const videoSlider = document.createElement('div');
-  videoSlider.classList.add('hero-section-video-slider');
+  const videoSlides = document.createElement('div');
+  videoSlides.classList.add('hero-slides');
+  videoContainer.append(videoSlides);
 
-  const slides = document.createElement('div');
-  slides.classList.add('hero-section-slides');
+  const videoSlide = document.createElement('div');
+  videoSlide.classList.add('hero-slide');
+  videoSlides.append(videoSlide);
 
-  const slide = document.createElement('div');
-  slide.classList.add('hero-section-slide');
-
-  let videoSource = block.querySelector('[data-aue-prop="video"]');
-  if (!videoSource) {
+  let videoElement = block.querySelector('[data-aue-prop="video"]');
+  if (!videoElement) {
     const anchor = block.querySelector('a[href$=".mp4"], a[href$=".mov"], a[href$=".webm"]');
     if (anchor) {
-      videoSource = anchor;
+      videoElement = document.createElement('video');
+      videoElement.setAttribute('src', anchor.href);
+      moveInstrumentation(anchor, videoElement);
     }
   }
 
-  if (videoSource) {
-    const video = document.createElement('video');
-    video.classList.add('hero-section-video');
-    video.setAttribute('autoplay', '');
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    video.setAttribute('loop', '');
-    const source = document.createElement('source');
-    source.setAttribute('src', videoSource.href || videoSource.textContent.trim());
-    source.setAttribute('type', 'video/mp4');
-    video.append(source);
-    slide.append(video);
-    moveInstrumentation(videoSource, video);
+  if (videoElement) {
+    videoElement.classList.add('hero-slide-video');
+    videoElement.setAttribute('autoplay', '');
+    videoElement.setAttribute('muted', '');
+    videoElement.setAttribute('playsinline', '');
+    videoElement.setAttribute('loop', '');
+    videoSlide.append(videoElement);
   }
 
-  slides.append(slide);
-  videoSlider.append(slides);
-  heroSectionWrapper.append(videoSlider);
-
-  const overlay = document.createElement('div');
-  overlay.classList.add('hero-section-overlay');
+  const overlayContainer = document.createElement('div');
+  overlayContainer.classList.add('hero-overlay');
 
   const upcomingEvent = document.createElement('div');
-  upcomingEvent.classList.add('hero-section-upcoming-event');
+  upcomingEvent.classList.add('hero-upcoming-event');
+  overlayContainer.append(upcomingEvent);
 
   const logoImage = block.querySelector('[data-aue-prop="logoImage"]');
   if (logoImage) {
-    const pic = createOptimizedPicture(logoImage.src || logoImage.textContent.trim(), logoImage.alt || '');
-    pic.classList.add('hero-section-rock-img');
-    upcomingEvent.append(pic);
+    const pic = createOptimizedPicture(logoImage.src, logoImage.alt);
+    pic.classList.add('hero-rock-img');
     moveInstrumentation(logoImage, pic.querySelector('img'));
+    upcomingEvent.append(pic);
   }
 
-  const advTextWrapper = document.createElement('div');
-  advTextWrapper.classList.add('hero-section-adv-text');
+  const advTextContainer = document.createElement('div');
+  advTextContainer.classList.add('hero-adv-text');
+  upcomingEvent.append(advTextContainer);
 
-  const advText = block.querySelector('[data-aue-prop="advText"]');
-  if (advText) {
-    advTextWrapper.append(...advText.childNodes);
-    moveInstrumentation(advText, advTextWrapper);
+  const adventureText = block.querySelector('[data-aue-prop="adventureText"]');
+  if (adventureText) {
+    advTextContainer.append(...adventureText.childNodes);
+    moveInstrumentation(adventureText, advTextContainer);
   }
 
-  const advTextImage = block.querySelector('[data-aue-prop="advTextImage"]');
+  const advTextImage = block.querySelector('[data-aue-prop="adventureTextImage"]');
   if (advTextImage) {
     const span = document.createElement('span');
-    span.classList.add('hero-section-suv-back');
-    const pic = createOptimizedPicture(advTextImage.src || advTextImage.textContent.trim(), advTextImage.alt || '');
-    span.append(pic);
-    advTextWrapper.append(span);
+    span.classList.add('hero-suv-back');
+    const pic = createOptimizedPicture(advTextImage.src, advTextImage.alt);
     moveInstrumentation(advTextImage, pic.querySelector('img'));
+    span.append(pic);
+    advTextContainer.append(span);
   }
 
-  upcomingEvent.append(advTextWrapper);
-  overlay.append(upcomingEvent);
-  heroSectionWrapper.append(overlay);
-
-  const bottomLayer = document.createElement('div');
-  bottomLayer.classList.add('hero-section-after-layer-bottom', 'hero-section-first-after-layer-bottom');
+  const afterLayerBottom = document.createElement('div');
+  afterLayerBottom.classList.add('hero-afterLayerBottom', 'hero-firstafterLayerBottom');
 
   const bottomImage = block.querySelector('[data-aue-prop="bottomImage"]');
   if (bottomImage) {
-    const pic = createOptimizedPicture(bottomImage.src || bottomImage.textContent.trim(), bottomImage.alt || '');
-    // Assuming style attributes are not authored and should be applied directly if needed
-    // If style is authored, it would need to be extracted from a data-aue-prop or similar
+    const pic = createOptimizedPicture(bottomImage.src, bottomImage.alt);
     pic.querySelector('img').style.height = '70px';
     pic.querySelector('img').style.bottom = '-35px';
-    bottomLayer.append(pic);
     moveInstrumentation(bottomImage, pic.querySelector('img'));
+    afterLayerBottom.append(pic);
   }
 
-  heroSectionWrapper.append(bottomLayer);
-
   block.innerHTML = '';
-  block.append(heroSectionWrapper);
+  block.classList.add('hero-section', 'hero-homeSlot');
+  block.append(videoContainer, overlayContainer, afterLayerBottom);
 }

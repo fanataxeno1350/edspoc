@@ -2,60 +2,78 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const mainDiv = document.createElement('div');
-  mainDiv.classList.add('experience-main-div');
+  const mainHeading = block.children[0]?.querySelector('div[data-aue-prop="mainHeading"]');
+  const backgroundTopImage = block.children[0]?.querySelector('div[data-aue-prop="backgroundTopImage"]');
+  const backgroundMainImage = block.children[0]?.querySelector('div[data-aue-prop="backgroundMainImage"]');
 
-  const topLayerImageDiv = document.createElement('div');
-  topLayerImageDiv.classList.add('experience-after-layer-top');
-  const topLayerImage = block.querySelector('[data-aue-prop="topLayerImage"]');
-  if (topLayerImage) {
-    const pic = createOptimizedPicture(topLayerImage.src, topLayerImage.alt);
-    moveInstrumentation(topLayerImage, pic.querySelector('img'));
-    topLayerImageDiv.append(pic);
+  const section = document.createElement('section');
+  section.classList.add('experience-section', 'homeSlot');
+  section.id = 'experiences';
+
+  if (backgroundTopImage) {
+    const divTop = document.createElement('div');
+    divTop.classList.add('experience-after-layer-top');
+    const imgTop = backgroundTopImage.querySelector('img');
+    if (imgTop) {
+      const pic = createOptimizedPicture(imgTop.src, imgTop.alt);
+      moveInstrumentation(imgTop, pic.querySelector('img'));
+      divTop.append(pic);
+    }
+    section.append(divTop);
   }
 
-  const backgroundImage = block.querySelector('[data-aue-prop="backgroundImage"]');
-  if (backgroundImage) {
-    const pic = createOptimizedPicture(backgroundImage.src, backgroundImage.alt);
-    pic.style.cssText = 'position: absolute;top: 0;left: 0;width: 100%;height: 100%;';
-    moveInstrumentation(backgroundImage, pic.querySelector('img'));
-    block.append(pic);
+  if (backgroundMainImage) {
+    const imgMain = backgroundMainImage.querySelector('img');
+    if (imgMain) {
+      const pic = createOptimizedPicture(imgMain.src, imgMain.alt);
+      moveInstrumentation(imgMain, pic.querySelector('img'));
+      pic.style.cssText = 'position: absolute;top: 0;left: 0;width: 100%;height: 100%;';
+      section.append(pic);
+    }
   }
 
-  const mainHeadingDiv = document.createElement('div');
-  mainHeadingDiv.classList.add('experience-main-heading');
-  const mainHeading = block.querySelector('[data-aue-prop="mainHeading"]');
   if (mainHeading) {
-    mainHeadingDiv.append(...mainHeading.childNodes);
-    moveInstrumentation(mainHeading, mainHeadingDiv);
+    const divHeading = document.createElement('div');
+    divHeading.classList.add('experience-main-heading');
+    divHeading.append(...mainHeading.childNodes);
+    moveInstrumentation(mainHeading, divHeading);
+    section.append(divHeading);
   }
 
-  const experienceCards = block.querySelectorAll('[data-aue-model="experienceCard"]');
-  experienceCards.forEach((card, index) => {
-    const experienceDiv = document.createElement('div');
-    experienceDiv.classList.add(`experience-div${index + 1}`, 'experience-divv');
+  const experienceMainDiv = document.createElement('div');
+  experienceMainDiv.classList.add('experience-main-div');
+
+  const experiences = block.querySelectorAll('div[data-aue-model="experience"]');
+  experiences.forEach((experience, index) => {
+    const icon = experience.querySelector('div[data-aue-prop="icon"] img');
+    const title = experience.querySelector('div[data-aue-prop="title"]');
+    const description = experience.querySelector('div[data-aue-prop="description"]');
+    const ctaLink = experience.querySelector('div[data-aue-prop="ctaLink"] a');
+    const ctaLabel = experience.querySelector('div[data-aue-prop="ctaLabel"]');
+    const ctaIcon = experience.querySelector('div[data-aue-prop="ctaIcon"] img');
+
+    const divExperience = document.createElement('div');
+    divExperience.classList.add(`experience-div${index + 1}`, 'experience-divv');
 
     const contentDiv = document.createElement('div');
-
-    const imageDiv = document.createElement('div');
-    const mainImage = card.querySelector('[data-aue-prop="mainImage"]');
-    if (mainImage) {
-      const pic = createOptimizedPicture(mainImage.src, mainImage.alt);
+    const iconWrapper = document.createElement('div');
+    const iconInnerWrapper = document.createElement('div');
+    if (icon) {
+      const pic = createOptimizedPicture(icon.src, icon.alt);
+      moveInstrumentation(icon, pic.querySelector('img'));
       pic.classList.add('experience-move-ment');
-      moveInstrumentation(mainImage, pic.querySelector('img'));
-      imageDiv.append(pic);
+      iconInnerWrapper.append(pic);
     }
-    contentDiv.append(imageDiv);
+    iconWrapper.append(iconInnerWrapper);
+    contentDiv.append(iconWrapper);
 
-    const heading = card.querySelector('[data-aue-prop="heading"]');
-    if (heading) {
+    if (title) {
       const h3 = document.createElement('h3');
-      h3.append(...heading.childNodes);
-      moveInstrumentation(heading, h3);
+      h3.append(...title.childNodes);
+      moveInstrumentation(title, h3);
       contentDiv.append(h3);
     }
 
-    const description = card.querySelector('[data-aue-prop="description"]');
     if (description) {
       const p = document.createElement('p');
       p.classList.add('experience-exp-text');
@@ -63,55 +81,49 @@ export default function decorate(block) {
       moveInstrumentation(description, p);
       contentDiv.append(p);
     }
+    divExperience.append(contentDiv);
 
-    experienceDiv.append(contentDiv);
-
-    const ctaLink = card.querySelector('[data-aue-prop="ctaLink"]');
-    if (ctaLink) {
+    if (ctaLink || ctaLabel || ctaIcon) {
       const anchor = document.createElement('a');
       anchor.classList.add('experience-cta', 'experience-ctaaa');
-      anchor.href = ctaLink.href;
-      anchor.rel = 'no-follow';
-      moveInstrumentation(ctaLink, anchor);
+      if (ctaLink) {
+        anchor.href = ctaLink.href;
+        anchor.rel = ctaLink.rel || 'no-follow';
+        moveInstrumentation(ctaLink, anchor);
+      }
 
-      const ctaText = card.querySelector('[data-aue-prop="ctaText"]');
-      if (ctaText) {
+      if (ctaLabel) {
         const p = document.createElement('p');
-        p.append(...ctaText.childNodes);
-        moveInstrumentation(ctaText, p);
+        p.append(...ctaLabel.childNodes);
+        moveInstrumentation(ctaLabel, p);
         anchor.append(p);
       }
 
-      const ctaIcon = card.querySelector('[data-aue-prop="ctaIcon"]');
       if (ctaIcon) {
         const pic = createOptimizedPicture(ctaIcon.src, ctaIcon.alt);
         moveInstrumentation(ctaIcon, pic.querySelector('img'));
         anchor.append(pic);
       }
-      experienceDiv.append(anchor);
+      divExperience.append(anchor);
     }
-
-    mainDiv.append(experienceDiv);
+    experienceMainDiv.append(divExperience);
   });
 
-  const bottomLayerImageDiv = document.createElement('div');
-  bottomLayerImageDiv.classList.add('experience-after-layer-bottom');
-  // Assuming bottomLayerImage reuses the same authored content as topLayerImage for simplicity
-  // If it's a separate authored field, a new querySelector would be needed.
-  // For now, we'll create a placeholder or reuse if the authored content implies it.
-  // Since there's no specific 'bottomLayerImage' prop in the JSON, and the HTML shows the same image as top, 
-  // we'll extract the image from the existing block structure that corresponds to the bottom layer.
-  const authoredBottomLayerImage = block.querySelector('.experience-after-layer-bottom img');
-  if (authoredBottomLayerImage) {
-    const pic = createOptimizedPicture(authoredBottomLayerImage.src, authoredBottomLayerImage.alt);
-    moveInstrumentation(authoredBottomLayerImage, pic.querySelector('img'));
-    bottomLayerImageDiv.append(pic);
-  } else if (topLayerImage) { // Fallback if no specific bottom layer image is found, use top layer image
-    const pic = createOptimizedPicture(topLayerImage.src, topLayerImage.alt);
-    moveInstrumentation(topLayerImage, pic.querySelector('img')); // Re-instrumenting the same source, but for a new target
-    bottomLayerImageDiv.append(pic);
+  section.append(experienceMainDiv);
+
+  // Add bottom layer image
+  if (backgroundTopImage) {
+    const divBottom = document.createElement('div');
+    divBottom.classList.add('experience-after-layer-bottom');
+    const imgBottom = backgroundTopImage.querySelector('img'); // Reusing the same image as top
+    if (imgBottom) {
+      const pic = createOptimizedPicture(imgBottom.src, imgBottom.alt);
+      moveInstrumentation(imgBottom, pic.querySelector('img'));
+      divBottom.append(pic);
+    }
+    section.append(divBottom);
   }
 
   block.innerHTML = '';
-  block.append(topLayerImageDiv, mainHeadingDiv, mainDiv, bottomLayerImageDiv);
+  block.append(section);
 }

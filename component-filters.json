@@ -40,10 +40,7 @@
     "id": "backToTopContainer"
   },
   {
-    "id": "back-to-top",
-    "components": [
-      "backToTop"
-    ]
+    "id": "backToTop"
   },
   {
     "id": "beginForm",
@@ -60,19 +57,19 @@
   {
     "id": "experienceSection",
     "components": [
-      "experienceCard"
+      "experience"
     ]
   },
   {
     "id": "faqs",
     "components": [
-      "faqItem"
+      "faq"
     ]
   },
   {
     "id": "footer",
     "components": [
-      "footerLink"
+      "footer"
     ]
   },
   {

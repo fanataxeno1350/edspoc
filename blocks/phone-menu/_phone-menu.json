@@ -23,8 +23,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Background Image",
-          "name": "backgroundImage",
+          "label": "Back Image",
+          "name": "backImage",
           "valueType": "string"
         },
         {
@@ -59,8 +59,8 @@
         },
         {
           "component": "reference",
-          "label": "Logo",
-          "name": "logo",
+          "label": "Logo Image",
+          "name": "logoImage",
           "valueType": "string"
         }
       ]

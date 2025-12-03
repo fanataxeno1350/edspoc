@@ -1,47 +1,41 @@
-.chapters-for_desk_view {
-  display: block;
+@font-face {
+  font-family: "gotham";
+  src: url("../assets/Fonts/Gotham-Thin.woff2") format("woff2");
 }
-.chapters-for_phone_view {
-  display: none;
+@font-face {
+  font-family: "gothambold";
+  src: url("../assets/Fonts/Gotham-Bold.woff") format("woff");
 }
-@media screen and (max-width: 768px) {
-  .chapters-for_desk_view {
-    display: none;
-  }
-  .chapters-for_phone_view {
-    display: block;
-  }
+@font-face {
+  font-family: "gothammed";
+  src: url("../assets/Fonts/GothamMedium.woff2") format("woff2");
 }
 
-.chapters-section {
-  max-height: 1080px; 
-  min-height: 600px;
+.chapters-chapters {
   background-color: #000000;
   width: 100%;
   padding: 100px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "gotham"; /* Equivalent to font-family: gotham; */
-  font-weight: 600;
+  max-height: 1080px;
+  min-height: 600px;
 }
 .chapters-chapter_head {
   font-size: 3rem; /* Equivalent to 48px assuming 16px base */
   color: #ffffff;
-  font-family: "gothambold"; /* Equivalent to font-family: var(--fjalla_one); */
+  font-family: "gothambold";
   text-align: center;
   margin-bottom: 30px;
   position: relative;
 }
-.chapters-section > p {
-  font-family: "gotham", sans-serif; /* Equivalent to font-family: var(--lato); */
+.chapters-chapters > p {
+  font-family: "gotham", sans-serif;
   font-size: 1.25rem; /* Equivalent to 20px assuming 16px base */
   color: #b2b2b2;
   padding: 0 10%;
   margin-bottom: 30px;
   text-align: center;
-  line-height: 1.4;
-  font-weight: 600;
 }
 .chapters-sliderGallery {
   display: grid;
@@ -51,8 +45,8 @@
   display: grid;
   grid-template-columns: repeat(6, 333px);
   grid-template-rows: repeat(2, 50%);
-  grid-column-gap: 1rem; /* Equivalent to 16px assuming 16px base */
-  grid-row-gap: 1rem; /* Equivalent to 16px assuming 16px base */
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
   height: 600px;
   margin-bottom: 46px;
   overflow-x: scroll;
@@ -88,10 +82,7 @@
 .chapters-suv_back {
   white-space: pre;
   position: relative;
-  font-family: "gothambold"; /* Equivalent to font-family: var(--fjalla_one); */
-  color: #000000;
-  line-height: 30px;
-  font-weight: 600;
+  font-family: "gothambold";
 }
 .chapters-suv_back > img {
   position: absolute;
@@ -104,17 +95,25 @@
 }
 .chapters-chapter_head .chapters-suv_back > img {
   height: fit-content;
+  transform: revert !important;
   left: revert;
   top: revert;
   z-index: -9999;
-  transform: revert !important;
+}
+.chapters-chapter_head .chapters-suv_back {
+  position: relative;
+  z-index: 2;
+  font-family: "gothammed";
+  color: #000000;
+  white-space: pre;
+  line-height: 1.875rem; /* Equivalent to 30px assuming 16px base */
 }
 .chapters-chapter_head::before {
   content: "";
   position: absolute;
   width: 30px;
   height: 100%;
-  background: url("/content/dam/aemigrate/uploaded-folder/image/Group%20213%402x.png") center center / contain no-repeat;
+  background: url("../assets/masterspage/Group 213@2x.png") center center / contain no-repeat;
   transform: rotate(180deg);
   left: -38px;
 }
@@ -123,7 +122,7 @@
   position: absolute;
   width: 50px;
   height: 100%;
-  background: url("/content/dam/aemigrate/uploaded-folder/image/Path%204489%402x.png") center center / contain no-repeat;
+  background: url("../assets/masterspage/Path 4489@2x.png") center center / contain no-repeat;
   left: 0px;
   top: -100%;
 }
@@ -141,10 +140,6 @@
   overflow: hidden;
   transition: all 0.3s;
   min-height: 20px;
-  font-family: "gotham"; /* Equivalent to font-family: gotham; */
-  font-weight: 600;
-  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
-  color: #ffffff;
 }
 .chapters-cta > img {
   height: 20px !important;
@@ -152,18 +147,14 @@
   object-fit: none;
 }
 .chapters-cta:hover {
+  background-color: white;
   transition: all 0.3s;
 }
 .chapters-cta p {
   all: unset;
   font-size: 1rem; /* Equivalent to 16px assuming 16px base */
   color: #ffffff;
-  font-family: "gotham"; /* Equivalent to font-family: gotham; */
-  font-weight: 600;
-  line-height: 1.4;
-}
-.chapters-ctaaa:hover {
-  background-color: white;
+  font-family: "gotham";
 }
 .chapters-ctaaa:hover p {
   color: black !important;
@@ -172,8 +163,23 @@
   filter: invert(1);
 }
 
+.chapters-for_desk_view {
+  display: block;
+}
+.chapters-for_phone_view {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .chapters-for_desk_view {
+    display: none;
+  }
+  .chapters-for_phone_view {
+    display: block;
+  }
+}
+
 @media screen and (max-width: 1400px) {
-  .chapters-section > p {
+  .chapters-chapters > p {
     padding: 0 7%;
     margin-bottom: 20px;
   }
@@ -190,18 +196,9 @@
   }
 }
 @media screen and (max-width: 1024px) {
-  .chapters-section {
-    padding: 0px;
-  }
-  .chapters-chapters_gallery {
-    height: 500px;
-    overflow-x: scroll;
-  }
-  .chapters-chapter_head .chapters-suv_back {
-    font-size: 3rem; /* Equivalent to 48px assuming 16px base */
-  }
-  .chapters-chapter_head .chapters-suv_back::before, .chapters-arrow_top::before {
-    display: none;
+  .chapters-chapters {
+    max-height: 850px;
+    min-height: 650px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -218,11 +215,15 @@
     min-height: 18px;
     height: 18px;
   }
-  .chapters-section {
-    padding: 0px;
+  .chapters-chapters {
+    padding: 0;
   }
   .chapters-chapters_gallery {
     height: 500px;
+  }
+  .chapters-chapter_head .chapters-suv_back::before,
+  .chapters-arrow_top::before {
+    display: none;
   }
 }
 @media screen and (max-width: 600px) {

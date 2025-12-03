@@ -34,30 +34,6 @@
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "Instagram Icon Image",
-          "name": "instaIconImage",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Instagram Link",
-          "name": "instaLink",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Phone Menu Back Image",
-          "name": "phoneMenuBackImage",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Phone Menu Logo Image",
-          "name": "phoneMenuLogoImage",
-          "valueType": "string"
-        },
-        {
           "component": "aem-content",
           "label": "About Link",
           "name": "aboutLink",
@@ -73,6 +49,30 @@
           "component": "aem-content",
           "label": "Request Invite Link",
           "name": "requestInviteLink",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Instagram Link",
+          "name": "instagramLink",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Instagram Icon",
+          "name": "instagramIcon",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Phone Menu Back Image",
+          "name": "phoneMenuBackImage",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Phone Menu Logo",
+          "name": "phoneMenuLogo",
           "valueType": "string"
         }
       ]
