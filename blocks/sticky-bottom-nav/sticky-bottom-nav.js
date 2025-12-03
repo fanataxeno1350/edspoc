@@ -32,21 +32,28 @@ export default function decorate(block) {
     const iconWrapper = navItem.querySelector('[data-aue-prop="icon"]');
     if (iconWrapper) {
       let img = iconWrapper.querySelector('img');
+      // if (!img) {
+      //   const anchor = iconWrapper.querySelector('a');
+      //   if (anchor && (anchor.href.endsWith('.webp') || anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif')))
+      //   {
+      //     img = document.createElement('img');
+      //     img.src = anchor.href;
+      //     img.alt = anchor.title || '';
+      //   }
+      // }
+      // if (img) {
+      //   const pic = createOptimizedPicture(img.src, img.alt);
+      //   pic.classList.add('sticky-navigation-sticky-bottom-nav__icon');
+      //   link.append(pic);
+      //   moveInstrumentation(img, pic.querySelector('img'));
+      // }
       if (!img) {
-          img = item.querySelector('picture img, img');
-          if (!img) {
-            const anchor = iconWrapper.querySelector('a');
-            if (anchor && (anchor.href.endsWith('.webp') || anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif')))
-            {
-              img = document.createElement('img');
-              img.src = anchor.href;
-              img.alt = anchor.title || '';
-            }
-          }
+        img = navItem.querySelector('picture img, img');
       }
+
       if (img) {
-        const pic = createOptimizedPicture(img.src, img.alt);
-        pic.classList.add('sticky-navigation-sticky-bottom-nav__icon');
+        const pic = createOptimizedPicture(img.src, img.alt || '');
+        pic.querySelector('img').classList.add('sticky-navigation-icon');
         link.append(pic);
         moveInstrumentation(img, pic.querySelector('img'));
       }
