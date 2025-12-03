@@ -6,26 +6,28 @@ export default function decorate(block) {
   footerContainer.classList.add('footer-container');
   footerContainer.id = 'footer';
 
-  const footerAfterLayerTop = document.createElement('div');
-  footerAfterLayerTop.classList.add('footer-after-layer-top');
-  const footerTopImage = block.querySelector('[data-aue-prop="footerTopImage"]');
-  if (footerTopImage) {
-    const pic = createOptimizedPicture(footerTopImage.src, footerTopImage.alt);
-    footerAfterLayerTop.append(pic);
-    moveInstrumentation(footerTopImage, pic.querySelector('img'));
+  const afterLayerTop = document.createElement('div');
+  afterLayerTop.classList.add('footer-afterLayerTop');
+  const topImage = block.querySelector('[data-aue-prop="topImage"]');
+  if (topImage) {
+    const pic = createOptimizedPicture(topImage.src, topImage.alt);
+    afterLayerTop.append(pic);
+    moveInstrumentation(topImage, pic.querySelector('img'));
   }
-  footerContainer.append(footerAfterLayerTop);
+  footerContainer.append(afterLayerTop);
 
   const footerContent = document.createElement('div');
   footerContent.classList.add('footer-content');
 
-  const footerLogo = block.querySelector('[data-aue-prop="footerLogo"]');
-  if (footerLogo) {
-    const pic = createOptimizedPicture(footerLogo.src, footerLogo.alt);
-    pic.classList.add('footer-logo');
-    footerContent.append(pic);
-    moveInstrumentation(footerLogo, pic.querySelector('img'));
+  const footerLogo = document.createElement('img');
+  footerLogo.classList.add('footer-logo');
+  const logo = block.querySelector('[data-aue-prop="logo"]');
+  if (logo) {
+    footerLogo.src = logo.src;
+    footerLogo.alt = logo.alt;
+    moveInstrumentation(logo, footerLogo);
   }
+  footerContent.append(footerLogo);
 
   const footerTags = document.createElement('div');
   footerTags.classList.add('footer-tags', 'footer-tags-home', 'footer-details-open');
@@ -35,128 +37,73 @@ export default function decorate(block) {
   const contactUsDetails = document.createElement('details');
   contactUsDetails.classList.add('footer-details-1');
   const contactUsSummary = document.createElement('summary');
-  contactUsSummary.textContent = 'Contact us'; // Static text, not authored
+  contactUsSummary.classList.add('footer-summary');
+  contactUsSummary.textContent = 'Contact us';
   contactUsDetails.append(contactUsSummary);
 
-  const contactUsText = block.querySelector('[data-aue-prop="contactUsText"]');
-  if (contactUsText) {
-    const p = document.createElement('p');
-    p.append(...contactUsText.childNodes);
-    moveInstrumentation(contactUsText, p);
-    contactUsDetails.append(p);
+  const contactUsContent = block.querySelector('[data-aue-prop="contactUs"]');
+  if (contactUsContent) {
+    contactUsDetails.append(...contactUsContent.childNodes);
+    moveInstrumentation(contactUsContent, contactUsDetails);
   }
 
-  const expeditionsEmail = block.querySelector('[data-aue-prop="expeditionsEmail"]');
-  if (expeditionsEmail) {
-    const p = document.createElement('p');
-    p.innerHTML = `Expeditions and Weekenders:<br>`;
-    const anchor = expeditionsEmail.querySelector('a') || expeditionsEmail;
-    const emailLink = document.createElement('a');
-    emailLink.style.cursor = 'pointer';
-    emailLink.style.color = 'blue';
-    emailLink.style.textDecoration = 'underline';
-    emailLink.href = anchor.href || `mailto:${anchor.textContent.trim()}`;
-    emailLink.textContent = anchor.textContent.trim();
-    moveInstrumentation(anchor, emailLink);
-    p.append(emailLink);
-    contactUsDetails.append(p);
-  }
+  const additionalContactsDetails = document.createElement('details');
+  additionalContactsDetails.classList.add('footer-details-nested');
+  const additionalContactsSummary = document.createElement('summary');
+  additionalContactsSummary.classList.add('footer-summary-nested');
+  additionalContactsSummary.textContent = 'For more';
+  additionalContactsDetails.append(additionalContactsSummary);
 
-  const mastersEmail = block.querySelector('[data-aue-prop="mastersEmail"]');
-  if (mastersEmail) {
-    const p = document.createElement('p');
-    p.innerHTML = `4x4 Masters:<br>`;
-    const anchor = mastersEmail.querySelector('a') || mastersEmail;
-    const emailLink = document.createElement('a');
-    emailLink.style.cursor = 'pointer';
-    emailLink.style.color = 'blue';
-    emailLink.style.textDecoration = 'underline';
-    emailLink.href = anchor.href || `mailto:${anchor.textContent.trim()}`;
-    emailLink.textContent = anchor.textContent.trim();
-    moveInstrumentation(anchor, emailLink);
-    p.append(emailLink);
-    contactUsDetails.append(p);
+  const additionalContactsContent = block.querySelector('[data-aue-prop="additionalContacts"]');
+  if (additionalContactsContent) {
+    additionalContactsDetails.append(...additionalContactsContent.childNodes);
+    moveInstrumentation(additionalContactsContent, additionalContactsDetails);
   }
-
-  const moreDetails = document.createElement('details');
-  const moreSummary = document.createElement('summary');
-  moreSummary.textContent = 'For more'; // Static text, not authored
-  moreDetails.append(moreSummary);
-
-  const moreContactText = block.querySelector('[data-aue-prop="moreContactText"]');
-  if (moreContactText) {
-    // Assuming moreContactText contains multiple <p> or <br> elements
-    // We need to move all its children into the moreDetails.
-    moreContactText.childNodes.forEach((node) => {
-      moreDetails.append(node);
-    });
-    moveInstrumentation(moreContactText, moreDetails);
-  }
-  contactUsDetails.append(moreDetails);
+  contactUsDetails.append(additionalContactsDetails);
   footerFoot1.append(contactUsDetails);
   footerTags.append(footerFoot1);
 
-  const footerFoot2 = document.createElement('div');
-  footerFoot2.classList.add('footer-foot-2');
-  const termsOfUse = block.querySelector('[data-aue-prop="termsOfUse"]');
-  if (termsOfUse) {
-    const p = document.createElement('p');
-    const anchor = termsOfUse.querySelector('a') || termsOfUse;
-    const link = document.createElement('a');
-    link.target = '_blank';
-    link.href = anchor.href;
-    link.textContent = anchor.textContent;
-    moveInstrumentation(anchor, link);
-    p.append(link);
-    footerFoot2.append(p);
-  }
-  footerTags.append(footerFoot2);
+  const footerLinksContainer = document.createElement('div');
+  footerLinksContainer.classList.add('footer-links-container');
 
-  const footerFoot3 = document.createElement('div');
-  footerFoot3.classList.add('footer-foot-3');
-  const dataProviderConsentPolicy = block.querySelector('[data-aue-prop="dataProviderConsentPolicy"]');
-  if (dataProviderConsentPolicy) {
-    const p = document.createElement('p');
-    const anchor = dataProviderConsentPolicy.querySelector('a') || dataProviderConsentPolicy;
-    const link = document.createElement('a');
-    link.target = '_blank';
-    link.href = anchor.href;
-    link.textContent = anchor.textContent;
-    moveInstrumentation(anchor, link);
-    p.append(link);
-    footerFoot3.append(p);
-  }
-  footerTags.append(footerFoot3);
-
-  const footerFoot4 = document.createElement('div');
-  footerFoot4.classList.add('footer-foot-4');
-  const privacyPolicy = block.querySelector('[data-aue-prop="privacyPolicy"]');
-  if (privacyPolicy) {
-    const p = document.createElement('p');
-    const anchor = privacyPolicy.querySelector('a') || privacyPolicy;
-    const link = document.createElement('a');
-    link.target = '_blank';
-    link.href = anchor.href;
-    link.textContent = anchor.textContent;
-    moveInstrumentation(anchor, link);
-    p.append(link);
-    footerFoot4.append(p);
-  }
-  footerTags.append(footerFoot4);
-
+  const footerLinks = block.querySelectorAll('[data-aue-model="footerLink"]');
+  footerLinks.forEach((linkItem, index) => {
+    const footerFootDiv = document.createElement('div');
+    footerFootDiv.classList.add(`footer-foot-${index + 2}`); // Starting from footer-foot-2
+    const paragraph = document.createElement('p');
+    paragraph.classList.add('footer-paragraph');
+    const link = linkItem.querySelector('[data-aue-prop="link"]');
+    if (link) {
+      paragraph.append(link);
+      moveInstrumentation(linkItem, paragraph);
+    }
+    footerFootDiv.append(paragraph);
+    footerLinksContainer.append(footerFootDiv);
+  });
+  footerTags.append(footerLinksContainer);
   footerContent.append(footerTags);
 
+  const copyrightSpan = document.createElement('span');
+  copyrightSpan.classList.add('footer-copyright');
   const copyright = block.querySelector('[data-aue-prop="copyright"]');
   if (copyright) {
-    const span = document.createElement('span');
-    span.classList.add('footer-copyright');
-    span.append(...copyright.childNodes);
-    moveInstrumentation(copyright, span);
-    footerContent.append(span);
+    copyrightSpan.append(...copyright.childNodes);
+    moveInstrumentation(copyright, copyrightSpan);
   }
-
+  footerContent.append(copyrightSpan);
   footerContainer.append(footerContent);
 
+  const backToTopDiv = document.createElement('div');
+  backToTopDiv.id = 'footer-backtoTop';
+  backToTopDiv.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const backToTopImage = block.querySelector('[data-aue-prop="backToTopImage"]');
+  if (backToTopImage) {
+    const pic = createOptimizedPicture(backToTopImage.src, backToTopImage.alt);
+    backToTopDiv.append(pic);
+    moveInstrumentation(backToTopImage, pic.querySelector('img'));
+  }
+
   block.innerHTML = '';
-  block.append(footerContainer);
+  block.append(footerContainer, backToTopDiv);
 }

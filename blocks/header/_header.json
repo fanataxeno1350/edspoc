@@ -23,8 +23,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Logo Image",
-          "name": "logoImage",
+          "label": "Logo Desktop",
+          "name": "logoDesktop",
           "valueType": "string"
         },
         {
@@ -34,45 +34,75 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "About Link",
-          "name": "aboutLink",
+          "component": "reference",
+          "label": "Instagram Icon Desktop",
+          "name": "instaIconDesktop",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Experiences Link",
-          "name": "experiencesLink",
+          "label": "Instagram Link Desktop",
+          "name": "instaLinkDesktop",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Request Invite Link",
-          "name": "requestInviteLink",
+          "label": "About Link Desktop",
+          "name": "aboutLinkDesktop",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Instagram Link",
-          "name": "instagramLink",
+          "label": "Experiences Link Desktop",
+          "name": "experiencesLinkDesktop",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Request Invite Desktop",
+          "name": "requestInviteDesktop",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Instagram Icon",
-          "name": "instagramIcon",
+          "label": "Phone Menu Background",
+          "name": "phoneMenuBg",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "About Link Mobile",
+          "name": "aboutLinkMobile",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Experiences Link Mobile",
+          "name": "experiencesLinkMobile",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Request Invite Mobile",
+          "name": "requestInviteMobile",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Phone Menu Back Image",
-          "name": "phoneMenuBackImage",
+          "label": "Instagram Icon Mobile",
+          "name": "instaIconMobile",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Instagram Link Mobile",
+          "name": "instaLinkMobile",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Phone Menu Logo",
-          "name": "phoneMenuLogo",
+          "label": "Logo Mobile",
+          "name": "logoMobile",
           "valueType": "string"
         }
       ]

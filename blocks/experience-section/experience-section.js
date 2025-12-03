@@ -2,126 +2,120 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const mainHeading = block.children[0]?.querySelector('div[data-aue-prop="mainHeading"]');
-  const backgroundTopImage = block.children[0]?.querySelector('div[data-aue-prop="backgroundTopImage"]');
-  const backgroundMainImage = block.children[0]?.querySelector('div[data-aue-prop="backgroundMainImage"]');
+  const mainHeading = block.querySelector('[data-aue-prop="mainHeading"]');
+  const backgroundImageTop = block.querySelector('[data-aue-prop="backgroundImageTop"]');
+  const backgroundImageMain = block.querySelector('[data-aue-prop="backgroundImageMain"]');
 
   const section = document.createElement('section');
-  section.classList.add('experience-section', 'homeSlot');
+  section.className = 'experience-section homeSlot';
   section.id = 'experiences';
 
-  if (backgroundTopImage) {
-    const divTop = document.createElement('div');
-    divTop.classList.add('experience-after-layer-top');
-    const imgTop = backgroundTopImage.querySelector('img');
-    if (imgTop) {
-      const pic = createOptimizedPicture(imgTop.src, imgTop.alt);
-      moveInstrumentation(imgTop, pic.querySelector('img'));
-      divTop.append(pic);
-    }
-    section.append(divTop);
+  if (backgroundImageTop) {
+    const topLayerDiv = document.createElement('div');
+    topLayerDiv.className = 'experience-after-layer-top';
+    const pic = createOptimizedPicture(backgroundImageTop.src, backgroundImageTop.alt);
+    topLayerDiv.append(pic);
+    moveInstrumentation(backgroundImageTop, pic.querySelector('img'));
+    section.append(topLayerDiv);
   }
 
-  if (backgroundMainImage) {
-    const imgMain = backgroundMainImage.querySelector('img');
-    if (imgMain) {
-      const pic = createOptimizedPicture(imgMain.src, imgMain.alt);
-      moveInstrumentation(imgMain, pic.querySelector('img'));
-      pic.style.cssText = 'position: absolute;top: 0;left: 0;width: 100%;height: 100%;';
-      section.append(pic);
-    }
+  if (backgroundImageMain) {
+    const pic = createOptimizedPicture(backgroundImageMain.src, backgroundImageMain.alt);
+    pic.style.cssText = 'position: absolute;top: 0;left: 0;width: 100%;height: 100%;';
+    section.append(pic);
+    moveInstrumentation(backgroundImageMain, pic.querySelector('img'));
   }
 
   if (mainHeading) {
-    const divHeading = document.createElement('div');
-    divHeading.classList.add('experience-main-heading');
-    divHeading.append(...mainHeading.childNodes);
-    moveInstrumentation(mainHeading, divHeading);
-    section.append(divHeading);
+    const mainHeadingDiv = document.createElement('div');
+    mainHeadingDiv.className = 'experience-main-heading';
+    mainHeadingDiv.append(...mainHeading.childNodes);
+    moveInstrumentation(mainHeading, mainHeadingDiv);
+    section.append(mainHeadingDiv);
   }
 
   const experienceMainDiv = document.createElement('div');
-  experienceMainDiv.classList.add('experience-main-div');
+  experienceMainDiv.className = 'experience-main-div';
 
-  const experiences = block.querySelectorAll('div[data-aue-model="experience"]');
+  const experiences = block.querySelectorAll('[data-aue-model="experience"]');
   experiences.forEach((experience, index) => {
-    const icon = experience.querySelector('div[data-aue-prop="icon"] img');
-    const title = experience.querySelector('div[data-aue-prop="title"]');
-    const description = experience.querySelector('div[data-aue-prop="description"]');
-    const ctaLink = experience.querySelector('div[data-aue-prop="ctaLink"] a');
-    const ctaLabel = experience.querySelector('div[data-aue-prop="ctaLabel"]');
-    const ctaIcon = experience.querySelector('div[data-aue-prop="ctaIcon"] img');
+    const mainImage = experience.querySelector('[data-aue-prop="mainImage"]');
+    const heading = experience.querySelector('[data-aue-prop="heading"]');
+    const description = experience.querySelector('[data-aue-prop="description"]');
+    const ctaLink = experience.querySelector('[data-aue-prop="ctaLink"]');
+    const ctaText = experience.querySelector('[data-aue-prop="ctaText"]');
+    const ctaIcon = experience.querySelector('[data-aue-prop="ctaIcon"]');
 
-    const divExperience = document.createElement('div');
-    divExperience.classList.add(`experience-div${index + 1}`, 'experience-divv');
+    const experienceDiv = document.createElement('div');
+    experienceDiv.className = `experience-div${index + 1} experience-divv`;
 
-    const contentDiv = document.createElement('div');
-    const iconWrapper = document.createElement('div');
-    const iconInnerWrapper = document.createElement('div');
-    if (icon) {
-      const pic = createOptimizedPicture(icon.src, icon.alt);
-      moveInstrumentation(icon, pic.querySelector('img'));
-      pic.classList.add('experience-move-ment');
-      iconInnerWrapper.append(pic);
+    const contentWrapper = document.createElement('div');
+
+    if (mainImage) {
+      const imageDiv = document.createElement('div');
+      const pic = createOptimizedPicture(mainImage.src, mainImage.alt);
+      pic.querySelector('img').className = 'experience-move-ment';
+      imageDiv.append(pic);
+      moveInstrumentation(mainImage, pic.querySelector('img'));
+      contentWrapper.append(imageDiv);
     }
-    iconWrapper.append(iconInnerWrapper);
-    contentDiv.append(iconWrapper);
 
-    if (title) {
+    if (heading) {
       const h3 = document.createElement('h3');
-      h3.append(...title.childNodes);
-      moveInstrumentation(title, h3);
-      contentDiv.append(h3);
+      h3.append(...heading.childNodes);
+      moveInstrumentation(heading, h3);
+      contentWrapper.append(h3);
     }
 
     if (description) {
       const p = document.createElement('p');
-      p.classList.add('experience-exp-text');
+      p.className = 'experience-exp-text';
       p.append(...description.childNodes);
       moveInstrumentation(description, p);
-      contentDiv.append(p);
+      contentWrapper.append(p);
     }
-    divExperience.append(contentDiv);
 
-    if (ctaLink || ctaLabel || ctaIcon) {
+    experienceDiv.append(contentWrapper);
+
+    if (ctaLink || ctaText || ctaIcon) {
       const anchor = document.createElement('a');
-      anchor.classList.add('experience-cta', 'experience-ctaaa');
+      anchor.className = 'experience-cta experience-ctaaa';
       if (ctaLink) {
         anchor.href = ctaLink.href;
-        anchor.rel = ctaLink.rel || 'no-follow';
+        anchor.rel = 'no-follow';
         moveInstrumentation(ctaLink, anchor);
+      } else {
+        anchor.href = '#';
+        anchor.rel = 'no-follow';
       }
 
-      if (ctaLabel) {
+      if (ctaText) {
         const p = document.createElement('p');
-        p.append(...ctaLabel.childNodes);
-        moveInstrumentation(ctaLabel, p);
+        p.append(...ctaText.childNodes);
+        moveInstrumentation(ctaText, p);
         anchor.append(p);
       }
 
       if (ctaIcon) {
         const pic = createOptimizedPicture(ctaIcon.src, ctaIcon.alt);
-        moveInstrumentation(ctaIcon, pic.querySelector('img'));
         anchor.append(pic);
+        moveInstrumentation(ctaIcon, pic.querySelector('img'));
       }
-      divExperience.append(anchor);
+      experienceDiv.append(anchor);
     }
-    experienceMainDiv.append(divExperience);
+
+    experienceMainDiv.append(experienceDiv);
   });
 
   section.append(experienceMainDiv);
 
-  // Add bottom layer image
-  if (backgroundTopImage) {
-    const divBottom = document.createElement('div');
-    divBottom.classList.add('experience-after-layer-bottom');
-    const imgBottom = backgroundTopImage.querySelector('img'); // Reusing the same image as top
-    if (imgBottom) {
-      const pic = createOptimizedPicture(imgBottom.src, imgBottom.alt);
-      moveInstrumentation(imgBottom, pic.querySelector('img'));
-      divBottom.append(pic);
-    }
-    section.append(divBottom);
+  if (backgroundImageTop) {
+    const bottomLayerDiv = document.createElement('div');
+    bottomLayerDiv.className = 'experience-after-layer-bottom';
+    const pic = createOptimizedPicture(backgroundImageTop.src, backgroundImageTop.alt);
+    bottomLayerDiv.append(pic);
+    // No specific instrumentation for bottom image as it's a duplicate of top
+    section.append(bottomLayerDiv);
   }
 
   block.innerHTML = '';

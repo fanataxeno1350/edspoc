@@ -53,12 +53,6 @@
           "label": "Answer",
           "name": "answer",
           "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
         }
       ]
     }

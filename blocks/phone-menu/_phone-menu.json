@@ -23,8 +23,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Back Image",
-          "name": "backImage",
+          "label": "Background Image",
+          "name": "backgroundImage",
           "valueType": "string"
         },
         {
@@ -68,7 +68,10 @@
   ],
   "filters": [
     {
-      "id": "phoneMenu"
+      "id": "phoneMenu",
+      "components": [
+        "phoneMenu"
+      ]
     }
   ]
 }

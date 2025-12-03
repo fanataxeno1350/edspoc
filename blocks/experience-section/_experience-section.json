@@ -34,41 +34,18 @@
   ],
   "models": [
     {
-      "id": "experienceSection",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Background Top Image",
-          "name": "backgroundTopImage",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Background Main Image",
-          "name": "backgroundMainImage",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Main Heading",
-          "name": "mainHeading",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
       "id": "experience",
       "fields": [
         {
           "component": "reference",
-          "label": "Icon",
-          "name": "icon",
+          "label": "Main Image",
+          "name": "mainImage",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Title",
-          "name": "title",
+          "component": "richtext",
+          "label": "Heading",
+          "name": "heading",
           "valueType": "string"
         },
         {
@@ -84,15 +61,38 @@
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "CTA Label",
-          "name": "ctaLabel",
+          "component": "richtext",
+          "label": "CTA Text",
+          "name": "ctaText",
           "valueType": "string"
         },
         {
           "component": "reference",
           "label": "CTA Icon",
           "name": "ctaIcon",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "experienceSection",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Background Image Top",
+          "name": "backgroundImageTop",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Background Image Main",
+          "name": "backgroundImageMain",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Main Heading",
+          "name": "mainHeading",
           "valueType": "string"
         }
       ]

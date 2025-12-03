@@ -2,62 +2,74 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const faqsContainer = document.createElement('div');
-  faqsContainer.classList.add('faqs-padding-container');
+  const faqsSection = document.createElement('section');
+  faqsSection.classList.add('faqs-section', 'faqs-homeSlot');
+
+  const faqsPaddingCon = document.createElement('div');
+  faqsPaddingCon.classList.add('faqs-paddingCon');
+  faqsSection.append(faqsPaddingCon);
 
   const faqsHead = document.createElement('div');
-  faqsHead.classList.add('faqs-head');
+  faqsHead.classList.add('faqs-faq_head');
   faqsHead.textContent = 'FAQs';
-  faqsContainer.append(faqsHead);
+  faqsPaddingCon.append(faqsHead);
 
   const faqsTandC = document.createElement('div');
   faqsTandC.classList.add('faqs-tandc');
-  faqsContainer.append(faqsTandC);
+  faqsPaddingCon.append(faqsTandC);
 
-  Array.from(block.children).forEach((row, index) => {
-    const faqItemContainer = document.createElement('div');
-    faqItemContainer.classList.add('faqs-tandc-cont');
-    faqItemContainer.id = `faq-${index + 4}`; // Assuming id starts from faq-4 based on the HTML
-    moveInstrumentation(row, faqItemContainer);
+  const faqItems = block.querySelectorAll('[data-aue-model="faq"]');
 
-    const questionElement = row.querySelector('div:nth-child(1)');
-    const answerElement = row.querySelector('div:nth-child(2)');
+  faqItems.forEach((faqItem, index) => {
+    const tandcCont = document.createElement('div');
+    tandcCont.classList.add('faqs-tandc_cont');
+    tandcCont.id = `FAQ_${index + 4}`;
+    moveInstrumentation(faqItem, tandcCont);
 
-    if (questionElement) {
-      const faqsTandCText = document.createElement('div');
-      faqsTandCText.classList.add('faqs-tandc-text');
-      faqItemContainer.append(faqsTandCText);
+    const tandcText = document.createElement('div');
+    tandcText.classList.add('faqs-tandc_text');
+    tandcCont.append(tandcText);
 
-      const questionPara = questionElement.querySelector('p');
-      if (questionPara) {
-        faqsTandCText.append(questionPara);
-        moveInstrumentation(questionElement, questionPara);
-      }
+    const question = faqItem.querySelector('[data-aue-prop="question"]');
+    if (question) {
+      const p = document.createElement('p');
+      p.append(...question.childNodes);
+      moveInstrumentation(question, p);
+      tandcText.append(p);
+    }
 
-      let iconImg = questionElement.querySelector('img');
-      if (iconImg) {
-        const pic = createOptimizedPicture(iconImg.src, iconImg.alt);
-        faqsTandCText.append(pic);
-        moveInstrumentation(iconImg, pic.querySelector('img'));
+    let icon = faqItem.querySelector('[data-aue-prop="icon"]');
+    if (!icon) {
+      const anchor = faqItem.querySelector('a[href$=".svg"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"]');
+      if (anchor) {
+        icon = anchor;
       }
     }
 
-    if (answerElement) {
-      const faqsExtText = document.createElement('div');
-      faqsExtText.classList.add('faqs-ext-text');
-      faqItemContainer.append(faqsExtText);
-
-      const answerPara = answerElement.querySelector('p');
-      if (answerPara) {
-        answerPara.classList.add('faqs-para');
-        faqsExtText.append(answerPara);
-        moveInstrumentation(answerElement, answerPara);
-      }
+    if (icon) {
+      const img = document.createElement('img');
+      img.src = icon.href || icon.src;
+      img.alt = icon.alt || '';
+      moveInstrumentation(icon, img);
+      tandcText.append(img);
     }
 
-    faqsTandC.append(faqItemContainer);
+    const extText = document.createElement('div');
+    extText.classList.add('faqs-ext_text');
+    tandcCont.append(extText);
+
+    const answer = faqItem.querySelector('[data-aue-prop="answer"]');
+    if (answer) {
+      const p = document.createElement('p');
+      p.classList.add('faqs-faqPara');
+      p.append(...answer.childNodes);
+      moveInstrumentation(answer, p);
+      extText.append(p);
+    }
+
+    faqsTandC.append(tandcCont);
   });
 
   block.innerHTML = '';
-  block.append(faqsContainer);
+  block.append(faqsSection);
 }

@@ -2,132 +2,117 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // Create the main container for the chapters gallery
-  const chaptersGallerySection = document.createElement('section');
-  chaptersGallerySection.classList.add('chapters-chapters', 'homeSlot');
+  const mainDiv = document.createElement('div');
+  mainDiv.classList.add('chapters-section', 'chapters-homeSlot');
 
-  // Desktop Title
-  const desktopTitleDiv = document.createElement('div');
-  desktopTitleDiv.classList.add('chapters-chapter_head', 'chapters-for_desk_view');
-  const desktopTitleSpan = document.createElement('span');
-  desktopTitleSpan.classList.add('chapters-suv_back');
-  const desktopTitle = block.querySelector('[data-aue-prop="desktopTitle"]');
-  if (desktopTitle) {
-    desktopTitleSpan.append(...desktopTitle.childNodes);
-    moveInstrumentation(desktopTitle, desktopTitleSpan);
+  const titleDesktopDiv = document.createElement('div');
+  titleDesktopDiv.classList.add('chapters-chapter_head', 'chapters-for_desk_view');
+  const titleDesktopContent = block.children[0]?.querySelector('[data-aue-prop="titleDesktop"]');
+  if (titleDesktopContent) {
+    titleDesktopDiv.append(...titleDesktopContent.childNodes);
+    moveInstrumentation(titleDesktopContent, titleDesktopDiv);
   }
-  const desktopTitleImg = desktopTitleSpan.querySelector('img');
-  if (desktopTitleImg) {
-    const pic = createOptimizedPicture(desktopTitleImg.src, desktopTitleImg.alt);
-    desktopTitleSpan.replaceChild(pic, desktopTitleImg);
-    moveInstrumentation(desktopTitleImg, pic.querySelector('img'));
-  }
-  desktopTitleDiv.append('Previous chapters of ', desktopTitleSpan);
-  chaptersGallerySection.append(desktopTitleDiv);
+  mainDiv.append(titleDesktopDiv);
 
-  // Mobile Title
-  const mobileTitleDiv = document.createElement('div');
-  mobileTitleDiv.classList.add('chapters-chapter_head', 'chapters-for_phone_view');
-  const mobileTitle = block.querySelector('[data-aue-prop="mobileTitle"]');
-  if (mobileTitle) {
-    mobileTitleDiv.append(...mobileTitle.childNodes);
-    moveInstrumentation(mobileTitle, mobileTitleDiv);
+  const titleMobileDiv = document.createElement('div');
+  titleMobileDiv.classList.add('chapters-chapter_head', 'chapters-for_phone_view');
+  const titleMobileContent = block.children[1]?.querySelector('[data-aue-prop="titleMobile"]');
+  if (titleMobileContent) {
+    titleMobileDiv.append(...titleMobileContent.childNodes);
+    moveInstrumentation(titleMobileContent, titleMobileDiv);
   }
-  chaptersGallerySection.append(mobileTitleDiv);
+  mainDiv.append(titleMobileDiv);
 
-  // Description
   const descriptionP = document.createElement('p');
-  const description = block.querySelector('[data-aue-prop="description"]');
-  if (description) {
-    descriptionP.append(...description.childNodes);
-    moveInstrumentation(description, descriptionP);
+  const descriptionContent = block.children[2]?.querySelector('[data-aue-prop="description"]');
+  if (descriptionContent) {
+    descriptionP.append(...descriptionContent.childNodes);
+    moveInstrumentation(descriptionContent, descriptionP);
   }
-  chaptersGallerySection.append(descriptionP);
+  mainDiv.append(descriptionP);
 
-  // Chapters Slider Gallery
-  const chaptersSliderGalleryDiv = document.createElement('div');
-  chaptersSliderGalleryDiv.classList.add('chapters-sliderGallery');
+  const sliderGalleryDiv = document.createElement('div');
+  sliderGalleryDiv.classList.add('chapters-sliderGallery');
+
   const chaptersGalleryDiv = document.createElement('div');
   chaptersGalleryDiv.classList.add('chapters-chapters_gallery');
 
-  const chapterImages = block.querySelectorAll('[data-aue-model="chapterImage"]');
-  chapterImages.forEach((chapterImage) => {
-    const newChapterDiv = document.createElement('div');
-    newChapterDiv.classList.add('chapters-chapp');
-    newChapterDiv.style.cursor = 'pointer';
-    newChapterDiv.setAttribute('data-fancybox', 'highlights-gallery');
+  const chaptersContainer = block.querySelector('[data-aue-prop="chapters"]');
+  if (chaptersContainer) {
+    Array.from(chaptersContainer.children).forEach((chapterItem) => {
+      const chapterDiv = document.createElement('div');
+      chapterDiv.classList.add('chapters-chapp');
+      chapterDiv.style.cursor = 'pointer';
+      chapterDiv.setAttribute('data-fancybox', 'highlights-gallery');
+      moveInstrumentation(chapterItem, chapterDiv);
 
-    let imageLink = chapterImage.querySelector('[data-aue-prop="image"]');
-    let imgElement = null;
+      let imageLink = chapterItem.querySelector('[data-aue-prop="image"]');
+      if (!imageLink) {
+        imageLink = chapterItem.querySelector('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"]');
+      }
 
-    if (imageLink) {
-      // Check if imageLink is an <a> tag or contains one
-      const anchor = imageLink.tagName === 'A' ? imageLink : imageLink.querySelector('a');
-      if (anchor) {
-        newChapterDiv.href = anchor.href;
-        imgElement = anchor.querySelector('img');
-      } else {
-        // If it's a direct img element
-        imgElement = imageLink.querySelector('img');
-        if (imgElement) {
-          newChapterDiv.href = imgElement.src;
+      let imgSrc = '';
+      if (imageLink) {
+        imgSrc = imageLink.getAttribute('href') || imageLink.src;
+        chapterDiv.setAttribute('href', imgSrc);
+      }
+
+      const altTextElement = chapterItem.querySelector('[data-aue-prop="alt"]');
+      const altText = altTextElement ? altTextElement.textContent : '';
+
+      if (imgSrc) {
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = altText;
+        chapterDiv.append(img);
+        if (imageLink && imageLink.tagName === 'A') {
+            moveInstrumentation(imageLink, img);
+        } else if (imageLink && imageLink.tagName === 'IMG') {
+            moveInstrumentation(imageLink, img);
         }
       }
-    }
+      chaptersGalleryDiv.append(chapterDiv);
+    });
+  }
 
-    if (imgElement) {
-      const altTextElement = chapterImage.querySelector('[data-aue-prop="alt"]');
-      const altText = altTextElement ? altTextElement.textContent : imgElement.alt;
+  sliderGalleryDiv.append(chaptersGalleryDiv);
+  mainDiv.append(sliderGalleryDiv);
 
-      const pic = createOptimizedPicture(imgElement.src, altText);
-      newChapterDiv.append(pic);
-      moveInstrumentation(imgElement, pic.querySelector('img'));
-    }
-
-    chaptersGalleryDiv.append(newChapterDiv);
-    moveInstrumentation(chapterImage, newChapterDiv);
-  });
-
-  chaptersSliderGalleryDiv.append(chaptersGalleryDiv);
-  chaptersGallerySection.append(chaptersSliderGalleryDiv);
-
-  // Gallery CTA
   const ctaLink = document.createElement('a');
   ctaLink.classList.add('chapters-cta', 'chapters-open_galery', 'chapters-ctaaa');
-  ctaLink.href = 'javascript:void(0)'; // Default href
+  ctaLink.href = 'javascript:void(0)';
   ctaLink.rel = 'no-follow';
 
-  const galleryCtaLink = block.querySelector('[data-aue-prop="galleryCtaLink"]');
-  if (galleryCtaLink) {
-    const anchor = galleryCtaLink.tagName === 'A' ? galleryCtaLink : galleryCtaLink.querySelector('a');
-    if (anchor) {
-      ctaLink.href = anchor.href;
-      const p = document.createElement('p');
-      p.append(...anchor.childNodes);
-      moveInstrumentation(anchor, p);
-      ctaLink.append(p);
-    } else {
-      // Fallback if galleryCtaLink is not an anchor but contains text
-      const p = document.createElement('p');
-      p.append(...galleryCtaLink.childNodes);
-      moveInstrumentation(galleryCtaLink, p);
-      ctaLink.append(p);
+  const ctaP = document.createElement('p');
+  const ctaText = block.children[4]?.querySelector('p');
+  if (ctaText) {
+    ctaP.append(...ctaText.childNodes);
+    moveInstrumentation(ctaText, ctaP);
+  }
+  ctaLink.append(ctaP);
+
+  const galleryIcon = block.children[4]?.querySelector('[data-aue-prop="galleryIcon"]');
+  let galleryIconSrc = '';
+  if (galleryIcon) {
+    if (galleryIcon.tagName === 'IMG') {
+      galleryIconSrc = galleryIcon.src;
+    } else if (galleryIcon.tagName === 'A') {
+      galleryIconSrc = galleryIcon.href;
     }
   }
 
-  const galleryCtaIcon = block.querySelector('[data-aue-prop="galleryCtaIcon"]');
-  if (galleryCtaIcon) {
-    const img = galleryCtaIcon.querySelector('img');
-    if (img) {
-      const pic = createOptimizedPicture(img.src, img.alt);
-      ctaLink.append(pic);
-      moveInstrumentation(img, pic.querySelector('img'));
+  if (galleryIconSrc) {
+    const img = document.createElement('img');
+    img.src = galleryIconSrc;
+    img.alt = ''; // Alt text is not available in the provided JSON for this icon
+    ctaLink.append(img);
+    if (galleryIcon.tagName === 'IMG' || galleryIcon.tagName === 'A') {
+        moveInstrumentation(galleryIcon, img);
     }
   }
 
-  chaptersGallerySection.append(ctaLink);
+  mainDiv.append(ctaLink);
 
-  // Replace the block content with the new structure
   block.innerHTML = '';
-  block.append(chaptersGallerySection);
+  block.append(mainDiv);
 }

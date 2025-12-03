@@ -61,7 +61,14 @@
         "faqs",
         "registrationFormBegin",
         "footer",
-        "backToTop"
+        "backToTop",
+        "homeDots",
+        "sequenceSection",
+        "spitiSection",
+        "rockNRoadSection",
+        "upcomingDriveList",
+        "beginForm",
+        "backToTopContainer"
       ]
     }
   ]

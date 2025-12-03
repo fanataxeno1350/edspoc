@@ -1,0 +1,38 @@
+{
+  "definitions": [
+    {
+      "title": "Back-To-Top-Container",
+      "id": "backToTopContainer",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "filter": "backToTopContainer",
+              "model": "backToTopContainer",
+              "name": "Back-To-Top-Container"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "backToTopContainer",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "backToTopContainer"
+    }
+  ]
+}

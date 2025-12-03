@@ -29,20 +29,20 @@
         },
         {
           "component": "reference",
-          "label": "Logo Image",
-          "name": "logoImage",
+          "label": "Rock Image",
+          "name": "rockImage",
           "valueType": "string"
         },
         {
           "component": "richtext",
           "label": "Adventure Text",
-          "name": "adventureText",
+          "name": "advText",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Adventure Text Image",
-          "name": "adventureTextImage",
+          "label": "SUV Back Image",
+          "name": "suvBackImage",
           "valueType": "string"
         },
         {

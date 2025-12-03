@@ -1,0 +1,112 @@
+.sequence-section {
+  height: 180vh;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  scroll-behavior: smooth; /* Equivalent to smooth behavior */
+}
+.sequence-section .sequence-frameSequence {
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  max-height: 100vh;
+  width: 100%;
+  z-index: 0;
+  top: unset;
+  bottom: 0px;
+}
+.sequence-section .sequence-storyT {
+  max-width: 93.75rem; /* Equivalent to 1500px assuming 16px base */
+  height: 60vh;
+  position: relative;
+  margin: 0 auto;
+}
+.sequence-section .sequence-storyT h2 {
+  color: #000000;
+  font-weight: 10000;
+  padding: 25rem 6.25rem; /* Equivalent to 400px 100px assuming 16px base */
+  text-align: center;
+}
+.sequence-section .sequence-storyT h2 .sequence-line {
+  height: auto !important;
+  background-color: transparent !important;
+  font-family: "maskk" !important;
+  font-size: max(min(0.3125rem + 3.000vw, 4.125rem), 1.75rem); /* Scaled from var(--font_66) */
+  font-weight: 900;
+  text-align: center !important;
+}
+.sequence-section .sequence-storyT h2 * {
+  font-weight: 900;
+}
+.sequence-section .sequence-storyT h2 .sequence-span-tag {
+  color: #000000;
+  font-size: max(min(0.3125rem + 3.000vw, 4.125rem), 1.75rem); /* Scaled from var(--font_66) */
+  font-family: "gothambold" !important;
+  font-weight: 1000;
+  position: relative;
+  min-height: 2.1875rem; /* Equivalent to 35px assuming 16px base */
+  max-height: 2.5rem; /* Equivalent to 40px assuming 16px base */
+  z-index: 999;
+}
+.sequence-section .sequence-storyT #span_tag_32::after,
+.sequence-section .sequence-storyT #span_tag_33::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 105%;
+  height: 0.25rem; /* Equivalent to 4px assuming 16px base */
+  background: url("/content/dam/aemigrate/uploaded-folder/image/Path%204346.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.sequence-section .sequence-storyT #span_tag_33::after {
+  left: -0.625rem; /* Equivalent to -10px assuming 16px base */
+}
+.sequence-section .sequence-storyT #span_tag_1::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 90%;
+  width: 94%;
+  height: 50%;
+  background: url("/content/dam/aemigrate/uploaded-folder/image/Group%20159@2x_b.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.sequence-section .sequence-storyT .sequence-span-tag img {
+  position: absolute;
+  width: 105%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+}
+.sequence-section .sequence-storyT .sequence-span-tag.sequence-extra_s img {
+  width: 110%;
+  left: -10%;
+}
+.sequence-section .sequence-afterLayerBottom {
+  position: absolute !important;
+  z-index: 111 !important;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+.sequence-section .sequence-afterLayerBottom img {
+  position: absolute;
+  bottom: -4.6875rem; /* Equivalent to -75px assuming 16px base */
+  left: 0;
+  width: 110vw;
+  max-width: calc(120rem + 10vw); /* Equivalent to calc(1920px + 10vw) assuming 16px base */
+  transform: translate(-5vw, 0);
+  height: 9.375rem; /* Equivalent to 150px assuming 16px base */
+  z-index: 4;
+}
+@media screen and (max-width: 768px) {
+  .sequence-section {
+    height: 150vh;
+  }
+  .sequence-section .sequence-frameSequence {
+    min-height: calc(100vh + 1.875rem); /* Equivalent to calc(100vh + 30px) assuming 16px base */
+  }
+}

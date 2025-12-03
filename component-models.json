@@ -142,6 +142,17 @@
     ]
   },
   {
+    "id": "backToTopContainer",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "backToTop",
     "fields": [
       {
@@ -153,7 +164,91 @@
     ]
   },
   {
-    "id": "chapterImage",
+    "id": "beginForm",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Background Image",
+        "name": "backgroundImage",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Car Image",
+        "name": "carImage",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Title",
+        "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Close Icon",
+        "name": "closeIcon",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Full Name",
+        "name": "fullName",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Contact No.",
+        "name": "contactNo",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Email ID",
+        "name": "emailId",
+        "valueType": "string"
+      },
+      {
+        "component": "date-time",
+        "label": "Date of Birth",
+        "name": "dateOfBirth"
+      },
+      {
+        "component": "radio-group",
+        "label": "Which SUV Experience you are interested in?",
+        "name": "suvExperience",
+        "options": [
+          {
+            "label": "Expeditions",
+            "value": "1"
+          },
+          {
+            "label": "Weekend Drives",
+            "value": "2"
+          },
+          {
+            "label": "Conquer 4x4",
+            "value": "3"
+          }
+        ],
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Submit Button Link",
+        "name": "submitButtonLink",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Submit Button Icon",
+        "name": "submitButtonIcon",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "chapterItem",
     "fields": [
       {
         "component": "reference",
@@ -173,15 +268,15 @@
     "id": "chaptersGallery",
     "fields": [
       {
-        "component": "aem-tag",
-        "label": "Desktop Title",
-        "name": "desktopTitle",
+        "component": "richtext",
+        "label": "Title Desktop",
+        "name": "titleDesktop",
         "valueType": "string"
       },
       {
-        "component": "aem-tag",
-        "label": "Mobile Title",
-        "name": "mobileTitle",
+        "component": "richtext",
+        "label": "Title Mobile",
+        "name": "titleMobile",
         "valueType": "string"
       },
       {
@@ -191,38 +286,16 @@
         "valueType": "string"
       },
       {
-        "component": "reference",
-        "label": "Gallery CTA Icon",
-        "name": "galleryCtaIcon",
-        "valueType": "string"
+        "component": "container",
+        "itemType": "chapterItem",
+        "label": "Chapters",
+        "name": "chapters",
+        "valueType": "array"
       },
       {
         "component": "aem-content",
-        "label": "Gallery CTA Link",
-        "name": "galleryCtaLink",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "experienceSection",
-    "fields": [
-      {
-        "component": "reference",
-        "label": "Background Top Image",
-        "name": "backgroundTopImage",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "Background Main Image",
-        "name": "backgroundMainImage",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "label": "Main Heading",
-        "name": "mainHeading",
+        "label": "Gallery Icon",
+        "name": "galleryIcon",
         "valueType": "string"
       }
     ]
@@ -232,14 +305,14 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Icon",
-        "name": "icon",
+        "label": "Main Image",
+        "name": "mainImage",
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Title",
-        "name": "title",
+        "component": "richtext",
+        "label": "Heading",
+        "name": "heading",
         "valueType": "string"
       },
       {
@@ -255,15 +328,38 @@
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "CTA Label",
-        "name": "ctaLabel",
+        "component": "richtext",
+        "label": "CTA Text",
+        "name": "ctaText",
         "valueType": "string"
       },
       {
         "component": "reference",
         "label": "CTA Icon",
         "name": "ctaIcon",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "experienceSection",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Background Image Top",
+        "name": "backgroundImageTop",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Background Image Main",
+        "name": "backgroundImageMain",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Main Heading",
+        "name": "mainHeading",
         "valueType": "string"
       }
     ]
@@ -288,12 +384,6 @@
         "label": "Answer",
         "name": "answer",
         "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "Link",
-        "name": "link",
-        "valueType": "string"
       }
     ]
   },
@@ -302,56 +392,38 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Footer Top Image",
-        "name": "footerTopImage",
+        "label": "Top Image",
+        "name": "topImage",
         "valueType": "string"
       },
       {
         "component": "reference",
         "label": "Footer Logo",
-        "name": "footerLogo",
+        "name": "logo",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Contact Us Text",
-        "name": "contactUsText",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "Expeditions and Weekenders Email",
-        "name": "expeditionsEmail",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "4x4 Masters Email",
-        "name": "mastersEmail",
+        "label": "Contact Us",
+        "name": "contactUs",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "More Contact Text",
-        "name": "moreContactText",
+        "label": "Additional Contacts",
+        "name": "additionalContacts",
         "valueType": "string"
       },
       {
-        "component": "aem-content",
-        "label": "Terms of Use Link",
-        "name": "termsOfUse",
-        "valueType": "string"
+        "component": "container",
+        "items": "footerLink",
+        "label": "Footer Links",
+        "name": "footerLinks"
       },
       {
-        "component": "aem-content",
-        "label": "Data Provider Consent Policy Link",
-        "name": "dataProviderConsentPolicy",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "Privacy Policy Link",
-        "name": "privacyPolicy",
+        "component": "reference",
+        "label": "Back To Top Image",
+        "name": "backToTopImage",
         "valueType": "string"
       },
       {
@@ -363,12 +435,23 @@
     ]
   },
   {
+    "id": "footerLink",
+    "fields": [
+      {
+        "component": "aem-content",
+        "label": "Link",
+        "name": "link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "header",
     "fields": [
       {
         "component": "reference",
-        "label": "Logo Image",
-        "name": "logoImage",
+        "label": "Logo Desktop",
+        "name": "logoDesktop",
         "valueType": "string"
       },
       {
@@ -378,45 +461,75 @@
         "valueType": "string"
       },
       {
-        "component": "aem-content",
-        "label": "About Link",
-        "name": "aboutLink",
+        "component": "reference",
+        "label": "Instagram Icon Desktop",
+        "name": "instaIconDesktop",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Experiences Link",
-        "name": "experiencesLink",
+        "label": "Instagram Link Desktop",
+        "name": "instaLinkDesktop",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Request Invite Link",
-        "name": "requestInviteLink",
+        "label": "About Link Desktop",
+        "name": "aboutLinkDesktop",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Instagram Link",
-        "name": "instagramLink",
+        "label": "Experiences Link Desktop",
+        "name": "experiencesLinkDesktop",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Request Invite Desktop",
+        "name": "requestInviteDesktop",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Instagram Icon",
-        "name": "instagramIcon",
+        "label": "Phone Menu Background",
+        "name": "phoneMenuBg",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "About Link Mobile",
+        "name": "aboutLinkMobile",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Experiences Link Mobile",
+        "name": "experiencesLinkMobile",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Request Invite Mobile",
+        "name": "requestInviteMobile",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Phone Menu Back Image",
-        "name": "phoneMenuBackImage",
+        "label": "Instagram Icon Mobile",
+        "name": "instaIconMobile",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Instagram Link Mobile",
+        "name": "instaLinkMobile",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Phone Menu Logo",
-        "name": "phoneMenuLogo",
+        "label": "Logo Mobile",
+        "name": "logoMobile",
         "valueType": "string"
       }
     ]
@@ -432,20 +545,20 @@
       },
       {
         "component": "reference",
-        "label": "Logo Image",
-        "name": "logoImage",
+        "label": "Rock Image",
+        "name": "rockImage",
         "valueType": "string"
       },
       {
         "component": "richtext",
         "label": "Adventure Text",
-        "name": "adventureText",
+        "name": "advText",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Adventure Text Image",
-        "name": "adventureTextImage",
+        "label": "SUV Back Image",
+        "name": "suvBackImage",
         "valueType": "string"
       },
       {
@@ -457,12 +570,23 @@
     ]
   },
   {
+    "id": "dot",
+    "fields": [
+      {
+        "component": "boolean",
+        "label": "Active",
+        "name": "active",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
     "id": "phoneMenu",
     "fields": [
       {
         "component": "reference",
-        "label": "Back Image",
-        "name": "backImage",
+        "label": "Background Image",
+        "name": "backgroundImage",
         "valueType": "string"
       },
       {
@@ -642,6 +766,145 @@
     ]
   },
   {
+    "id": "reason",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Title",
+        "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Description",
+        "name": "description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "rockNRoadSection",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Top Image",
+        "name": "topImage",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Heading",
+        "name": "heading",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Tribe Image",
+        "name": "tribeImage",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Bottom Image",
+        "name": "bottomImage",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "sequenceSection",
+    "fields": [
+      {
+        "component": "richtext",
+        "label": "Headline",
+        "name": "headline",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Headline Images",
+        "name": "headlineImages",
+        "valueType": "array"
+      },
+      {
+        "component": "reference",
+        "label": "Bottom Image",
+        "name": "bottomImage",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "spitiSection",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Image 1",
+        "name": "image1",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image 2",
+        "name": "image2",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image 3 Desktop",
+        "name": "image3Desktop",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image 3 Mobile",
+        "name": "image3Mobile",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Title 1",
+        "name": "title1",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Date",
+        "name": "date",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Title 2",
+        "name": "title2",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Location",
+        "name": "location",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "CTA Link",
+        "name": "cta"
+      },
+      {
+        "component": "reference",
+        "label": "CTA Icon",
+        "name": "ctaIcon",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Bottom Layer Image",
+        "name": "bottomLayerImage",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "storySequence",
     "fields": [
       {
@@ -660,6 +923,47 @@
         "component": "reference",
         "label": "Bottom Image",
         "name": "bottomImage",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "upcomingDrive",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Title",
+        "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Subtitle",
+        "name": "subtitle",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Description",
+        "name": "description",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "CTA Link",
+        "name": "cta",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "CTA Icon",
+        "name": "ctaIcon",
         "valueType": "string"
       }
     ]

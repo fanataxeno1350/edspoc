@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Chapter-Image",
-      "id": "chapterImage",
+      "title": "Chapter-Item",
+      "id": "chapterItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "chapterImage",
-              "name": "Chapter-Image"
+              "model": "chapterItem",
+              "name": "Chapter-Item"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
     {
-      "id": "chapterImage",
+      "id": "chapterItem",
       "fields": [
         {
           "component": "reference",
@@ -54,15 +54,15 @@
       "id": "chaptersGallery",
       "fields": [
         {
-          "component": "aem-tag",
-          "label": "Desktop Title",
-          "name": "desktopTitle",
+          "component": "richtext",
+          "label": "Title Desktop",
+          "name": "titleDesktop",
           "valueType": "string"
         },
         {
-          "component": "aem-tag",
-          "label": "Mobile Title",
-          "name": "mobileTitle",
+          "component": "richtext",
+          "label": "Title Mobile",
+          "name": "titleMobile",
           "valueType": "string"
         },
         {
@@ -72,15 +72,16 @@
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "Gallery CTA Icon",
-          "name": "galleryCtaIcon",
-          "valueType": "string"
+          "component": "container",
+          "itemType": "chapterItem",
+          "label": "Chapters",
+          "name": "chapters",
+          "valueType": "array"
         },
         {
           "component": "aem-content",
-          "label": "Gallery CTA Link",
-          "name": "galleryCtaLink",
+          "label": "Gallery Icon",
+          "name": "galleryIcon",
           "valueType": "string"
         }
       ]
@@ -90,7 +91,7 @@
     {
       "id": "chaptersGallery",
       "components": [
-        "chapterImage"
+        "chapterItem"
       ]
     }
   ]

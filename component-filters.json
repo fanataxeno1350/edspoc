@@ -26,16 +26,32 @@
       "faqs",
       "registrationFormBegin",
       "footer",
-      "backToTop"
+      "backToTop",
+      "homeDots",
+      "sequenceSection",
+      "spitiSection",
+      "rockNRoadSection",
+      "upcomingDriveList",
+      "beginForm",
+      "backToTopContainer"
     ]
+  },
+  {
+    "id": "backToTopContainer"
   },
   {
     "id": "backToTop"
   },
   {
+    "id": "beginForm",
+    "components": [
+      "beginForm"
+    ]
+  },
+  {
     "id": "chaptersGallery",
     "components": [
-      "chapterImage"
+      "chapterItem"
     ]
   },
   {
@@ -53,7 +69,7 @@
   {
     "id": "footer",
     "components": [
-      "footer"
+      "footerLink"
     ]
   },
   {
@@ -69,7 +85,16 @@
     ]
   },
   {
-    "id": "phoneMenu"
+    "id": "homeDots",
+    "components": [
+      "dot"
+    ]
+  },
+  {
+    "id": "phoneMenu",
+    "components": [
+      "phoneMenu"
+    ]
   },
   {
     "id": "reasonsToJoinRockNRoad",
@@ -84,9 +109,33 @@
     ]
   },
   {
+    "id": "rockNRoadSection",
+    "components": [
+      "reason"
+    ]
+  },
+  {
+    "id": "sequenceSection",
+    "components": [
+      "sequenceSection"
+    ]
+  },
+  {
+    "id": "spitiSection",
+    "components": [
+      "spitiSection"
+    ]
+  },
+  {
     "id": "storySequence",
     "components": [
       "storySequence"
+    ]
+  },
+  {
+    "id": "upcomingDriveList",
+    "components": [
+      "upcomingDrive"
     ]
   },
   {
