@@ -89,11 +89,11 @@ export default function decorate(block) {
     if (image) {
       const cardImageWrapper = document.createElement('div');
       cardImageWrapper.classList.add('latestblogs-listing--cardimagewrapper');
-      const imgElement = image.querySelector('img');
-      if (imgElement) {
-        const optimizedPic = createOptimizedPicture(imgElement.src, imgElement.alt);
+      // const imgElement = image.querySelector('img');
+      if (image) {
+        const optimizedPic = createOptimizedPicture(image.src, image.alt);
         optimizedPic.classList.add('latestblogs-listing--cardimage', 'latestblogs-w-100', 'latestblogs-h-100');
-        moveInstrumentation(imgElement, optimizedPic.querySelector('img'));
+        moveInstrumentation(image, optimizedPic.querySelector('img'));
         cardImageWrapper.append(optimizedPic);
       } else {
         const anchorImg = image.querySelector('a[href$=".webp"], a[href$=".jpeg"], a[href$=".png"], a[href$=".jpg"]');
