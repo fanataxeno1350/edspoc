@@ -496,49 +496,8 @@
     ]
   },
   {
-    "id": "latestBlogs",
-    "fields": [
-      {
-        "component": "richtext",
-        "label": "Heading",
-        "name": "heading",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "label": "Description",
-        "name": "description",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "CTA Link",
-        "name": "ctaLink",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "label": "CTA Text",
-        "name": "ctaText",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "CTA Icon",
-        "name": "ctaIcon",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "blogCard",
     "fields": [
-      {
-        "component": "aem-content",
-        "label": "Blog Link",
-        "name": "link",
-        "valueType": "string"
-      },
       {
         "component": "reference",
         "label": "Image",
@@ -546,15 +505,50 @@
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "label": "Date",
         "name": "date",
         "valueType": "string"
       },
       {
-        "component": "richtext",
-        "label": "Blog Title",
+        "component": "text",
+        "label": "Title",
         "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Link",
+        "name": "link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "latestBlogs",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Heading",
+        "name": "heading",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Description",
+        "name": "description",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "View All Link",
+        "name": "viewAllLink",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "View All Icon",
+        "name": "viewAllIcon",
         "valueType": "string"
       }
     ]
