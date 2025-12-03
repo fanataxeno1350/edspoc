@@ -174,14 +174,14 @@
       },
       {
         "component": "reference",
-        "label": "Car Image",
-        "name": "carImage",
+        "label": "Background Car Image",
+        "name": "bgCarImage",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Form Title",
-        "name": "formTitle",
+        "label": "Header",
+        "name": "header",
         "valueType": "string"
       },
       {
@@ -236,14 +236,20 @@
       },
       {
         "component": "richtext",
-        "label": "Submit Button Label",
-        "name": "submitButtonLabel",
+        "label": "Submit Button Text",
+        "name": "submitButtonText",
         "valueType": "string"
       },
       {
         "component": "reference",
         "label": "Submit Button Icon",
         "name": "submitButtonIcon",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Thank You Close Icon",
+        "name": "thankYouCloseIcon",
         "valueType": "string"
       }
     ]
@@ -269,13 +275,13 @@
     "id": "chaptersGallery",
     "fields": [
       {
-        "component": "richtext",
+        "component": "aem-tag",
         "label": "Desktop Title",
         "name": "desktopTitle",
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "aem-tag",
         "label": "Mobile Title",
         "name": "mobileTitle",
         "valueType": "string"
@@ -287,32 +293,49 @@
         "valueType": "string"
       },
       {
-        "component": "container",
-        "itemResourceType": "chapterImage",
-        "label": "Images",
-        "name": "images"
-      },
-      {
-        "component": "aem-content",
-        "label": "CTA Link",
-        "name": "ctaLink",
+        "component": "reference",
+        "label": "Gallery CTA Icon",
+        "name": "galleryCtaIcon",
         "valueType": "string"
       },
       {
-        "component": "reference",
-        "label": "CTA Image",
-        "name": "ctaImage",
+        "component": "aem-content",
+        "label": "Gallery CTA Link",
+        "name": "galleryCtaLink",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "experienceItem",
+    "id": "experienceSection",
     "fields": [
       {
         "component": "reference",
-        "label": "Image",
-        "name": "image",
+        "label": "Background Top Image",
+        "name": "backgroundTopImage",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Background Main Image",
+        "name": "backgroundMainImage",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Main Heading",
+        "name": "mainHeading",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "experience",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Icon",
+        "name": "icon",
         "valueType": "string"
       },
       {
@@ -335,8 +358,8 @@
       },
       {
         "component": "text",
-        "label": "CTA Text",
-        "name": "ctaText",
+        "label": "CTA Label",
+        "name": "ctaLabel",
         "valueType": "string"
       },
       {
@@ -348,10 +371,10 @@
     ]
   },
   {
-    "id": "faqItem",
+    "id": "faq",
     "fields": [
       {
-        "component": "richtext",
+        "component": "text",
         "label": "Question",
         "name": "question",
         "valueType": "string"
@@ -370,31 +393,8 @@
       },
       {
         "component": "aem-content",
-        "label": "Answer Links",
-        "name": "answerLinks",
-        "valueType": "array"
-      }
-    ]
-  },
-  {
-    "id": "contact",
-    "fields": [
-      {
-        "component": "richtext",
-        "label": "Title",
-        "name": "title",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "label": "Text",
-        "name": "text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "Email Link",
-        "name": "email",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       }
     ]
@@ -404,38 +404,55 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Top Image",
-        "name": "topImage",
+        "label": "Footer Top Image",
+        "name": "footerTopImage",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Logo",
-        "name": "logo",
+        "label": "Footer Logo",
+        "name": "footerLogo",
         "valueType": "string"
       },
       {
-        "block": "contact",
-        "component": "container",
-        "fieldType": "block",
-        "label": "Contacts",
-        "name": "contacts"
+        "component": "richtext",
+        "label": "Contact Us Text",
+        "name": "contactUsText",
+        "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Terms of Use",
+        "label": "Expeditions and Weekenders Email",
+        "name": "expeditionsEmail",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "4x4 Masters Email",
+        "name": "mastersEmail",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "More Contact Text",
+        "name": "moreContactText",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Terms of Use Link",
         "name": "termsOfUse",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Data Provider Consent Policy",
+        "label": "Data Provider Consent Policy Link",
         "name": "dataProviderConsentPolicy",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Privacy Policy",
+        "label": "Privacy Policy Link",
         "name": "privacyPolicy",
         "valueType": "string"
       },
@@ -443,12 +460,6 @@
         "component": "richtext",
         "label": "Copyright",
         "name": "copyright",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "Back To Top Icon",
-        "name": "backToTopIcon",
         "valueType": "string"
       }
     ]
@@ -458,8 +469,8 @@
     "fields": [
       {
         "component": "reference",
-        "label": "Desktop Logo",
-        "name": "desktopLogo",
+        "label": "Logo Image",
+        "name": "logoImage",
         "valueType": "string"
       },
       {
@@ -500,8 +511,8 @@
       },
       {
         "component": "reference",
-        "label": "Phone Menu Background",
-        "name": "phoneMenuBackground",
+        "label": "Phone Menu Back Image",
+        "name": "phoneMenuBackImage",
         "valueType": "string"
       },
       {
@@ -535,8 +546,8 @@
       },
       {
         "component": "reference",
-        "label": "Inline Image",
-        "name": "inlineImage",
+        "label": "Adventure Text Image",
+        "name": "adventureTextImage",
         "valueType": "string"
       },
       {
@@ -553,7 +564,8 @@
       {
         "component": "boolean",
         "label": "Active",
-        "name": "active"
+        "name": "active",
+        "valueType": "boolean"
       }
     ]
   },
@@ -743,7 +755,7 @@
     ]
   },
   {
-    "id": "step",
+    "id": "rockNRoadStep",
     "fields": [
       {
         "component": "text",
@@ -770,8 +782,8 @@
       },
       {
         "component": "text",
-        "label": "Headline",
-        "name": "headline",
+        "label": "Reason Title",
+        "name": "reasonTitle",
         "valueType": "string"
       },
       {
@@ -781,8 +793,7 @@
         "valueType": "string"
       },
       {
-        "component": "container",
-        "itemType": "step",
+        "component": "rockNRoadStep",
         "label": "Steps",
         "name": "steps"
       },
@@ -799,15 +810,15 @@
     "fields": [
       {
         "component": "richtext",
-        "label": "Headline",
-        "name": "headline",
+        "label": "Heading",
+        "name": "heading",
         "valueType": "string"
       },
       {
         "component": "reference",
-        "label": "Headline Images",
+        "label": "Inline Image",
         "multiple": true,
-        "name": "headlineImages",
+        "name": "inlineImage",
         "valueType": "string"
       },
       {
@@ -913,7 +924,7 @@
     ]
   },
   {
-    "id": "upcomingDriveItem",
+    "id": "upcomingDrive",
     "fields": [
       {
         "component": "reference",
@@ -922,13 +933,13 @@
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "label": "Title",
         "name": "title",
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "label": "Subtitle",
         "name": "subtitle",
         "valueType": "string"
@@ -940,7 +951,7 @@
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "text",
         "label": "CTA Text",
         "name": "ctaText",
         "valueType": "string"

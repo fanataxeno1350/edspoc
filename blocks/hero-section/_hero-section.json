@@ -41,8 +41,8 @@
         },
         {
           "component": "reference",
-          "label": "Inline Image",
-          "name": "inlineImage",
+          "label": "Adventure Text Image",
+          "name": "adventureTextImage",
           "valueType": "string"
         },
         {

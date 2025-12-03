@@ -39,7 +39,8 @@
         {
           "component": "boolean",
           "label": "Active",
-          "name": "active"
+          "name": "active",
+          "valueType": "boolean"
         }
       ]
     }

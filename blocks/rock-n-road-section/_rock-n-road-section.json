@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Step",
-      "id": "step",
+      "title": "Rock-N-Road-Step",
+      "id": "rockNRoadStep",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "step",
-              "name": "Step"
+              "model": "rockNRoadStep",
+              "name": "Rock-N-Road-Step"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
     {
-      "id": "step",
+      "id": "rockNRoadStep",
       "fields": [
         {
           "component": "text",
@@ -61,8 +61,8 @@
         },
         {
           "component": "text",
-          "label": "Headline",
-          "name": "headline",
+          "label": "Reason Title",
+          "name": "reasonTitle",
           "valueType": "string"
         },
         {
@@ -72,8 +72,7 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "itemType": "step",
+          "component": "rockNRoadStep",
           "label": "Steps",
           "name": "steps"
         },
@@ -90,7 +89,7 @@
     {
       "id": "rockNRoadSection",
       "components": [
-        "step"
+        "rockNRoadStep"
       ]
     }
   ]

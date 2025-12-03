@@ -3,51 +3,44 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const beginFormContainer = document.createElement('div');
-  beginFormContainer.className = 'begin-form-container';
+  beginFormContainer.classList.add('begin-form-container');
   moveInstrumentation(block, beginFormContainer);
 
-  // Background Image
-  const bgImageWrapper = block.querySelector('[data-aue-prop="bgImage"]');
-  if (bgImageWrapper) {
-    const img = bgImageWrapper.querySelector('img');
-    if (img) {
-      const pic = createOptimizedPicture(img.src, img.alt);
-      pic.className = 'begin-form-bg-image';
-      moveInstrumentation(img, pic.querySelector('img'));
-      beginFormContainer.append(pic);
-    } else {
-      // Handle case where img is inside an anchor or directly the anchor
-      const anchor = bgImageWrapper.querySelector('a[href]');
+  const bgImageRef = block.querySelector('[data-aue-prop="bgImage"]');
+  if (bgImageRef) {
+    let bgImage = bgImageRef.querySelector('img');
+    if (!bgImage) {
+      const anchor = bgImageRef.querySelector('a');
       if (anchor) {
-        const src = anchor.href;
-        const alt = anchor.title || '';
-        const pic = createOptimizedPicture(src, alt);
-        pic.className = 'begin-form-bg-image';
-        moveInstrumentation(anchor, pic.querySelector('img'));
-        beginFormContainer.append(pic);
+        bgImage = document.createElement('img');
+        bgImage.src = anchor.href;
+        bgImage.alt = anchor.title || '';
       }
+    }
+    if (bgImage) {
+      const pic = createOptimizedPicture(bgImage.src, bgImage.alt);
+      pic.classList.add('begin-form-bg-image');
+      moveInstrumentation(bgImage, pic.querySelector('img'));
+      beginFormContainer.append(pic);
     }
   }
 
-  // Car Image
-  const carImageWrapper = block.querySelector('[data-aue-prop="carImage"]');
-  if (carImageWrapper) {
-    const img = carImageWrapper.querySelector('img');
-    if (img) {
-      const pic = createOptimizedPicture(img.src, img.alt);
-      pic.className = 'begin-form-bg-car-image';
-      moveInstrumentation(img, pic.querySelector('img'));
-      beginFormContainer.append(pic);
-    } else {
-      const anchor = carImageWrapper.querySelector('a[href]');
+  const bgCarImageRef = block.querySelector('[data-aue-prop="bgCarImage"]');
+  if (bgCarImageRef) {
+    let bgCarImage = bgCarImageRef.querySelector('img');
+    if (!bgCarImage) {
+      const anchor = bgCarImageRef.querySelector('a');
       if (anchor) {
-        const src = anchor.href;
-        const alt = anchor.title || '';
-        const pic = createOptimizedPicture(src, alt);
-        pic.className = 'begin-form-bg-car-image';
-        moveInstrumentation(anchor, pic.querySelector('img'));
-        beginFormContainer.append(pic);
+        bgCarImage = document.createElement('img');
+        bgCarImage.src = anchor.href;
+        bgCarImage.alt = anchor.title || '';
       }
+    }
+    if (bgCarImage) {
+      const pic = createOptimizedPicture(bgCarImage.src, bgCarImage.alt);
+      pic.classList.add('begin-form-bg-car-image');
+      moveInstrumentation(bgCarImage, pic.querySelector('img'));
+      beginFormContainer.append(pic);
     }
   }
 
@@ -57,267 +50,304 @@ export default function decorate(block) {
   form.action = '/ajax_save_invite';
   form.enctype = 'multipart/form-data';
 
-  // CSRF token (hardcoded for now as it's not in AEM model)
-  const csrfInput = document.createElement('input');
-  csrfInput.type = 'hidden';
-  csrfInput.name = 'csrfmiddlewaretoken';
-  csrfInput.value = 'uHuz8U0YxVhNt2dMQJGx43XDYdXpaIsQggJHTnuNxKyg1so9lExnDKt2vtiEOBKR'; // Placeholder
-  form.append(csrfInput);
+  const csrfToken = document.createElement('input');
+  csrfToken.type = 'hidden';
+  csrfToken.name = 'csrfmiddlewaretoken';
+  csrfToken.value = 'uHuz8U0YxVhNt2dMQJGx43XDYdXpaIsQggJHTnuNxKyg1so9lExnDKt2vtiEOBKR'; // Placeholder, actual value might be dynamic
+  form.append(csrfToken);
 
-  const formHeader = document.createElement('div');
-  formHeader.className = 'begin-form-header';
+  const headerDiv = document.createElement('div');
+  headerDiv.classList.add('begin-form-header');
 
-  const formTitleWrapper = block.querySelector('[data-aue-prop="formTitle"]');
-  if (formTitleWrapper) {
-    const h2 = document.createElement('h2');
-    h2.append(...formTitleWrapper.childNodes);
-    moveInstrumentation(formTitleWrapper, h2);
-    formHeader.append(h2);
+  const headerText = document.createElement('h2');
+  const headerContent = block.querySelector('[data-aue-prop="header"]');
+  if (headerContent) {
+    headerText.append(...headerContent.childNodes);
+    moveInstrumentation(headerContent, headerText);
+  } else {
+    headerText.textContent = 'Let\'s Begin!';
   }
+  headerDiv.append(headerText);
 
   const closeLink = document.createElement('a');
-  closeLink.className = 'begin-form-close';
+  closeLink.classList.add('begin-form-close');
   closeLink.href = 'javascript:void(0)';
-  closeLink.onclick = () => closeBeginReg(); // Assuming closeBeginReg is defined globally or imported
+  closeLink.onclick = () => window.closeBeginReg();
 
-  const closeIconWrapper = block.querySelector('[data-aue-prop="closeIcon"]');
-  if (closeIconWrapper) {
-    const img = closeIconWrapper.querySelector('img');
-    if (img) {
-      const pic = createOptimizedPicture(img.src, img.alt);
-      moveInstrumentation(img, pic.querySelector('img'));
-      closeLink.append(pic);
-    } else {
-      const anchor = closeIconWrapper.querySelector('a[href]');
+  const closeIconRef = block.querySelector('[data-aue-prop="closeIcon"]');
+  if (closeIconRef) {
+    let closeIcon = closeIconRef.querySelector('img');
+    if (!closeIcon) {
+      const anchor = closeIconRef.querySelector('a');
       if (anchor) {
-        const src = anchor.href;
-        const alt = anchor.title || '';
-        const pic = createOptimizedPicture(src, alt);
-        moveInstrumentation(anchor, pic.querySelector('img'));
-        closeLink.append(pic);
+        closeIcon = document.createElement('img');
+        closeIcon.src = anchor.href;
+        closeIcon.alt = anchor.title || '';
       }
     }
+    if (closeIcon) {
+      const pic = createOptimizedPicture(closeIcon.src, closeIcon.alt);
+      moveInstrumentation(closeIcon, pic.querySelector('img'));
+      closeLink.append(pic);
+    }
   }
-  formHeader.append(closeLink);
-  form.append(formHeader);
+  headerDiv.append(closeLink);
+  form.append(headerDiv);
 
   const fieldset = document.createElement('fieldset');
-  fieldset.className = 'begin-form-fieldset';
+  fieldset.classList.add('begin-form-fieldset');
 
   // Full Name and Contact No.
   const flexGroup1 = document.createElement('div');
-  flexGroup1.className = 'begin-form-flex-group';
+  flexGroup1.classList.add('begin-form-flex-group');
 
   const fullNameField = document.createElement('div');
-  fullNameField.className = 'begin-form-field';
-  const fullNameLabelWrapper = block.querySelector('[data-aue-prop="fullName"]');
-  if (fullNameLabelWrapper) {
-    const label = document.createElement('label');
-    label.className = 'begin-form-label begin-form-min-width-label';
-    label.append(...fullNameLabelWrapper.childNodes);
-    moveInstrumentation(fullNameLabelWrapper, label);
-    fullNameField.append(label);
+  fullNameField.classList.add('begin-form-field');
+  const fullNameLabel = document.createElement('label');
+  fullNameLabel.classList.add('begin-form-label', 'begin-form-min-width-label');
+  const fullNameContent = block.querySelector('[data-aue-prop="fullName"]');
+  if (fullNameContent) {
+    fullNameLabel.append(...fullNameContent.childNodes);
+    moveInstrumentation(fullNameContent, fullNameLabel);
+  } else {
+    fullNameLabel.textContent = 'Full Name';
   }
   const fullNameInput = document.createElement('input');
   fullNameInput.type = 'text';
   fullNameInput.name = 'name';
   fullNameInput.maxLength = '50';
-  fullNameInput.className = 'begin-form-input';
+  fullNameInput.classList.add('begin-form-input');
   fullNameInput.required = true;
   fullNameInput.id = 'id_name';
-  fullNameField.append(fullNameInput);
+  fullNameField.append(fullNameLabel, fullNameInput);
   flexGroup1.append(fullNameField);
 
   const contactNoField = document.createElement('div');
-  contactNoField.className = 'begin-form-field';
-  const contactNoLabelWrapper = block.querySelector('[data-aue-prop="contactNo"]');
-  if (contactNoLabelWrapper) {
-    const label = document.createElement('label');
-    label.className = 'begin-form-label begin-form-min-width-label';
-    label.append(...contactNoLabelWrapper.childNodes);
-    moveInstrumentation(contactNoLabelWrapper, label);
-    contactNoField.append(label);
+  contactNoField.classList.add('begin-form-field');
+  const contactNoLabel = document.createElement('label');
+  contactNoLabel.classList.add('begin-form-label', 'begin-form-min-width-label');
+  const contactNoContent = block.querySelector('[data-aue-prop="contactNo"]');
+  if (contactNoContent) {
+    contactNoLabel.append(...contactNoContent.childNodes);
+    moveInstrumentation(contactNoContent, contactNoLabel);
+  } else {
+    contactNoLabel.textContent = 'Contact No.';
   }
   const contactNoInput = document.createElement('input');
   contactNoInput.type = 'tel';
   contactNoInput.name = 'mobile';
   contactNoInput.maxLength = '10';
-  contactNoInput.className = 'begin-form-input';
+  contactNoInput.classList.add('begin-form-input');
   contactNoInput.required = true;
   contactNoInput.id = 'id_mobile';
-  contactNoField.append(contactNoInput);
+  contactNoField.append(contactNoLabel, contactNoInput);
   flexGroup1.append(contactNoField);
   fieldset.append(flexGroup1);
 
   // Email ID and Date of Birth
   const flexGroup2 = document.createElement('div');
-  flexGroup2.className = 'begin-form-flex-group';
+  flexGroup2.classList.add('begin-form-flex-group');
 
   const emailIdField = document.createElement('div');
-  emailIdField.className = 'begin-form-field';
-  const emailIdLabelWrapper = block.querySelector('[data-aue-prop="emailId"]');
-  if (emailIdLabelWrapper) {
-    const label = document.createElement('label');
-    label.className = 'begin-form-label begin-form-min-width-label';
-    label.append(...emailIdLabelWrapper.childNodes);
-    moveInstrumentation(emailIdLabelWrapper, label);
-    emailIdField.append(label);
+  emailIdField.classList.add('begin-form-field');
+  const emailIdLabel = document.createElement('label');
+  emailIdLabel.classList.add('begin-form-label', 'begin-form-min-width-label');
+  const emailIdContent = block.querySelector('[data-aue-prop="emailId"]');
+  if (emailIdContent) {
+    emailIdLabel.append(...emailIdContent.childNodes);
+    moveInstrumentation(emailIdContent, emailIdLabel);
+  } else {
+    emailIdLabel.textContent = 'Email ID';
   }
   const emailIdInput = document.createElement('input');
   emailIdInput.type = 'email';
   emailIdInput.name = 'email';
   emailIdInput.maxLength = '100';
-  emailIdInput.className = 'begin-form-input';
+  emailIdInput.classList.add('begin-form-input');
   emailIdInput.required = true;
   emailIdInput.id = 'id_email';
-  emailIdField.append(emailIdInput);
+  emailIdField.append(emailIdLabel, emailIdInput);
   flexGroup2.append(emailIdField);
 
   const dateOfBirthField = document.createElement('div');
-  dateOfBirthField.className = 'begin-form-field';
-  const dateOfBirthLabelWrapper = block.querySelector('[data-aue-prop="dateOfBirth"]');
-  if (dateOfBirthLabelWrapper) {
-    const label = document.createElement('label');
-    label.className = 'begin-form-label begin-form-min-width-label';
-    label.htmlFor = 'id_date_of_birth';
-    label.append(...dateOfBirthLabelWrapper.childNodes);
-    moveInstrumentation(dateOfBirthLabelWrapper, label);
-    dateOfBirthField.append(label);
+  dateOfBirthField.classList.add('begin-form-field');
+  const dateOfBirthLabel = document.createElement('label');
+  dateOfBirthLabel.classList.add('begin-form-label', 'begin-form-min-width-label');
+  dateOfBirthLabel.htmlFor = 'id_date_of_birth';
+  const dateOfBirthContent = block.querySelector('[data-aue-prop="dateOfBirth"]');
+  if (dateOfBirthContent) {
+    dateOfBirthLabel.append(...dateOfBirthContent.childNodes);
+    moveInstrumentation(dateOfBirthContent, dateOfBirthLabel);
+  } else {
+    dateOfBirthLabel.textContent = 'Date of Birth';
   }
   const dateOfBirthInput = document.createElement('input');
   dateOfBirthInput.type = 'date';
   dateOfBirthInput.name = 'date_of_birth';
   dateOfBirthInput.placeholder = 'mm/dd/yyyy';
-  dateOfBirthInput.className = 'begin-form-input';
+  dateOfBirthInput.classList.add('begin-form-input');
   dateOfBirthInput.required = true;
   dateOfBirthInput.id = 'id_date_of_birth';
-  dateOfBirthField.append(dateOfBirthInput);
+  dateOfBirthField.append(dateOfBirthLabel, dateOfBirthInput);
   flexGroup2.append(dateOfBirthField);
   fieldset.append(flexGroup2);
 
   // SUV Experience Radio Group
   const flexGroup3 = document.createElement('div');
-  flexGroup3.className = 'begin-form-flex-group';
+  flexGroup3.classList.add('begin-form-flex-group');
 
   const suvExperienceField = document.createElement('div');
-  suvExperienceField.className = 'begin-form-field begin-form-after-foot begin-form-radio-group';
-  const suvExperienceLabelWrapper = block.querySelector('[data-aue-prop="suvExperience"]');
-  if (suvExperienceLabelWrapper) {
-    const label = document.createElement('label');
-    label.className = 'begin-form-label';
-    label.append(...suvExperienceLabelWrapper.childNodes);
-    moveInstrumentation(suvExperienceLabelWrapper, label);
-    suvExperienceField.append(label);
-
-    const radioWrapper = document.createElement('div');
-    radioWrapper.id = 'id_category_id';
-    radioWrapper.className = 'begin-form-input-radio-wrapper';
-
-    // Iterate over options for suvExperience
-    const options = suvExperienceLabelWrapper.querySelectorAll('[data-aue-label]');
-    options.forEach((option, index) => {
-      const optionDiv = document.createElement('div');
-      const optionLabel = document.createElement('label');
-      optionLabel.htmlFor = `id_category_id_${index}`;
-      const optionInput = document.createElement('input');
-      optionInput.type = 'radio';
-      optionInput.name = 'category_id';
-      optionInput.value = option.getAttribute('data-aue-value') || '';
-      optionInput.className = 'begin-form-input-radio';
-      optionInput.required = true;
-      optionInput.id = `id_category_id_${index}`;
-      if (index === 0) {
-        optionInput.checked = true;
-      }
-      optionLabel.append(optionInput, option.textContent.trim());
-      moveInstrumentation(option, optionLabel);
-      optionDiv.append(optionLabel);
-      radioWrapper.append(optionDiv);
-    });
-    suvExperienceField.append(radioWrapper);
+  suvExperienceField.classList.add('begin-form-field', 'begin-form-after-foot', 'begin-form-radio-group');
+  const suvExperienceLabel = document.createElement('label');
+  suvExperienceLabel.classList.add('begin-form-label');
+  const suvExperienceContent = block.querySelector('[data-aue-prop="suvExperience"]');
+  if (suvExperienceContent) {
+    suvExperienceLabel.append(...suvExperienceContent.childNodes);
+    moveInstrumentation(suvExperienceContent, suvExperienceLabel);
+  } else {
+    suvExperienceLabel.textContent = 'Which SUV Experience you are interested in?';
   }
+  suvExperienceField.append(suvExperienceLabel);
+
+  const radioWrapper = document.createElement('div');
+  radioWrapper.id = 'id_category_id';
+  radioWrapper.classList.add('begin-form-input-radio-wrapper');
+
+  const radioOptions = block.querySelectorAll('[data-aue-model="suvExperience"] > div');
+  if (radioOptions.length > 0) {
+    radioOptions.forEach((option, index) => {
+      const div = document.createElement('div');
+      const label = document.createElement('label');
+      label.htmlFor = `id_category_id_${index}`;
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'category_id';
+      input.value = option.dataset.aueValue || index + 1; // Assuming value is stored in data-aue-value or use index
+      input.classList.add('begin-form-input-radio');
+      input.required = true;
+      input.id = `id_category_id_${index}`;
+      if (index === 0) {
+        input.checked = true;
+      }
+      label.append(input, ...option.childNodes);
+      moveInstrumentation(option, label);
+      div.append(label);
+      radioWrapper.append(div);
+    });
+  } else {
+    // Default options if not authored
+    const defaultOptions = [
+      { label: 'Expeditions', value: '1' },
+      { label: 'Weekend Drives', value: '2' },
+      { label: 'Conquer 4x4', value: '3' },
+    ];
+
+    defaultOptions.forEach((option, index) => {
+      const div = document.createElement('div');
+      const label = document.createElement('label');
+      label.htmlFor = `id_category_id_${index}`;
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'category_id';
+      input.value = option.value;
+      input.classList.add('begin-form-input-radio');
+      input.required = true;
+      input.id = `id_category_id_${index}`;
+      if (index === 0) {
+        input.checked = true;
+      }
+      label.append(input, option.label);
+      div.append(label);
+      radioWrapper.append(div);
+    });
+  }
+
+  suvExperienceField.append(radioWrapper);
   flexGroup3.append(suvExperienceField);
   fieldset.append(flexGroup3);
 
   // Submit Button
   const submitWrapper = document.createElement('div');
-  submitWrapper.className = 'begin-form-submit-wrapper';
+  submitWrapper.classList.add('begin-form-submit-wrapper');
 
   const inviteMsg = document.createElement('span');
-  inviteMsg.className = 'begin-form-invite-msg';
+  inviteMsg.classList.add('begin-form-invite-msg');
   submitWrapper.append(inviteMsg);
 
   const submitCta = document.createElement('a');
-  submitCta.className = 'begin-form-cta begin-form-submit-button';
+  submitCta.classList.add('begin-form-cta', 'begin-form-submit-button');
   submitCta.id = 'beginSubmit';
   submitCta.href = 'javascript:void(0)';
   submitCta.rel = 'no-follow';
 
-  const submitButtonLabelWrapper = block.querySelector('[data-aue-prop="submitButtonLabel"]');
-  if (submitButtonLabelWrapper) {
-    const p = document.createElement('p');
-    p.append(...submitButtonLabelWrapper.childNodes);
-    moveInstrumentation(submitButtonLabelWrapper, p);
-    submitCta.append(p);
+  const submitButtonTextP = document.createElement('p');
+  const submitButtonTextContent = block.querySelector('[data-aue-prop="submitButtonText"]');
+  if (submitButtonTextContent) {
+    submitButtonTextP.append(...submitButtonTextContent.childNodes);
+    moveInstrumentation(submitButtonTextContent, submitButtonTextP);
+  } else {
+    submitButtonTextP.textContent = 'Submit';
   }
+  submitCta.append(submitButtonTextP);
 
-  const submitButtonIconWrapper = block.querySelector('[data-aue-prop="submitButtonIcon"]');
-  if (submitButtonIconWrapper) {
-    const img = submitButtonIconWrapper.querySelector('img');
-    if (img) {
-      const pic = createOptimizedPicture(img.src, img.alt);
-      moveInstrumentation(img, pic.querySelector('img'));
-      submitCta.append(pic);
-    } else {
-      const anchor = submitButtonIconWrapper.querySelector('a[href]');
+  const submitButtonIconRef = block.querySelector('[data-aue-prop="submitButtonIcon"]');
+  if (submitButtonIconRef) {
+    let submitButtonIcon = submitButtonIconRef.querySelector('img');
+    if (!submitButtonIcon) {
+      const anchor = submitButtonIconRef.querySelector('a');
       if (anchor) {
-        const src = anchor.href;
-        const alt = anchor.title || '';
-        const pic = createOptimizedPicture(src, alt);
-        moveInstrumentation(anchor, pic.querySelector('img'));
-        submitCta.append(pic);
+        submitButtonIcon = document.createElement('img');
+        submitButtonIcon.src = anchor.href;
+        submitButtonIcon.alt = anchor.title || '';
       }
+    }
+    if (submitButtonIcon) {
+      const pic = createOptimizedPicture(submitButtonIcon.src, submitButtonIcon.alt);
+      moveInstrumentation(submitButtonIcon, pic.querySelector('img'));
+      submitCta.append(pic);
     }
   }
   submitWrapper.append(submitCta);
   fieldset.append(submitWrapper);
+
   form.append(fieldset);
   beginFormContainer.append(form);
 
-  // Thank you page (empty as per JSON, but structure retained)
-  const thankyouPage = document.createElement('div');
-  thankyouPage.className = 'begin-form-thankyou-page';
+  // Thank You Page
+  const thankYouPage = document.createElement('div');
+  thankYouPage.classList.add('begin-form-thankyou-page');
 
-  const thankyouHeader = document.createElement('div');
-  thankyouHeader.className = 'begin-form-header begin-form-header-fixed';
-  thankyouHeader.append(document.createElement('div')); // Empty div
+  const thankYouHeader = document.createElement('div');
+  thankYouHeader.classList.add('begin-form-header', 'begin-form-header-fixed');
+  thankYouHeader.append(document.createElement('div')); // Empty div for alignment
 
-  const thankyouCloseLink = document.createElement('a');
-  thankyouCloseLink.className = 'begin-form-close';
-  thankyouCloseLink.href = 'javascript:void(0)';
-  thankyouCloseLink.onclick = () => refreshPage(); // Assuming refreshPage is defined globally or imported
+  const thankYouCloseLink = document.createElement('a');
+  thankYouCloseLink.classList.add('begin-form-close');
+  thankYouCloseLink.href = 'javascript:void(0)';
+  thankYouCloseLink.onclick = () => window.refreshPage();
 
-  // Re-use close icon for thank you page if needed, or leave empty
-  if (closeIconWrapper) {
-    const img = closeIconWrapper.querySelector('img');
-    if (img) {
-      const pic = createOptimizedPicture(img.src, img.alt);
-      // No moveInstrumentation here as it's a reuse, not a primary source
-      thankyouCloseLink.append(pic.cloneNode(true));
-    } else {
-      const anchor = closeIconWrapper.querySelector('a[href]');
+  const thankYouCloseIconRef = block.querySelector('[data-aue-prop="thankYouCloseIcon"]');
+  if (thankYouCloseIconRef) {
+    let thankYouCloseIcon = thankYouCloseIconRef.querySelector('img');
+    if (!thankYouCloseIcon) {
+      const anchor = thankYouCloseIconRef.querySelector('a');
       if (anchor) {
-        const src = anchor.href;
-        const alt = anchor.title || '';
-        const pic = createOptimizedPicture(src, alt);
-        thankyouCloseLink.append(pic.cloneNode(true));
+        thankYouCloseIcon = document.createElement('img');
+        thankYouCloseIcon.src = anchor.href;
+        thankYouCloseIcon.alt = anchor.title || '';
       }
     }
+    if (thankYouCloseIcon) {
+      const pic = createOptimizedPicture(thankYouCloseIcon.src, thankYouCloseIcon.alt);
+      moveInstrumentation(thankYouCloseIcon, pic.querySelector('img'));
+      thankYouCloseLink.append(pic);
+    }
   }
-  thankyouHeader.append(thankyouCloseLink);
-  thankyouPage.append(thankyouHeader);
-  thankyouPage.append(document.createElement('h2')); // Empty h2
-  beginFormContainer.append(thankyouPage);
+  thankYouHeader.append(thankYouCloseLink);
+  thankYouPage.append(thankYouHeader);
+
+  thankYouPage.append(document.createElement('h2')); // Empty h2 for thank you message
+  beginFormContainer.append(thankYouPage);
 
   block.replaceChildren(beginFormContainer);
 }

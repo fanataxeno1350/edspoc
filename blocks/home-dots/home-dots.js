@@ -1,22 +1,23 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const homeDotsContainer = document.createElement('div');
-  homeDotsContainer.className = 'home-dots-container';
+  const container = document.createElement('div');
+  container.classList.add('home-dots-container');
 
   [...block.children].forEach((row) => {
     const dot = document.createElement('span');
-    dot.className = 'home-dots-dot';
+    dot.classList.add('home-dots-dot');
+    moveInstrumentation(row, dot);
 
-    const activeProp = row.querySelector('[data-aue-prop="active"]');
-    if (activeProp && activeProp.textContent.toLowerCase() === 'true') {
+    const active = row.querySelector('[data-aue-prop="active"]');
+    if (active && active.textContent.trim() === 'true') {
       dot.classList.add('home-dots-active');
     }
 
-    moveInstrumentation(row, dot);
-    homeDotsContainer.append(dot);
+    container.append(dot);
   });
 
   block.innerHTML = '';
-  block.append(homeDotsContainer);
+  block.append(container);
 }

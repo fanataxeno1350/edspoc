@@ -29,14 +29,14 @@
         },
         {
           "component": "reference",
-          "label": "Car Image",
-          "name": "carImage",
+          "label": "Background Car Image",
+          "name": "bgCarImage",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Form Title",
-          "name": "formTitle",
+          "label": "Header",
+          "name": "header",
           "valueType": "string"
         },
         {
@@ -91,14 +91,20 @@
         },
         {
           "component": "richtext",
-          "label": "Submit Button Label",
-          "name": "submitButtonLabel",
+          "label": "Submit Button Text",
+          "name": "submitButtonText",
           "valueType": "string"
         },
         {
           "component": "reference",
           "label": "Submit Button Icon",
           "name": "submitButtonIcon",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Thank You Close Icon",
+          "name": "thankYouCloseIcon",
           "valueType": "string"
         }
       ]

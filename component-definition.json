@@ -178,15 +178,15 @@
           }
         },
         {
-          "title": "Experience-Item",
-          "id": "experienceItem",
+          "title": "Experience",
+          "id": "experience",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "experienceItem",
-                  "name": "Experience-Item"
+                  "model": "experience",
+                  "name": "Experience"
                 }
               }
             }
@@ -209,15 +209,15 @@
           }
         },
         {
-          "title": "FAQ Item",
-          "id": "faqItem",
+          "title": "FAQ",
+          "id": "faq",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "faqItem",
-                  "name": "FAQ Item"
+                  "model": "faq",
+                  "name": "FAQ"
                 }
               }
             }
@@ -234,21 +234,6 @@
                   "filter": "footer",
                   "model": "footer",
                   "name": "Footer"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Contact",
-          "id": "contact",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "model": "contact",
-                  "name": "Contact"
                 }
               }
             }
@@ -397,15 +382,15 @@
           }
         },
         {
-          "title": "Step",
-          "id": "step",
+          "title": "Rock-N-Road-Step",
+          "id": "rockNRoadStep",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "step",
-                  "name": "Step"
+                  "model": "rockNRoadStep",
+                  "name": "Rock-N-Road-Step"
                 }
               }
             }
@@ -476,15 +461,15 @@
           }
         },
         {
-          "title": "Upcoming-Drive-Item",
-          "id": "upcomingDriveItem",
+          "title": "Upcoming-Drive",
+          "id": "upcomingDrive",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "upcomingDriveItem",
-                  "name": "Upcoming-Drive-Item"
+                  "model": "upcomingDrive",
+                  "name": "Upcoming-Drive"
                 }
               }
             }

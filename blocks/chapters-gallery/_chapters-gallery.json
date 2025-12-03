@@ -54,13 +54,13 @@
       "id": "chaptersGallery",
       "fields": [
         {
-          "component": "richtext",
+          "component": "aem-tag",
           "label": "Desktop Title",
           "name": "desktopTitle",
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "aem-tag",
           "label": "Mobile Title",
           "name": "mobileTitle",
           "valueType": "string"
@@ -72,21 +72,15 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "itemResourceType": "chapterImage",
-          "label": "Images",
-          "name": "images"
-        },
-        {
-          "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "component": "reference",
+          "label": "Gallery CTA Icon",
+          "name": "galleryCtaIcon",
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "CTA Image",
-          "name": "ctaImage",
+          "component": "aem-content",
+          "label": "Gallery CTA Link",
+          "name": "galleryCtaLink",
           "valueType": "string"
         }
       ]

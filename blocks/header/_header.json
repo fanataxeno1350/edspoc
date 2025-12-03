@@ -23,8 +23,8 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Desktop Logo",
-          "name": "desktopLogo",
+          "label": "Logo Image",
+          "name": "logoImage",
           "valueType": "string"
         },
         {
@@ -65,8 +65,8 @@
         },
         {
           "component": "reference",
-          "label": "Phone Menu Background",
-          "name": "phoneMenuBackground",
+          "label": "Phone Menu Back Image",
+          "name": "phoneMenuBackImage",
           "valueType": "string"
         },
         {

@@ -2,91 +2,86 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const rockNRoadSection = document.createElement('section');
-  rockNRoadSection.classList.add('rock-n-road-section', 'rock-n-road-homeSlot');
-  moveInstrumentation(block, rockNRoadSection);
+  const rockNroadSection = document.createElement('section');
+  rockNroadSection.classList.add('rock-n-road-section', 'rock-n-road-homeSlot');
+  moveInstrumentation(block, rockNroadSection);
 
   // Top Image
-  const topImageWrapper = document.createElement('div');
-  topImageWrapper.classList.add('rock-n-road-afterLayerTop');
+  const topImageContainer = document.createElement('div');
+  topImageContainer.classList.add('rock-n-road-afterLayerTop');
   const topImage = block.querySelector('[data-aue-prop="topImage"]');
   if (topImage) {
     const pic = createOptimizedPicture(topImage.src, topImage.alt);
     moveInstrumentation(topImage, pic.querySelector('img'));
-    topImageWrapper.append(pic);
+    topImageContainer.append(pic);
   }
-  rockNRoadSection.append(topImageWrapper);
+  rockNroadSection.append(topImageContainer);
 
-  const reasonJoinDiv = document.createElement('div');
-  reasonJoinDiv.classList.add('rock-n-road-reasonJoin', 'rock-n-road-paddingCon');
+  // Reason to Join Section
+  const reasonJoinContainer = document.createElement('div');
+  reasonJoinContainer.classList.add('rock-n-road-reasonJoin', 'rock-n-road-paddingCon');
 
-  // Headline
-  const reasonRockDiv = document.createElement('div');
-  reasonRockDiv.classList.add('rock-n-road-reason_rock');
-  const headlineSpan = document.createElement('span');
-  const headline = block.querySelector('[data-aue-prop="headline"]');
-  if (headline) {
-    headlineSpan.append(...headline.childNodes);
-    moveInstrumentation(headline, headlineSpan);
+  const reasonRock = document.createElement('div');
+  reasonRock.classList.add('rock-n-road-reason_rock');
+  const reasonTitleSpan = document.createElement('span');
+  const reasonTitle = block.querySelector('[data-aue-prop="reasonTitle"]');
+  if (reasonTitle) {
+    reasonTitleSpan.append(...reasonTitle.childNodes);
+    moveInstrumentation(reasonTitle, reasonTitleSpan);
   }
-  reasonRockDiv.append(headlineSpan);
-  reasonJoinDiv.append(reasonRockDiv);
+  reasonRock.append(reasonTitleSpan);
+  reasonJoinContainer.append(reasonRock);
 
-  // Tribe Image
-  const tribeRoadDiv = document.createElement('div');
-  tribeRoadDiv.classList.add('rock-n-road-tribe_road');
+  const tribeRoad = document.createElement('div');
+  tribeRoad.classList.add('rock-n-road-tribe_road');
   const tribeImage = block.querySelector('[data-aue-prop="tribeImage"]');
   if (tribeImage) {
     const pic = createOptimizedPicture(tribeImage.src, tribeImage.alt);
     moveInstrumentation(tribeImage, pic.querySelector('img'));
-    tribeRoadDiv.append(pic);
+    tribeRoad.append(pic);
   }
-  reasonJoinDiv.append(tribeRoadDiv);
+  reasonJoinContainer.append(tribeRoad);
 
-  // Steps
-  const stepsRoadDiv = document.createElement('div');
-  stepsRoadDiv.classList.add('rock-n-road-steps_road');
-  const stepsContainer = block.querySelector('[data-aue-prop="steps"]');
-  if (stepsContainer) {
-    const stepItems = stepsContainer.querySelectorAll('[data-aue-model="step"]');
-    stepItems.forEach((step) => {
-      const subStepsDiv = document.createElement('div');
-      subStepsDiv.classList.add('rock-n-road-sub_steps');
-      moveInstrumentation(step, subStepsDiv);
+  const stepsRoad = document.createElement('div');
+  stepsRoad.classList.add('rock-n-road-steps_road');
 
-      const titleDiv = document.createElement('div');
-      const title = step.querySelector('[data-aue-prop="title"]');
-      if (title) {
-        titleDiv.append(...title.childNodes);
-        moveInstrumentation(title, titleDiv);
-      }
-      subStepsDiv.append(titleDiv);
+  const steps = block.querySelectorAll('[data-aue-model="rockNRoadStep"]');
+  steps.forEach((step) => {
+    const subSteps = document.createElement('div');
+    subSteps.classList.add('rock-n-road-sub_steps');
 
-      const descriptionP = document.createElement('p');
-      const description = step.querySelector('[data-aue-prop="description"]');
-      if (description) {
-        descriptionP.append(...description.childNodes);
-        moveInstrumentation(description, descriptionP);
-      }
-      subStepsDiv.append(descriptionP);
+    const titleDiv = document.createElement('div');
+    const title = step.querySelector('[data-aue-prop="title"]');
+    if (title) {
+      titleDiv.append(...title.childNodes);
+      moveInstrumentation(title, titleDiv);
+    }
+    subSteps.append(titleDiv);
 
-      stepsRoadDiv.append(subStepsDiv);
-    });
-  }
-  reasonJoinDiv.append(stepsRoadDiv);
-  rockNRoadSection.append(reasonJoinDiv);
+    const descriptionP = document.createElement('p');
+    const description = step.querySelector('[data-aue-prop="description"]');
+    if (description) {
+      descriptionP.append(...description.childNodes);
+      moveInstrumentation(description, descriptionP);
+    }
+    subSteps.append(descriptionP);
+
+    stepsRoad.append(subSteps);
+  });
+  reasonJoinContainer.append(stepsRoad);
+  rockNroadSection.append(reasonJoinContainer);
 
   // Bottom Image
-  const bottomImageWrapper = document.createElement('div');
-  bottomImageWrapper.classList.add('rock-n-road-afterLayerBottom');
+  const bottomImageContainer = document.createElement('div');
+  bottomImageContainer.classList.add('rock-n-road-afterLayerBottom');
   const bottomImage = block.querySelector('[data-aue-prop="bottomImage"]');
   if (bottomImage) {
     const pic = createOptimizedPicture(bottomImage.src, bottomImage.alt);
     moveInstrumentation(bottomImage, pic.querySelector('img'));
-    bottomImageWrapper.append(pic);
+    bottomImageContainer.append(pic);
   }
-  rockNRoadSection.append(bottomImageWrapper);
+  rockNroadSection.append(bottomImageContainer);
 
   block.innerHTML = '';
-  block.append(rockNRoadSection);
+  block.append(rockNroadSection);
 }

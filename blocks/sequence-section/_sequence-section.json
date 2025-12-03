@@ -23,15 +23,15 @@
       "fields": [
         {
           "component": "richtext",
-          "label": "Headline",
-          "name": "headline",
+          "label": "Heading",
+          "name": "heading",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Headline Images",
+          "label": "Inline Image",
           "multiple": true,
-          "name": "headlineImages",
+          "name": "inlineImage",
           "valueType": "string"
         },
         {
@@ -45,7 +45,10 @@
   ],
   "filters": [
     {
-      "id": "sequenceSection"
+      "id": "sequenceSection",
+      "components": [
+        "sequenceSection"
+      ]
     }
   ]
 }

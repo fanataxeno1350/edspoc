@@ -1,10 +1,13 @@
-.hero-section-wrapper {
-  height: 100vh;
+.hero-section {
+  height: 100vh; /* Equivalent to 100% of viewport height */
   max-height: 1080px;
   min-height: 680px;
-  position: relative; /* CRITICAL: Added to ensure proper positioning of child elements */
+  position: relative;
+  padding: 0;
+  scroll-behavior: smooth;
 }
-.hero-section-video-slider {
+
+.hero-video-slider {
   position: relative;
   width: 100%;
   height: 100%;
@@ -12,20 +15,24 @@
   min-height: 500px;
   overflow: hidden;
 }
-.hero-section-slides {
+
+.hero-slides {
   display: flex;
   height: 100%;
   transition: transform 0.5s ease-in-out;
 }
-.hero-section-slide {
+
+.hero-slide {
   min-width: 100%;
 }
-.hero-section-video {
+
+.hero-slide-video {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.hero-section-overlay {
+
+.hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -33,7 +40,8 @@
   width: 100%;
   background: rgba(0, 0, 0, 0.125);
 }
-.hero-section-upcoming-event {
+
+.hero-upcoming-event {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -41,84 +49,69 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px; /* Equivalent to 1.875rem assuming 16px base */
+  gap: 30px; /* Equivalent to 30px */
   justify-content: center;
 }
-.hero-section-rock-img {
+
+.hero-rock-img {
   width: 20vw;
-  min-width: 200px; /* Equivalent to 12.5rem assuming 16px base */
-  max-width: 500px; /* Equivalent to 31.25rem assuming 16px base */
+  min-width: 200px;
+  max-width: 500px;
 }
-.hero-section-adv-text {
-  font-size: max(min(5px + 2.45vw, 48px), 24px); /* Equivalent to dynamic font size */
+
+.hero-adv-text {
+  font-size: clamp(24px, 5vw, 48px); /* Equivalent to max(min(5px + 2.45vw, 48px), 24px) */
   color: #ffffff;
-  font-family: "gothambold";
+  font-family: 'gothambold';
   text-align: center;
-  margin-top: 30px; /* Equivalent to 1.875rem assuming 16px base */
+  margin-top: 30px; /* Equivalent to 30px */
   font-weight: 600;
 }
-.hero-section-suv-back {
+
+.hero-suv-back {
   white-space: pre;
   position: relative;
-  font-family: "gothambold";
-  color: #ffffff;
-  font-weight: 600;
+  font-family: 'gothambold';
 }
-.hero-section-suv-back > img {
+
+.hero-suv-back > img {
   position: absolute;
   width: 114%;
-  height: 19px; /* Equivalent to 1.1875rem assuming 16px base */
+  height: 19px; /* Equivalent to 19px */
   top: auto;
-  bottom: -28px; /* Equivalent to -1.75rem assuming 16px base */
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -28px; /* Equivalent to -28px */
   z-index: 1;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
-.hero-section-after-layer-bottom {
-  position: absolute;
+
+.hero-afterLayerBottom {
+  position: absolute !important;
   bottom: 0;
-  left: 0;
   width: 100%;
   height: auto;
-  z-index: 111;
+  z-index: 111 !important;
 }
-.hero-section-after-layer-bottom img {
+
+.hero-afterLayerBottom img {
   position: absolute;
-  bottom: -35px; /* Equivalent to -2.1875rem assuming 16px base */
+  bottom: -35px; /* Equivalent to -35px */
   left: 0;
   width: 110vw;
   max-width: calc(1920px + 10vw);
   transform: translate(-5vw, 0);
-  height: 70px; /* Equivalent to 4.375rem assuming 16px base */
+  height: 70px; /* Equivalent to 70px */
   z-index: 4;
 }
-.hero-section-first-after-layer-bottom img {
-  height: 100px; /* Equivalent to 6.25rem assuming 16px base */
-  bottom: -50px; /* Equivalent to -3.125rem assuming 16px base */
-}
 
-@media screen and (max-width: 1400px) {
-  .hero-section-upcoming-event {
-    margin-top: auto;
-  }
-  .hero-section-rock-img {
-    width: 18vw;
-  }
-  .hero-section-adv-text {
-    margin-top: 0;
-  }
-  .hero-section-first-after-layer-bottom img {
-    height: 100px; /* Equivalent to 6.25rem assuming 16px base */
-    bottom: -50px; /* Equivalent to -3.125rem assuming 16px base */
-  }
-}
 @media screen and (max-width: 768px) {
-  .hero-section-wrapper {
+  .hero-section {
     height: 70vh;
-    min-height: 550px; /* Equivalent to 34.375rem assuming 16px base */
+    min-height: 550px;
   }
-  .hero-section-first-after-layer-bottom img {
-    height: 60px; /* Equivalent to 3.75rem assuming 16px base */
-    bottom: -30px; /* Equivalent to -1.875rem assuming 16px base */
+
+  .hero-afterLayerBottom img {
+    height: 60px; /* Equivalent to 60px */
+    bottom: -30px; /* Equivalent to -30px */
   }
 }

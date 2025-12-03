@@ -3,17 +3,17 @@
   top: 0;
   right: -100%;
   z-index: 9999;
-  display: none;
+  display: flex;
   flex-direction: column;
-  padding: calc(40px + 5%) calc(40px + 5%) calc(40px + 5%) calc(40px + 5%);
-  padding-top: 100px;
+  padding: calc(40px + 5%) calc(40px + 5%) 5%;
   align-items: flex-end;
-  gap: 50px;
+  gap: 3.125rem; /* Equivalent to 50px assuming 16px base */
+  padding-top: 6.25rem; /* Equivalent to 100px assuming 16px base */
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.87);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(0.625rem); /* Equivalent to 10px assuming 16px base */
+  -webkit-backdrop-filter: blur(0.625rem); /* Equivalent to 10px assuming 16px base */
 }
 .phone-menu-logo {
   position: absolute;
@@ -23,8 +23,8 @@
 }
 .phone-menu-insta-icon img {
   background-color: transparent !important;
-  height: 45px; /* Equivalent to 45px assuming 16px base */
-  width: 45px; /* Equivalent to 45px assuming 16px base */
+  height: 2.8125rem; /* Equivalent to 45px assuming 16px base */
+  width: 2.8125rem; /* Equivalent to 45px assuming 16px base */
 }
 .phone-menu-back {
   position: absolute;
@@ -36,17 +36,17 @@
   opacity: 0.4;
 }
 .phone-menu-container a {
+  all: unset;
+  font-size: 3rem; /* Equivalent to 48px assuming 16px base */
   color: #ffffff;
   font-family: "gothambold";
-  font-size: 3rem; /* Equivalent to 48px assuming 16px base */
 }
-@media screen and (max-width: 768px) {
-  .phone-menu-container {
-    padding: calc(40px + 5%) calc(40px + 5%) calc(40px + 5%) calc(40px + 5%);
-  }
+.phone-menu-request-invite {
+  border: 0.0625rem solid rgba(255, 255, 255, 0.725) !important; /* Equivalent to 1px assuming 16px base */
+  border-radius: 1.875rem !important; /* Equivalent to 30px assuming 16px base */
+  padding: 0.625rem 0.9375rem !important; /* Equivalent to 10px 15px assuming 16px base */
 }
-@media screen and (max-width: 1400px) {
-  .phone-menu-container {
-    padding: calc(40px + 5%) calc(40px + 5%) calc(40px + 5%) calc(40px + 5%);
-  }
+.phone-menu-request-invite:hover {
+  background-color: white !important;
+  color: black !important;
 }

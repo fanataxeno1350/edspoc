@@ -2,28 +2,34 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const imageElement = block.querySelector('div[data-aue-prop="image"]');
-  let img = null;
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  if (imageElement) {
-    img = imageElement.querySelector('img');
+  const container = document.createElement('div');
+  container.className = 'back-to-top-container';
+  container.onclick = goToTop;
+
+  const imageWrapper = block.querySelector('[data-aue-prop="image"]');
+  if (imageWrapper) {
+    let img = imageWrapper.querySelector('img');
     if (!img) {
-      const anchor = imageElement.querySelector('a');
-      if (anchor && (anchor.href.endsWith('.svg') || anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif')))
+      const anchor = imageWrapper.querySelector('a');
+      if (anchor && anchor.href) {
         img = document.createElement('img');
         img.src = anchor.href;
         img.alt = anchor.title || '';
-        moveInstrumentation(anchor, img);
+      }
+    }
+
+    if (img) {
+      const pic = createOptimizedPicture(img.src, img.alt);
+      moveInstrumentation(img, pic.querySelector('img'));
+      container.append(pic);
+      moveInstrumentation(imageWrapper, pic);
     }
   }
 
   block.innerHTML = '';
-  block.className = 'back-to-top-container';
-  block.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  if (img) {
-    const picture = createOptimizedPicture(img.src, img.alt);
-    moveInstrumentation(img, picture.querySelector('img'));
-    block.append(picture);
-  }
+  block.append(container);
 }
