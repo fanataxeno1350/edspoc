@@ -28,7 +28,7 @@ export default function decorate(block) {
   navigationItems.forEach((item) => {
     const stickyNavigationItem = document.createElement('li');
     stickyNavigationItem.classList.add(
-      'sticky-navigation-item',
+      "sticky-navigation-sticky-bottom-nav__item",
       'sticky-navigation-position-relative',
     );
     moveInstrumentation(item, stickyNavigationItem);
@@ -44,6 +44,7 @@ export default function decorate(block) {
     const stickyNavigationLink = document.createElement('a');
     stickyNavigationLink.classList.add(
       "sticky-navigation-sticky-bottom-nav__link",
+      'sticky-navigation-link',
       'sticky-navigation-d-flex',
       'sticky-navigation-flex-column',
       'sticky-navigation-align-items-center',
