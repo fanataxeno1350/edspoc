@@ -2,7 +2,6 @@ body{
     display: flex !important;
     justify-content: center !important;
 }
-
 .bloglisting-section {
   min-height: 220px;
 }
