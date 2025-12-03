@@ -1,4 +1,4 @@
-.carousel-  position-relative {
+.carousel-position-relative {
   position: relative;
 }
 .carousel-primary-swiper {

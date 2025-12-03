@@ -3,55 +3,62 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const slidesContainer = document.createElement('div');
-  slidesContainer.classList.add('carousel-slides');
+  slidesContainer.classList.add('carousel-slides-container');
 
-  [...block.children].forEach((row) => {
+  Array.from(block.children).forEach((row) => {
     const slide = document.createElement('div');
     slide.classList.add('carousel-slide');
 
     const videoLink = row.querySelector('[data-aue-prop="video"]');
     const imageLink = row.querySelector('[data-aue-prop="image"]');
-    const ctaContent = row.querySelector('[data-aue-prop="cta"]');
+    const link = row.querySelector('[data-aue-prop="link"]');
 
     if (videoLink) {
-      const videoWrapper = document.createElement('div');
-      videoWrapper.classList.add('carousel-video-wrapper');
-      const video = document.createElement('video');
-      video.setAttribute('playsinline', '');
-      video.setAttribute('preload', 'metadata');
-      video.setAttribute('loop', '');
-      video.setAttribute('muted', '');
-      video.setAttribute('autoplay', '');
+      const videoElement = document.createElement('video');
+      videoElement.setAttribute('autoplay', '');
+      videoElement.setAttribute('loop', '');
+      videoElement.setAttribute('muted', '');
+      videoElement.setAttribute('playsinline', '');
+      videoElement.setAttribute('preload', 'auto');
+      videoElement.classList.add('carousel-video');
 
       const mp4Source = document.createElement('source');
-      mp4Source.setAttribute('src', videoLink.href);
+      mp4Source.setAttribute('src', videoLink.href || videoLink.textContent.trim());
       mp4Source.setAttribute('type', 'video/mp4');
-      video.append(mp4Source);
+      videoElement.append(mp4Source);
 
       const webmSource = document.createElement('source');
-      webmSource.setAttribute('src', videoLink.href.replace('.mp4', '.webm')); // Assuming webm exists if mp4 does
+      webmSource.setAttribute('src', videoLink.href || videoLink.textContent.trim());
       webmSource.setAttribute('type', 'video/webm');
-      video.append(webmSource);
+      videoElement.append(webmSource);
 
-      moveInstrumentation(videoLink, video);
-      videoWrapper.append(video);
-      slide.append(videoWrapper);
+      slide.append(videoElement);
+      moveInstrumentation(videoLink, videoElement);
     } else if (imageLink) {
-      const picture = createOptimizedPicture(imageLink.href, imageLink.alt || '', true);
-      moveInstrumentation(imageLink, picture.querySelector('img'));
-      slide.append(picture);
+      const img = imageLink.querySelector('img');
+      if (img) {
+        const pic = createOptimizedPicture(img.src, img.alt);
+        slide.append(pic);
+        moveInstrumentation(img, pic.querySelector('img'));
+      } else {
+        const imgElement = document.createElement('img');
+        imgElement.setAttribute('src', imageLink.href || imageLink.textContent.trim());
+        imgElement.setAttribute('alt', '');
+        slide.append(imgElement);
+        moveInstrumentation(imageLink, imgElement);
+      }
     }
 
-    if (ctaContent) {
+    if (link) {
       const ctaWrapper = document.createElement('div');
       ctaWrapper.classList.add('carousel-cta-wrapper');
-      ctaWrapper.append(...ctaContent.childNodes);
-      moveInstrumentation(ctaContent, ctaWrapper);
+      ctaWrapper.append(link);
       slide.append(ctaWrapper);
+      moveInstrumentation(link, ctaWrapper.querySelector('a'));
     }
 
-    moveInstrumentation(row, slide);
     slidesContainer.append(slide);
+    moveInstrumentation(row, slide);
   });
 
   block.innerHTML = '';

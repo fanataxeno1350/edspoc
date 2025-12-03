@@ -199,8 +199,8 @@
       },
       {
         "component": "aem-content",
-        "label": "CTA Link",
-        "name": "cta",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       }
     ]
@@ -212,6 +212,12 @@
         "component": "reference",
         "label": "Image",
         "name": "image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Image Alt Text",
+        "name": "altText",
         "valueType": "string"
       },
       {
@@ -230,6 +236,12 @@
         "component": "aem-content",
         "label": "Link",
         "name": "link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Link Label",
+        "name": "linkLabel",
         "valueType": "string"
       }
     ]
@@ -449,7 +461,7 @@
     ]
   },
   {
-    "id": "blogCard",
+    "id": "blogItem",
     "fields": [
       {
         "component": "reference",
@@ -482,26 +494,20 @@
     "fields": [
       {
         "component": "text",
-        "label": "Heading",
-        "name": "heading",
+        "label": "Section Title",
+        "name": "sectionTitle",
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Description",
-        "name": "description",
+        "component": "richtext",
+        "label": "Section Description",
+        "name": "sectionDescription",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "View All Link",
-        "name": "viewAllLink",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "View All Icon",
-        "name": "viewAllIcon",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
       }
     ]
