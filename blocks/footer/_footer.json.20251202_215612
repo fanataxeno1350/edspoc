@@ -17,60 +17,60 @@
       }
     },
     {
-      "title": "Footer Social Link",
-      "id": "footerSocialLink",
+      "title": "Social-Link",
+      "id": "socialLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerSocialLink",
-              "name": "Footer Social Link"
+              "model": "socialLink",
+              "name": "Social-Link"
             }
           }
         }
       }
     },
     {
-      "title": "Footer Nav Link",
-      "id": "footerNavLink",
+      "title": "Navigation-Link",
+      "id": "navigationLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerNavLink",
-              "name": "Footer Nav Link"
+              "model": "navigationLink",
+              "name": "Navigation-Link"
             }
           }
         }
       }
     },
     {
-      "title": "Footer Language Link",
-      "id": "footerLanguageLink",
+      "title": "Language-Link",
+      "id": "languageLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerLanguageLink",
-              "name": "Footer Language Link"
+              "model": "languageLink",
+              "name": "Language-Link"
             }
           }
         }
       }
     },
     {
-      "title": "Footer Policy Link",
-      "id": "footerPolicyLink",
+      "title": "Policy-Link",
+      "id": "policyLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerPolicyLink",
-              "name": "Footer Policy Link"
+              "model": "policyLink",
+              "name": "Policy-Link"
             }
           }
         }
@@ -89,36 +89,44 @@
         },
         {
           "component": "reference",
-          "label": "Logo Asset",
-          "name": "logoAsset",
+          "label": "Logo Icon",
+          "name": "logoIcon",
           "valueType": "string"
         },
         {
           "component": "container",
-          "itemType": "footerSocialLink",
+          "items": {
+            "$ref": "socialLink"
+          },
           "label": "Social Links",
           "name": "socialLinks"
         },
         {
           "component": "container",
-          "itemType": "footerNavLink",
+          "items": {
+            "$ref": "navigationLink"
+          },
           "label": "Navigation Links",
           "name": "navigationLinks"
         },
         {
           "component": "container",
-          "itemType": "footerLanguageLink",
+          "items": {
+            "$ref": "languageLink"
+          },
           "label": "Language Links",
           "name": "languageLinks"
         },
         {
           "component": "container",
-          "itemType": "footerPolicyLink",
+          "items": {
+            "$ref": "policyLink"
+          },
           "label": "Policy Links",
           "name": "policyLinks"
         },
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Copyright",
           "name": "copyright",
           "valueType": "string"
@@ -126,12 +134,12 @@
       ]
     },
     {
-      "id": "footerSocialLink",
+      "id": "socialLink",
       "fields": [
         {
           "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -143,12 +151,12 @@
       ]
     },
     {
-      "id": "footerNavLink",
+      "id": "navigationLink",
       "fields": [
         {
           "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -160,12 +168,12 @@
       ]
     },
     {
-      "id": "footerLanguageLink",
+      "id": "languageLink",
       "fields": [
         {
           "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -173,22 +181,16 @@
           "label": "Label",
           "name": "label",
           "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Language Code",
-          "name": "langCode",
-          "valueType": "string"
         }
       ]
     },
     {
-      "id": "footerPolicyLink",
+      "id": "policyLink",
       "fields": [
         {
           "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
           "valueType": "string"
         },
         {
@@ -204,10 +206,10 @@
     {
       "id": "footer",
       "components": [
-        "footerSocialLink",
-        "footerNavLink",
-        "footerLanguageLink",
-        "footerPolicyLink"
+        "socialLink",
+        "navigationLink",
+        "languageLink",
+        "policyLink"
       ]
     }
   ]

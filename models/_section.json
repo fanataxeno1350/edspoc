@@ -60,7 +60,8 @@
         "footer",
         "scarp",
         "statsByTheNumber",
-        "header"
+        "header",
+        "videoComponent"
       ]
     }
   ]

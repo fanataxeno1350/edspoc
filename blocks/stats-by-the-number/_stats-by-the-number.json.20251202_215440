@@ -56,18 +56,14 @@
         },
         {
           "component": "container",
-          "items": {
-            "type": "statsCard"
-          },
+          "item": "statsCard",
           "label": "Stats Cards",
-          "multiple": true,
-          "name": "cards",
-          "valueType": "object"
+          "name": "statsCards"
         },
         {
           "component": "aem-content",
           "label": "CTA Link",
-          "name": "ctaLink",
+          "name": "cta",
           "valueType": "string"
         }
       ]
