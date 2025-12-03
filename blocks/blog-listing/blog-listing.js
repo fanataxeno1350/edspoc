@@ -27,7 +27,7 @@ export default function decorate(block) {
     blogWrapper.classList.add('bloglisting-section--blog-wrapper', 'bloglisting-blog-wrapper');
 
     const imageContainer = document.createElement('div');
-    const imgElement = blogItem.querySelector('[data-aue-prop="image"] img');
+    const imgElement = blogItem.querySelector('[data-aue-prop="image"]');
     if (imgElement) {
       const pic = createOptimizedPicture(imgElement.src, imgElement.alt);
       pic.classList.add('bloglisting-w-100', 'bloglisting-blog-wrapper--img');
