@@ -43,12 +43,12 @@ export default function decorate(block) {
 
     const stickyNavigationLink = document.createElement('a');
     stickyNavigationLink.classList.add(
-      'sticky-navigation-link',
+      "sticky-navigation-sticky-bottom-nav__link",
       'sticky-navigation-d-flex',
       'sticky-navigation-flex-column',
       'sticky-navigation-align-items-center',
       'sticky-navigation-gap-1',
-      'analytics_cta_click',
+      "sticky-navigation-analytics_cta_click"
     );
 
     if (linkElement) {
