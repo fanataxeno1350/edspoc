@@ -99,7 +99,7 @@
           }
         },
         {
-          "title": "Back-to-Top",
+          "title": "Back-To-Top",
           "id": "backToTop",
           "plugins": {
             "xwalk": {
@@ -108,7 +108,7 @@
                 "template": {
                   "filter": "backToTop",
                   "model": "backToTop",
-                  "name": "Back-to-Top"
+                  "name": "Back-To-Top"
                 }
               }
             }
@@ -147,15 +147,15 @@
           }
         },
         {
-          "title": "Chapter-Item",
-          "id": "chapterItem",
+          "title": "Chapter-Image",
+          "id": "chapterImage",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "chapterItem",
-                  "name": "Chapter-Item"
+                  "model": "chapterImage",
+                  "name": "Chapter-Image"
                 }
               }
             }
@@ -178,15 +178,15 @@
           }
         },
         {
-          "title": "Experience",
-          "id": "experience",
+          "title": "Experience-Card",
+          "id": "experienceCard",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "experience",
-                  "name": "Experience"
+                  "model": "experienceCard",
+                  "name": "Experience-Card"
                 }
               }
             }
@@ -209,15 +209,15 @@
           }
         },
         {
-          "title": "FAQ",
-          "id": "faq",
+          "title": "FAQ Item",
+          "id": "faqItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "faq",
-                  "name": "FAQ"
+                  "model": "faqItem",
+                  "name": "FAQ Item"
                 }
               }
             }
@@ -240,7 +240,7 @@
           }
         },
         {
-          "title": "Footer-Link",
+          "title": "Footer Link",
           "id": "footerLink",
           "plugins": {
             "xwalk": {
@@ -248,7 +248,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "footerLink",
-                  "name": "Footer-Link"
+                  "name": "Footer Link"
                 }
               }
             }
@@ -397,15 +397,15 @@
           }
         },
         {
-          "title": "Reason",
-          "id": "reason",
+          "title": "Rock-N-Road-Step",
+          "id": "rockNRoadStep",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "reason",
-                  "name": "Reason"
+                  "model": "rockNRoadStep",
+                  "name": "Rock-N-Road-Step"
                 }
               }
             }

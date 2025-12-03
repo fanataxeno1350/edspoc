@@ -40,7 +40,10 @@
     "id": "backToTopContainer"
   },
   {
-    "id": "backToTop"
+    "id": "back-to-top",
+    "components": [
+      "backToTop"
+    ]
   },
   {
     "id": "beginForm",
@@ -51,19 +54,19 @@
   {
     "id": "chaptersGallery",
     "components": [
-      "chapterItem"
+      "chapterImage"
     ]
   },
   {
     "id": "experienceSection",
     "components": [
-      "experience"
+      "experienceCard"
     ]
   },
   {
     "id": "faqs",
     "components": [
-      "faq"
+      "faqItem"
     ]
   },
   {
@@ -91,10 +94,7 @@
     ]
   },
   {
-    "id": "phoneMenu",
-    "components": [
-      "phoneMenu"
-    ]
+    "id": "phoneMenu"
   },
   {
     "id": "reasonsToJoinRockNRoad",
@@ -111,7 +111,7 @@
   {
     "id": "rockNRoadSection",
     "components": [
-      "reason"
+      "rockNRoadStep"
     ]
   },
   {

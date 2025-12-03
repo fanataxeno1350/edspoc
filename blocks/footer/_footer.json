@@ -17,7 +17,7 @@
       }
     },
     {
-      "title": "Footer-Link",
+      "title": "Footer Link",
       "id": "footerLink",
       "plugins": {
         "xwalk": {
@@ -25,7 +25,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "model": "footerLink",
-              "name": "Footer-Link"
+              "name": "Footer Link"
             }
           }
         }
@@ -44,38 +44,75 @@
         },
         {
           "component": "reference",
-          "label": "Footer Logo",
+          "label": "Logo",
           "name": "logo",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Contact Us",
-          "name": "contactUs",
+          "label": "Contact Us Title",
+          "name": "contactUsTitle",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Additional Contacts",
-          "name": "additionalContacts",
+          "label": "Expeditions and Weekenders Label",
+          "name": "expeditionsLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Expeditions and Weekenders Email",
+          "name": "expeditionsEmail",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "4x4 Masters Label",
+          "name": "mastersLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "4x4 Masters Email",
+          "name": "mastersEmail",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "For More Title",
+          "name": "forMoreTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "For More Contact 1",
+          "name": "forMoreContact1",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "For More Contact 2",
+          "name": "forMoreContact2",
           "valueType": "string"
         },
         {
           "component": "container",
-          "items": "footerLink",
           "label": "Footer Links",
+          "model": "footerLink",
+          "multi": true,
           "name": "footerLinks"
-        },
-        {
-          "component": "reference",
-          "label": "Back To Top Image",
-          "name": "backToTopImage",
-          "valueType": "string"
         },
         {
           "component": "richtext",
           "label": "Copyright",
           "name": "copyright",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Back To Top Icon",
+          "name": "backToTopIcon",
           "valueType": "string"
         }
       ]
@@ -85,8 +122,14 @@
       "fields": [
         {
           "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "label": "URL",
+          "name": "url",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Text",
+          "name": "text",
           "valueType": "string"
         }
       ]

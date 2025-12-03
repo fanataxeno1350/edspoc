@@ -2,78 +2,86 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const rockNRoadSectionModel = block.querySelector('[data-aue-model="rockNRoadSection"]');
+  const rockNroadSection = document.createElement('section');
+  rockNroadSection.classList.add('rock-n-road-section', 'rock-n-road-homeSlot');
+  moveInstrumentation(block, rockNroadSection);
 
+  // Top Image
   const topImageContainer = document.createElement('div');
   topImageContainer.classList.add('rock-n-road-afterLayerTop');
-  const topImage = rockNRoadSectionModel.querySelector('[data-aue-prop="topImage"]');
+  const topImage = block.querySelector('[data-aue-prop="topImage"]');
   if (topImage) {
     const pic = createOptimizedPicture(topImage.src, topImage.alt);
     moveInstrumentation(topImage, pic.querySelector('img'));
     topImageContainer.append(pic);
   }
+  rockNroadSection.append(topImageContainer);
 
-  const reasonJoinDiv = document.createElement('div');
-  reasonJoinDiv.classList.add('rock-n-road-reasonJoin', 'rock-n-road-paddingCon');
+  // Reason to Join Section
+  const reasonJoinContainer = document.createElement('div');
+  reasonJoinContainer.classList.add('rock-n-road-reasonJoin', 'rock-n-road-paddingCon');
 
-  const reasonRockDiv = document.createElement('div');
-  reasonRockDiv.classList.add('rock-n-road-reason_rock');
-  const headingSpan = document.createElement('span');
-  const heading = rockNRoadSectionModel.querySelector('[data-aue-prop="heading"]');
-  if (heading) {
-    headingSpan.append(...heading.childNodes);
-    moveInstrumentation(heading, headingSpan);
+  const reasonRock = document.createElement('div');
+  reasonRock.classList.add('rock-n-road-reason_rock');
+  const reasonTitleSpan = document.createElement('span');
+  const reasonTitle = block.querySelector('[data-aue-prop="reasonTitle"]');
+  if (reasonTitle) {
+    reasonTitleSpan.append(...reasonTitle.childNodes);
+    moveInstrumentation(reasonTitle, reasonTitleSpan);
   }
-  reasonRockDiv.append(headingSpan);
-  reasonJoinDiv.append(reasonRockDiv);
+  reasonRock.append(reasonTitleSpan);
+  reasonJoinContainer.append(reasonRock);
 
-  const tribeRoadDiv = document.createElement('div');
-  tribeRoadDiv.classList.add('rock-n-road-tribe_road');
-  const tribeImage = rockNRoadSectionModel.querySelector('[data-aue-prop="tribeImage"]');
+  const tribeRoad = document.createElement('div');
+  tribeRoad.classList.add('rock-n-road-tribe_road');
+  const tribeImage = block.querySelector('[data-aue-prop="tribeImage"]');
   if (tribeImage) {
     const pic = createOptimizedPicture(tribeImage.src, tribeImage.alt);
     moveInstrumentation(tribeImage, pic.querySelector('img'));
-    tribeRoadDiv.append(pic);
+    tribeRoad.append(pic);
   }
-  reasonJoinDiv.append(tribeRoadDiv);
+  reasonJoinContainer.append(tribeRoad);
 
-  const stepsRoadDiv = document.createElement('div');
-  stepsRoadDiv.classList.add('rock-n-road-steps_road');
+  const stepsRoad = document.createElement('div');
+  stepsRoad.classList.add('rock-n-road-steps_road');
 
-  const reasonItems = block.querySelectorAll('[data-aue-model="reason"]');
-  reasonItems.forEach((reason) => {
-    const subStepsDiv = document.createElement('div');
-    subStepsDiv.classList.add('rock-n-road-sub_steps');
+  const steps = block.querySelectorAll('[data-aue-model="rockNRoadStep"]');
+  steps.forEach((step) => {
+    const subSteps = document.createElement('div');
+    subSteps.classList.add('rock-n-road-sub_steps');
 
     const titleDiv = document.createElement('div');
-    const title = reason.querySelector('[data-aue-prop="title"]');
+    const title = step.querySelector('[data-aue-prop="title"]');
     if (title) {
       titleDiv.append(...title.childNodes);
       moveInstrumentation(title, titleDiv);
     }
-    subStepsDiv.append(titleDiv);
+    subSteps.append(titleDiv);
 
     const descriptionP = document.createElement('p');
-    const description = reason.querySelector('[data-aue-prop="description"]');
+    const description = step.querySelector('[data-aue-prop="description"]');
     if (description) {
       descriptionP.append(...description.childNodes);
       moveInstrumentation(description, descriptionP);
     }
-    subStepsDiv.append(descriptionP);
-    stepsRoadDiv.append(subStepsDiv);
-  });
-  reasonJoinDiv.append(stepsRoadDiv);
+    subSteps.append(descriptionP);
 
+    stepsRoad.append(subSteps);
+  });
+  reasonJoinContainer.append(stepsRoad);
+  rockNroadSection.append(reasonJoinContainer);
+
+  // Bottom Image
   const bottomImageContainer = document.createElement('div');
   bottomImageContainer.classList.add('rock-n-road-afterLayerBottom');
-  const bottomImage = rockNRoadSectionModel.querySelector('[data-aue-prop="bottomImage"]');
+  const bottomImage = block.querySelector('[data-aue-prop="bottomImage"]');
   if (bottomImage) {
     const pic = createOptimizedPicture(bottomImage.src, bottomImage.alt);
     moveInstrumentation(bottomImage, pic.querySelector('img'));
     bottomImageContainer.append(pic);
   }
+  rockNroadSection.append(bottomImageContainer);
 
   block.innerHTML = '';
-  block.classList.add('rock-n-road-section', 'rock-n-road-homeSlot');
-  block.append(topImageContainer, reasonJoinDiv, bottomImageContainer);
+  block.append(rockNroadSection);
 }

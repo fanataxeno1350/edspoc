@@ -1,0 +1,52 @@
+.phone-menu-container {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  padding: calc(40px + 5%) calc(40px + 5%) calc(40px + 5%) calc(40px + 5%);
+  padding-top: 100px;
+  align-items: flex-end;
+  gap: 50px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.87);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.phone-menu-logo {
+  position: absolute;
+  bottom: 5%;
+  right: calc(40px + 5%);
+  width: 50vw;
+}
+.phone-menu-insta-icon img {
+  background-color: transparent !important;
+  height: 45px; /* Equivalent to 45px assuming 16px base */
+  width: 45px; /* Equivalent to 45px assuming 16px base */
+}
+.phone-menu-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  opacity: 0.4;
+}
+.phone-menu-container a {
+  color: #ffffff;
+  font-family: "gothambold";
+  font-size: 3rem; /* Equivalent to 48px assuming 16px base */
+}
+@media screen and (max-width: 768px) {
+  .phone-menu-container {
+    padding: calc(40px + 5%) calc(40px + 5%) calc(40px + 5%) calc(40px + 5%);
+  }
+}
+@media screen and (max-width: 1400px) {
+  .phone-menu-container {
+    padding: calc(40px + 5%) calc(40px + 5%) calc(40px + 5%) calc(40px + 5%);
+  }
+}

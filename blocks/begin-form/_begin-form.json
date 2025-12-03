@@ -24,19 +24,19 @@
         {
           "component": "reference",
           "label": "Background Image",
-          "name": "backgroundImage",
+          "name": "bgImage",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Car Image",
-          "name": "carImage",
+          "label": "Background Car Image",
+          "name": "bgCarImage",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Title",
-          "name": "title",
+          "component": "richtext",
+          "label": "Header",
+          "name": "header",
           "valueType": "string"
         },
         {
@@ -66,7 +66,8 @@
         {
           "component": "date-time",
           "label": "Date of Birth",
-          "name": "dateOfBirth"
+          "name": "dateOfBirth",
+          "valueType": "string"
         },
         {
           "component": "radio-group",
@@ -89,15 +90,21 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Submit Button Link",
-          "name": "submitButtonLink",
+          "component": "richtext",
+          "label": "Submit Button Text",
+          "name": "submitButtonText",
           "valueType": "string"
         },
         {
           "component": "reference",
           "label": "Submit Button Icon",
           "name": "submitButtonIcon",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Thank You Close Icon",
+          "name": "thankYouCloseIcon",
           "valueType": "string"
         }
       ]

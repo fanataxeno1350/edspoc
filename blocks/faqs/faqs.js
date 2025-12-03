@@ -18,24 +18,23 @@ export default function decorate(block) {
   faqsTandC.classList.add('faqs-tandc');
   faqsPaddingCon.append(faqsTandC);
 
-  const faqItems = block.querySelectorAll('[data-aue-model="faq"]');
-
+  const faqItems = block.querySelectorAll('[data-aue-model="faqItem"]');
   faqItems.forEach((faqItem, index) => {
-    const tandcCont = document.createElement('div');
-    tandcCont.classList.add('faqs-tandc_cont');
-    tandcCont.id = `FAQ_${index + 4}`;
-    moveInstrumentation(faqItem, tandcCont);
+    const faqsTandcCont = document.createElement('div');
+    faqsTandcCont.classList.add('faqs-tandc_cont');
+    faqsTandcCont.id = `FAQ_${index + 4}`;
+    moveInstrumentation(faqItem, faqsTandcCont);
 
-    const tandcText = document.createElement('div');
-    tandcText.classList.add('faqs-tandc_text');
-    tandcCont.append(tandcText);
+    const faqsTandcText = document.createElement('div');
+    faqsTandcText.classList.add('faqs-tandc_text');
+    faqsTandcCont.append(faqsTandcText);
 
     const question = faqItem.querySelector('[data-aue-prop="question"]');
     if (question) {
-      const p = document.createElement('p');
-      p.append(...question.childNodes);
-      moveInstrumentation(question, p);
-      tandcText.append(p);
+      const pQuestion = document.createElement('p');
+      pQuestion.append(...question.childNodes);
+      moveInstrumentation(question, pQuestion);
+      faqsTandcText.append(pQuestion);
     }
 
     let icon = faqItem.querySelector('[data-aue-prop="icon"]');
@@ -47,27 +46,35 @@ export default function decorate(block) {
     }
 
     if (icon) {
-      const img = document.createElement('img');
-      img.src = icon.href || icon.src;
-      img.alt = icon.alt || '';
-      moveInstrumentation(icon, img);
-      tandcText.append(img);
+      let imgElement;
+      if (icon.tagName === 'IMG') {
+        imgElement = icon;
+      } else if (icon.tagName === 'A') {
+        imgElement = document.createElement('img');
+        imgElement.src = icon.href;
+        imgElement.alt = icon.title || '';
+      }
+
+      if (imgElement) {
+        const pic = createOptimizedPicture(imgElement.src, imgElement.alt);
+        faqsTandcText.append(pic);
+        moveInstrumentation(imgElement, pic.querySelector('img'));
+      }
     }
 
-    const extText = document.createElement('div');
-    extText.classList.add('faqs-ext_text');
-    tandcCont.append(extText);
+    const faqsExtText = document.createElement('div');
+    faqsExtText.classList.add('faqs-ext_text');
+    faqsTandcCont.append(faqsExtText);
 
     const answer = faqItem.querySelector('[data-aue-prop="answer"]');
     if (answer) {
-      const p = document.createElement('p');
-      p.classList.add('faqs-faqPara');
-      p.append(...answer.childNodes);
-      moveInstrumentation(answer, p);
-      extText.append(p);
+      const pAnswer = document.createElement('p');
+      pAnswer.classList.add('faqs-faqPara');
+      pAnswer.append(...answer.childNodes);
+      moveInstrumentation(answer, pAnswer);
+      faqsExtText.append(pAnswer);
     }
-
-    faqsTandC.append(tandcCont);
+    faqsTandC.append(faqsTandcCont);
   });
 
   block.innerHTML = '';

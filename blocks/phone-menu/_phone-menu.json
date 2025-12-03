@@ -59,8 +59,8 @@
         },
         {
           "component": "reference",
-          "label": "Logo Image",
-          "name": "logoImage",
+          "label": "Logo",
+          "name": "logo",
           "valueType": "string"
         }
       ]
@@ -68,10 +68,7 @@
   ],
   "filters": [
     {
-      "id": "phoneMenu",
-      "components": [
-        "phoneMenu"
-      ]
+      "id": "phoneMenu"
     }
   ]
 }

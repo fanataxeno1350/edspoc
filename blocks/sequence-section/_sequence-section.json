@@ -23,15 +23,16 @@
       "fields": [
         {
           "component": "richtext",
-          "label": "Headline",
-          "name": "headline",
+          "label": "Heading",
+          "name": "heading",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Headline Images",
-          "name": "headlineImages",
-          "valueType": "array"
+          "label": "Inline Image",
+          "multiple": true,
+          "name": "inlineImage",
+          "valueType": "string"
         },
         {
           "component": "reference",

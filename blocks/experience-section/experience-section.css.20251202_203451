@@ -1,0 +1,184 @@
+@font-face {
+  font-family: "gotham";
+  src: url("../assets/Fonts/Gotham-Thin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "gothambold";
+  src: url("../assets/Fonts/Gotham-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "gothammed";
+  src: url("../assets/Fonts/GothamMedium.woff2") format("woff2");
+}
+.experience-section {
+  min-height: 37.5rem; /* Equivalent to 600px assuming 16px base */
+  width: 100%;
+  padding: 6.25rem 10%; /* Equivalent to 100px 10% assuming 16px base */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem; /* Equivalent to 20px assuming 16px base */
+  background-color: #000;
+  position: relative;
+}
+.experience-section * {
+  z-index: 2;
+}
+.experience-section > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.experience-after-layer-top,
+.experience-after-layer-bottom {
+  position: absolute !important;
+  z-index: 111 !important;
+  width: 100%;
+  height: auto;
+}
+.experience-after-layer-top {
+  top: 0;
+}
+.experience-after-layer-bottom {
+  bottom: 0;
+}
+.experience-after-layer-bottom img,
+.experience-after-layer-top img {
+  position: absolute;
+  bottom: -4.6875rem; /* Equivalent to -75px assuming 16px base */
+  left: 0;
+  width: 110vw;
+  max-width: calc(120rem + 10vw); /* Equivalent to calc(1920px + 10vw) assuming 16px base */
+  transform: translate(-5vw, 0);
+  height: 9.375rem; /* Equivalent to 150px assuming 16px base */
+  z-index: 4;
+}
+.experience-main-heading {
+  font-size: clamp(1.75rem, 1.75rem + 3.65vw, 4.5rem); /* Calculated from max(min(1px + 3.65vw, 72px), 28px) assuming 16px base */
+  font-family: "gothambold";
+  color: #ffffff;
+}
+.experience-main-div {
+  margin-top: 0.625rem; /* Equivalent to 10px assuming 16px base */
+  display: flex;
+  gap: 5%;
+  width: 100%;
+}
+.experience-main-div .experience-divv > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+}
+.experience-div1,
+.experience-div2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+}
+.experience-div1 > div > div,
+.experience-div2 > div > div {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  transition: all 1s;
+}
+.experience-div1 > div > div img,
+.experience-div2 > div > div img {
+  transform: scale(1.1);
+  transition: all 1s;
+}
+.experience-div1 > div > div:hover img,
+.experience-div2 > div > div:hover img {
+  transform: scale(1);
+}
+.experience-div1 img,
+.experience-div2 img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.experience-divv h3 {
+  font-family: "gothammed";
+  color: #ffffff;
+  font-size: 1.375rem; /* Equivalent to 22px assuming 16px base */
+  height: 1.625rem; /* Equivalent to 26px assuming 16px base */
+  margin-top: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+}
+.experience-exp-text {
+  padding: 0;
+  text-align: left;
+  font-size: clamp(0.9375rem, 0.0625rem + 1.09vw, 1.25rem); /* Calculated from max(min(1px + 1.09vw, 20px), 15px) assuming 16px base */
+  color: #b2b2b2;
+  line-height: 1.4;
+}
+.experience-cta {
+  all: unset;
+  display: flex;
+  gap: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+  padding: 0.9375rem 1.875rem; /* Equivalent to 15px 30px assuming 16px base */
+  border: 1px solid #b5afaf;
+  border-radius: 2.5rem; /* Equivalent to 40px assuming 16px base */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  min-height: 1.25rem; /* Equivalent to 20px assuming 16px base */
+}
+.experience-cta > img {
+  height: 1.25rem !important; /* Equivalent to 20px assuming 16px base */
+  width: 1.25rem !important; /* Equivalent to 20px assuming 16px base */
+  object-fit: none;
+}
+.experience-cta p {
+  all: unset;
+  font-size: clamp(0.875rem, 0.3125rem + 1.3vw, 1rem); /* Calculated from max(min(5px + 1.3vw, 16px), 14px) assuming 16px base */
+  color: #ffffff;
+  font-family: "gotham";
+  line-height: 1.4;
+}
+.experience-ctaaa:hover {
+  background-color: white;
+}
+.experience-ctaaa:hover p {
+  color: black !important;
+}
+.experience-ctaaa:hover img {
+  filter: invert(1);
+}
+@media screen and (max-width: 850px) {
+  .experience-main-div {
+    flex-direction: column;
+    gap: 2.5rem; /* Equivalent to 40px assuming 16px base */
+  }
+  .experience-div1,
+  .experience-div2 {
+    gap: 0.9375rem; /* Equivalent to 15px assuming 16px base */
+  }
+}
+@media screen and (max-width: 768px) {
+  .experience-section {
+    padding: 3.125rem 5%; /* Equivalent to 50px 5% assuming 16px base */
+  }
+  .experience-div1 > div img,
+  .experience-div2 > div img {
+    transform: scale(1);
+  }
+}
+@media screen and (max-width: 600px) {
+  .experience-div1,
+  .experience-div2 {
+    gap: 0.625rem; /* Equivalent to 10px assuming 16px base */
+  }
+  .experience-main-div {
+    flex-direction: column;
+    gap: 1.875rem; /* Equivalent to 30px assuming 16px base */
+  }
+}

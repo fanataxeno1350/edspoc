@@ -6,131 +6,126 @@ export default function decorate(block) {
   phoneMenuContainer.classList.add('phone-menu-container');
   moveInstrumentation(block, phoneMenuContainer);
 
-  // Background Image
-  const backgroundImageWrapper = block.querySelector('[data-aue-prop="backgroundImage"]');
-  if (backgroundImageWrapper) {
-    const img = backgroundImageWrapper.querySelector('img');
+  const backgroundImage = block.querySelector('[data-aue-prop="backgroundImage"]');
+  if (backgroundImage) {
+    const img = backgroundImage.querySelector('img');
     if (img) {
       const pic = createOptimizedPicture(img.src, img.alt);
       pic.classList.add('phone-menu-back');
       moveInstrumentation(img, pic.querySelector('img'));
       phoneMenuContainer.append(pic);
     } else {
-      // If img is null, but backgroundImageWrapper exists, append its content as a fallback
-      const fallbackImg = document.createElement('img');
-      fallbackImg.classList.add('phone-menu-back');
-      fallbackImg.src = backgroundImageWrapper.textContent.trim(); // Assuming the text content is the image URL
-      phoneMenuContainer.append(fallbackImg);
-      moveInstrumentation(backgroundImageWrapper, fallbackImg);
-    }
-  }
-
-  // About Link
-  const aboutLinkWrapper = block.querySelector('[data-aue-prop="aboutLink"]');
-  if (aboutLinkWrapper) {
-    const a = aboutLinkWrapper.querySelector('a');
-    if (a) {
-      phoneMenuContainer.append(a);
-      moveInstrumentation(aboutLinkWrapper, a);
-    } else {
-      // Fallback for aem-content if <a> is not directly found
-      const newA = document.createElement('a');
-      newA.href = aboutLinkWrapper.textContent.trim();
-      newA.textContent = aboutLinkWrapper.textContent.trim();
-      phoneMenuContainer.append(newA);
-      moveInstrumentation(aboutLinkWrapper, newA);
-    }
-  }
-
-  // Experiences Link
-  const experiencesLinkWrapper = block.querySelector('[data-aue-prop="experiencesLink"]');
-  if (experiencesLinkWrapper) {
-    const a = experiencesLinkWrapper.querySelector('a');
-    if (a) {
-      phoneMenuContainer.append(a);
-      moveInstrumentation(experiencesLinkWrapper, a);
-    } else {
-      const newA = document.createElement('a');
-      newA.href = experiencesLinkWrapper.textContent.trim();
-      newA.textContent = experiencesLinkWrapper.textContent.trim();
-      phoneMenuContainer.append(newA);
-      moveInstrumentation(experiencesLinkWrapper, newA);
-    }
-  }
-
-  // Request Invite Link
-  const requestInviteLinkWrapper = block.querySelector('[data-aue-prop="requestInviteLink"]');
-  if (requestInviteLinkWrapper) {
-    const a = requestInviteLinkWrapper.querySelector('a');
-    if (a) {
-      a.classList.add('phone-menu-request-invite');
-      phoneMenuContainer.append(a);
-      moveInstrumentation(requestInviteLinkWrapper, a);
-    } else {
-      const newA = document.createElement('a');
-      newA.href = requestInviteLinkWrapper.textContent.trim();
-      newA.textContent = requestInviteLinkWrapper.textContent.trim();
-      newA.classList.add('phone-menu-request-invite');
-      phoneMenuContainer.append(newA);
-      moveInstrumentation(requestInviteLinkWrapper, newA);
-    }
-  }
-
-  // Instagram Link and Icon
-  const instagramLinkWrapper = block.querySelector('[data-aue-prop="instagramLink"]');
-  const instagramIconWrapper = block.querySelector('[data-aue-prop="instagramIcon"]');
-
-  if (instagramLinkWrapper || instagramIconWrapper) {
-    const instaLink = document.createElement('a');
-    instaLink.classList.add('phone-menu-insta-icon');
-    instaLink.target = '_blank';
-
-    if (instagramLinkWrapper) {
-      const a = instagramLinkWrapper.querySelector('a');
-      if (a) {
-        instaLink.href = a.href;
-        moveInstrumentation(instagramLinkWrapper, instaLink);
-      } else {
-        instaLink.href = instagramLinkWrapper.textContent.trim();
-        moveInstrumentation(instagramLinkWrapper, instaLink);
+      // If it's an anchor, create an image element
+      const anchor = backgroundImage.querySelector('a');
+      if (anchor && anchor.href) {
+        const imgElement = document.createElement('img');
+        imgElement.src = anchor.href;
+        imgElement.alt = anchor.title || '';
+        imgElement.classList.add('phone-menu-back');
+        moveInstrumentation(anchor, imgElement);
+        phoneMenuContainer.append(imgElement);
       }
     }
+  }
 
-    if (instagramIconWrapper) {
-      const img = instagramIconWrapper.querySelector('img');
+  const aboutLink = block.querySelector('[data-aue-prop="aboutLink"]');
+  if (aboutLink) {
+    const anchor = aboutLink.querySelector('a');
+    if (anchor) {
+      const newAnchor = document.createElement('a');
+      newAnchor.href = anchor.href;
+      newAnchor.textContent = anchor.textContent;
+      moveInstrumentation(anchor, newAnchor);
+      phoneMenuContainer.append(newAnchor);
+    }
+  }
+
+  const experiencesLink = block.querySelector('[data-aue-prop="experiencesLink"]');
+  if (experiencesLink) {
+    const anchor = experiencesLink.querySelector('a');
+    if (anchor) {
+      const newAnchor = document.createElement('a');
+      newAnchor.href = anchor.href;
+      newAnchor.textContent = anchor.textContent;
+      moveInstrumentation(anchor, newAnchor);
+      phoneMenuContainer.append(newAnchor);
+    }
+  }
+
+  const requestInviteLink = block.querySelector('[data-aue-prop="requestInviteLink"]');
+  if (requestInviteLink) {
+    const anchor = requestInviteLink.querySelector('a');
+    if (anchor) {
+      const newAnchor = document.createElement('a');
+      newAnchor.href = anchor.href;
+      newAnchor.textContent = anchor.textContent;
+      newAnchor.classList.add('phone-menu-request-invite');
+      // Preserve onclick if present
+      if (anchor.onclick) {
+        newAnchor.onclick = anchor.onclick;
+      }
+      moveInstrumentation(anchor, newAnchor);
+      phoneMenuContainer.append(newAnchor);
+    }
+  }
+
+  const instagramLink = block.querySelector('[data-aue-prop="instagramLink"]');
+  const instagramIcon = block.querySelector('[data-aue-prop="instagramIcon"]');
+  if (instagramLink || instagramIcon) {
+    const newAnchor = document.createElement('a');
+    newAnchor.classList.add('phone-menu-insta-icon');
+    newAnchor.target = '_blank';
+
+    let linkHref = '';
+    if (instagramLink) {
+      const anchor = instagramLink.querySelector('a');
+      if (anchor) {
+        linkHref = anchor.href;
+        moveInstrumentation(anchor, newAnchor);
+      }
+    }
+    newAnchor.href = linkHref || '#'; // Default href if not found
+
+    if (instagramIcon) {
+      const img = instagramIcon.querySelector('img');
       if (img) {
         const pic = createOptimizedPicture(img.src, img.alt);
         moveInstrumentation(img, pic.querySelector('img'));
-        instaLink.append(pic);
+        newAnchor.append(pic);
       } else {
-        const fallbackImg = document.createElement('img');
-        fallbackImg.src = instagramIconWrapper.textContent.trim();
-        fallbackImg.alt = 'Instagram Icon';
-        instaLink.append(fallbackImg);
-        moveInstrumentation(instagramIconWrapper, fallbackImg);
+        // If it's an anchor, create an image element
+        const anchor = instagramIcon.querySelector('a');
+        if (anchor && anchor.href) {
+          const imgElement = document.createElement('img');
+          imgElement.src = anchor.href;
+          imgElement.alt = anchor.title || '';
+          moveInstrumentation(anchor, imgElement);
+          newAnchor.append(imgElement);
+        }
       }
     }
-
-    if (instaLink.hasChildNodes() || instaLink.href) {
-      phoneMenuContainer.append(instaLink);
-    }
+    phoneMenuContainer.append(newAnchor);
   }
 
-  // Logo Image
-  const logoImageWrapper = block.querySelector('[data-aue-prop="logoImage"]');
-  if (logoImageWrapper) {
-    const img = logoImageWrapper.querySelector('img');
+  const logo = block.querySelector('[data-aue-prop="logo"]');
+  if (logo) {
+    const img = logo.querySelector('img');
     if (img) {
       const pic = createOptimizedPicture(img.src, img.alt);
       pic.classList.add('phone-menu-logo');
       moveInstrumentation(img, pic.querySelector('img'));
       phoneMenuContainer.append(pic);
     } else {
-      const fallbackImg = document.createElement('img');
-      fallbackImg.classList.add('phone-menu-logo');
-      fallbackImg.src = logoImageWrapper.textContent.trim();
-      phoneMenuContainer.append(fallbackImg);
-      moveInstrumentation(logoImageWrapper, fallbackImg);
+      // If it's an anchor, create an image element
+      const anchor = logo.querySelector('a');
+      if (anchor && anchor.href) {
+        const imgElement = document.createElement('img');
+        imgElement.src = anchor.href;
+        imgElement.alt = anchor.title || '';
+        imgElement.classList.add('phone-menu-logo');
+        moveInstrumentation(anchor, imgElement);
+        phoneMenuContainer.append(imgElement);
+      }
     }
   }
 

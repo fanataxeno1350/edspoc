@@ -6,219 +6,178 @@ export default function decorate(block) {
   sectionContainer.classList.add('upcoming-drive-section-container', 'homeSlot');
   sectionContainer.id = 'upcomingDrive';
 
-  // Extract and move the background image
-  const backcoverRow = block.children[0];
-  if (backcoverRow) {
-    const backcoverImg = backcoverRow.querySelector('img');
-    if (backcoverImg) {
-      const pic = createOptimizedPicture(backcoverImg.src, backcoverImg.alt);
+  // First row: Background Image
+  const backgroundRow = block.children[0];
+  if (backgroundRow) {
+    const backgroundPicContainer = document.createElement('div');
+    moveInstrumentation(backgroundRow, backgroundPicContainer);
+    const img = backgroundRow.querySelector('img');
+    if (img) {
+      const pic = createOptimizedPicture(img.src, img.alt);
       pic.classList.add('upcoming-drive-section-backcover');
-      moveInstrumentation(backcoverImg, pic.querySelector('img'));
-      sectionContainer.append(pic);
+      moveInstrumentation(img, pic.querySelector('img'));
+      backgroundPicContainer.append(pic);
+      sectionContainer.append(backgroundPicContainer);
+    } else {
+      // If no img, append the original content to avoid loss
+      sectionContainer.append(...backgroundRow.childNodes);
     }
   }
 
-  // Extract and move the 'Upcoming Drives' text
-  const uptextRow = block.children[1];
-  if (uptextRow) {
-    const uptextDiv = document.createElement('div');
-    uptextDiv.classList.add('upcoming-drive-section-uptext');
-    uptextDiv.append(...uptextRow.children[0].childNodes);
-    moveInstrumentation(uptextRow.children[0], uptextDiv);
-    sectionContainer.append(uptextDiv);
+  // Second row: Upcoming Drives text
+  const upcomingDrivesTextRow = block.children[1];
+  if (upcomingDrivesTextRow) {
+    const upTextDiv = document.createElement('div');
+    upTextDiv.classList.add('upcoming-drive-section-uptext');
+    moveInstrumentation(upcomingDrivesTextRow, upTextDiv);
+    upTextDiv.append(...upcomingDrivesTextRow.childNodes);
+    sectionContainer.append(upTextDiv);
   }
 
+  // Wrapper for slider and buttons
   const wrapperDiv = document.createElement('div');
   wrapperDiv.classList.add('upcoming-drive-section-wrapper');
 
-  // Add previous button
+  // Previous button
   const prevButton = document.createElement('button');
   prevButton.classList.add('upcoming-drive-section-btn-slide', 'upcoming-drive-section-prev-slide');
-  const prevButtonImgRow = block.children[2]; // Assuming this row contains the prev button image
-  if (prevButtonImgRow) {
-    const prevImg = prevButtonImgRow.querySelector('img');
-    if (prevImg) {
-      const clonedPrevImg = prevImg.cloneNode(true);
-      prevButton.append(clonedPrevImg);
-    } else {
-      // Fallback if image not directly in row, check for anchor
-      const anchor = prevButtonImgRow.querySelector('a');
-      if (anchor) {
-        const img = document.createElement('img');
-        img.src = anchor.href;
-        img.alt = anchor.title || '';
-        prevButton.append(img);
-      }
-    }
-  }
+  const prevButtonImg = document.createElement('img');
+  prevButtonImg.src = '/content/dam/aemigrate/uploaded-folder/image/Group%20265%402x.png'; // Static asset
+  prevButtonImg.alt = '';
+  prevButton.append(prevButtonImg);
   wrapperDiv.append(prevButton);
 
-  const sliderContainerDiv = document.createElement('div');
-  sliderContainerDiv.classList.add('upcoming-drive-section-slider-container');
+  // Slider container
+  const sliderContainer = document.createElement('div');
+  sliderContainer.classList.add('upcoming-drive-section-slider-container');
 
   const sliderDiv = document.createElement('div');
   sliderDiv.classList.add('upcoming-drive-section-slider');
 
-  const sliderTrackUl = document.createElement('ul');
-  sliderTrackUl.classList.add('upcoming-drive-section-slider-track');
+  const sliderTrack = document.createElement('ul');
+  sliderTrack.classList.add('upcoming-drive-section-slider-track');
 
-  // Iterate over upcomingDrive items (starting from the third row in block.children)
-  const upcomingDriveItems = Array.from(block.children).slice(3, -1); // Exclude first 3 rows and last row (next button)
+  // Iterate over upcoming drive items
+  const upcomingDriveItemsContainer = block.children[2]; // This row contains all upcoming drive items
+  if (upcomingDriveItemsContainer) {
+    const upcomingDriveItems = upcomingDriveItemsContainer.querySelectorAll('[data-aue-model="upcomingDrive"]');
+    upcomingDriveItems.forEach((item) => {
+      const listItem = document.createElement('li');
+      listItem.classList.add('upcoming-drive-section-item-s');
+      moveInstrumentation(item, listItem);
 
-  upcomingDriveItems.forEach((row) => {
-    const upcomingDriveItemLi = document.createElement('li');
-    upcomingDriveItemLi.classList.add('upcoming-drive-section-item-s');
-    moveInstrumentation(row, upcomingDriveItemLi); // Transfer instrumentation for the whole item
+      const contentDiv = document.createElement('div');
+      listItem.append(contentDiv);
 
-    const contentDiv = document.createElement('div');
-
-    // Image
-    const imageCell = row.querySelector('[data-aue-prop="image"]');
-    if (imageCell) {
-      const img = imageCell.querySelector('img');
-      if (img) {
-        const pic = createOptimizedPicture(img.src, img.alt);
-        moveInstrumentation(img, pic.querySelector('img'));
-        contentDiv.append(pic);
-      } else {
-        // Look for <a> generated by aem-content field
-        const anchor = imageCell.querySelector('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".webp"]');
-        if (anchor) {
-          const newImg = document.createElement('img');
-          newImg.src = anchor.href;
-          newImg.alt = anchor.title || '';
-          contentDiv.append(newImg);
-          moveInstrumentation(anchor, newImg);
-        }
-      }
-    }
-
-    // Title
-    const titleCell = row.querySelector('[data-aue-prop="title"]');
-    if (titleCell) {
-      const h3Red = document.createElement('h3');
-      h3Red.classList.add('upcoming-drive-section-h3-red');
-      h3Red.append(...titleCell.childNodes);
-      moveInstrumentation(titleCell, h3Red);
-      contentDiv.append(h3Red);
-    }
-
-    // Subtitle
-    const subtitleCell = row.querySelector('[data-aue-prop="subtitle"]');
-    if (subtitleCell) {
-      const h3Small = document.createElement('h3');
-      h3Small.classList.add('upcoming-drive-section-h3-small');
-      h3Small.append(...subtitleCell.childNodes);
-      moveInstrumentation(subtitleCell, h3Small);
-      contentDiv.append(h3Small);
-    }
-
-    // Description
-    const descriptionCell = row.querySelector('[data-aue-prop="description"]');
-    if (descriptionCell) {
-      const p = document.createElement('p');
-      p.append(...descriptionCell.childNodes);
-      moveInstrumentation(descriptionCell, p);
-      contentDiv.append(p);
-    }
-
-    upcomingDriveItemLi.append(contentDiv);
-
-    // CTA
-    const ctaCell = row.querySelector('[data-aue-prop="cta"]');
-    const ctaIconCell = row.querySelector('[data-aue-prop="ctaIcon"]');
-
-    if (ctaCell) {
-      const ctaLink = ctaCell.querySelector('a');
-      if (ctaLink) {
-        const ctaAnchor = document.createElement('a');
-        ctaAnchor.classList.add('upcoming-drive-section-cta');
-        ctaAnchor.href = ctaLink.href;
-        ctaAnchor.rel = 'no-follow';
-
-        const ctaTextP = document.createElement('p');
-        ctaTextP.append(...ctaLink.childNodes);
-        moveInstrumentation(ctaLink, ctaTextP); // Move instrumentation from the original link to the new paragraph
-        ctaAnchor.append(ctaTextP);
-
-        if (ctaIconCell) {
-          const ctaIconImg = ctaIconCell.querySelector('img');
-          if (ctaIconImg) {
-            const clonedCtaIconImg = ctaIconImg.cloneNode(true);
-            ctaAnchor.append(clonedCtaIconImg);
+      // Image
+      const imgElement = item.querySelector('[data-aue-prop="image"]');
+      if (imgElement) {
+        const img = imgElement.querySelector('img');
+        if (img) {
+          const pic = createOptimizedPicture(img.src, img.alt);
+          moveInstrumentation(img, pic.querySelector('img'));
+          contentDiv.append(pic);
+        } else {
+          // If img is null, check for anchor with image reference
+          const anchor = imgElement.querySelector('a');
+          if (anchor && (anchor.href.endsWith('.webp') || anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif')) ) {
+            const imgFromAnchor = document.createElement('img');
+            imgFromAnchor.src = anchor.href;
+            imgFromAnchor.alt = anchor.title || '';
+            const pic = createOptimizedPicture(imgFromAnchor.src, imgFromAnchor.alt);
+            moveInstrumentation(anchor, pic.querySelector('img')); // Transfer instrumentation from anchor to the new img
+            contentDiv.append(pic);
           } else {
-            const iconAnchor = ctaIconCell.querySelector('a');
-            if (iconAnchor) {
-              const img = document.createElement('img');
-              img.src = iconAnchor.href;
-              img.alt = iconAnchor.title || '';
-              ctaAnchor.append(img);
-            }
+            contentDiv.append(...imgElement.childNodes);
           }
         }
-        upcomingDriveItemLi.append(ctaAnchor);
       }
-    }
-    sliderTrackUl.append(upcomingDriveItemLi);
-  });
 
-  sliderDiv.append(sliderTrackUl);
-  sliderContainerDiv.append(sliderDiv);
-  wrapperDiv.append(sliderContainerDiv);
+      // Title
+      const titleElement = item.querySelector('[data-aue-prop="title"]');
+      if (titleElement) {
+        const h3Red = document.createElement('h3');
+        h3Red.classList.add('upcoming-drive-section-h3-red');
+        moveInstrumentation(titleElement, h3Red);
+        h3Red.append(...titleElement.childNodes);
+        contentDiv.append(h3Red);
+      }
 
-  // Add next button
+      // Subtitle
+      const subtitleElement = item.querySelector('[data-aue-prop="subtitle"]');
+      if (subtitleElement) {
+        const h3Small = document.createElement('h3');
+        h3Small.classList.add('upcoming-drive-section-h3-small');
+        moveInstrumentation(subtitleElement, h3Small);
+        h3Small.append(...subtitleElement.childNodes);
+        contentDiv.append(h3Small);
+      }
+
+      // Description
+      const descriptionElement = item.querySelector('[data-aue-prop="description"]');
+      if (descriptionElement) {
+        const p = document.createElement('p');
+        moveInstrumentation(descriptionElement, p);
+        p.append(...descriptionElement.childNodes);
+        contentDiv.append(p);
+      }
+
+      // CTA
+      const ctaAnchor = document.createElement('a');
+      ctaAnchor.classList.add('upcoming-drive-section-cta');
+      ctaAnchor.href = 'javascript:void(0)'; // Default href
+      ctaAnchor.rel = 'no-follow';
+
+      const ctaTextElement = item.querySelector('[data-aue-prop="ctaText"]');
+      if (ctaTextElement) {
+        const p = document.createElement('p');
+        moveInstrumentation(ctaTextElement, p);
+        p.append(...ctaTextElement.childNodes);
+        ctaAnchor.append(p);
+      }
+
+      const ctaIconElement = item.querySelector('[data-aue-prop="ctaIcon"]');
+      if (ctaIconElement) {
+        const img = ctaIconElement.querySelector('img');
+        if (img) {
+          const pic = createOptimizedPicture(img.src, img.alt);
+          moveInstrumentation(img, pic.querySelector('img'));
+          ctaAnchor.append(pic);
+        } else {
+          // If img is null, check for anchor with image reference
+          const anchor = ctaIconElement.querySelector('a');
+          if (anchor && (anchor.href.endsWith('.webp') || anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif') || anchor.href.endsWith('.svg')) ) {
+            const imgFromAnchor = document.createElement('img');
+            imgFromAnchor.src = anchor.href;
+            imgFromAnchor.alt = anchor.title || '';
+            const pic = createOptimizedPicture(imgFromAnchor.src, imgFromAnchor.alt);
+            moveInstrumentation(anchor, pic.querySelector('img')); // Transfer instrumentation from anchor to the new img
+            ctaAnchor.append(pic);
+          } else {
+            ctaAnchor.append(...ctaIconElement.childNodes);
+          }
+        }
+      }
+      listItem.append(ctaAnchor);
+      sliderTrack.append(listItem);
+    });
+  }
+
+  sliderDiv.append(sliderTrack);
+  sliderContainer.append(sliderDiv);
+  wrapperDiv.append(sliderContainer);
+
+  // Next button
   const nextButton = document.createElement('button');
   nextButton.classList.add('upcoming-drive-section-btn-slide', 'upcoming-drive-section-next-slide');
-  const nextButtonImgRow = block.children[block.children.length - 1]; // Last row for next button image
-  if (nextButtonImgRow) {
-    const nextImg = nextButtonImgRow.querySelector('img');
-    if (nextImg) {
-      const clonedNextImg = nextImg.cloneNode(true);
-      nextButton.append(clonedNextImg);
-    } else {
-      // Fallback if image not directly in row, check for anchor
-      const anchor = nextButtonImgRow.querySelector('a');
-      if (anchor) {
-        const img = document.createElement('img');
-        img.src = anchor.href;
-        img.alt = anchor.title || '';
-        nextButton.append(img);
-      }
-    }
-  }
+  const nextButtonImg = document.createElement('img');
+  nextButtonImg.src = '/content/dam/aemigrate/uploaded-folder/image/Group%20265%402x%20-%20Copy.png'; // Static asset
+  nextButtonImg.alt = '';
+  nextButton.append(nextButtonImg);
   wrapperDiv.append(nextButton);
 
   sectionContainer.append(wrapperDiv);
 
   block.innerHTML = '';
   block.append(sectionContainer);
-
-  // Add slider functionality (simplified, actual implementation would be more complex)
-  let slideIndex = 0;
-  const slides = sliderTrackUl.children;
-
-  function showSlides() {
-    for (let i = 0; i < slides.length; i += 1) {
-      slides[i].style.display = 'none';
-    }
-    if (slides.length > 0) {
-      slides[slideIndex].style.display = 'block';
-    }
-  }
-
-  function plusSlides(n) {
-    slideIndex += n;
-    if (slideIndex >= slides.length) {
-      slideIndex = 0;
-    }
-    if (slideIndex < 0) {
-      slideIndex = slides.length - 1;
-    }
-    showSlides();
-  }
-
-  prevButton.addEventListener('click', () => plusSlides(-1));
-  nextButton.addEventListener('click', () => plusSlides(1));
-
-  showSlides();
 }

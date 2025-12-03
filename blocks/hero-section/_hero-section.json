@@ -29,8 +29,8 @@
         },
         {
           "component": "reference",
-          "label": "Rock Image",
-          "name": "rockImage",
+          "label": "Logo Image",
+          "name": "logoImage",
           "valueType": "string"
         },
         {
@@ -41,8 +41,8 @@
         },
         {
           "component": "reference",
-          "label": "SUV Back Image",
-          "name": "suvBackImage",
+          "label": "Adventure Text Image",
+          "name": "advTextImage",
           "valueType": "string"
         },
         {

@@ -2,20 +2,33 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const imageElement = block.querySelector('img[data-aue-prop="image"]');
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  // Create the new structure
-  const backToTopDiv = document.createElement('div');
-  backToTopDiv.className = 'back-to-top';
-  backToTopDiv.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const container = document.createElement('div');
+  container.className = 'back-to-top-container';
+  container.onclick = goToTop;
+  moveInstrumentation(block, container);
+
+  let imageElement = block.querySelector('[data-aue-prop="image"]');
+
+  if (!imageElement) {
+    const anchor = block.querySelector('a[href$=".svg"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"]');
+    if (anchor) {
+      imageElement = document.createElement('img');
+      imageElement.src = anchor.href;
+      imageElement.alt = anchor.title || '';
+      moveInstrumentation(anchor, imageElement);
+    }
+  }
 
   if (imageElement) {
     const picture = createOptimizedPicture(imageElement.src, imageElement.alt);
-    backToTopDiv.append(picture);
     moveInstrumentation(imageElement, picture.querySelector('img'));
+    container.append(picture);
   }
 
-  // Replace the block content with the new structure
   block.innerHTML = '';
-  block.append(backToTopDiv);
+  block.append(container);
 }

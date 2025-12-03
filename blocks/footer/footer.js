@@ -6,102 +6,175 @@ export default function decorate(block) {
   footerContainer.classList.add('footer-container');
   footerContainer.id = 'footer';
 
-  const afterLayerTop = document.createElement('div');
-  afterLayerTop.classList.add('footer-afterLayerTop');
+  const footerAfterLayerTop = document.createElement('div');
+  footerAfterLayerTop.classList.add('footer-afterLayerTop');
   const topImage = block.querySelector('[data-aue-prop="topImage"]');
   if (topImage) {
     const pic = createOptimizedPicture(topImage.src, topImage.alt);
-    afterLayerTop.append(pic);
     moveInstrumentation(topImage, pic.querySelector('img'));
+    footerAfterLayerTop.append(pic);
   }
-  footerContainer.append(afterLayerTop);
+  footerContainer.append(footerAfterLayerTop);
 
   const footerContent = document.createElement('div');
   footerContent.classList.add('footer-content');
 
-  const footerLogo = document.createElement('img');
-  footerLogo.classList.add('footer-logo');
   const logo = block.querySelector('[data-aue-prop="logo"]');
   if (logo) {
-    footerLogo.src = logo.src;
-    footerLogo.alt = logo.alt;
-    moveInstrumentation(logo, footerLogo);
+    const footerLogo = createOptimizedPicture(logo.src, logo.alt);
+    footerLogo.classList.add('footer-logo');
+    moveInstrumentation(logo, footerLogo.querySelector('img'));
+    footerContent.append(footerLogo);
   }
-  footerContent.append(footerLogo);
 
   const footerTags = document.createElement('div');
   footerTags.classList.add('footer-tags', 'footer-tags-home', 'footer-details-open');
 
   const footerFoot1 = document.createElement('div');
   footerFoot1.classList.add('footer-foot-1');
-  const contactUsDetails = document.createElement('details');
-  contactUsDetails.classList.add('footer-details-1');
-  const contactUsSummary = document.createElement('summary');
-  contactUsSummary.classList.add('footer-summary');
-  contactUsSummary.textContent = 'Contact us';
-  contactUsDetails.append(contactUsSummary);
+  const footerDetails1 = document.createElement('details');
+  footerDetails1.classList.add('footer-details-1');
 
-  const contactUsContent = block.querySelector('[data-aue-prop="contactUs"]');
-  if (contactUsContent) {
-    contactUsDetails.append(...contactUsContent.childNodes);
-    moveInstrumentation(contactUsContent, contactUsDetails);
+  const footerSummary = document.createElement('summary');
+  footerSummary.classList.add('footer-summary');
+  const contactUsTitle = block.querySelector('[data-aue-prop="contactUsTitle"]');
+  if (contactUsTitle) {
+    footerSummary.append(...contactUsTitle.childNodes);
+    moveInstrumentation(contactUsTitle, footerSummary);
+  }
+  footerDetails1.append(footerSummary);
+
+  const expeditionsLabel = block.querySelector('[data-aue-prop="expeditionsLabel"]');
+  const expeditionsEmail = block.querySelector('[data-aue-prop="expeditionsEmail"]');
+  if (expeditionsLabel || expeditionsEmail) {
+    const pExpeditions = document.createElement('p');
+    pExpeditions.classList.add('footer-paragraph');
+    if (expeditionsLabel) {
+      pExpeditions.append(...expeditionsLabel.childNodes);
+      moveInstrumentation(expeditionsLabel, pExpeditions);
+    }
+    if (expeditionsEmail) {
+      const br = document.createElement('br');
+      const aExpeditions = document.createElement('a');
+      aExpeditions.style.cursor = 'pointer';
+      aExpeditions.style.color = 'blue';
+      aExpeditions.style.textDecoration = 'underline';
+      aExpeditions.href = expeditionsEmail.href || `mailto:${expeditionsEmail.textContent}`;
+      aExpeditions.title = expeditionsEmail.title || expeditionsEmail.textContent;
+      aExpeditions.append(...expeditionsEmail.childNodes);
+      moveInstrumentation(expeditionsEmail, aExpeditions);
+      pExpeditions.append(br, aExpeditions);
+    }
+    footerDetails1.append(pExpeditions, document.createElement('br'));
   }
 
-  const additionalContactsDetails = document.createElement('details');
-  additionalContactsDetails.classList.add('footer-details-nested');
-  const additionalContactsSummary = document.createElement('summary');
-  additionalContactsSummary.classList.add('footer-summary-nested');
-  additionalContactsSummary.textContent = 'For more';
-  additionalContactsDetails.append(additionalContactsSummary);
-
-  const additionalContactsContent = block.querySelector('[data-aue-prop="additionalContacts"]');
-  if (additionalContactsContent) {
-    additionalContactsDetails.append(...additionalContactsContent.childNodes);
-    moveInstrumentation(additionalContactsContent, additionalContactsDetails);
+  const mastersLabel = block.querySelector('[data-aue-prop="mastersLabel"]');
+  const mastersEmail = block.querySelector('[data-aue-prop="mastersEmail"]');
+  if (mastersLabel || mastersEmail) {
+    const pMasters = document.createElement('p');
+    pMasters.classList.add('footer-paragraph');
+    if (mastersLabel) {
+      pMasters.append(...mastersLabel.childNodes);
+      moveInstrumentation(mastersLabel, pMasters);
+    }
+    if (mastersEmail) {
+      const br = document.createElement('br');
+      const aMasters = document.createElement('a');
+      aMasters.style.cursor = 'pointer';
+      aMasters.style.color = 'blue';
+      aMasters.style.textDecoration = 'underline';
+      aMasters.href = mastersEmail.href || `mailto:${mastersEmail.textContent}`;
+      aMasters.title = mastersEmail.title || mastersEmail.textContent;
+      aMasters.append(...mastersEmail.childNodes);
+      moveInstrumentation(mastersEmail, aMasters);
+      pMasters.append(br, aMasters);
+    }
+    footerDetails1.append(pMasters, document.createElement('br'));
   }
-  contactUsDetails.append(additionalContactsDetails);
-  footerFoot1.append(contactUsDetails);
+
+  const footerDetailsNested = document.createElement('details');
+  footerDetailsNested.classList.add('footer-details-nested');
+  const footerSummaryNested = document.createElement('summary');
+  footerSummaryNested.classList.add('footer-summary-nested');
+  const forMoreTitle = block.querySelector('[data-aue-prop="forMoreTitle"]');
+  if (forMoreTitle) {
+    footerSummaryNested.append(...forMoreTitle.childNodes);
+    moveInstrumentation(forMoreTitle, footerSummaryNested);
+  }
+  footerDetailsNested.append(footerSummaryNested);
+
+  const forMoreContact1 = block.querySelector('[data-aue-prop="forMoreContact1"]');
+  if (forMoreContact1) {
+    const pContact1 = document.createElement('p');
+    pContact1.classList.add('footer-paragraph');
+    pContact1.append(...forMoreContact1.childNodes);
+    moveInstrumentation(forMoreContact1, pContact1);
+    footerDetailsNested.append(pContact1, document.createElement('br'));
+  }
+
+  const forMoreContact2 = block.querySelector('[data-aue-prop="forMoreContact2"]');
+  if (forMoreContact2) {
+    const pContact2 = document.createElement('p');
+    pContact2.classList.add('footer-paragraph');
+    pContact2.append(...forMoreContact2.childNodes);
+    moveInstrumentation(forMoreContact2, pContact2);
+    footerDetailsNested.append(pContact2, document.createElement('br'));
+  }
+  footerDetails1.append(footerDetailsNested);
+  footerFoot1.append(footerDetails1);
   footerTags.append(footerFoot1);
 
-  const footerLinksContainer = document.createElement('div');
-  footerLinksContainer.classList.add('footer-links-container');
+  const footerLinksContainer = block.querySelector('[data-aue-prop="footerLinks"]');
+  if (footerLinksContainer) {
+    Array.from(footerLinksContainer.children).forEach((linkRow, index) => {
+      const footerFoot = document.createElement('div');
+      footerFoot.classList.add(`footer-foot-${index + 2}`); // Start from footer-foot-2
+      const pLink = document.createElement('p');
+      pLink.classList.add('footer-paragraph');
+      const aLink = document.createElement('a');
+      const url = linkRow.querySelector('[data-aue-prop="url"]');
+      const text = linkRow.querySelector('[data-aue-prop="text"]');
 
-  const footerLinks = block.querySelectorAll('[data-aue-model="footerLink"]');
-  footerLinks.forEach((linkItem, index) => {
-    const footerFootDiv = document.createElement('div');
-    footerFootDiv.classList.add(`footer-foot-${index + 2}`); // Starting from footer-foot-2
-    const paragraph = document.createElement('p');
-    paragraph.classList.add('footer-paragraph');
-    const link = linkItem.querySelector('[data-aue-prop="link"]');
-    if (link) {
-      paragraph.append(link);
-      moveInstrumentation(linkItem, paragraph);
-    }
-    footerFootDiv.append(paragraph);
-    footerLinksContainer.append(footerFootDiv);
-  });
-  footerTags.append(footerLinksContainer);
+      if (url) {
+        aLink.href = url.href || url.textContent;
+        aLink.target = '_blank'; // Assuming target blank for external links
+        moveInstrumentation(url, aLink);
+      }
+      if (text) {
+        aLink.append(...text.childNodes);
+        moveInstrumentation(text, aLink);
+      }
+      pLink.append(aLink);
+      footerFoot.append(pLink);
+      footerTags.append(footerFoot);
+      moveInstrumentation(linkRow, footerFoot); // Transfer instrumentation for the whole link row
+    });
+  }
+
   footerContent.append(footerTags);
 
-  const copyrightSpan = document.createElement('span');
-  copyrightSpan.classList.add('footer-copyright');
   const copyright = block.querySelector('[data-aue-prop="copyright"]');
   if (copyright) {
-    copyrightSpan.append(...copyright.childNodes);
-    moveInstrumentation(copyright, copyrightSpan);
+    const footerCopyright = document.createElement('span');
+    footerCopyright.classList.add('footer-copyright');
+    footerCopyright.append(...copyright.childNodes);
+    moveInstrumentation(copyright, footerCopyright);
+    footerContent.append(footerCopyright);
   }
-  footerContent.append(copyrightSpan);
   footerContainer.append(footerContent);
 
   const backToTopDiv = document.createElement('div');
   backToTopDiv.id = 'footer-backtoTop';
-  backToTopDiv.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  backToTopDiv.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); // Re-implementing goToTop functionality
+  backToTopDiv.style.display = 'block';
 
-  const backToTopImage = block.querySelector('[data-aue-prop="backToTopImage"]');
-  if (backToTopImage) {
-    const pic = createOptimizedPicture(backToTopImage.src, backToTopImage.alt);
-    backToTopDiv.append(pic);
-    moveInstrumentation(backToTopImage, pic.querySelector('img'));
+  const backToTopIcon = block.querySelector('[data-aue-prop="backToTopIcon"]');
+  if (backToTopIcon) {
+    const img = document.createElement('img');
+    img.alt = backToTopIcon.alt || 'svg file';
+    img.src = backToTopIcon.src;
+    moveInstrumentation(backToTopIcon, img);
+    backToTopDiv.append(img);
   }
 
   block.innerHTML = '';

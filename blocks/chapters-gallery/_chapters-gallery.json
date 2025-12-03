@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Chapter-Item",
-      "id": "chapterItem",
+      "title": "Chapter-Image",
+      "id": "chapterImage",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "chapterItem",
-              "name": "Chapter-Item"
+              "model": "chapterImage",
+              "name": "Chapter-Image"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
     {
-      "id": "chapterItem",
+      "id": "chapterImage",
       "fields": [
         {
           "component": "reference",
@@ -55,14 +55,14 @@
       "fields": [
         {
           "component": "richtext",
-          "label": "Title Desktop",
-          "name": "titleDesktop",
+          "label": "Heading Desktop",
+          "name": "headingDesktop",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Title Mobile",
-          "name": "titleMobile",
+          "label": "Heading Mobile",
+          "name": "headingMobile",
           "valueType": "string"
         },
         {
@@ -72,16 +72,15 @@
           "valueType": "string"
         },
         {
-          "component": "container",
-          "itemType": "chapterItem",
-          "label": "Chapters",
-          "name": "chapters",
-          "valueType": "array"
+          "component": "reference",
+          "label": "Gallery CTA Icon",
+          "name": "galleryCtaIcon",
+          "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Gallery Icon",
-          "name": "galleryIcon",
+          "component": "richtext",
+          "label": "Gallery CTA Text",
+          "name": "galleryCtaText",
           "valueType": "string"
         }
       ]
@@ -91,7 +90,7 @@
     {
       "id": "chaptersGallery",
       "components": [
-        "chapterItem"
+        "chapterImage"
       ]
     }
   ]

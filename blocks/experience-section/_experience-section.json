@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Experience",
-      "id": "experience",
+      "title": "Experience-Card",
+      "id": "experienceCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "experience",
-              "name": "Experience"
+              "model": "experienceCard",
+              "name": "Experience-Card"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
     {
-      "id": "experience",
+      "id": "experienceCard",
       "fields": [
         {
           "component": "reference",
@@ -79,14 +79,14 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Background Image Top",
-          "name": "backgroundImageTop",
+          "label": "Top Layer Image",
+          "name": "topLayerImage",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Background Image Main",
-          "name": "backgroundImageMain",
+          "label": "Background Image",
+          "name": "backgroundImage",
           "valueType": "string"
         },
         {
@@ -102,7 +102,7 @@
     {
       "id": "experienceSection",
       "components": [
-        "experience"
+        "experienceCard"
       ]
     }
   ]

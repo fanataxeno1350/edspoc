@@ -2,117 +2,101 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const mainDiv = document.createElement('div');
-  mainDiv.classList.add('chapters-section', 'chapters-homeSlot');
+  const chaptersSection = document.createElement('section');
+  chaptersSection.classList.add('chapters-section', 'chapters-homeSlot');
 
-  const titleDesktopDiv = document.createElement('div');
-  titleDesktopDiv.classList.add('chapters-chapter_head', 'chapters-for_desk_view');
-  const titleDesktopContent = block.children[0]?.querySelector('[data-aue-prop="titleDesktop"]');
-  if (titleDesktopContent) {
-    titleDesktopDiv.append(...titleDesktopContent.childNodes);
-    moveInstrumentation(titleDesktopContent, titleDesktopDiv);
+  const headingDesktopContainer = block.children[0]?.children[0];
+  if (headingDesktopContainer) {
+    const chaptersChapterHeadDesk = document.createElement('div');
+    chaptersChapterHeadDesk.classList.add('chapters-chapter_head', 'chapters-for_desk_view');
+    chaptersChapterHeadDesk.append(...headingDesktopContainer.childNodes);
+    moveInstrumentation(headingDesktopContainer, chaptersChapterHeadDesk);
+    chaptersSection.append(chaptersChapterHeadDesk);
   }
-  mainDiv.append(titleDesktopDiv);
 
-  const titleMobileDiv = document.createElement('div');
-  titleMobileDiv.classList.add('chapters-chapter_head', 'chapters-for_phone_view');
-  const titleMobileContent = block.children[1]?.querySelector('[data-aue-prop="titleMobile"]');
-  if (titleMobileContent) {
-    titleMobileDiv.append(...titleMobileContent.childNodes);
-    moveInstrumentation(titleMobileContent, titleMobileDiv);
+  const headingMobileContainer = block.children[1]?.children[0];
+  if (headingMobileContainer) {
+    const chaptersChapterHeadMobile = document.createElement('div');
+    chaptersChapterHeadMobile.classList.add('chapters-chapter_head', 'chapters-for_phone_view');
+    chaptersChapterHeadMobile.append(...headingMobileContainer.childNodes);
+    moveInstrumentation(headingMobileContainer, chaptersChapterHeadMobile);
+    chaptersSection.append(chaptersChapterHeadMobile);
   }
-  mainDiv.append(titleMobileDiv);
 
-  const descriptionP = document.createElement('p');
-  const descriptionContent = block.children[2]?.querySelector('[data-aue-prop="description"]');
-  if (descriptionContent) {
-    descriptionP.append(...descriptionContent.childNodes);
-    moveInstrumentation(descriptionContent, descriptionP);
+  const descriptionContainer = block.children[2]?.children[0];
+  if (descriptionContainer) {
+    const descriptionP = document.createElement('p');
+    descriptionP.append(...descriptionContainer.childNodes);
+    moveInstrumentation(descriptionContainer, descriptionP);
+    chaptersSection.append(descriptionP);
   }
-  mainDiv.append(descriptionP);
 
-  const sliderGalleryDiv = document.createElement('div');
-  sliderGalleryDiv.classList.add('chapters-sliderGallery');
+  const chaptersSliderGallery = document.createElement('div');
+  chaptersSliderGallery.classList.add('chapters-sliderGallery');
+  const chaptersGallery = document.createElement('div');
+  chaptersGallery.classList.add('chapters-chapters_gallery');
 
-  const chaptersGalleryDiv = document.createElement('div');
-  chaptersGalleryDiv.classList.add('chapters-chapters_gallery');
+  const chapterImagesContainer = block.children[3];
+  if (chapterImagesContainer) {
+    const chapterImages = chapterImagesContainer.querySelectorAll('[data-aue-model="chapterImage"]');
+    chapterImages.forEach((chapterImage) => {
+      const imageLink = chapterImage.querySelector('[data-aue-prop="image"]');
+      const altText = chapterImage.querySelector('[data-aue-prop="alt"]');
 
-  const chaptersContainer = block.querySelector('[data-aue-prop="chapters"]');
-  if (chaptersContainer) {
-    Array.from(chaptersContainer.children).forEach((chapterItem) => {
-      const chapterDiv = document.createElement('div');
-      chapterDiv.classList.add('chapters-chapp');
-      chapterDiv.style.cursor = 'pointer';
-      chapterDiv.setAttribute('data-fancybox', 'highlights-gallery');
-      moveInstrumentation(chapterItem, chapterDiv);
-
-      let imageLink = chapterItem.querySelector('[data-aue-prop="image"]');
-      if (!imageLink) {
-        imageLink = chapterItem.querySelector('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"]');
-      }
-
-      let imgSrc = '';
       if (imageLink) {
-        imgSrc = imageLink.getAttribute('href') || imageLink.src;
-        chapterDiv.setAttribute('href', imgSrc);
-      }
+        const chapDiv = document.createElement('div');
+        chapDiv.classList.add('chapters-chapp');
+        chapDiv.setAttribute('data-fancybox', 'highlights-gallery');
+        chapDiv.setAttribute('style', 'cursor: pointer;');
 
-      const altTextElement = chapterItem.querySelector('[data-aue-prop="alt"]');
-      const altText = altTextElement ? altTextElement.textContent : '';
+        let imgElement = imageLink.querySelector('img');
+        let imgSource = imgElement ? imgElement.src : imageLink.href;
+        let imgAlt = altText ? altText.textContent : (imgElement ? imgElement.alt : '');
 
-      if (imgSrc) {
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        img.alt = altText;
-        chapterDiv.append(img);
-        if (imageLink && imageLink.tagName === 'A') {
-            moveInstrumentation(imageLink, img);
-        } else if (imageLink && imageLink.tagName === 'IMG') {
-            moveInstrumentation(imageLink, img);
+        if (imgSource) {
+          const pic = createOptimizedPicture(imgSource, imgAlt);
+          chapDiv.append(pic);
+          moveInstrumentation(imageLink, pic.querySelector('img'));
+          chapDiv.href = imgSource;
         }
+        chaptersGallery.append(chapDiv);
       }
-      chaptersGalleryDiv.append(chapterDiv);
     });
   }
 
-  sliderGalleryDiv.append(chaptersGalleryDiv);
-  mainDiv.append(sliderGalleryDiv);
+  chaptersSliderGallery.append(chaptersGallery);
+  chaptersSection.append(chaptersSliderGallery);
 
-  const ctaLink = document.createElement('a');
-  ctaLink.classList.add('chapters-cta', 'chapters-open_galery', 'chapters-ctaaa');
-  ctaLink.href = 'javascript:void(0)';
-  ctaLink.rel = 'no-follow';
+  const ctaTextContainer = block.children[4]?.children[0];
+  const ctaIconContainer = block.children[5]?.children[0];
 
-  const ctaP = document.createElement('p');
-  const ctaText = block.children[4]?.querySelector('p');
-  if (ctaText) {
-    ctaP.append(...ctaText.childNodes);
-    moveInstrumentation(ctaText, ctaP);
-  }
-  ctaLink.append(ctaP);
+  if (ctaTextContainer || ctaIconContainer) {
+    const ctaLink = document.createElement('a');
+    ctaLink.classList.add('chapters-cta', 'chapters-open_galery', 'chapters-ctaaa');
+    ctaLink.href = 'javascript:void(0)';
+    ctaLink.rel = 'no-follow';
 
-  const galleryIcon = block.children[4]?.querySelector('[data-aue-prop="galleryIcon"]');
-  let galleryIconSrc = '';
-  if (galleryIcon) {
-    if (galleryIcon.tagName === 'IMG') {
-      galleryIconSrc = galleryIcon.src;
-    } else if (galleryIcon.tagName === 'A') {
-      galleryIconSrc = galleryIcon.href;
+    if (ctaTextContainer) {
+      const ctaP = document.createElement('p');
+      ctaP.append(...ctaTextContainer.childNodes);
+      moveInstrumentation(ctaTextContainer, ctaP);
+      ctaLink.append(ctaP);
     }
-  }
 
-  if (galleryIconSrc) {
-    const img = document.createElement('img');
-    img.src = galleryIconSrc;
-    img.alt = ''; // Alt text is not available in the provided JSON for this icon
-    ctaLink.append(img);
-    if (galleryIcon.tagName === 'IMG' || galleryIcon.tagName === 'A') {
-        moveInstrumentation(galleryIcon, img);
+    if (ctaIconContainer) {
+      let imgElement = ctaIconContainer.querySelector('img');
+      let imgSource = imgElement ? imgElement.src : ctaIconContainer.href;
+      let imgAlt = imgElement ? imgElement.alt : '';
+
+      if (imgSource) {
+        const pic = createOptimizedPicture(imgSource, imgAlt);
+        ctaLink.append(pic);
+        moveInstrumentation(ctaIconContainer, pic.querySelector('img'));
+      }
     }
+    chaptersSection.append(ctaLink);
   }
-
-  mainDiv.append(ctaLink);
 
   block.innerHTML = '';
-  block.append(mainDiv);
+  block.append(chaptersSection);
 }

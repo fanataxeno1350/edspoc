@@ -6,205 +6,164 @@ export default function decorate(block) {
   headerContainer.classList.add('header-container');
   moveInstrumentation(block, headerContainer);
 
-  // Home Link and Logo Desktop
-  const homeLinkDesktop = block.querySelector('[data-aue-prop="homeLink"]');
-  const logoDesktop = block.querySelector('[data-aue-prop="logoDesktop"] img');
-  if (homeLinkDesktop && logoDesktop) {
+  // Home Link and Logo Image
+  const homeLink = block.querySelector('[data-aue-prop="homeLink"]');
+  const logoImage = block.querySelector('[data-aue-prop="logoImage"]');
+  if (homeLink) {
     const homeAnchor = document.createElement('a');
     homeAnchor.rel = 'no-follow';
-    homeAnchor.title = homeLinkDesktop.textContent;
-    homeAnchor.href = homeLinkDesktop.href || '#';
-    homeAnchor.classList.add('header-home-logo');
-    moveInstrumentation(homeLinkDesktop, homeAnchor);
-    const pic = createOptimizedPicture(logoDesktop.src, logoDesktop.alt);
-    homeAnchor.append(pic);
-    moveInstrumentation(logoDesktop, pic.querySelector('img'));
+    homeAnchor.title = homeLink.textContent;
+    homeAnchor.href = homeLink.href;
+    moveInstrumentation(homeLink, homeAnchor);
+
+    if (logoImage) {
+      const pic = createOptimizedPicture(logoImage.src, logoImage.alt);
+      pic.classList.add('header-home-logo');
+      moveInstrumentation(logoImage, pic.querySelector('img'));
+      homeAnchor.append(pic);
+    }
     headerContainer.append(homeAnchor);
-  } else if (homeLinkDesktop) {
-    const homeAnchor = document.createElement('a');
-    homeAnchor.rel = 'no-follow';
-    homeAnchor.title = homeLinkDesktop.textContent;
-    homeAnchor.href = homeLinkDesktop.href || '#';
-    homeAnchor.classList.add('header-home-logo');
-    homeAnchor.textContent = homeLinkDesktop.textContent;
-    moveInstrumentation(homeLinkDesktop, homeAnchor);
-    headerContainer.append(homeAnchor);
-  } else if (logoDesktop) {
-    const homeAnchor = document.createElement('a');
-    homeAnchor.rel = 'no-follow';
-    homeAnchor.title = logoDesktop.alt || '';
-    homeAnchor.href = '#';
-    homeAnchor.classList.add('header-home-logo');
-    const pic = createOptimizedPicture(logoDesktop.src, logoDesktop.alt);
-    homeAnchor.append(pic);
-    moveInstrumentation(logoDesktop, pic.querySelector('img'));
-    headerContainer.append(homeAnchor);
+  } else if (logoImage) {
+    // If no homeLink, just add the logo image directly
+    const pic = createOptimizedPicture(logoImage.src, logoImage.alt);
+    pic.classList.add('header-home-logo');
+    moveInstrumentation(logoImage, pic.querySelector('img'));
+    headerContainer.append(pic);
   }
 
   const headerNav = document.createElement('div');
   headerNav.classList.add('header-nav');
-  headerContainer.append(headerNav);
 
-  // About Link Desktop
-  const aboutLinkDesktop = block.querySelector('[data-aue-prop="aboutLinkDesktop"]');
-  if (aboutLinkDesktop) {
+  // About Link
+  const aboutLink = block.querySelector('[data-aue-prop="aboutLink"]');
+  if (aboutLink) {
     const aboutAnchor = document.createElement('a');
-    aboutAnchor.href = aboutLinkDesktop.href || '#';
-    aboutAnchor.textContent = aboutLinkDesktop.textContent;
-    moveInstrumentation(aboutLinkDesktop, aboutAnchor);
+    aboutAnchor.href = aboutLink.href;
+    aboutAnchor.textContent = aboutLink.textContent;
+    moveInstrumentation(aboutLink, aboutAnchor);
     headerNav.append(aboutAnchor);
   }
 
-  // Experiences Link Desktop
-  const experiencesLinkDesktop = block.querySelector('[data-aue-prop="experiencesLinkDesktop"]');
-  if (experiencesLinkDesktop) {
+  // Experiences Link
+  const experiencesLink = block.querySelector('[data-aue-prop="experiencesLink"]');
+  if (experiencesLink) {
     const experiencesAnchor = document.createElement('a');
-    experiencesAnchor.href = experiencesLinkDesktop.href || '#';
-    experiencesAnchor.textContent = experiencesLinkDesktop.textContent;
-    moveInstrumentation(experiencesLinkDesktop, experiencesAnchor);
+    experiencesAnchor.href = experiencesLink.href;
+    experiencesAnchor.textContent = experiencesLink.textContent;
+    moveInstrumentation(experiencesLink, experiencesAnchor);
     headerNav.append(experiencesAnchor);
   }
 
-  // Request Invite Desktop
-  const requestInviteDesktop = block.querySelector('[data-aue-prop="requestInviteDesktop"]');
-  if (requestInviteDesktop) {
-    const requestAnchor = document.createElement('a');
-    requestAnchor.href = requestInviteDesktop.href || 'javascript:void(0)';
-    requestAnchor.classList.add('header-request-invite');
-    requestAnchor.textContent = requestInviteDesktop.textContent;
-    if (requestAnchor.href === 'javascript:void(0)') {
-      requestAnchor.setAttribute('onclick', 'beginFormShow()');
-    }
-    moveInstrumentation(requestInviteDesktop, requestAnchor);
-    headerNav.append(requestAnchor);
+  // Request Invite Link
+  const requestInviteLink = block.querySelector('[data-aue-prop="requestInviteLink"]');
+  if (requestInviteLink) {
+    const requestInviteAnchor = document.createElement('a');
+    requestInviteAnchor.href = requestInviteLink.href;
+    requestInviteAnchor.textContent = requestInviteLink.textContent;
+    requestInviteAnchor.classList.add('header-request-invite');
+    requestInviteAnchor.onclick = () => beginFormShow(); // Assuming beginFormShow is globally available or defined elsewhere
+    moveInstrumentation(requestInviteLink, requestInviteAnchor);
+    headerNav.append(requestInviteAnchor);
   }
 
-  // Instagram Link and Icon Desktop
-  const instaLinkDesktop = block.querySelector('[data-aue-prop="instaLinkDesktop"]');
-  const instaIconDesktop = block.querySelector('[data-aue-prop="instaIconDesktop"] img');
-  if (instaLinkDesktop && instaIconDesktop) {
+  // Instagram Link and Icon Image
+  const instaLink = block.querySelector('[data-aue-prop="instaLink"]');
+  const instaIconImage = block.querySelector('[data-aue-prop="instaIconImage"]');
+  if (instaLink) {
     const instaAnchor = document.createElement('a');
     instaAnchor.classList.add('header-insta-icon');
     instaAnchor.target = '_blank';
-    instaAnchor.href = instaLinkDesktop.href || '#';
-    moveInstrumentation(instaLinkDesktop, instaAnchor);
-    const pic = createOptimizedPicture(instaIconDesktop.src, instaIconDesktop.alt);
-    instaAnchor.append(pic);
-    moveInstrumentation(instaIconDesktop, pic.querySelector('img'));
+    instaAnchor.href = instaLink.href;
+    moveInstrumentation(instaLink, instaAnchor);
+
+    if (instaIconImage) {
+      const pic = createOptimizedPicture(instaIconImage.src, instaIconImage.alt);
+      moveInstrumentation(instaIconImage, pic.querySelector('img'));
+      instaAnchor.append(pic);
+    }
     headerNav.append(instaAnchor);
-  } else if (instaLinkDesktop) {
-    const instaAnchor = document.createElement('a');
-    instaAnchor.classList.add('header-insta-icon');
-    instaAnchor.target = '_blank';
-    instaAnchor.href = instaLinkDesktop.href || '#';
-    instaAnchor.textContent = instaLinkDesktop.textContent;
-    moveInstrumentation(instaLinkDesktop, instaAnchor);
-    headerNav.append(instaAnchor);
-  } else if (instaIconDesktop) {
-    const instaAnchor = document.createElement('a');
-    instaAnchor.classList.add('header-insta-icon');
-    instaAnchor.target = '_blank';
-    instaAnchor.href = '#';
-    const pic = createOptimizedPicture(instaIconDesktop.src, instaIconDesktop.alt);
-    instaAnchor.append(pic);
-    moveInstrumentation(instaIconDesktop, pic.querySelector('img'));
-    headerNav.append(instaAnchor);
+  } else if (instaIconImage) {
+    // If no instaLink, just add the insta icon image directly
+    const pic = createOptimizedPicture(instaIconImage.src, instaIconImage.alt);
+    pic.classList.add('header-insta-icon'); // Add class if it's just the icon
+    moveInstrumentation(instaIconImage, pic.querySelector('img'));
+    headerNav.append(pic);
   }
+
+  headerContainer.append(headerNav);
 
   const headerMenu = document.createElement('div');
   headerMenu.classList.add('header-menu');
-  for (let i = 1; i <= 3; i += 1) {
+  ['header-line-1', 'header-line-2', 'header-line-3'].forEach((lineClass) => {
     const line = document.createElement('div');
-    line.classList.add('header-menuline', `header-line-${i}`);
+    line.classList.add('header-menuline', lineClass);
     headerMenu.append(line);
-  }
+  });
   headerContainer.append(headerMenu);
 
   const headerPhoneMenu = document.createElement('section');
   headerPhoneMenu.classList.add('header-phone-menu');
 
-  // Phone Menu Background
-  const phoneMenuBg = block.querySelector('[data-aue-prop="phoneMenuBg"] img');
-  if (phoneMenuBg) {
-    const pic = createOptimizedPicture(phoneMenuBg.src, phoneMenuBg.alt);
+  // Phone Menu Back Image
+  const phoneMenuBackImage = block.querySelector('[data-aue-prop="phoneMenuBackImage"]');
+  if (phoneMenuBackImage) {
+    const pic = createOptimizedPicture(phoneMenuBackImage.src, phoneMenuBackImage.alt);
     pic.classList.add('header-phone-menu-back');
+    moveInstrumentation(phoneMenuBackImage, pic.querySelector('img'));
     headerPhoneMenu.append(pic);
-    moveInstrumentation(phoneMenuBg, pic.querySelector('img'));
   }
 
-  // About Link Mobile
-  const aboutLinkMobile = block.querySelector('[data-aue-prop="aboutLinkMobile"]');
-  if (aboutLinkMobile) {
+  // Re-add About Link for phone menu
+  if (aboutLink) {
     const aboutAnchor = document.createElement('a');
-    aboutAnchor.href = aboutLinkMobile.href || '#';
-    aboutAnchor.textContent = aboutLinkMobile.textContent;
-    moveInstrumentation(aboutLinkMobile, aboutAnchor);
+    aboutAnchor.href = aboutLink.href;
+    aboutAnchor.textContent = aboutLink.textContent;
+    // No need to moveInstrumentation again as it's already moved/wrapped
     headerPhoneMenu.append(aboutAnchor);
   }
 
-  // Experiences Link Mobile
-  const experiencesLinkMobile = block.querySelector('[data-aue-prop="experiencesLinkMobile"]');
-  if (experiencesLinkMobile) {
+  // Re-add Experiences Link for phone menu
+  if (experiencesLink) {
     const experiencesAnchor = document.createElement('a');
-    experiencesAnchor.href = experiencesLinkMobile.href || '#';
-    experiencesAnchor.textContent = experiencesLinkMobile.textContent;
-    moveInstrumentation(experiencesLinkMobile, experiencesAnchor);
+    experiencesAnchor.href = experiencesLink.href;
+    experiencesAnchor.textContent = experiencesLink.textContent;
+    // No need to moveInstrumentation again as it's already moved/wrapped
     headerPhoneMenu.append(experiencesAnchor);
   }
 
-  // Request Invite Mobile
-  const requestInviteMobile = block.querySelector('[data-aue-prop="requestInviteMobile"]');
-  if (requestInviteMobile) {
-    const requestAnchor = document.createElement('a');
-    requestAnchor.href = requestInviteMobile.href || 'javascript:void(0)';
-    requestAnchor.classList.add('header-request-invite');
-    requestAnchor.textContent = requestInviteMobile.textContent;
-    if (requestAnchor.href === 'javascript:void(0)') {
-      requestAnchor.setAttribute('onclick', 'beginFormShow()');
+  // Re-add Request Invite Link for phone menu
+  if (requestInviteLink) {
+    const requestInviteAnchor = document.createElement('a');
+    requestInviteAnchor.href = requestInviteLink.href;
+    requestInviteAnchor.textContent = requestInviteLink.textContent;
+    requestInviteAnchor.classList.add('header-request-invite');
+    requestInviteAnchor.onclick = () => beginFormShow();
+    // No need to moveInstrumentation again as it's already moved/wrapped
+    headerPhoneMenu.append(requestInviteAnchor);
+  }
+
+  // Re-add Instagram Link for phone menu
+  if (instaLink) {
+    const instaAnchor = document.createElement('a');
+    instaAnchor.classList.add('header-insta-icon');
+    instaAnchor.target = '_blank';
+    instaAnchor.href = instaLink.href;
+    // No need to moveInstrumentation again as it's already moved/wrapped
+    if (instaIconImage) {
+      const pic = createOptimizedPicture(instaIconImage.src, instaIconImage.alt);
+      // No need to moveInstrumentation again as it's already moved/wrapped
+      instaAnchor.append(pic);
     }
-    moveInstrumentation(requestInviteMobile, requestAnchor);
-    headerPhoneMenu.append(requestAnchor);
-  }
-
-  // Instagram Link and Icon Mobile
-  const instaLinkMobile = block.querySelector('[data-aue-prop="instaLinkMobile"]');
-  const instaIconMobile = block.querySelector('[data-aue-prop="instaIconMobile"] img');
-  if (instaLinkMobile && instaIconMobile) {
-    const instaAnchor = document.createElement('a');
-    instaAnchor.classList.add('header-insta-icon');
-    instaAnchor.target = '_blank';
-    instaAnchor.href = instaLinkMobile.href || '#';
-    moveInstrumentation(instaLinkMobile, instaAnchor);
-    const pic = createOptimizedPicture(instaIconMobile.src, instaIconMobile.alt);
-    instaAnchor.append(pic);
-    moveInstrumentation(instaIconMobile, pic.querySelector('img'));
-    headerPhoneMenu.append(instaAnchor);
-  } else if (instaLinkMobile) {
-    const instaAnchor = document.createElement('a');
-    instaAnchor.classList.add('header-insta-icon');
-    instaAnchor.target = '_blank';
-    instaAnchor.href = instaLinkMobile.href || '#';
-    instaAnchor.textContent = instaLinkMobile.textContent;
-    moveInstrumentation(instaLinkMobile, instaAnchor);
-    headerPhoneMenu.append(instaAnchor);
-  } else if (instaIconMobile) {
-    const instaAnchor = document.createElement('a');
-    instaAnchor.classList.add('header-insta-icon');
-    instaAnchor.target = '_blank';
-    instaAnchor.href = '#';
-    const pic = createOptimizedPicture(instaIconMobile.src, instaIconMobile.alt);
-    instaAnchor.append(pic);
-    moveInstrumentation(instaIconMobile, pic.querySelector('img'));
     headerPhoneMenu.append(instaAnchor);
   }
 
-  // Logo Mobile
-  const logoMobile = block.querySelector('[data-aue-prop="logoMobile"] img');
-  if (logoMobile) {
-    const pic = createOptimizedPicture(logoMobile.src, logoMobile.alt);
+  // Phone Menu Logo Image
+  const phoneMenuLogoImage = block.querySelector('[data-aue-prop="phoneMenuLogoImage"]');
+  if (phoneMenuLogoImage) {
+    const pic = createOptimizedPicture(phoneMenuLogoImage.src, phoneMenuLogoImage.alt);
     pic.classList.add('header-phone-menu-logo');
+    moveInstrumentation(phoneMenuLogoImage, pic.querySelector('img'));
     headerPhoneMenu.append(pic);
-    moveInstrumentation(logoMobile, pic.querySelector('img'));
   }
 
   block.innerHTML = '';
