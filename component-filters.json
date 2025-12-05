@@ -14,13 +14,25 @@
       "title",
       "hero",
       "cards",
-      "header"
+      "header",
+      "carousel",
+      "featureCards",
+      "latestBlogsArticleListing",
+      "spaceAdder",
+      "footerBrand",
+      "stickyNavigation"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "carousel",
+    "components": [
+      "carouselItem"
     ]
   },
   {
@@ -36,6 +48,48 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "featureCards",
+    "components": [
+      "featureCard"
+    ]
+  },
+  {
+    "id": "footerBrand",
+    "components": [
+      "footerNavColumn",
+      "footerSocialLink"
+    ]
+  },
+  {
+    "id": "footerNavColumn",
+    "components": [
+      "footerNavItem"
+    ]
+  },
+  {
+    "id": "header",
+    "components": [
+      "menuItem",
+      "footerLink",
+      "socialLink"
+    ]
+  },
+  {
+    "id": "latestBlogsArticleListing",
+    "components": [
+      "articleCard"
+    ]
+  },
+  {
+    "id": "spaceAdder"
+  },
+  {
+    "id": "stickyNavigation",
+    "components": [
+      "navigationItem"
     ]
   }
 ]

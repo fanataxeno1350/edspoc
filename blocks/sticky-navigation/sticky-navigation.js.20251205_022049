@@ -1,0 +1,73 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
+export default function decorate(block) {
+  const stickyNavigationComponent = document.createElement('section');
+  stickyNavigationComponent.className = 'sticky-navigation-component sticky-navigation-component--position-fixed sticky-navigation-component--bottom-0 sticky-navigation-component--p-3 sticky-navigation-component--d-flex sticky-navigation-component--align-items-center sticky-navigation-component--boing-container sticky-navigation-component--bg-boing-primary';
+
+  const list = document.createElement('ul');
+  list.className = 'sticky-navigation-component__list sticky-navigation-component--d-flex sticky-navigation-component--justify-content-around sticky-navigation-component--align-items-center sticky-navigation-component--flex-grow-1';
+
+  const navigationItems = block.querySelectorAll('[data-aue-model="navigationItem"]');
+  navigationItems.forEach((row) => {
+    const listItem = document.createElement('li');
+    listItem.className = 'sticky-navigation-component__item sticky-navigation-component--position-relative';
+    moveInstrumentation(row, listItem);
+
+    const linkElement = document.createElement('a');
+    linkElement.className = 'sticky-navigation-component__link sticky-navigation-component--d-flex sticky-navigation-component--flex-column sticky-navigation-component--align-items-center sticky-navigation-component--gap-1 sticky-navigation-component--analytics_cta_click';
+
+    const link = row.querySelector('[data-aue-prop="link"]');
+    if (link) {
+      linkElement.href = link.href;
+      linkElement.dataset.link = link.dataset.aueContent;
+      moveInstrumentation(link, linkElement);
+    }
+
+    const consent = row.querySelector('[data-aue-prop="consent"]');
+    if (consent) {
+      linkElement.dataset.consent = consent.dataset.aueContent;
+      moveInstrumentation(consent, linkElement);
+    }
+
+    const icon = row.querySelector('[data-aue-prop="icon"] img');
+    if (icon) {
+      const picture = createOptimizedPicture(icon.src, icon.alt || '');
+      picture.querySelector('img').className = 'sticky-navigation-component__icon';
+      linkElement.append(picture);
+      moveInstrumentation(icon, picture.querySelector('img'));
+    } else {
+      // Fallback for image inside an anchor tag if direct img not found
+      const anchor = row.querySelector('[data-aue-prop="icon"] a');
+      if (anchor && (anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif') || anchor.href.endsWith('.webp')) ) {
+        const img = document.createElement('img');
+        img.src = anchor.href;
+        img.alt = anchor.title || '';
+        img.className = 'sticky-navigation-component__icon';
+        const picture = createOptimizedPicture(img.src, img.alt);
+        picture.querySelector('img').className = 'sticky-navigation-component__icon';
+        linkElement.append(picture);
+        moveInstrumentation(anchor, picture.querySelector('img'));
+      }
+    }
+
+    const label = row.querySelector('[data-aue-prop="label"]');
+    if (label) {
+      const span = document.createElement('span');
+      span.className = 'sticky-navigation-component__label';
+      span.append(...label.childNodes);
+      linkElement.append(span);
+      moveInstrumentation(label, span);
+    }
+
+    listItem.append(linkElement);
+    list.append(listItem);
+  });
+
+  stickyNavigationComponent.append(list);
+
+  block.textContent = '';
+  block.append(stickyNavigationComponent);
+  block.className = `${block.dataset.blockName} block`;
+  block.dataset.blockStatus = 'loaded';
+}
