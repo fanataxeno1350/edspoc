@@ -14,25 +14,7 @@
       "title",
       "hero",
       "cards",
-      "header",
-      "phoneMenu",
-      "heroSection",
-      "storySequence",
-      "experienceSection",
-      "weekendtrailSection",
-      "reasonsToJoinRockNRoad",
-      "upcomingDrives",
-      "chaptersGallery",
-      "faqs",
-      "registrationFormBegin",
-      "footer",
-      "backToTop"
-    ]
-  },
-  {
-    "id": "bloglisting",
-    "components": [
-      "blogCard"
+      "header"
     ]
   },
   {
@@ -54,36 +36,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "footerBrand",
-    "components": [
-      "footerLink",
-      "footerSocialLink"
-    ]
-  },
-  {
-    "id": "headerSection",
-    "components": [
-      "sidebarMenuItem",
-      "footerListItem",
-      "footerSocialItem"
-    ]
-  },
-  {
-    "id": "spaceadder-curve-container"
-  },
-  {
-    "id": "stickyBottomNav",
-    "components": [
-      "navItem"
-    ]
-  },
-  {
-    "id": "text",
-    "components": [
-      "text"
     ]
   }
 ]
