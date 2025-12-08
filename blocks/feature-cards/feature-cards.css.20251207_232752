@@ -1,0 +1,154 @@
+.featurecards {
+  padding: 1.5rem 1rem 1rem;
+  position: relative;
+}
+.featurecards-text-wrapper {
+  font-family: Barlow;
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: 1.75rem; /* Equivalent to 28px assuming 16px base */
+  padding-bottom: 1rem;
+}
+.featurecards-title {
+  text-align: center;
+  color: #161616;
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-title-highlight {
+  color: #aa1f30;
+}
+.featurecards-section {
+  margin-inline: auto;
+  padding-bottom: 1.5rem;
+  display: block;
+}
+.featurecards-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.featurecards-image-wrapper {
+  width: 100%;
+  padding-bottom: 0.75rem;
+  height: 12.0625rem; /* Equivalent to 193px assuming 16px base */
+}
+.featurecards-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem; /* Equivalent to 12px assuming 16px base */
+}
+.featurecards-content-wrapper {
+  text-align: center;
+}
+.featurecards-card-title {
+  color: #aa1f30;
+  margin-bottom: 0.25rem;
+  font-family: Barlow;
+  font-size: 1.5rem; /* Equivalent to 24px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-description-wrapper {
+  padding-bottom: 1rem;
+}
+.featurecards-description {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  color: #030303;
+  font-family: Barlow;
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 400;
+  line-height: normal;
+}
+.featurecards-redirect-button-wrapper {
+  display: none;
+}
+.featurecards-arrow-icon-btn {
+  background-color: #aa1f30;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 2.5rem; /* Equivalent to 40px assuming 16px base */
+  width: 2.5rem; /* Equivalent to 40px assuming 16px base */
+}
+.featurecards-boltesitare-cardsection {
+  border-radius: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  box-shadow: 0.125rem 0.25rem 1rem 0px rgba(0, 0, 0, 0.22);
+  margin-bottom: 1rem;
+  padding: 0.75rem 1.125rem 0.75rem 0.75rem;
+  position: relative;
+  z-index: 11;
+  display: none;
+}
+.featurecards-boltesitare-cardsection:first-of-type {
+  padding-top: 1.25rem;
+}
+.featurecards-boltesitare-cardsection:last-of-type {
+  margin-bottom: 3.375rem;
+}
+.featurecards-boltesitare-cardsection-wrapper {
+  display: flex;
+  gap: 0.75rem;
+}
+.featurecards-boltesitare-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.featurecards-boltesitare-cardsection-img {
+  border-radius: 0.25rem;
+  height: 6.8125rem; /* Equivalent to 109px assuming 16px base */
+  width: 8.3125rem; /* Equivalent to 133px assuming 16px base */
+}
+.featurecards-boltesitare-cardsection-card-img {
+  border-radius: 0.25rem;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.featurecards-boltesitare-cardsection-title {
+  padding-bottom: 0.25rem;
+  color: #030303;
+  font-family: Barlow;
+  font-size: 1rem; /* Equivalent to 16px assuming 16px base */
+  font-weight: 700;
+  line-height: normal;
+}
+.featurecards-boltesitare-cardsection-text {
+  color: #030303;
+  font-family: Barlow;
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 400;
+  line-height: normal;
+}
+.featurecards-boltesitare-cardsection-btn {
+  background-color: #aa1f30;
+  border-radius: 6.25rem;
+  cursor: pointer;
+  height: 1.8125rem; /* Equivalent to 29px assuming 16px base */
+  line-height: 1.8125rem; /* Equivalent to 29px assuming 16px base */
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-family: Barlow;
+  font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
+  font-weight: 600;
+}
+.featurecards-curve-container {
+  background-color: #fff;
+  border-radius: 0 0 2rem 2rem;
+  bottom: -3.6875rem;
+  height: 6.25rem; /* Equivalent to 100px assuming 16px base */
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
+  transform: skewY(-6.2deg);
+  width: 100%;
+  z-index: 10;
+  display: none;
+}

@@ -5,85 +5,95 @@ export default function decorate(block) {
   const carouselWrapper = document.createElement('div');
   carouselWrapper.classList.add('carousel-wrapper');
 
-  const swiperWrapper = document.createElement('div');
-  swiperWrapper.classList.add('swiper-wrapper');
+  const slidesContainer = document.createElement('div');
+  slidesContainer.classList.add('carousel-slides-container');
 
-  // Iterate over carousel items using data-aue-model
-  const carouselItems = block.querySelectorAll('[data-aue-model="carouselItem"]');
-  carouselItems.forEach((item) => {
+  const children = [...block.children];
+
+  children.forEach((row) => {
     const slide = document.createElement('div');
-    slide.classList.add('swiper-slide');
+    slide.classList.add('carousel-slide');
 
-    const mediaWrapper = document.createElement('div');
-    mediaWrapper.classList.add('carousel-media-wrapper');
+    // Transfer instrumentation from the original row to the new slide container
+    moveInstrumentation(row, slide);
 
-    // Check for video first
-    let videoElement = item.querySelector('[data-aue-prop="video"]');
-    if (videoElement) {
-      const videoContainer = document.createElement('div');
-      videoContainer.classList.add('carousel-video-container');
+    const videoCell = row.querySelector('[data-aue-prop="video"]');
+    const imageCell = row.querySelector('[data-aue-prop="image"]');
+    const ctaLinkCell = row.querySelector('[data-aue-prop="ctaLink"]');
+    const ctaTextCell = row.querySelector('[data-aue-prop="ctaText"]');
 
-      const video = document.createElement('video');
-      video.setAttribute('playsinline', '');
-      video.setAttribute('preload', 'metadata');
-      video.setAttribute('fetchpriority', 'high');
-      video.setAttribute('loop', '');
-      video.setAttribute('muted', '');
-      video.setAttribute('autoplay', '');
+    if (videoCell) {
+      const videoWrapper = document.createElement('div');
+      videoWrapper.classList.add('carousel-video-wrapper');
 
-      // If videoElement is an <a> tag, extract href for source
-      if (videoElement.tagName === 'A') {
-        const videoSrc = videoElement.getAttribute('href');
-        if (videoSrc) {
-          const sourceMp4 = document.createElement('source');
-          sourceMp4.src = videoSrc;
-          sourceMp4.type = 'video/mp4';
-          video.append(sourceMp4);
-
-          // Add webm source if available (assuming same base name, different extension)
-          const webmSrc = videoSrc.replace(/\.(mp4|mov)$/, '.webm');
-          const sourceWebm = document.createElement('source');
-          sourceWebm.src = webmSrc;
-          sourceWebm.type = 'video/webm';
-          video.append(sourceWebm);
+      let videoElement = videoCell.querySelector('video');
+      if (!videoElement) {
+        const anchor = videoCell.querySelector('a[href$=".mp4"], a[href$=".mov"], a[href$=".webm"]');
+        if (anchor) {
+          videoElement = document.createElement('video');
+          videoElement.setAttribute('src', anchor.href);
+          videoElement.setAttribute('autoplay', '');
+          videoElement.setAttribute('loop', '');
+          videoElement.setAttribute('muted', '');
+          videoElement.setAttribute('playsinline', '');
+          videoElement.setAttribute('preload', 'metadata');
+          moveInstrumentation(anchor, videoElement);
         }
-      } else if (videoElement.tagName === 'VIDEO') {
-        // If it's already a video element, move its sources
-        videoElement.querySelectorAll('source').forEach((source) => {
-          video.append(source);
-        });
       }
-      videoContainer.append(video);
-      mediaWrapper.append(videoContainer);
-      moveInstrumentation(videoElement, video);
-    } else {
-      // If no video, check for image
-      let imageElement = item.querySelector('[data-aue-prop="image"]');
-      if (imageElement) {
-        const picture = createOptimizedPicture(imageElement.src, imageElement.alt);
-        mediaWrapper.append(picture);
-        moveInstrumentation(imageElement, picture.querySelector('img'));
+      if (videoElement) {
+        videoWrapper.append(videoElement);
+        moveInstrumentation(videoCell, videoWrapper);
+      }
+      slide.append(videoWrapper);
+    } else if (imageCell) {
+      const picture = imageCell.querySelector('picture');
+      if (picture) {
+        slide.append(picture);
+        moveInstrumentation(imageCell, picture);
+      } else {
+        const img = imageCell.querySelector('img');
+        if (img) {
+          const optimizedPicture = createOptimizedPicture(img.src, img.alt);
+          slide.append(optimizedPicture);
+          moveInstrumentation(img, optimizedPicture.querySelector('img'));
+        }
       }
     }
 
-    // Add CTA link if present
-    const ctaLink = item.querySelector('[data-aue-prop="ctaLink"]');
-    if (ctaLink) {
+    if (ctaLinkCell || ctaTextCell) {
       const ctaWrapper = document.createElement('div');
       ctaWrapper.classList.add('carousel-cta-wrapper');
-      ctaWrapper.append(ctaLink);
-      moveInstrumentation(ctaLink, ctaWrapper);
-      mediaWrapper.append(ctaWrapper);
+
+      let ctaLink = ctaLinkCell ? ctaLinkCell.querySelector('a') : null;
+      let ctaText = ctaTextCell ? ctaTextCell.textContent.trim() : '';
+
+      if (ctaLink) {
+        if (!ctaText && ctaLink.textContent.trim()) {
+          ctaText = ctaLink.textContent.trim();
+        }
+        const newCtaLink = document.createElement('a');
+        newCtaLink.href = ctaLink.href;
+        newCtaLink.textContent = ctaText;
+        newCtaLink.classList.add('button', 'primary');
+        ctaWrapper.append(newCtaLink);
+        moveInstrumentation(ctaLink, newCtaLink);
+      } else if (ctaText) {
+        const newCtaLink = document.createElement('a');
+        newCtaLink.textContent = ctaText;
+        newCtaLink.classList.add('button', 'primary');
+        ctaWrapper.append(newCtaLink);
+        if (ctaTextCell) {
+          moveInstrumentation(ctaTextCell, newCtaLink);
+        }
+      }
+      slide.append(ctaWrapper);
     }
 
-    slide.append(mediaWrapper);
-    swiperWrapper.append(slide);
-    moveInstrumentation(item, slide);
+    slidesContainer.append(slide);
   });
 
-  carouselWrapper.append(swiperWrapper);
+  carouselWrapper.append(slidesContainer);
 
-  // Clear the original block content and append the new structure
   block.textContent = '';
   block.append(carouselWrapper);
   block.className = `${block.dataset.blockName} block`;

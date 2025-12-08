@@ -56,7 +56,7 @@
   {
     "id": "featureCards",
     "components": [
-      "featureCard"
+      "card"
     ]
   },
   {
@@ -96,7 +96,7 @@
     "id": "spaceAdder"
   },
   {
-    "id": "spaceadder-Container"
+    "id": "spaceadderContainer"
   },
   {
     "id": "stickyNavigation",

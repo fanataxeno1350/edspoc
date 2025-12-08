@@ -49,40 +49,6 @@
   ],
   "models": [
     {
-      "id": "footerLink",
-      "fields": [
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Label",
-          "name": "label",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "footerSocialLink",
-      "fields": [
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Icon",
-          "name": "icon",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
       "id": "footerBrand",
       "fields": [
         {
@@ -99,15 +65,17 @@
         },
         {
           "component": "container",
-          "items": "footerLink",
+          "itemType": "footerLink",
           "label": "Footer Links",
-          "name": "footerLinks"
+          "name": "footerLinks",
+          "valueType": "array"
         },
         {
           "component": "container",
-          "items": "footerSocialLink",
+          "itemType": "footerSocialLink",
           "label": "Footer Social Links",
-          "name": "footerSocialLinks"
+          "name": "footerSocialLinks",
+          "valueType": "array"
         },
         {
           "component": "aem-content",
@@ -119,6 +87,40 @@
           "component": "text",
           "label": "Copyright",
           "name": "copyright",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footerLink",
+      "fields": [
+        {
+          "component": "aem-content",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Text",
+          "name": "text",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footerSocialLink",
+      "fields": [
+        {
+          "component": "aem-content",
+          "label": "Social Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Social Icon",
+          "name": "icon",
           "valueType": "string"
         }
       ]

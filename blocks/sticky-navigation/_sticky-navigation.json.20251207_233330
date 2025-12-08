@@ -1,31 +1,31 @@
 {
   "definitions": [
     {
-      "title": "Carousel",
-      "id": "carousel",
+      "title": "Sticky-Navigation",
+      "id": "stickyNavigation",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "carousel",
-              "model": "carousel",
-              "name": "Carousel"
+              "filter": "stickyNavigation",
+              "model": "stickyNavigation",
+              "name": "Sticky-Navigation"
             }
           }
         }
       }
     },
     {
-      "title": "Carousel Item",
-      "id": "carouselItem",
+      "title": "Navigation-Item",
+      "id": "navigationItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "carouselItem",
-              "name": "Carousel Item"
+              "model": "navigationItem",
+              "name": "Navigation-Item"
             }
           }
         }
@@ -34,30 +34,24 @@
   ],
   "models": [
     {
-      "id": "carouselItem",
+      "id": "navigationItem",
       "fields": [
         {
           "component": "reference",
-          "label": "Video",
-          "name": "video",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Image",
-          "name": "image",
+          "label": "Icon",
+          "name": "icon",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "CTA Text",
-          "name": "ctaText",
+          "label": "Label",
+          "name": "label",
           "valueType": "string"
         }
       ]
@@ -65,9 +59,9 @@
   ],
   "filters": [
     {
-      "id": "carousel",
+      "id": "stickyNavigation",
       "components": [
-        "carouselItem"
+        "navigationItem"
       ]
     }
   ]

@@ -1,31 +1,31 @@
 {
   "definitions": [
     {
-      "title": "Carousel",
-      "id": "carousel",
+      "title": "Feature-Cards",
+      "id": "featureCards",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "carousel",
-              "model": "carousel",
-              "name": "Carousel"
+              "filter": "featureCards",
+              "model": "featureCards",
+              "name": "Feature-Cards"
             }
           }
         }
       }
     },
     {
-      "title": "Carousel Item",
-      "id": "carouselItem",
+      "title": "Feature-Card",
+      "id": "featureCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "carouselItem",
-              "name": "Carousel Item"
+              "model": "featureCard",
+              "name": "Feature-Card"
             }
           }
         }
@@ -34,14 +34,8 @@
   ],
   "models": [
     {
-      "id": "carouselItem",
+      "id": "featureCard",
       "fields": [
-        {
-          "component": "reference",
-          "label": "Video",
-          "name": "video",
-          "valueType": "string"
-        },
         {
           "component": "reference",
           "label": "Image",
@@ -49,15 +43,27 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "component": "text",
+          "label": "Alt Text",
+          "name": "alt",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "CTA Text",
-          "name": "ctaText",
+          "label": "Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Description",
+          "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         }
       ]
@@ -65,9 +71,9 @@
   ],
   "filters": [
     {
-      "id": "carousel",
+      "id": "featureCards",
       "components": [
-        "carouselItem"
+        "featureCard"
       ]
     }
   ]
