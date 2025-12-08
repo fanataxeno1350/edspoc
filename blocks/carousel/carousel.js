@@ -8,85 +8,82 @@ export default function decorate(block) {
   const swiperWrapper = document.createElement('div');
   swiperWrapper.classList.add('swiper-wrapper');
 
-  const children = [...block.children];
-  children.forEach((row) => {
+  // Iterate over carousel items using data-aue-model
+  const carouselItems = block.querySelectorAll('[data-aue-model="carouselItem"]');
+  carouselItems.forEach((item) => {
     const slide = document.createElement('div');
     slide.classList.add('swiper-slide');
 
-    const videoContainer = row.querySelector('[data-aue-prop="video"]');
-    const imageContainer = row.querySelector('[data-aue-prop="image"]');
-    const ctaLinkContainer = row.querySelector('[data-aue-prop="ctaLink"]');
+    const mediaWrapper = document.createElement('div');
+    mediaWrapper.classList.add('carousel-media-wrapper');
 
-    if (videoContainer) {
-      const videoElement = document.createElement('video');
-      videoElement.classList.add('carousel-w-100', 'carousel-object-fit-cover', 'banner-media', 'banner-video');
-      videoElement.setAttribute('title', 'Video');
-      videoElement.setAttribute('aria-label', 'Video');
-      videoElement.setAttribute('playsinline', '');
-      videoElement.setAttribute('preload', 'metadata');
-      videoElement.setAttribute('fetchpriority', 'high');
-      videoElement.setAttribute('autoplay', '');
-      videoElement.setAttribute('loop', '');
-      videoElement.setAttribute('muted', '');
+    // Check for video first
+    let videoElement = item.querySelector('[data-aue-prop="video"]');
+    if (videoElement) {
+      const videoContainer = document.createElement('div');
+      videoContainer.classList.add('carousel-video-container');
 
-      const sourceElement = document.createElement('source');
-      let videoSrc = videoContainer.textContent.trim();
-      if (videoSrc) {
-        sourceElement.setAttribute('src', videoSrc);
-        sourceElement.setAttribute('type', `video/${videoSrc.split('.').pop()}`);
-        videoElement.append(sourceElement);
-        slide.append(videoElement);
-        moveInstrumentation(videoContainer, videoElement);
-      } else {
-        // Fallback for aem-content field that might generate an <a> tag
-        const anchor = videoContainer.querySelector('a[href$=".mp4"], a[href$=".mov"], a[href$=".webm"]');
-        if (anchor) {
-          videoSrc = anchor.href;
-          sourceElement.setAttribute('src', videoSrc);
-          sourceElement.setAttribute('type', `video/${videoSrc.split('.').pop()}`);
-          videoElement.append(sourceElement);
-          slide.append(videoElement);
-          moveInstrumentation(anchor, videoElement);
+      const video = document.createElement('video');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('preload', 'metadata');
+      video.setAttribute('fetchpriority', 'high');
+      video.setAttribute('loop', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('autoplay', '');
+
+      // If videoElement is an <a> tag, extract href for source
+      if (videoElement.tagName === 'A') {
+        const videoSrc = videoElement.getAttribute('href');
+        if (videoSrc) {
+          const sourceMp4 = document.createElement('source');
+          sourceMp4.src = videoSrc;
+          sourceMp4.type = 'video/mp4';
+          video.append(sourceMp4);
+
+          // Add webm source if available (assuming same base name, different extension)
+          const webmSrc = videoSrc.replace(/\.(mp4|mov)$/, '.webm');
+          const sourceWebm = document.createElement('source');
+          sourceWebm.src = webmSrc;
+          sourceWebm.type = 'video/webm';
+          video.append(sourceWebm);
         }
+      } else if (videoElement.tagName === 'VIDEO') {
+        // If it's already a video element, move its sources
+        videoElement.querySelectorAll('source').forEach((source) => {
+          video.append(source);
+        });
       }
-    } else if (imageContainer) {
-      const img = imageContainer.querySelector('img');
-      if (img) {
-        const pic = createOptimizedPicture(img.src, img.alt);
-        pic.classList.add('carousel-w-100', 'carousel-h-100', 'carousel-object-fit-cover', 'banner-media', 'banner-image');
-        slide.append(pic);
-        moveInstrumentation(img, pic.querySelector('img'));
-      } else {
-        // Fallback for aem-content field that might generate an <a> tag
-        const anchor = imageContainer.querySelector('a[href]');
-        if (anchor) {
-          const imgSrc = anchor.href;
-          const altText = anchor.title || '';
-          const pic = createOptimizedPicture(imgSrc, altText);
-          pic.classList.add('carousel-w-100', 'carousel-h-100', 'carousel-object-fit-cover', 'banner-media', 'banner-image');
-          slide.append(pic);
-          moveInstrumentation(anchor, pic.querySelector('img'));
-        }
+      videoContainer.append(video);
+      mediaWrapper.append(videoContainer);
+      moveInstrumentation(videoElement, video);
+    } else {
+      // If no video, check for image
+      let imageElement = item.querySelector('[data-aue-prop="image"]');
+      if (imageElement) {
+        const picture = createOptimizedPicture(imageElement.src, imageElement.alt);
+        mediaWrapper.append(picture);
+        moveInstrumentation(imageElement, picture.querySelector('img'));
       }
     }
 
-    if (ctaLinkContainer) {
+    // Add CTA link if present
+    const ctaLink = item.querySelector('[data-aue-prop="ctaLink"]');
+    if (ctaLink) {
       const ctaWrapper = document.createElement('div');
-      ctaWrapper.classList.add('carousel-position-absolute', 'carousel-start-50', 'carousel-translate-middle-x', 'carousel-w-100', 'carousel-boing__banner--cta');
-      const bannerCta = document.createElement('div');
-      bannerCta.classList.add('banner-cta');
-      bannerCta.append(...ctaLinkContainer.childNodes);
-      moveInstrumentation(ctaLinkContainer, bannerCta);
-      ctaWrapper.append(bannerCta);
-      slide.append(ctaWrapper);
+      ctaWrapper.classList.add('carousel-cta-wrapper');
+      ctaWrapper.append(ctaLink);
+      moveInstrumentation(ctaLink, ctaWrapper);
+      mediaWrapper.append(ctaWrapper);
     }
 
+    slide.append(mediaWrapper);
     swiperWrapper.append(slide);
-    moveInstrumentation(row, slide);
+    moveInstrumentation(item, slide);
   });
 
   carouselWrapper.append(swiperWrapper);
 
+  // Clear the original block content and append the new structure
   block.textContent = '';
   block.append(carouselWrapper);
   block.className = `${block.dataset.blockName} block`;

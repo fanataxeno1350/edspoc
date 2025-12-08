@@ -2,75 +2,56 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const popUp = document.createElement('div');
-  popUp.id = 'sticky-navigation-pop-up';
+  const stickyNavigationSection = document.createElement('div');
+  stickyNavigationSection.id = 'sticky-navigation';
+  stickyNavigationSection.className = 'sticky-navigation-section sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-container sticky-navigation-bg-boing-primary';
 
-  const transPopUp = document.createElement('div');
-  transPopUp.className = 'sticky-navigation-trans-pop-up';
-
-  const section = document.createElement('section');
-  section.className = 'sticky-navigation-sticky-bottom-nav sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-boing-container sticky-navigation-bg-boing-primary';
-
-  const list = document.createElement('ul');
-  list.className = 'sticky-navigation-sticky-bottom-nav__list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
+  const stickyNavigationList = document.createElement('ul');
+  stickyNavigationList.className = 'sticky-navigation-list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
 
   const navigationItems = block.querySelectorAll('[data-aue-model="navigationItem"]');
   navigationItems.forEach((item) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'sticky-navigation-sticky-bottom-nav__item sticky-navigation-position-relative';
+    const stickyNavigationItem = document.createElement('li');
+    stickyNavigationItem.className = 'sticky-navigation-item sticky-navigation-position-relative';
+    moveInstrumentation(item, stickyNavigationItem);
 
-    const linkWrapper = document.createElement('a');
-    linkWrapper.className = 'sticky-navigation-sticky-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 sticky-navigation-analytics_cta_click';
-    moveInstrumentation(item, linkWrapper);
+    const linkWrapper = item.querySelector('[data-aue-prop="link"]');
+    const link = linkWrapper ? linkWrapper.querySelector('a') : null;
 
-    const linkElement = item.querySelector('[data-aue-prop="link"]');
-    if (linkElement) {
-      linkWrapper.href = linkElement.href || '#';
-      linkWrapper.setAttribute('data-link', linkElement.href || '');
-      // Check for data-consent attribute on the original link element
-      const dataConsent = linkElement.getAttribute('data-consent');
-      if (dataConsent !== null) {
-        linkWrapper.setAttribute('data-consent', dataConsent);
-      }
+    const stickyNavigationLink = document.createElement('a');
+    stickyNavigationLink.className = 'sticky-navigation-link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 analytics_cta_click';
+    if (link) {
+      stickyNavigationLink.href = link.href;
+      stickyNavigationLink.dataset.link = link.dataset.aueSrc;
+      moveInstrumentation(link, stickyNavigationLink);
     }
 
-    const iconElement = item.querySelector('[data-aue-prop="icon"]');
-    if (iconElement) {
-      let img = iconElement.querySelector('img');
-      if (!img) {
-        const anchor = iconElement.querySelector('a');
-        if (anchor && (anchor.href.endsWith('.png') || anchor.href.endsWith('.jpg') || anchor.href.endsWith('.jpeg') || anchor.href.endsWith('.gif') || anchor.href.endsWith('.webp')))
-        {
-          img = document.createElement('img');
-          img.src = anchor.href;
-          img.alt = anchor.title || '';
-        }
-      }
-      if (img) {
-        const pic = createOptimizedPicture(img.src, img.alt);
-        pic.classList.add('sticky-navigation-sticky-bottom-nav__icon');
-        moveInstrumentation(img, pic.querySelector('img'));
-        linkWrapper.append(pic);
-      }
+    const iconWrapper = item.querySelector('[data-aue-prop="icon"]');
+    const img = iconWrapper ? iconWrapper.querySelector('img') : null;
+    if (img) {
+      const pic = createOptimizedPicture(img.src, img.alt, false, [{ width: '40' }]);
+      pic.className = 'sticky-navigation-icon';
+      moveInstrumentation(img, pic.querySelector('img'));
+      stickyNavigationLink.append(pic);
     }
 
-    const labelElement = item.querySelector('[data-aue-prop="label"]');
-    if (labelElement) {
-      const span = document.createElement('span');
-      span.classList.add('sticky-navigation-sticky-bottom-nav__label');
-      span.append(...labelElement.childNodes);
-      moveInstrumentation(labelElement, span);
-      linkWrapper.append(span);
+    const labelWrapper = item.querySelector('[data-aue-prop="label"]');
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'sticky-navigation-label';
+    if (labelWrapper) {
+      labelSpan.append(...labelWrapper.childNodes);
+      moveInstrumentation(labelWrapper, labelSpan);
     }
+    stickyNavigationLink.append(labelSpan);
 
-    listItem.append(linkWrapper);
-    list.append(listItem);
+    stickyNavigationItem.append(stickyNavigationLink);
+    stickyNavigationList.append(stickyNavigationItem);
   });
 
-  section.append(list);
+  stickyNavigationSection.append(stickyNavigationList);
 
   block.textContent = '';
-  block.append(popUp, transPopUp, section);
+  block.append(stickyNavigationSection);
   block.className = `${block.dataset.blockName} block`;
   block.dataset.blockStatus = 'loaded';
 }

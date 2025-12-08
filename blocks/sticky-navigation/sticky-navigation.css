@@ -1,69 +1,31 @@
-.sticky-navigation-trans-pop-up {
-  /* Assuming 16px base */
-  --bs-gutter-x: 0rem; /* Equivalent to 0px assuming 16px base */
-  --bs-gutter-y: 0rem; /* Equivalent to 0px assuming 16px base */
-  background: #000000;
-  display: none;
-  height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 33.75rem; /* Equivalent to 540px assuming 16px base */
-  opacity: 0.8;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
-}
-.sticky-navigation-sticky-bottom-nav {
-  border-radius: 1rem 1rem 0 0; /* Equivalent to 16px assuming 16px base */
-  box-shadow: 0.125rem -0.25rem 1rem 0 rgba(0, 0, 0, 0.431); /* Equivalent to 2px -4px 16px 0px rgba(0,0,0,0.431) assuming 16px base */
+.sticky-navigation-section {
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0.125rem -0.25rem 1rem 0 rgba(0, 0, 0, 0.431);
   height: 4.375rem; /* Equivalent to 70px assuming 16px base */
   padding: 0.625rem 0; /* Equivalent to 10px 0px assuming 16px base */
   z-index: 997;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  /* Assuming 16px base */
-  --bs-gutter-x: 0rem; /* Equivalent to 0px assuming 16px base */
-  --bs-gutter-y: 0rem; /* Equivalent to 0px assuming 16px base */
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 33.75rem; /* Equivalent to 540px assuming 16px base */
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  width: 100%;
-  background-color: #aa1f30;
 }
-.sticky-navigation-sticky-bottom-nav__list {
+.sticky-navigation-list {
   list-style: none;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+  padding: 0; /* Explicitly define padding */
+  margin: 0; /* Explicitly define margin */
 }
-.sticky-navigation-sticky-bottom-nav__item {
+.sticky-navigation-item {
+  flex: 1;
   text-align: center;
-  position: relative;
 }
-.sticky-navigation-sticky-bottom-nav__link {
-  color: #ffffff;
+.sticky-navigation-link {
+  color: #fff;
   display: block;
   text-decoration: none;
   transition: color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.0625rem; /* Equivalent to 1px assuming 16px base */
 }
-.sticky-navigation-sticky-bottom-nav__link.active {
+.sticky-navigation-link.active {
   color: #f6bb00;
 }
-.sticky-navigation-sticky-bottom-nav__link.active::after {
+.sticky-navigation-link.active::after {
   background-color: #f6bb00;
-  border: 0.070625rem; /* Equivalent to 1.1299999999999999px assuming 16px base */
+  border: 0.070625rem; /* Equivalent to 1.13px assuming 16px base */
   bottom: -0.3125rem; /* Equivalent to -5px assuming 16px base */
   content: "";
   display: block;
@@ -73,16 +35,53 @@
   transform: translateX(-50%);
   width: 0.625rem; /* Equivalent to 10px assuming 16px base */
 }
-.sticky-navigation-sticky-bottom-nav__icon {
+.sticky-navigation-icon {
   display: block;
   height: 1.125rem; /* Equivalent to 18px assuming 16px base */
-  transition: filter 0.3s ease, -webkit-filter 0.3s ease;
+  transition: filter 0.3s ease;
   width: 1.125rem; /* Equivalent to 18px assuming 16px base */
 }
-.sticky-navigation-sticky-bottom-nav__label {
-  color: #ffffff;
+.sticky-navigation-label {
+  color: #fff;
   display: block;
   font-size: 0.75rem; /* Equivalent to 12px assuming 16px base */
   font-weight: 400;
   line-height: 0.9rem; /* Equivalent to 14.4px assuming 16px base */
+}
+.sticky-navigation-container {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 33.75rem; /* Equivalent to 540px assuming 16px base */
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  width: 100%;
+}
+.sticky-navigation-position-fixed {
+  position: fixed;
+}
+.sticky-navigation-bottom-0 {
+  bottom: 0;
+}
+.sticky-navigation-p-3 {
+  padding: 0.5rem; /* Equivalent to 8px assuming 16px base */
+}
+.sticky-navigation-d-flex {
+  display: flex;
+}
+.sticky-navigation-align-items-center {
+  align-items: center;
+}
+.sticky-navigation-bg-boing-primary {
+  background-color: #aa1f30;
+}
+.sticky-navigation-justify-content-around {
+  justify-content: space-around;
+}
+.sticky-navigation-flex-grow-1 {
+  flex-grow: 1;
+}
+.sticky-navigation-gap-1 {
+  gap: 0.125rem; /* Equivalent to 2px assuming 16px base */
 }

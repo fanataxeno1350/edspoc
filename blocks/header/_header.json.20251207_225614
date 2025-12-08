@@ -17,30 +17,30 @@
       }
     },
     {
-      "title": "Sidebar Menu Item",
-      "id": "sidebarMenuItem",
+      "title": "Menu Item",
+      "id": "menuItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "sidebarMenuItem",
-              "name": "Sidebar Menu Item"
+              "model": "menuItem",
+              "name": "Menu Item"
             }
           }
         }
       }
     },
     {
-      "title": "Footer List Item",
-      "id": "footerListItem",
+      "title": "Footer Link",
+      "id": "footerLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerListItem",
-              "name": "Footer List Item"
+              "model": "footerLink",
+              "name": "Footer Link"
             }
           }
         }
@@ -74,14 +74,8 @@
         },
         {
           "component": "reference",
-          "label": "Header Image",
-          "name": "headerImage",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
           "label": "Logo Image",
-          "name": "logo",
+          "name": "logoImage",
           "valueType": "string"
         },
         {
@@ -95,34 +89,52 @@
           "label": "Login Link",
           "name": "loginLink",
           "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "sidebarMenuItem",
-      "fields": [
+        },
         {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "component": "text",
+          "label": "Login Text",
+          "name": "loginText",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Icon",
-          "name": "icon",
+          "label": "ITC Logo",
+          "name": "itcLogo",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Label",
-          "name": "label",
+          "component": "reference",
+          "label": "FSSI Logo",
+          "name": "fssiLogo",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "footerListItem",
+      "id": "menuItem",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Menu Icon",
+          "name": "icon",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Menu Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Menu Text",
+          "name": "text",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footerLink",
       "fields": [
         {
           "component": "aem-content",
@@ -132,8 +144,8 @@
         },
         {
           "component": "text",
-          "label": "Footer Label",
-          "name": "label",
+          "label": "Footer Link Text",
+          "name": "text",
           "valueType": "string"
         }
       ]
@@ -143,8 +155,8 @@
       "fields": [
         {
           "component": "aem-content",
-          "label": "Social Link URL",
-          "name": "socialUrl",
+          "label": "Social Link",
+          "name": "link",
           "valueType": "string"
         },
         {
@@ -160,8 +172,8 @@
     {
       "id": "header",
       "components": [
-        "sidebarMenuItem",
-        "footerListItem",
+        "menuItem",
+        "footerLink",
         "socialLink"
       ]
     }
