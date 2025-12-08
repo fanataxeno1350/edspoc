@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "Feature-Cards",
+      "title": "Feature Cards",
       "id": "featureCards",
       "plugins": {
         "xwalk": {
@@ -10,22 +10,37 @@
             "template": {
               "filter": "featureCards",
               "model": "featureCards",
-              "name": "Feature-Cards"
+              "name": "Feature Cards"
             }
           }
         }
       }
     },
     {
-      "title": "Card",
-      "id": "card",
+      "title": "Feature Card",
+      "id": "featureCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "card",
-              "name": "Card"
+              "model": "featureCard",
+              "name": "Feature Card"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Bolte Sitare Card",
+      "id": "bolteSitareCard",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "bolteSitareCard",
+              "name": "Bolte Sitare Card"
             }
           }
         }
@@ -34,23 +49,7 @@
   ],
   "models": [
     {
-      "id": "featureCards",
-      "fields": [
-        {
-          "component": "richtext",
-          "label": "Title",
-          "name": "title",
-          "valueType": "string"
-        },
-        {
-          "component": "card",
-          "label": "Cards",
-          "name": "cards"
-        }
-      ]
-    },
-    {
-      "id": "card",
+      "id": "featureCard",
       "fields": [
         {
           "component": "reference",
@@ -59,9 +58,9 @@
           "valueType": "string"
         },
         {
-          "component": "richtext",
-          "label": "Heading",
-          "name": "heading",
+          "component": "text",
+          "label": "Title",
+          "name": "title",
           "valueType": "string"
         },
         {
@@ -71,9 +70,44 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
+          "component": "text",
           "label": "Link",
           "name": "link",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "bolteSitareCard",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Text",
+          "name": "text",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Button Label",
+          "name": "buttonLabel",
           "valueType": "string"
         }
       ]
@@ -83,7 +117,8 @@
     {
       "id": "featureCards",
       "components": [
-        "card"
+        "featureCard",
+        "bolteSitareCard"
       ]
     }
   ]

@@ -58,7 +58,8 @@
         "stickyNavigation",
         "featurecards",
         "latestBlogs",
-        "spaceadderContainer"
+        "spaceadderContainer",
+        "headerSection"
       ]
     }
   ]

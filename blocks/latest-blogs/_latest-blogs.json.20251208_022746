@@ -37,7 +37,7 @@
       "id": "latestBlogs",
       "fields": [
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -49,29 +49,15 @@
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "component": "aem-content",
+          "label": "View All Link",
+          "name": "viewAllLink",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "CTA Label",
-          "name": "ctaLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "CTA Icon",
-          "name": "ctaIcon",
-          "valueType": "string"
-        },
-        {
-          "component": "container",
-          "itemType": "blogCard",
-          "label": "Blogs",
-          "name": "blogs",
-          "valueType": "array"
+          "component": "blogCard",
+          "label": "Cards",
+          "name": "cards"
         }
       ]
     },
@@ -80,18 +66,18 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
           "label": "Image",
           "name": "image",
           "valueType": "string"
         },
         {
-          "component": "date-time",
+          "component": "aem-content",
+          "label": "Card Link",
+          "name": "cardLink",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
           "label": "Date",
           "name": "date",
           "valueType": "string"

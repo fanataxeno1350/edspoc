@@ -1,5 +1,3 @@
 .spaceadder-container {
   position: relative;
-  /* Equivalent to 32px assuming 16px base */
-  top: 2rem;
 }

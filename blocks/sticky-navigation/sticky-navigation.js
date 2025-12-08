@@ -2,74 +2,61 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const stickyNavigationSection = document.createElement('div');
-  stickyNavigationSection.id = 'sticky-navigation';
-  stickyNavigationSection.className = 'sticky-navigation-section sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-container sticky-navigation-bg-boing-primary';
+  const popUpDiv = document.createElement('div');
+  popUpDiv.id = 'stickyNavigation-pop-up';
 
-  const stickyNavigationList = document.createElement('ul');
-  stickyNavigationList.className = 'sticky-navigation-list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
+  const transPopUpDiv = document.createElement('div');
+  transPopUpDiv.className = 'stickyNavigation-trans-pop-up';
 
-  const navigationItems = block.querySelectorAll('[data-aue-model="navigationItem"]');
-  navigationItems.forEach((item) => {
-    const stickyNavigationItem = document.createElement('li');
-    stickyNavigationItem.className = 'sticky-navigation-item sticky-navigation-position-relative';
-    moveInstrumentation(item, stickyNavigationItem);
+  const section = document.createElement('section');
+  section.className = 'stickyNavigation-sticky-bottom-nav stickyNavigation-position-fixed stickyNavigation-bottom-0 stickyNavigation-p-3 stickyNavigation-d-flex stickyNavigation-align-items-center stickyNavigation-boing-container stickyNavigation-bg-boing-primary';
 
-    const linkWrapper = item.querySelector('[data-aue-prop="link"]');
-    const link = linkWrapper ? linkWrapper.querySelector('a') : null;
+  const ul = document.createElement('ul');
+  ul.className = 'stickyNavigation-sticky-bottom-nav__list stickyNavigation-d-flex stickyNavigation-justify-content-around stickyNavigation-align-items-center stickyNavigation-flex-grow-1';
 
-    const imgWrapper = item.querySelector('[data-aue-prop="icon"]');
-    let img = imgWrapper ? imgWrapper.querySelector('img') : null;
+  [...block.children].forEach((row) => {
+    const li = document.createElement('li');
+    moveInstrumentation(row, li);
+    li.className = 'stickyNavigation-sticky-bottom-nav__item stickyNavigation-position-relative';
 
-    const labelWrapper = item.querySelector('[data-aue-prop="label"]');
-    const label = labelWrapper ? labelWrapper.textContent : '';
+    const linkCell = row.children[0];
+    const imageCell = row.children[1];
+    const altCell = row.children[2];
+    const labelCell = row.children[3];
+    const dataConsentCell = row.children[4];
+    const dataLinkCell = row.children[5];
 
-    const stickyNavigationLink = document.createElement('a');
-    stickyNavigationLink.className = 'sticky-navigation-link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 analytics_cta_click';
-    if (link) {
-      stickyNavigationLink.href = link.href;
-      stickyNavigationLink.setAttribute('data-link', link.getAttribute('data-aue-resource') || link.href);
-      moveInstrumentation(link, stickyNavigationLink);
-    }
+    const link = linkCell.querySelector('a') || document.createElement('a');
+    const img = imageCell.querySelector('img');
+    const altText = altCell.textContent.trim();
+    const labelText = labelCell.textContent.trim();
+    const dataConsent = dataConsentCell.textContent.trim();
+    const dataLink = dataLinkCell.querySelector('a') ? dataLinkCell.querySelector('a').href : dataLinkCell.textContent.trim();
+
+    const newLink = document.createElement('a');
+    newLink.href = link.href;
+    newLink.className = 'stickyNavigation-sticky-bottom-nav__link stickyNavigation-d-flex stickyNavigation-flex-column stickyNavigation-align-items-center stickyNavigation-gap-1 stickyNavigation-analytics_cta_click';
+    newLink.setAttribute('data-consent', dataConsent);
+    newLink.setAttribute('data-link', dataLink);
 
     if (img) {
-      const pic = createOptimizedPicture(img.src, img.alt);
-      pic.className = 'sticky-navigation-icon';
-      moveInstrumentation(img, pic.querySelector('img'));
-      stickyNavigationLink.append(pic);
-    } else if (imgWrapper) {
-      // Fallback for cases where img is not directly found but a reference exists
-      const anchor = imgWrapper.querySelector('a[href]');
-      if (anchor) {
-        const fallbackImg = document.createElement('img');
-        fallbackImg.src = anchor.href;
-        fallbackImg.alt = anchor.title || '';
-        fallbackImg.className = 'sticky-navigation-icon';
-        const pic = createOptimizedPicture(fallbackImg.src, fallbackImg.alt);
-        pic.className = 'sticky-navigation-icon';
-        moveInstrumentation(anchor, pic.querySelector('img'));
-        stickyNavigationLink.append(pic);
-      }
+      const optimizedPic = createOptimizedPicture(img.src, altText);
+      moveInstrumentation(img, optimizedPic.querySelector('img'));
+      optimizedPic.querySelector('img').className = 'stickyNavigation-sticky-bottom-nav__icon';
+      newLink.append(optimizedPic);
     }
 
-    const stickyNavigationLabel = document.createElement('span');
-    stickyNavigationLabel.className = 'sticky-navigation-label';
-    if (labelWrapper) {
-      stickyNavigationLabel.append(...labelWrapper.childNodes);
-      moveInstrumentation(labelWrapper, stickyNavigationLabel);
-    } else {
-      stickyNavigationLabel.textContent = label;
-    }
+    const span = document.createElement('span');
+    span.className = 'stickyNavigation-sticky-bottom-nav__label';
+    span.textContent = labelText;
+    newLink.append(span);
 
-    stickyNavigationLink.append(stickyNavigationLabel);
-    stickyNavigationItem.append(stickyNavigationLink);
-    stickyNavigationList.append(stickyNavigationItem);
+    li.append(newLink);
+    ul.append(li);
   });
 
-  stickyNavigationSection.append(stickyNavigationList);
+  section.append(ul);
 
   block.textContent = '';
-  block.append(stickyNavigationSection);
-  block.className = `${block.dataset.blockName} block`;
-  block.dataset.blockStatus = 'loaded';
+  block.append(popUpDiv, transPopUpDiv, section);
 }

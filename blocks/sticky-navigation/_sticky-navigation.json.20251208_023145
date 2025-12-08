@@ -38,37 +38,20 @@
       "fields": [
         {
           "component": "reference",
+          "label": "Icon",
+          "name": "icon",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
           "label": "Link",
           "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "Icon",
-          "name": "image",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Icon Alt Text",
-          "name": "alt",
           "valueType": "string"
         },
         {
           "component": "text",
           "label": "Label",
           "name": "label",
-          "valueType": "string"
-        },
-        {
-          "component": "boolean",
-          "label": "Data Consent",
-          "name": "dataConsent"
-        },
-        {
-          "component": "reference",
-          "label": "Data Link",
-          "name": "dataLink",
           "valueType": "string"
         }
       ]
