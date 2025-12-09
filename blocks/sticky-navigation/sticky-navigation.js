@@ -2,61 +2,72 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const popUpDiv = document.createElement('div');
-  popUpDiv.id = 'stickyNavigation-pop-up';
+  const popUp = document.createElement('div');
+  popUp.id = 'sticky-navigation-pop-up';
 
-  const transPopUpDiv = document.createElement('div');
-  transPopUpDiv.className = 'stickyNavigation-trans-pop-up';
+  const transPopUp = document.createElement('div');
+  transPopUp.className = 'sticky-navigation-trans-pop-up';
 
   const section = document.createElement('section');
-  section.className = 'stickyNavigation-sticky-bottom-nav stickyNavigation-position-fixed stickyNavigation-bottom-0 stickyNavigation-p-3 stickyNavigation-d-flex stickyNavigation-align-items-center stickyNavigation-boing-container stickyNavigation-bg-boing-primary';
+  section.className = 'sticky-navigation-sticky-bottom-nav sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-boing-container sticky-navigation-bg-boing-primary';
 
   const ul = document.createElement('ul');
-  ul.className = 'stickyNavigation-sticky-bottom-nav__list stickyNavigation-d-flex stickyNavigation-justify-content-around stickyNavigation-align-items-center stickyNavigation-flex-grow-1';
+  ul.className = 'sticky-navigation-sticky-bottom-nav__list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
 
-  [...block.children].forEach((row) => {
+  const navItems = block.querySelectorAll('[data-aue-model="navItem"]');
+
+  navItems.forEach((row) => {
     const li = document.createElement('li');
+    li.className = 'sticky-navigation-sticky-bottom-nav__item sticky-navigation-position-relative';
     moveInstrumentation(row, li);
-    li.className = 'stickyNavigation-sticky-bottom-nav__item stickyNavigation-position-relative';
 
-    const linkCell = row.children[0];
-    const imageCell = row.children[1];
-    const altCell = row.children[2];
-    const labelCell = row.children[3];
-    const dataConsentCell = row.children[4];
-    const dataLinkCell = row.children[5];
+    const linkElement = row.querySelector('[data-aue-prop="link"]');
+    const linkHref = linkElement ? linkElement.href : '#';
+    const linkDataLink = linkElement ? linkElement.getAttribute('data-link') : '';
+    const linkDataConsent = linkElement ? linkElement.getAttribute('data-consent') : 'false';
 
-    const link = linkCell.querySelector('a') || document.createElement('a');
-    const img = imageCell.querySelector('img');
-    const altText = altCell.textContent.trim();
-    const labelText = labelCell.textContent.trim();
-    const dataConsent = dataConsentCell.textContent.trim();
-    const dataLink = dataLinkCell.querySelector('a') ? dataLinkCell.querySelector('a').href : dataLinkCell.textContent.trim();
+    const a = document.createElement('a');
+    a.href = linkHref;
+    a.className = 'sticky-navigation-sticky-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 sticky-navigation-analytics_cta_click';
+    a.setAttribute('data-consent', linkDataConsent);
+    a.setAttribute('data-link', linkDataLink);
+    moveInstrumentation(linkElement, a);
 
-    const newLink = document.createElement('a');
-    newLink.href = link.href;
-    newLink.className = 'stickyNavigation-sticky-bottom-nav__link stickyNavigation-d-flex stickyNavigation-flex-column stickyNavigation-align-items-center stickyNavigation-gap-1 stickyNavigation-analytics_cta_click';
-    newLink.setAttribute('data-consent', dataConsent);
-    newLink.setAttribute('data-link', dataLink);
-
-    if (img) {
-      const optimizedPic = createOptimizedPicture(img.src, altText);
-      moveInstrumentation(img, optimizedPic.querySelector('img'));
-      optimizedPic.querySelector('img').className = 'stickyNavigation-sticky-bottom-nav__icon';
-      newLink.append(optimizedPic);
+    let iconImg = row.querySelector('[data-aue-prop="icon"] img');
+    if (!iconImg) {
+      const anchor = row.querySelector('a[data-aue-prop="icon"]');
+      if (anchor) {
+        iconImg = document.createElement('img');
+        iconImg.src = anchor.href;
+        iconImg.alt = anchor.title || 'icon';
+        moveInstrumentation(anchor, iconImg);
+      }
     }
 
-    const span = document.createElement('span');
-    span.className = 'stickyNavigation-sticky-bottom-nav__label';
-    span.textContent = labelText;
-    newLink.append(span);
+    if (iconImg) {
+      const pic = createOptimizedPicture(iconImg.src, iconImg.alt);
+      pic.className = 'sticky-navigation-sticky-bottom-nav__icon';
+      a.append(pic);
+      moveInstrumentation(iconImg, pic.querySelector('img'));
+    }
 
-    li.append(newLink);
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'sticky-navigation-sticky-bottom-nav__label';
+    const labelContent = row.querySelector('[data-aue-prop="label"]');
+    if (labelContent) {
+      labelSpan.append(...labelContent.childNodes);
+      moveInstrumentation(labelContent, labelSpan);
+    }
+    a.append(labelSpan);
+
+    li.append(a);
     ul.append(li);
   });
 
   section.append(ul);
 
   block.textContent = '';
-  block.append(popUpDiv, transPopUpDiv, section);
+  block.append(popUp, transPopUp, section);
+  block.className = `${block.dataset.blockName} block`;
+  block.dataset.blockStatus = 'loaded';
 }

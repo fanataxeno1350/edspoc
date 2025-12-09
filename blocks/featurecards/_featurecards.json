@@ -17,7 +17,7 @@
       }
     },
     {
-      "title": "Featurecard",
+      "title": "Featurecards Card",
       "id": "featurecard",
       "plugins": {
         "xwalk": {
@@ -25,7 +25,22 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "model": "featurecard",
-              "name": "Featurecard"
+              "name": "Featurecards Card"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Featurecards Simple Card",
+      "id": "featurecardSimple",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "model": "featurecardSimple",
+              "name": "Featurecards Simple Card"
             }
           }
         }
@@ -34,8 +49,25 @@
   ],
   "models": [
     {
+      "id": "featurecards",
+      "fields": [
+        {
+          "component": "richtext",
+          "label": "Title",
+          "name": "title",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
       "id": "featurecard",
       "fields": [
+        {
+          "component": "aem-content",
+          "label": "Card Link",
+          "name": "link",
+          "valueType": "string"
+        },
         {
           "component": "reference",
           "label": "Image",
@@ -43,27 +75,50 @@
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Alt Text",
-          "name": "alt",
+          "component": "richtext",
+          "label": "Card Heading",
+          "name": "heading",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Title",
-          "name": "title",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Description",
+          "label": "Card Description",
           "name": "description",
           "valueType": "string"
         },
         {
+          "component": "reference",
+          "label": "Arrow Icon",
+          "name": "icon",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "featurecardSimple",
+      "fields": [
+        {
           "component": "aem-content",
-          "label": "Link",
+          "label": "Card Link",
           "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Card Heading",
+          "name": "heading",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Card Description",
+          "name": "description",
           "valueType": "string"
         }
       ]
@@ -73,7 +128,8 @@
     {
       "id": "featurecards",
       "components": [
-        "featurecard"
+        "featurecard",
+        "featurecardSimple"
       ]
     }
   ]

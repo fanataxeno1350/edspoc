@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Nav-Item",
-      "id": "navItem",
+      "title": "Navigation-Item",
+      "id": "navigationItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "navItem",
-              "name": "Nav-Item"
+              "model": "navigationItem",
+              "name": "Navigation-Item"
             }
           }
         }
@@ -34,12 +34,24 @@
   ],
   "models": [
     {
-      "id": "navItem",
+      "id": "navigationItem",
       "fields": [
         {
           "component": "reference",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
           "label": "Icon",
-          "name": "icon",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Icon Alt Text",
+          "name": "alt",
           "valueType": "string"
         },
         {
@@ -49,9 +61,14 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "component": "boolean",
+          "label": "Data Consent",
+          "name": "dataConsent"
+        },
+        {
+          "component": "reference",
+          "label": "Data Link",
+          "name": "dataLink",
           "valueType": "string"
         }
       ]
@@ -61,7 +78,7 @@
     {
       "id": "stickyNavigation",
       "components": [
-        "navItem"
+        "navigationItem"
       ]
     }
   ]

@@ -59,7 +59,8 @@
         "featurecards",
         "latestBlogs",
         "spaceadderContainer",
-        "headerSection"
+        "headerSection",
+        "carouselBanner"
       ]
     }
   ]

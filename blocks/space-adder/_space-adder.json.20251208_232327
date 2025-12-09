@@ -24,7 +24,7 @@
   ],
   "filters": [
     {
-      "id": "space-adder"
+      "id": "spaceAdder"
     }
   ]
 }
