@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Blog",
-      "id": "blog",
+      "title": "Blog-Card",
+      "id": "blogCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "blog",
-              "name": "Blog"
+              "model": "blogCard",
+              "name": "Blog-Card"
             }
           }
         }
@@ -37,7 +37,7 @@
       "id": "latestBlogs",
       "fields": [
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -49,19 +49,38 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "View All Link",
-          "name": "viewAllLink",
+          "component": "reference",
+          "label": "CTA Link",
+          "name": "ctaLink",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "CTA Label",
+          "name": "ctaLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "CTA Icon",
+          "name": "ctaIcon",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "itemType": "blogCard",
+          "label": "Blogs",
+          "name": "blogs",
+          "valueType": "array"
         }
       ]
     },
     {
-      "id": "blog",
+      "id": "blogCard",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "Blog Link",
+          "component": "reference",
+          "label": "Link",
           "name": "link",
           "valueType": "string"
         },
@@ -72,15 +91,15 @@
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "date-time",
           "label": "Date",
           "name": "date",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Blog Title",
-          "name": "blogTitle",
+          "label": "Text",
+          "name": "text",
           "valueType": "string"
         }
       ]
@@ -90,7 +109,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "blog"
+        "blogCard"
       ]
     }
   ]
