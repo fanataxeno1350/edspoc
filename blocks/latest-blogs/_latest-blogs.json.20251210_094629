@@ -37,7 +37,7 @@
       "id": "latestBlogs",
       "fields": [
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -60,27 +60,27 @@
       "id": "blogCard",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "Blog Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
           "component": "reference",
           "label": "Image",
           "name": "image",
           "valueType": "string"
         },
         {
-          "component": "date-time",
-          "label": "Published Date",
-          "name": "publishedDate",
+          "component": "aem-content",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Blog Title",
-          "name": "blogTitle",
+          "label": "Date",
+          "name": "date",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Card Title",
+          "name": "cardTitle",
           "valueType": "string"
         }
       ]

@@ -43,6 +43,12 @@
           "valueType": "string"
         },
         {
+          "component": "text",
+          "label": "Alt Text",
+          "name": "alt",
+          "valueType": "string"
+        },
+        {
           "component": "aem-content",
           "label": "Link",
           "name": "link",
@@ -53,6 +59,12 @@
           "label": "Label",
           "name": "label",
           "valueType": "string"
+        },
+        {
+          "component": "boolean",
+          "label": "Consent",
+          "name": "consent",
+          "valueType": "boolean"
         }
       ]
     }
