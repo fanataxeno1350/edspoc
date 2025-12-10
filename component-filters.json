@@ -65,6 +65,12 @@
     ]
   },
   {
+    "id": "featureCards",
+    "components": [
+      "featureCard"
+    ]
+  },
+  {
     "id": "featurecards",
     "components": [
       "card"
@@ -89,8 +95,8 @@
     "id": "header",
     "components": [
       "sidebarMenuItem",
-      "footerLink",
-      "footerSocialLink"
+      "footerListItem",
+      "socialLink"
     ]
   },
   {

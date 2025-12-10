@@ -17,7 +17,7 @@
       }
     },
     {
-      "title": "Carousel Slide",
+      "title": "Carousel-Slide",
       "id": "carouselSlide",
       "plugins": {
         "xwalk": {
@@ -25,7 +25,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "model": "carouselSlide",
-              "name": "Carousel Slide"
+              "name": "Carousel-Slide"
             }
           }
         }
@@ -56,8 +56,8 @@
         },
         {
           "component": "text",
-          "label": "CTA Text",
-          "name": "ctaText",
+          "label": "CTA Label",
+          "name": "ctaLabel",
           "valueType": "string"
         }
       ]

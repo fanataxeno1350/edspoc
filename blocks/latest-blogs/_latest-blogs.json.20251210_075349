@@ -51,7 +51,7 @@
         {
           "component": "aem-content",
           "label": "CTA Link",
-          "name": "cta",
+          "name": "ctaLink",
           "valueType": "string"
         }
       ]
@@ -66,9 +66,9 @@
           "valueType": "string"
         },
         {
-          "component": "date-time",
-          "label": "Published Date",
-          "name": "publishedDate",
+          "component": "richtext",
+          "label": "Date",
+          "name": "date",
           "valueType": "string"
         },
         {
