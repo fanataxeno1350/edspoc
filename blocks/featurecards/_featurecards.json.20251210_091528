@@ -44,12 +44,6 @@
         },
         {
           "component": "text",
-          "label": "Alt Text",
-          "name": "alt",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"

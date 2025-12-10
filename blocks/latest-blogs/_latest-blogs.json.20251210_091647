@@ -66,21 +66,21 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Date",
-          "name": "date",
+          "component": "date-time",
+          "label": "Publish Date",
+          "name": "publishDate",
           "valueType": "string"
         },
         {
           "component": "richtext",
           "label": "Card Title",
           "name": "cardTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Card Link",
+          "name": "cardLink",
           "valueType": "string"
         }
       ]
