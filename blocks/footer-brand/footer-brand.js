@@ -2,249 +2,242 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const footerBrandContainer = document.createElement('section');
-  footerBrandContainer.classList.add('footer-brand-container', 'p-0');
-
   const footerBrandWrapper = document.createElement('div');
-  footerBrandWrapper.classList.add('footer-brand-wrapper', 'bg-boing-neutral-gray-600');
-  footerBrandContainer.append(footerBrandWrapper);
+  footerBrandWrapper.className = 'footer-brand-wrapper bg-boing-neutral-gray-600';
+  moveInstrumentation(block.firstElementChild, footerBrandWrapper);
 
   const footerBrandPrimary = document.createElement('section');
-  footerBrandPrimary.classList.add('footer-brand-primary');
+  footerBrandPrimary.className = 'footer-brand-primary';
   footerBrandWrapper.append(footerBrandPrimary);
 
-  const primaryContainer = document.createElement('div');
-  primaryContainer.classList.add('container');
-  footerBrandPrimary.append(primaryContainer);
+  const containerPrimary = document.createElement('div');
+  containerPrimary.className = 'container';
+  footerBrandPrimary.append(containerPrimary);
 
-  const primaryContent = document.createElement('div');
-  primaryContent.classList.add('footer-brand-primary-content', 'd-flex', 'flex-column', 'flex-md-row', 'justify-content-md-between', 'align-items-center');
-  primaryContainer.append(primaryContent);
+  const footerBrandPrimaryContent = document.createElement('div');
+  footerBrandPrimaryContent.className = 'footer-brand-primary-content';
+  containerPrimary.append(footerBrandPrimaryContent);
 
-  const footerBrandLeft = document.createElement('section');
-  footerBrandLeft.classList.add('footer-brand-left', 'd-flex', 'gap-16', 'px-10', 'align-items-center', 'justify-content-center');
-  primaryContent.append(footerBrandLeft);
+  const footerBrandLeftSection = document.createElement('section');
+  footerBrandLeftSection.className = 'footer-brand-left-section';
+  footerBrandPrimaryContent.append(footerBrandLeftSection);
 
-  const footerBrandRight = document.createElement('section');
-  footerBrandRight.classList.add('footer-brand-right');
-  primaryContent.append(footerBrandRight);
+  const footerBrandRightSection = document.createElement('section');
+  footerBrandRightSection.className = 'footer-brand-right-section';
+  footerBrandPrimaryContent.append(footerBrandRightSection);
 
   const footerBrandNavbar = document.createElement('nav');
-  footerBrandNavbar.classList.add('footer-brand-navbar', 'd-grid', 'd-md-flex');
+  footerBrandNavbar.className = 'footer-brand-navbar';
   footerBrandNavbar.setAttribute('aria-label', 'footer navbar');
-  footerBrandRight.append(footerBrandNavbar);
+  footerBrandRightSection.append(footerBrandNavbar);
 
   const footerBrandNavbarLeft = document.createElement('div');
-  footerBrandNavbarLeft.classList.add('footer-brand-navbar-left', 'd-flex', 'flex-column', 'flex-md-row');
+  footerBrandNavbarLeft.className = 'footer-brand-navbar-left';
   footerBrandNavbar.append(footerBrandNavbarLeft);
 
   const footerBrandNavbarRight = document.createElement('div');
-  footerBrandNavbarRight.classList.add('footer-brand-navbar-right', 'd-flex', 'flex-column', 'flex-md-row');
+  footerBrandNavbarRight.className = 'footer-brand-navbar-right';
   footerBrandNavbar.append(footerBrandNavbarRight);
 
   const footerBrandSecondary = document.createElement('section');
-  footerBrandSecondary.classList.add('footer-brand-secondary');
+  footerBrandSecondary.className = 'footer-brand-secondary';
   footerBrandWrapper.append(footerBrandSecondary);
 
-  const secondaryContainer = document.createElement('div');
-  secondaryContainer.classList.add('container');
-  footerBrandSecondary.append(secondaryContainer);
+  const containerSecondary = document.createElement('div');
+  containerSecondary.className = 'container';
+  footerBrandSecondary.append(containerSecondary);
 
-  const secondaryContent = document.createElement('div');
-  secondaryContent.classList.add('footer-brand-secondary-content', 'd-flex', 'flex-column', 'justify-content-md-between', 'align-items-center');
-  secondaryContainer.append(secondaryContent);
+  const footerBrandSecondaryContent = document.createElement('div');
+  footerBrandSecondaryContent.className = 'footer-brand-secondary-content';
+  containerSecondary.append(footerBrandSecondaryContent);
 
-  const footerBrandSocialSection = document.createElement('section');
-  footerBrandSocialSection.classList.add('footer-brand-right', 'd-flex', 'flex-column', 'pb-5');
-  secondaryContent.append(footerBrandSocialSection);
+  const footerBrandRightSectionSocial = document.createElement('section');
+  footerBrandRightSectionSocial.className = 'footer-brand-right-section-social';
+  footerBrandSecondaryContent.append(footerBrandRightSectionSocial);
 
-  const footerBrandCopyrightSection = document.createElement('section');
-  footerBrandCopyrightSection.classList.add('footer-brand-left', 'py-5', 'd-flex', 'flex-column', 'gap-3');
-  secondaryContent.append(footerBrandCopyrightSection);
+  const footerBrandLeftSectionCopyright = document.createElement('section');
+  footerBrandLeftSectionCopyright.className = 'footer-brand-left-section-copyright';
+  footerBrandSecondaryContent.append(footerBrandLeftSectionCopyright);
 
-  // Extract content from the block
-  const children = Array.from(block.children);
+  const rows = [...block.children];
 
-  // Logo Image
-  const logoImageCell = children[0]?.children[0];
-  if (logoImageCell) {
-    const logoImage = logoImageCell.querySelector('img');
-    if (logoImage) {
-      const logoLink = document.createElement('a');
-      logoLink.classList.add('footer-brand-logo', 'd-inline-block', 'analytics_cta_click');
-      logoLink.setAttribute('data-cta-region', 'Footer');
-      logoLink.setAttribute('aria-label', logoImage.alt || 'Logo');
-      logoLink.href = logoImage.closest('a')?.href || '#';
-      if (logoImage.closest('a')?.target) {
-        logoLink.target = logoImage.closest('a').target;
-      }
+  // Primary Logo and Secondary Logo
+  const primaryLogoRow = rows.shift();
+  if (primaryLogoRow) {
+    const primaryLogoLinkCell = primaryLogoRow.children[0];
+    const primaryLogoCell = primaryLogoRow.children[1];
+    const secondaryLogoCell = primaryLogoRow.children[2];
 
-      const pic = createOptimizedPicture(logoImage.src, logoImage.alt);
-      pic.querySelector('img').classList.add('object-fit-contain', 'w-100', 'h-100', 'footer-brand-no-rendition');
-      logoLink.append(pic);
-      moveInstrumentation(logoImage, pic.querySelector('img'));
-      moveInstrumentation(logoImage.closest('a'), logoLink);
-      footerBrandLeft.append(logoLink);
+    const primaryLogoLink = primaryLogoLinkCell.querySelector('a');
+    const primaryLogoImg = primaryLogoLinkCell.querySelector('img');
+
+    if (primaryLogoLink && primaryLogoImg) {
+      const newPrimaryLogoLink = document.createElement('a');
+      newPrimaryLogoLink.href = primaryLogoLink.href;
+      newPrimaryLogoLink.target = '_blank';
+      newPrimaryLogoLink.className = 'footer-brand-logo-link analytics_cta_click';
+      newPrimaryLogoLink.setAttribute('data-cta-region', 'Footer');
+      newPrimaryLogoLink.setAttribute('aria-label', primaryLogoLink.getAttribute('aria-label') || 'ITC Logo');
+      moveInstrumentation(primaryLogoLink, newPrimaryLogoLink);
+
+      const optimizedPrimaryPic = createOptimizedPicture(primaryLogoImg.src, primaryLogoImg.alt);
+      optimizedPrimaryPic.querySelector('img').className = 'footer-brand-logo-img';
+      optimizedPrimaryPic.querySelector('img').loading = 'lazy';
+      moveInstrumentation(primaryLogoImg, optimizedPrimaryPic.querySelector('img'));
+      newPrimaryLogoLink.append(optimizedPrimaryPic);
+      footerBrandLeftSection.append(newPrimaryLogoLink);
+    }
+
+    const secondaryLogoImg = secondaryLogoCell.querySelector('img');
+    if (secondaryLogoImg) {
+      const footerBrandSecondaryLogoWrapper = document.createElement('div');
+      footerBrandSecondaryLogoWrapper.className = 'footer-brand-secondary-logo-wrapper';
+      moveInstrumentation(secondaryLogoImg.parentElement, footerBrandSecondaryLogoWrapper);
+
+      const optimizedSecondaryPic = createOptimizedPicture(secondaryLogoImg.src, secondaryLogoImg.alt);
+      optimizedSecondaryPic.querySelector('img').className = 'footer-brand-secondary-logo-img';
+      optimizedSecondaryPic.querySelector('img').loading = 'lazy';
+      moveInstrumentation(secondaryLogoImg, optimizedSecondaryPic.querySelector('img'));
+      footerBrandSecondaryLogoWrapper.append(optimizedSecondaryPic);
+      footerBrandLeftSection.append(footerBrandSecondaryLogoWrapper);
     }
   }
 
-  // Secondary Logo Image
-  const secondaryLogoImageCell = children[1]?.children[0];
-  if (secondaryLogoImageCell) {
-    const secondaryLogoImage = secondaryLogoImageCell.querySelector('img');
-    if (secondaryLogoImage) {
-      const secondaryLogoWrapper = document.createElement('div');
-      secondaryLogoWrapper.classList.add('footer-brand-secondary-logo', 'd-inline-block');
+  // Footer Link Lists
+  let linkListCounter = 0;
+  while (rows.length > 0 && rows[0].children.length === 1 && rows[0].querySelector('ul')) {
+    const linkListRow = rows.shift();
+    const ul = linkListRow.querySelector('ul');
+    if (ul) {
+      const footerListComponent = document.createElement('div');
+      footerListComponent.className = 'footer-list-component';
+      moveInstrumentation(linkListRow, footerListComponent);
 
-      const pic = createOptimizedPicture(secondaryLogoImage.src, secondaryLogoImage.alt);
-      pic.querySelector('img').classList.add('object-fit-contain', 'w-100', 'footer-brand-no-rendition');
-      secondaryLogoWrapper.append(pic);
-      moveInstrumentation(secondaryLogoImage, pic.querySelector('img'));
-      footerBrandLeft.append(secondaryLogoWrapper);
-    }
-  }
+      const newUl = document.createElement('ul');
+      newUl.className = 'footer-list';
+      moveInstrumentation(ul, newUl);
 
-  // Footer Links
-  const footerLinksWrapper = document.createElement('div');
-  footerLinksWrapper.classList.add('footer-list-wrapper');
-  const footerList = document.createElement('ul');
-  footerList.classList.add('footer-list', 'd-flex', 'align-items-center', 'justify-content-center', 'align-items-md-start', 'flex-column');
-  footerLinksWrapper.append(footerList);
+      [...ul.children].forEach((li) => {
+        const newLi = document.createElement('li');
+        newLi.className = 'footer-list-item';
+        moveInstrumentation(li, newLi);
 
-  const allFooterLinks = Array.from(block.querySelectorAll('[data-aue-model="footerLink"]'));
-  let currentListWrapper = document.createElement('div');
-  currentListWrapper.classList.add('footer-list-wrapper');
-  let currentList = document.createElement('ul');
-  currentList.classList.add('footer-list', 'd-flex', 'align-items-center', 'justify-content-center', 'align-items-md-start', 'flex-column');
-  currentListWrapper.append(currentList);
-  footerBrandNavbarLeft.append(currentListWrapper);
-
-  allFooterLinks.forEach((linkItem, index) => {
-    if (index > 0 && index % 3 === 0) {
-      currentListWrapper = document.createElement('div');
-      currentListWrapper.classList.add('footer-list-wrapper');
-      currentList = document.createElement('ul');
-      currentList.classList.add('footer-list', 'd-flex', 'align-items-center', 'justify-content-center', 'align-items-md-start', 'flex-column');
-      currentListWrapper.append(currentList);
-      if (index < 6) {
-        footerBrandNavbarLeft.append(currentListWrapper);
-      } else {
-        footerBrandNavbarRight.append(currentListWrapper);
-      }
-    }
-
-    const labelElement = linkItem.querySelector('[data-aue-prop="label"]');
-    const urlElement = linkItem.querySelector('[data-aue-prop="url"]');
-
-    if (labelElement && urlElement) {
-      const listItem = document.createElement('li');
-      listItem.classList.add('footer-list-item');
-
-      const link = document.createElement('a');
-      link.classList.add('cta-analytics', 'analytics_cta_click', 'footer-list-item-link', 'd-inline-block');
-      link.setAttribute('data-link-region', 'Footer List');
-      link.href = urlElement.textContent.trim();
-      link.textContent = labelElement.textContent.trim();
-
-      // Check if the URL is external and set target="_blank"
-      try {
-        const linkUrl = new URL(link.href);
-        const currentHost = window.location.hostname;
-        if (linkUrl.hostname !== currentHost) {
-          link.target = '_blank';
+        const link = li.querySelector('a');
+        if (link) {
+          const newLink = document.createElement('a');
+          newLink.href = link.href;
+          newLink.textContent = link.textContent;
+          newLink.className = 'cta-analytics analytics_cta_click footer-list-item-link';
+          newLink.setAttribute('data-link-region', 'Footer List');
+          if (link.target) {
+            newLink.target = link.target;
+          }
+          moveInstrumentation(link, newLink);
+          newLi.append(newLink);
         }
-      } catch (e) {
-        // Handle invalid URLs if necessary
-      }
+        newUl.append(newLi);
+      });
+      footerListComponent.append(newUl);
 
-      moveInstrumentation(labelElement, link);
-      moveInstrumentation(urlElement, link);
-      moveInstrumentation(linkItem, listItem);
-      listItem.append(link);
-      currentList.append(listItem);
-    }
-  });
-
-  // Social Links
-  const socialTitle = document.createElement('h3');
-  socialTitle.classList.add('footer-brand-social-media--title');
-  socialTitle.textContent = 'Follow Us On';
-  footerBrandSocialSection.append(socialTitle);
-
-  const socialList = document.createElement('ul');
-  socialList.classList.add('footer-brand-right-list', 'd-flex', 'align-items-center', 'justify-content-center', 'px-10', 'flex-wrap');
-  footerBrandSocialSection.append(socialList);
-
-  const socialLinks = Array.from(block.querySelectorAll('[data-aue-model="socialLink"]'));
-  socialLinks.forEach((socialLinkItem) => {
-    const platformElement = socialLinkItem.querySelector('[data-aue-prop="platform"]');
-    const urlElement = socialLinkItem.querySelector('[data-aue-prop="url"]');
-    let iconImage = socialLinkItem.querySelector('[data-aue-prop="icon"] img');
-
-    if (platformElement && urlElement) {
-      const listItem = document.createElement('li');
-      listItem.classList.add('footer-brand-right-item', 'd-flex', 'justify-content-center', 'align-items-center');
-
-      const link = document.createElement('a');
-      link.classList.add('footer-brand-right-link', 'd-flex', 'justify-content-center', 'align-items-center', 'analytics_cta_click');
-      link.setAttribute('data-cta-region', 'Footer');
-      link.setAttribute('data-cta-label', `footer-${platformElement.textContent.toLowerCase().trim()}`);
-      link.setAttribute('data-platform-name', platformElement.textContent.toLowerCase().trim());
-      link.setAttribute('data-social-linktype', 'follow');
-      link.target = '_blank';
-      link.href = urlElement.textContent.trim();
-
-      if (iconImage) {
-        const pic = createOptimizedPicture(iconImage.src, iconImage.alt || platformElement.textContent.trim());
-        pic.querySelector('img').classList.add('object-fit-contain', 'w-100', 'h-100', 'footer-brand-no-rendition');
-        pic.querySelector('img').setAttribute('aria-label', platformElement.textContent.trim());
-        link.append(pic);
-        moveInstrumentation(iconImage, pic.querySelector('img'));
+      if (linkListCounter < 2) {
+        footerBrandNavbarLeft.append(footerListComponent);
       } else {
-        // Fallback for icon if not an image, or if image src is missing
-        const iconText = document.createElement('span');
-        iconText.textContent = platformElement.textContent.trim();
-        link.append(iconText);
+        footerBrandNavbarRight.append(footerListComponent);
       }
-      moveInstrumentation(platformElement, link);
-      moveInstrumentation(urlElement, link);
-      moveInstrumentation(socialLinkItem, listItem);
-      listItem.append(link);
-      socialList.append(listItem);
+      linkListCounter += 1;
     }
-  });
+  }
 
-  // Copyright Text
-  const copyrightTextElement = block.querySelector('[data-aue-prop="copyrightText"]');
-  if (copyrightTextElement) {
-    const copyrightList = document.createElement('ul');
-    copyrightList.classList.add('footer-brand-left-list', 'd-flex', 'align-items-center', 'justify-content-center', 'flex-wrap');
-    footerBrandCopyrightSection.append(copyrightList);
+  // Footer Social Links
+  const socialLinksRow = rows.shift();
+  if (socialLinksRow) {
+    const socialLinksUl = socialLinksRow.querySelector('ul');
+    if (socialLinksUl) {
+      const socialMediaTitle = document.createElement('h3');
+      socialMediaTitle.className = 'footer-social-media-title';
+      socialMediaTitle.textContent = 'Follow Us On';
+      footerBrandRightSectionSocial.append(socialMediaTitle);
 
-    // Add ITC portal link as per HTML structure
-    const itcPortalListItem = document.createElement('li');
-    itcPortalListItem.classList.add('footer-brand-left-item', 'footer-link');
-    const itcPortalLink = document.createElement('a');
-    itcPortalLink.href = 'https://www.itcportal.com/';
-    itcPortalLink.target = '_blank';
-    itcPortalLink.classList.add('footer-brand-left-link', 'analytics_cta_click');
-    itcPortalLink.setAttribute('data-cta-region', 'Footer');
-    itcPortalLink.textContent = 'ITC portal';
-    itcPortalListItem.append(itcPortalLink);
-    copyrightList.append(itcPortalListItem);
+      const newSocialUl = document.createElement('ul');
+      newSocialUl.className = 'footer-brand-right-list';
+      moveInstrumentation(socialLinksUl, newSocialUl);
 
-    const copyrightDiv = document.createElement('div');
-    copyrightDiv.classList.add('footer-brand-left-copyright', 'text-center');
-    const copyrightSpan = document.createElement('span');
-    copyrightSpan.classList.add('footer-brand-left-text', 'text-white');
-    copyrightSpan.textContent = copyrightTextElement.textContent.trim();
-    moveInstrumentation(copyrightTextElement, copyrightSpan);
-    copyrightDiv.append(copyrightSpan);
-    footerBrandCopyrightSection.append(copyrightDiv);
+      [...socialLinksUl.children].forEach((li) => {
+        const newLi = document.createElement('li');
+        newLi.className = 'footer-brand-right-item';
+        moveInstrumentation(li, newLi);
+
+        const link = li.querySelector('a');
+        const img = li.querySelector('img');
+
+        if (link && img) {
+          const newLink = document.createElement('a');
+          newLink.href = link.href;
+          newLink.className = 'footer-brand-right-link analytics_cta_click';
+          newLink.setAttribute('data-cta-region', 'Footer');
+          newLink.setAttribute('data-cta-label', link.getAttribute('data-cta-label') || '');
+          newLink.target = '_blank';
+          newLink.setAttribute('data-platform-name', link.getAttribute('data-platform-name') || '');
+          newLink.setAttribute('data-social-linktype', 'follow');
+          moveInstrumentation(link, newLink);
+
+          const optimizedPic = createOptimizedPicture(img.src, img.alt);
+          optimizedPic.querySelector('img').className = 'footer-social-media-image';
+          optimizedPic.querySelector('img').loading = 'lazy';
+          optimizedPic.querySelector('img').setAttribute('aria-label', img.getAttribute('aria-label') || '');
+          moveInstrumentation(img, optimizedPic.querySelector('img'));
+          newLink.append(optimizedPic);
+          newLi.append(newLink);
+        }
+        newSocialUl.append(newLi);
+      });
+      footerBrandRightSectionSocial.append(newSocialUl);
+    }
+  }
+
+  // Copyright and Copyright Link
+  const copyrightRow = rows.shift();
+  if (copyrightRow) {
+    const copyrightLinkCell = copyrightRow.children[0];
+    const copyrightTextCell = copyrightRow.children[1];
+
+    const copyrightLink = copyrightLinkCell.querySelector('a');
+    if (copyrightLink) {
+      const copyrightUl = document.createElement('ul');
+      copyrightUl.className = 'footer-brand-left-list';
+      moveInstrumentation(copyrightLinkCell, copyrightUl);
+
+      const copyrightLi = document.createElement('li');
+      copyrightLi.className = 'footer-brand-left-item footer-link';
+      moveInstrumentation(copyrightLink.parentElement, copyrightLi);
+
+      const newLink = document.createElement('a');
+      newLink.href = copyrightLink.href;
+      newLink.target = '_blank';
+      newLink.className = 'footer-brand-left-link analytics_cta_click';
+      newLink.setAttribute('data-cta-region', 'Footer');
+      newLink.textContent = copyrightLink.textContent.trim();
+      moveInstrumentation(copyrightLink, newLink);
+      copyrightLi.append(newLink);
+      copyrightUl.append(copyrightLi);
+      footerBrandLeftSectionCopyright.append(copyrightUl);
+    }
+
+    const copyrightTextSpan = copyrightTextCell.querySelector('span');
+    if (copyrightTextSpan) {
+      const copyrightWrapper = document.createElement('div');
+      copyrightWrapper.className = 'footer-brand-left-copyright-wrapper';
+      moveInstrumentation(copyrightTextCell, copyrightWrapper);
+
+      const newSpan = document.createElement('span');
+      newSpan.className = 'footer-brand-left-copyright-text';
+      newSpan.textContent = copyrightTextSpan.textContent.trim();
+      moveInstrumentation(copyrightTextSpan, newSpan);
+      copyrightWrapper.append(newSpan);
+      footerBrandLeftSectionCopyright.append(copyrightWrapper);
+    }
   }
 
   block.textContent = '';
-  block.append(footerBrandContainer);
-  block.className = `${block.dataset.blockName} block`;
-  block.dataset.blockStatus = 'loaded';
+  block.append(footerBrandWrapper);
 }

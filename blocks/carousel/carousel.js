@@ -3,222 +3,212 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const carouselContainer = document.createElement('div');
-  carouselContainer.classList.add('carousel-container');
+  carouselContainer.className = 'carousel-container';
 
-  const swiperCarousel = document.createElement('div');
-  swiperCarousel.classList.add('swiper', 'carousel-primary-swiper');
-  swiperCarousel.setAttribute('role', 'group');
-  swiperCarousel.setAttribute('aria-live', 'polite');
-  swiperCarousel.setAttribute('aria-roledescription', 'carousel');
-  // Default values, will be overridden by actual attributes if present
-  swiperCarousel.setAttribute('data-is-autoplay', 'true');
-  swiperCarousel.setAttribute('data-delay', '5000');
-  swiperCarousel.setAttribute('data-autopause-disabled', 'true');
-  swiperCarousel.setAttribute('data-is-loop', 'false');
-  swiperCarousel.setAttribute('data-placeholder-text', 'false');
+  const swiper = document.createElement('div');
+  swiper.className = 'swiper carousel-primary-swiper';
+  // Transfer attributes from the first row's potential swiper element if available
+  // For simplicity, we'll hardcode some for now or derive from block properties if they existed
+  swiper.setAttribute('role', 'group');
+  swiper.setAttribute('aria-live', 'polite');
+  swiper.setAttribute('aria-roledescription', 'carousel');
+  swiper.setAttribute('data-is-autoplay', 'true');
+  swiper.setAttribute('data-delay', '5000');
+  swiper.setAttribute('data-autopause-disabled', 'true');
+  swiper.setAttribute('data-is-loop', 'false');
+  swiper.setAttribute('data-placeholder-text', 'false');
 
   const swiperWrapper = document.createElement('div');
-  swiperWrapper.classList.add('swiper-wrapper', 'carousel-primary-swiper-wrapper', 'carousel-z-0');
+  swiperWrapper.className = 'swiper-wrapper carousel-primary-swiper-wrapper carousel-z-0';
 
-  const slides = [...block.children];
-  slides.forEach((row, index) => {
+  [...block.children].forEach((row) => {
     const swiperSlide = document.createElement('div');
-    swiperSlide.classList.add('swiper-slide', 'carousel-primary-swiper-slide');
+    moveInstrumentation(row, swiperSlide);
+    swiperSlide.className = 'swiper-slide carousel-primary-swiper-slide';
     swiperSlide.setAttribute('role', 'tabpanel');
     swiperSlide.setAttribute('aria-roledescription', 'slide');
-    moveInstrumentation(row, swiperSlide);
 
-    const bannerComponent = document.createElement('div');
-    bannerComponent.classList.add('banner-component');
+    const carouselBanner = document.createElement('div');
+    carouselBanner.className = 'carousel-banner';
 
-    const bannerSection = document.createElement('section');
-    bannerSection.classList.add('banner-section');
+    const carouselBannerSection = document.createElement('section');
+    carouselBannerSection.className = 'carousel-banner-section';
 
-    const bannerWrapper = document.createElement('div');
-    bannerWrapper.classList.add('carousel-position-relative', 'carousel-boing', 'banner-section__wrapper');
+    const carouselBannerSectionWrapper = document.createElement('div');
+    carouselBannerSectionWrapper.className = 'carousel-position-relative carousel-boing carousel-banner-section__wrapper ';
 
     const cells = [...row.children];
-    let mediaElement = null;
-    let ctaLinkElement = null;
 
-    // Extract Video
-    let videoSource = cells[0].querySelector('[data-aue-prop="video"]');
-    if (!videoSource) {
-      const anchor = cells[0].querySelector('a[href$=".mp4"], a[href$=".mov"], a[href$=".webm"]');
-      if (anchor) {
-        videoSource = anchor;
-      }
-    }
+    // Assuming order: Video, Image, CTA
+    const videoCell = cells[0];
+    const imageCell = cells[1];
+    const ctaCell = cells[2];
 
-    // Extract Image
-    let imageSource = cells[1].querySelector('[data-aue-prop="image"]');
-    if (!imageSource) {
-      const anchor = cells[1].querySelector('a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".gif"], a[href$=".webp"]');
-      if (anchor) {
-        imageSource = anchor;
-      }
-    }
-
-    // Extract CTA Link
-    let ctaLink = cells[2].querySelector('[data-aue-prop="ctaLink"]');
-    if (!ctaLink) {
-      ctaLink = cells[2].querySelector('a');
-    }
-
-    if (videoSource) {
+    // Handle Video
+    const video = videoCell?.querySelector('a') || videoCell?.querySelector('video');
+    if (video) {
       const videoWrapper = document.createElement('div');
-      videoWrapper.classList.add('banner-video-wrapper');
+      videoWrapper.className = 'carousel-video-wrapper';
 
-      const video = document.createElement('video');
-      video.classList.add('carousel-w-100', 'carousel-object-fit-cover', 'banner-media', 'banner-video');
-      video.setAttribute('playsinline', '');
-      video.setAttribute('preload', 'metadata');
-      video.setAttribute('fetchpriority', 'high');
-      video.setAttribute('muted', 'true');
-      video.setAttribute('autoplay', 'true');
+      const videoElement = document.createElement('video');
+      videoElement.className = 'carousel-w-100 carousel-object-fit-cover carousel-banner-media carousel-banner-video';
+      videoElement.setAttribute('title', 'Video');
+      videoElement.setAttribute('aria-label', 'Video');
+      videoElement.setAttribute('data-is-autoplay', 'true');
+      videoElement.setAttribute('playsinline', '');
+      videoElement.setAttribute('preload', 'metadata');
+      videoElement.setAttribute('fetchpriority', 'high');
+      videoElement.setAttribute('loop', 'false');
+      videoElement.setAttribute('muted', 'true');
+      videoElement.setAttribute('autoplay', 'true');
 
       const source = document.createElement('source');
-      source.setAttribute('src', videoSource.getAttribute('href') || videoSource.src);
-      source.setAttribute('type', 'video/mp4'); // Assuming mp4 for now based on example
-      video.append(source);
-      moveInstrumentation(videoSource, video);
-      mediaElement = videoWrapper;
-      videoWrapper.append(video);
+      source.setAttribute('src', video.href || video.src);
+      source.setAttribute('type', 'video/mp4');
+      videoElement.append(source);
+      moveInstrumentation(video, videoElement);
 
-      // Add play/pause controls
+      // Add play/pause buttons (simplified, actual SVG content would be more complex)
       const playPauseWrapper = document.createElement('div');
-      playPauseWrapper.classList.add('carousel-position-absolute', 'carousel-w-100', 'carousel-h-100', 'carousel-start-0', 'carousel-top-0', 'carousel-d-flex', 'carousel-justify-content-center', 'carousel-align-items-center', 'carousel-cursor-pointer');
+      playPauseWrapper.className = 'carousel-position-absolute carousel-w-100 carousel-h-100 carousel-start-0 carousel-top-0 carousel-d-flex carousel-justify-content-center carousel-align-items-center carousel-cursor-pointer';
       const playButton = document.createElement('button');
-      playButton.setAttribute('type', 'button');
-      playButton.classList.add('carousel-d-none', 'banner-video-icon', 'banner-icon-play', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer');
+      playButton.type = 'button';
+      playButton.className = 'carousel-d-none carousel-video-icon carousel-icon-play carousel-bg-transparent carousel-d-flex carousel-align-items-center carousel-justify-content-center carousel-cursor-pointer';
+      // For now, content is placeholder, in a real scenario, you'd fetch the SVG
+      playButton.textContent = 'Play Icon'; 
       const pauseButton = document.createElement('button');
-      pauseButton.setAttribute('type', 'button');
-      pauseButton.classList.add('carousel-d-block', 'banner-video-icon', 'banner-icon-pause', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer');
+      pauseButton.type = 'button';
+      pauseButton.className = 'carousel-d-block carousel-video-icon carousel-icon-pause carousel-bg-transparent carousel-d-flex carousel-align-items-center carousel-justify-content-center carousel-cursor-pointer';
+      pauseButton.textContent = 'Pause Icon';
       playPauseWrapper.append(playButton, pauseButton);
-      videoWrapper.append(playPauseWrapper);
 
-      // Add mute/unmute controls
+      // Add mute/unmute buttons (simplified)
       const muteWrapper = document.createElement('div');
-      muteWrapper.classList.add('carousel-position-absolute', 'carousel-z-2', 'carousel-d-flex', 'carousel-justify-content-center', 'carousel-align-items-center', 'carousel-cursor-pointer', 'banner-mute-icon');
+      muteWrapper.className = 'carousel-position-absolute carousel-z-2 carousel-d-flex carousel-justify-content-center carousel-align-items-center carousel-cursor-pointer carousel-mute-icon ';
       const muteButton = document.createElement('button');
-      muteButton.setAttribute('type', 'button');
-      muteButton.classList.add('banner-video-icon-volume', 'banner-icon-mute', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer', 'carousel-d-none');
+      muteButton.type = 'button';
+      muteButton.className = 'carousel-video-icon-volume carousel-icon-mute carousel-bg-transparent carousel-d-flex carousel-align-items-center carousel-justify-content-center carousel-cursor-pointer carousel-d-none';
+      muteButton.textContent = 'Mute Icon';
       const unmuteButton = document.createElement('button');
-      unmuteButton.setAttribute('type', 'button');
-      unmuteButton.classList.add('banner-video-icon-volume', 'banner-icon-unmute', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer', 'carousel-d-none');
+      unmuteButton.type = 'button';
+      unmuteButton.className = 'carousel-video-icon-volume carousel-icon-unmute carousel-bg-transparent carousel-d-flex carousel-align-items-center carousel-justify-content-center carousel-cursor-pointer carousel-d-none';
+      unmuteButton.textContent = 'Unmute Icon';
       const noAudioButton = document.createElement('button');
-      noAudioButton.setAttribute('type', 'button');
-      noAudioButton.classList.add('banner-video-icon-volume', 'banner-no-audio-icon', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer');
+      noAudioButton.type = 'button';
+      noAudioButton.className = 'carousel-video-icon-volume carousel-no-audio-icon carousel-bg-transparent carousel-d-flex carousel-align-items-center carousel-justify-content-center carousel-cursor-pointer';
+      noAudioButton.textContent = 'No Audio Icon';
       muteWrapper.append(muteButton, unmuteButton, noAudioButton);
-      videoWrapper.append(muteWrapper);
 
-    } else if (imageSource) {
-      const img = imageSource.querySelector('img') || imageSource;
-      const pic = createOptimizedPicture(img.src || img.getAttribute('href'), img.alt || '', true, [{ width: '2000' }]);
-      pic.classList.add('carousel-w-100', 'carousel-h-100', 'carousel-object-fit-cover', 'banner-media', 'banner-image');
-      moveInstrumentation(img, pic.querySelector('img'));
-      mediaElement = pic;
+      videoWrapper.append(videoElement, playPauseWrapper, muteWrapper);
+      carouselBannerSectionWrapper.append(videoWrapper);
     }
 
-    if (mediaElement) {
-      bannerWrapper.append(mediaElement);
+    // Handle Image
+    const image = imageCell?.querySelector('img');
+    if (image) {
+      const optimizedPic = createOptimizedPicture(image.src, image.alt);
+      moveInstrumentation(image, optimizedPic.querySelector('img'));
+      optimizedPic.querySelector('img').className = 'carousel-w-100 carousel-h-100 carousel-object-fit-cover carousel-banner-media carousel-banner-image';
+      optimizedPic.querySelector('img').setAttribute('loading', 'eager');
+      optimizedPic.querySelector('img').setAttribute('fetchpriority', 'high');
+      optimizedPic.querySelector('img').setAttribute('decoding', 'async');
+      carouselBannerSectionWrapper.append(optimizedPic);
     }
 
+    // Handle CTA
+    const ctaLink = ctaCell?.querySelector('a');
     if (ctaLink) {
       const ctaWrapper = document.createElement('div');
-      ctaWrapper.classList.add('carousel-position-absolute', 'carousel-start-50', 'carousel-translate-middle-x', 'carousel-w-100', 'carousel-boing__banner--cta');
+      ctaWrapper.className = 'carousel-position-absolute carousel-start-50 carousel-translate-middle-x carousel-w-100 carousel-boing__banner--cta';
 
-      const bannerCtaComponent = document.createElement('div');
-      bannerCtaComponent.classList.add('banner-cta-component');
+      const bannerCta = document.createElement('div');
+      bannerCta.className = 'carousel-banner-cta';
 
       const textCenter = document.createElement('div');
-      textCenter.classList.add('carousel-text-center');
+      textCenter.className = 'carousel-text-center ';
 
-      const ctaAnchor = document.createElement('a');
-      ctaAnchor.classList.add('cmp-button', 'carousel-analytics_cta_click', 'carousel-text-center', 'carousel-cta-layout');
-      ctaAnchor.setAttribute('data-link-region', 'CTA');
-      ctaAnchor.setAttribute('data-is-internal', 'true');
-      ctaAnchor.setAttribute('data-enable-gating', 'false');
-      ctaAnchor.setAttribute('href', ctaLink.getAttribute('href'));
-      if (ctaLink.getAttribute('target')) {
-        ctaAnchor.setAttribute('target', ctaLink.getAttribute('target'));
-      }
-      const ctaSpan = document.createElement('span');
-      ctaSpan.classList.add('cmp-button__text', 'carousel-primary-btn', 'carousel-w-75', 'carousel-p-5', 'carousel-rounded-pill', 'carousel-d-inline-flex', 'carousel-justify-content-center', 'carousel-align-items-center', 'carousel-famlf-cta-btn');
-      ctaSpan.textContent = ctaLink.textContent.trim();
-      moveInstrumentation(ctaLink, ctaSpan);
-      ctaAnchor.append(ctaSpan);
-      textCenter.append(ctaAnchor);
+      const newCtaLink = document.createElement('a');
+      newCtaLink.id = ctaLink.id || 'cta-generated';
+      newCtaLink.className = 'carousel-cmp-button carousel-analytics_cta_click carousel-text-center carousel-cta-layout';
+      newCtaLink.setAttribute('data-link-region', 'CTA');
+      newCtaLink.setAttribute('data-is-internal', 'true');
+      newCtaLink.setAttribute('data-enable-gating', 'false');
+      newCtaLink.href = ctaLink.href;
+      newCtaLink.target = ctaLink.target || '_self';
 
-      // Add popup elements if they exist in the original CTA cell (from aem-content)
-      const popupDiv = document.createElement('div');
-      popupDiv.classList.add('carousel-pop-up', 'carousel-d-none');
-      const popupMessage = ctaLink.parentElement.querySelector('.carousel-popup-message');
-      if (popupMessage) popupDiv.append(popupMessage);
-      const proceedButton = ctaLink.parentElement.querySelector('.carousel-proceed-button-label');
-      if (proceedButton) popupDiv.append(proceedButton);
-      const cancelButton = ctaLink.parentElement.querySelector('.carousel-cancel-button-label');
-      if (cancelButton) popupDiv.append(cancelButton);
-      const backgroundColor = ctaLink.parentElement.querySelector('.carousel-background-color');
-      if (backgroundColor) popupDiv.append(backgroundColor);
-      textCenter.append(popupDiv);
+      const span = document.createElement('span');
+      span.className = 'carousel-cmp-button__text carousel-primary-btn carousel-w-75 carousel-p-5 carousel-rounded-pill carousel-d-inline-flex carousel-justify-content-center carousel-align-items-center carousel-famlf-cta-btn';
+      span.textContent = ctaLink.textContent.trim();
+      newCtaLink.append(span);
+      moveInstrumentation(ctaLink, newCtaLink);
 
-      bannerCtaComponent.append(textCenter);
-      ctaWrapper.append(bannerCtaComponent);
-      bannerWrapper.append(ctaWrapper);
+      const popUp = document.createElement('div');
+      popUp.className = 'carousel-pop-up carousel-d-none';
+      popUp.innerHTML = '<input type="hidden" class="carousel-popup-message">' +
+                        '<input type="hidden" class="carousel-proceed-button-label">' +
+                        '<input type="hidden" class="carousel-cancel-button-label">' +
+                        '<input type="hidden" class="carousel-background-color">';
+
+      textCenter.append(newCtaLink, popUp);
+      bannerCta.append(textCenter);
+      ctaWrapper.append(bannerCta);
+      carouselBannerSectionWrapper.append(ctaWrapper);
     }
 
-    bannerSection.append(bannerWrapper);
-    bannerComponent.append(bannerSection);
-    swiperSlide.append(bannerComponent);
+    carouselBannerSection.append(carouselBannerSectionWrapper);
+    carouselBanner.append(carouselBannerSection);
+    swiperSlide.append(carouselBanner);
     swiperWrapper.append(swiperSlide);
   });
 
-  swiperCarousel.append(swiperWrapper);
+  swiper.append(swiperWrapper);
 
-  // Add navigation buttons and pagination (static structure based on example)
-  const navActions = document.createElement('div');
-  navActions.classList.add('cmp-carousel__actions');
-  navActions.innerHTML = `
-    <button class="cmp-carousel__action cmp-carousel__action--previous" type="button" aria-label="Previous" data-cmp-hook-carousel="previous">
-      <span class="cmp-carousel__action-icon"></span>
-      <span class="cmp-carousel__action-text">Previous</span>
+  // Add navigation and pagination elements (simplified, these would typically be handled by a Swiper JS initialization)
+  const actionsDiv = document.createElement('div');
+  actionsDiv.className = 'carousel-cmp-carousel__actions';
+  actionsDiv.innerHTML = `
+    <button class="carousel-cmp-carousel__action carousel-cmp-carousel__action--previous" type="button" aria-label="Previous" data-cmp-hook-carousel="previous">
+      <span class="carousel-cmp-carousel__action-icon"></span>
+      <span class="carousel-cmp-carousel__action-text">Previous</span>
     </button>
-    <button class="cmp-carousel__action cmp-carousel__action--next" type="button" aria-label="Next" data-cmp-hook-carousel="next">
-      <span class="cmp-carousel__action-icon"></span>
-      <span class="cmp-carousel__action-text">Next</span>
+    <button class="carousel-cmp-carousel__action carousel-cmp-carousel__action--next" type="button" aria-label="Next" data-cmp-hook-carousel="next">
+      <span class="carousel-cmp-carousel__action-icon"></span>
+      <span class="carousel-cmp-carousel__action-text">Next</span>
     </button>
-    <button class="cmp-carousel__action cmp-carousel__action--pause" type="button" aria-label="Pause" data-cmp-hook-carousel="pause">
-      <span class="cmp-carousel__action-icon"></span>
-      <span class="cmp-carousel__action-text">Pause</span>
+    <button class="carousel-cmp-carousel__action carousel-cmp-carousel__action--pause" type="button" aria-label="Pause" data-cmp-hook-carousel="pause">
+      <span class="carousel-cmp-carousel__action-icon"></span>
+      <span class="carousel-cmp-carousel__action-text">Pause</span>
     </button>
-    <button class="cmp-carousel__action cmp-carousel__action--play cmp-carousel__action--disabled" type="button" aria-label="Play" data-cmp-hook-carousel="play">
-      <span class="cmp-carousel__action-icon"></span>
-      <span class="cmp-carousel__action-text">Play</span>
+    <button class="carousel-cmp-carousel__action carousel-cmp-carousel__action--play carousel-cmp-carousel__action--disabled" type="button" aria-label="Play" data-cmp-hook-carousel="play">
+      <span class="carousel-cmp-carousel__action-icon"></span>
+      <span class="carousel-cmp-carousel__action-text">Play</span>
     </button>
   `;
-  swiperWrapper.append(navActions);
+  swiperWrapper.append(actionsDiv);
 
-  const swiperNavContainer = document.createElement('div');
-  swiperNavContainer.classList.add('swiper-container');
-  swiperNavContainer.innerHTML = `
+  const swiperContainerNav = document.createElement('div');
+  swiperContainerNav.className = 'carousel-swiper-container';
+  swiperContainerNav.innerHTML = `
     <div>
-      <button class="carousel-primary-swiper__buttonNext carousel-position-absolute carousel-top-50 carousel-swiper-buttonBg carousel-d-none carousel-d-sm-block carousel-cursor-pointer carousel-analytics_cta_click" disabled=""></button>
+      <button class="carousel-primary-swiper__buttonNext carousel-position-absolute carousel-top-50 carousel-swiper-buttonBg carousel-d-none carousel-d-sm-block carousel-cursor-pointer carousel-analytics_cta_click carousel-disabled" disabled="">
+        Next Icon
+      </button>
     </div>
     <div>
-      <button class="carousel-primary-swiper__buttonPrev carousel-position-absolute carousel-top-50 carousel-swiper-buttonBg carousel-d-none carousel-d-sm-block carousel-cursor-pointer carousel-analytics_cta_click"></button>
+      <button class="carousel-primary-swiper__buttonPrev carousel-position-absolute carousel-top-50 carousel-swiper-buttonBg carousel-d-none carousel-d-sm-block carousel-cursor-pointer carousel-analytics_cta_click">
+        Prev Icon
+      </button>
     </div>
   `;
-  swiperCarousel.append(swiperNavContainer);
+  swiper.append(swiperContainerNav);
 
   const swiperPagination = document.createElement('div');
-  swiperPagination.classList.add('swiper-pagination', 'carousel-primary-swiper-pagination', 'carousel-pagination-set', 'carousel-mb-md-8', 'carousel-mb-10', 'carousel-mt-6', 'carousel-position-absolute');
-  swiperCarousel.append(swiperPagination);
+  swiperPagination.className = 'swiper-pagination carousel-primary-swiper-pagination carousel-pagination-set carousel-mb-md-8 carousel-mb-10 carousel-mt-6 carousel-position-absolute carousel-swiper-pagination-clickable carousel-swiper-pagination-bullets carousel-swiper-pagination-horizontal';
+  swiperPagination.innerHTML = '<span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet carousel-swiper-pagination-bullet-active"></span>';
+  swiper.append(swiperPagination);
 
-  carouselContainer.append(swiperCarousel);
+  carouselContainer.append(swiper);
 
   block.textContent = '';
   block.append(carouselContainer);
-  block.className = `${block.dataset.blockName} block`;
-  block.dataset.blockStatus = 'loaded';
 }

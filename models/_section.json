@@ -61,7 +61,9 @@
         "spaceadderContainer",
         "headerSection",
         "carouselBanner",
-        "stickyBottomNav"
+        "stickyBottomNav",
+        "spaceadder",
+        "stickyNavigationBottomNav"
       ]
     }
   ]

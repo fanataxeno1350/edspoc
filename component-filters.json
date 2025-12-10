@@ -26,7 +26,9 @@
       "spaceadderContainer",
       "headerSection",
       "carouselBanner",
-      "stickyBottomNav"
+      "stickyBottomNav",
+      "spaceadder",
+      "stickyNavigationBottomNav"
     ]
   },
   {
@@ -44,7 +46,7 @@
   {
     "id": "carousel",
     "components": [
-      "carouselSlide"
+      "slide"
     ]
   },
   {
@@ -63,16 +65,22 @@
     ]
   },
   {
-    "id": "featureCards",
+    "id": "featurecards",
     "components": [
-      "featureCard"
+      "featurecard"
     ]
   },
   {
-    "id": "footerBrand",
+    "id": "footer-brand",
     "components": [
-      "footerLink",
-      "socialLink"
+      "footerLinkList",
+      "footerSocialLink"
+    ]
+  },
+  {
+    "id": "footer-link-list",
+    "components": [
+      "footerLink"
     ]
   },
   {
@@ -87,8 +95,8 @@
     "id": "header",
     "components": [
       "sidebarMenuItem",
-      "footerColumnItem",
-      "socialItem"
+      "footerLink",
+      "socialLink"
     ]
   },
   {
@@ -116,7 +124,16 @@
     "id": "spaceadderContainer"
   },
   {
+    "id": "spaceadder"
+  },
+  {
     "id": "stickyBottomNav",
+    "components": [
+      "navItem"
+    ]
+  },
+  {
+    "id": "stickyNavigationBottomNav",
     "components": [
       "navItem"
     ]
