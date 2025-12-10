@@ -37,15 +37,21 @@
       "id": "navItem",
       "fields": [
         {
-          "component": "reference",
-          "label": "Icon",
-          "name": "icon",
+          "component": "text",
+          "label": "Link URL",
+          "name": "href",
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "component": "reference",
+          "label": "Icon Image",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Icon Alt Text",
+          "name": "alt",
           "valueType": "string"
         },
         {
@@ -53,12 +59,6 @@
           "label": "Label",
           "name": "label",
           "valueType": "string"
-        },
-        {
-          "component": "boolean",
-          "label": "Consent",
-          "name": "consent",
-          "valueType": "boolean"
         }
       ]
     }

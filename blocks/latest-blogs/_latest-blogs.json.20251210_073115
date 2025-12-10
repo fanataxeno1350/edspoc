@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Blog-Card",
-      "id": "blogCard",
+      "title": "Blog",
+      "id": "blog",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "blogCard",
-              "name": "Blog-Card"
+              "model": "blog",
+              "name": "Blog"
             }
           }
         }
@@ -50,15 +50,21 @@
         },
         {
           "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "View All Link",
+          "name": "viewAllLink",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "blogCard",
+      "id": "blog",
       "fields": [
+        {
+          "component": "aem-content",
+          "label": "Blog Link",
+          "name": "link",
+          "valueType": "string"
+        },
         {
           "component": "reference",
           "label": "Image",
@@ -73,14 +79,8 @@
         },
         {
           "component": "richtext",
-          "label": "Headline",
-          "name": "headline",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Blog Link",
-          "name": "link",
+          "label": "Blog Title",
+          "name": "blogTitle",
           "valueType": "string"
         }
       ]
@@ -90,7 +90,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "blogCard"
+        "blog"
       ]
     }
   ]
