@@ -50,8 +50,8 @@
         },
         {
           "component": "aem-content",
-          "label": "View All Link",
-          "name": "viewAllLink",
+          "label": "CTA Link",
+          "name": "cta",
           "valueType": "string"
         }
       ]
@@ -67,20 +67,20 @@
         },
         {
           "component": "date-time",
-          "label": "Publish Date",
-          "name": "publishDate",
+          "label": "Published Date",
+          "name": "publishedDate",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Card Title",
-          "name": "cardTitle",
+          "label": "Headline",
+          "name": "headline",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Card Link",
-          "name": "cardLink",
+          "label": "Blog Link",
+          "name": "link",
           "valueType": "string"
         }
       ]

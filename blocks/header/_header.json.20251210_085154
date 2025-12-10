@@ -17,45 +17,45 @@
       }
     },
     {
-      "title": "Header-Menu-Item",
-      "id": "headerMenuItem",
+      "title": "SidebarMenuItem",
+      "id": "sidebarMenuItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "headerMenuItem",
-              "name": "Header-Menu-Item"
+              "model": "sidebarMenuItem",
+              "name": "SidebarMenuItem"
             }
           }
         }
       }
     },
     {
-      "title": "Footer-Link-Item",
-      "id": "footerLinkItem",
+      "title": "FooterListItem",
+      "id": "footerListItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerLinkItem",
-              "name": "Footer-Link-Item"
+              "model": "footerListItem",
+              "name": "FooterListItem"
             }
           }
         }
       }
     },
     {
-      "title": "Social-Link-Item",
-      "id": "socialLinkItem",
+      "title": "SocialLink",
+      "id": "socialLink",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "socialLinkItem",
-              "name": "Social-Link-Item"
+              "model": "socialLink",
+              "name": "SocialLink"
             }
           }
         }
@@ -74,7 +74,7 @@
         },
         {
           "component": "reference",
-          "label": "Logo Image",
+          "label": "Logo",
           "name": "logo",
           "valueType": "string"
         },
@@ -93,47 +93,7 @@
       ]
     },
     {
-      "id": "headerMenuItem",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Icon",
-          "name": "icon",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Label",
-          "name": "label",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "footerLinkItem",
-      "fields": [
-        {
-          "component": "text",
-          "label": "Label",
-          "name": "label",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "socialLinkItem",
+      "id": "sidebarMenuItem",
       "fields": [
         {
           "component": "reference",
@@ -145,6 +105,46 @@
           "component": "aem-content",
           "label": "Link",
           "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Label",
+          "name": "label",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "footerListItem",
+      "fields": [
+        {
+          "component": "aem-content",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Label",
+          "name": "label",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "socialLink",
+      "fields": [
+        {
+          "component": "aem-content",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Icon",
+          "name": "icon",
           "valueType": "string"
         }
       ]
@@ -154,9 +154,9 @@
     {
       "id": "header",
       "components": [
-        "headerMenuItem",
-        "footerLinkItem",
-        "socialLinkItem"
+        "sidebarMenuItem",
+        "footerListItem",
+        "socialLink"
       ]
     }
   ]

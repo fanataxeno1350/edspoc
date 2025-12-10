@@ -28,7 +28,8 @@
       "carouselBanner",
       "stickyBottomNav",
       "spaceadder",
-      "stickyNavigationBottomNav"
+      "stickyNavigationBottomNav",
+      "footerBrandSection"
     ]
   },
   {
@@ -46,7 +47,7 @@
   {
     "id": "carousel",
     "components": [
-      "carouselSlide"
+      "slide"
     ]
   },
   {
@@ -73,7 +74,14 @@
   {
     "id": "featurecards",
     "components": [
-      "card"
+      "featurecard"
+    ]
+  },
+  {
+    "id": "footerBrandSection",
+    "components": [
+      "footerLink",
+      "footerSocialLink"
     ]
   },
   {
@@ -94,9 +102,9 @@
   {
     "id": "header",
     "components": [
-      "sidebarMenuItem",
-      "footerListItem",
-      "socialLink"
+      "headerMenuItem",
+      "footerLinkItem",
+      "socialLinkItem"
     ]
   },
   {
