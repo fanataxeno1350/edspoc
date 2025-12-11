@@ -1,11 +1,16 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const spaceadderContainer = document.createElement('div');
   spaceadderContainer.classList.add('spaceadder-container');
 
-  // Move instrumentation from the block to the new container if needed
-  moveInstrumentation(block, spaceadderContainer);
+  // Move all child nodes from the original block to the new container
+  while (block.firstChild) {
+    const child = block.firstChild;
+    spaceadderContainer.appendChild(child);
+    moveInstrumentation(child, child);
+  }
 
   block.textContent = '';
   block.append(spaceadderContainer);

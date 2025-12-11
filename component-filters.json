@@ -47,7 +47,7 @@
   {
     "id": "carousel",
     "components": [
-      "carouselItem"
+      "carouselSlide"
     ]
   },
   {
@@ -102,10 +102,9 @@
   {
     "id": "header",
     "components": [
-      "headerMenuItem",
-      "footerMenuItem",
-      "footerSocialItem",
-      "footerLogoItem"
+      "sidebarMenuItem",
+      "footerListItem",
+      "footerSocialItem"
     ]
   },
   {
@@ -130,7 +129,7 @@
     "id": "space-adder"
   },
   {
-    "id": "spaceadder-Container"
+    "id": "spaceadderContainer"
   },
   {
     "id": "spaceadder"
@@ -144,7 +143,7 @@
   {
     "id": "sticky-navigation-bottom-nav",
     "components": [
-      "navItem"
+      "navigationItem"
     ]
   },
   {

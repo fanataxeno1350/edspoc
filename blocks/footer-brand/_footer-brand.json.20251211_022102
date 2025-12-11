@@ -54,7 +54,7 @@
         {
           "component": "reference",
           "label": "Primary Logo",
-          "name": "primaryLogo",
+          "name": "logo",
           "valueType": "string"
         },
         {
@@ -64,37 +64,19 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Primary Logo Link",
-          "name": "primaryLogoLink",
-          "valueType": "string"
-        },
-        {
-          "component": "container",
-          "items": {
-            "type": "footerLink"
-          },
+          "component": "footerLink",
           "label": "Footer Links",
           "name": "footerLinks"
         },
         {
-          "component": "container",
-          "items": {
-            "type": "footerSocialLink"
-          },
+          "component": "footerSocialLink",
           "label": "Footer Social Links",
           "name": "footerSocialLinks"
         },
         {
           "component": "aem-content",
-          "label": "Copyright Link",
-          "name": "copyrightLink",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
           "label": "Copyright Text",
-          "name": "copyrightText",
+          "name": "copyright",
           "valueType": "string"
         }
       ]
