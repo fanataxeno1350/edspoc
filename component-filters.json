@@ -47,7 +47,7 @@
   {
     "id": "carousel",
     "components": [
-      "slide"
+      "carouselSlide"
     ]
   },
   {
@@ -74,7 +74,7 @@
   {
     "id": "featurecards",
     "components": [
-      "featurecardItem"
+      "featurecard"
     ]
   },
   {
@@ -102,10 +102,9 @@
   {
     "id": "header",
     "components": [
-      "sidebarMenuItem",
-      "footerLink",
-      "socialLink",
-      "footerBrandLogo"
+      "headerMenuItem",
+      "footerMenuItem",
+      "socialLink"
     ]
   },
   {
