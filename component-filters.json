@@ -14,7 +14,8 @@
       "title",
       "hero",
       "cards",
-      "header"
+      "header",
+      "latestBlogs"
     ]
   },
   {
@@ -36,6 +37,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "latestBlogs",
+    "components": [
+      "blogCard"
     ]
   }
 ]
