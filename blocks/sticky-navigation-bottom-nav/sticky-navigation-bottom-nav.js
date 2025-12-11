@@ -7,62 +7,66 @@ export default function decorate(block) {
 
   const navList = document.createElement('ul');
   navList.className = 'sticky-navigation-bottom-nav__list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
-  bottomNav.append(navList);
 
   const navItems = block.querySelectorAll('[data-aue-model="navItem"]');
-  navItems.forEach((item) => {
-    const navItem = document.createElement('li');
-    navItem.className = 'sticky-navigation-bottom-nav__item sticky-navigation-position-relative';
+  navItems.forEach((navItem) => {
+    const listItem = document.createElement('li');
+    listItem.className = 'sticky-navigation-bottom-nav__item sticky-navigation-position-relative';
 
-    const linkWrapper = item.querySelector('[data-aue-prop="link"]');
-    const link = linkWrapper ? linkWrapper.querySelector('a') : null;
+    const linkWrapper = navItem.querySelector('[data-aue-prop="link"]');
+    let linkElement = linkWrapper ? linkWrapper.querySelector('a') : null;
 
-    if (link) {
-      const navLink = document.createElement('a');
-      navLink.className = 'sticky-navigation-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 analytics_cta_click';
-      navLink.href = link.href;
-      navLink.setAttribute('data-link', link.href);
-      moveInstrumentation(link, navLink);
+    if (!linkElement) {
+      // Fallback for aem-content field if it's just an anchor
+      linkElement = navItem.querySelector('a');
+    }
 
-      const consent = item.querySelector('[data-aue-prop="consent"]');
-      if (consent && consent.textContent.trim().toLowerCase() === 'true') {
-        navLink.setAttribute('data-consent', 'true');
+    if (linkElement) {
+      const newLink = document.createElement('a');
+      newLink.className = 'sticky-navigation-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 analytics_cta_click';
+      newLink.href = linkElement.href;
+      newLink.setAttribute('data-link', linkElement.href);
+
+      const consentRequired = navItem.querySelector('[data-aue-prop="consentRequired"]');
+      if (consentRequired && consentRequired.textContent.trim().toLowerCase() === 'true') {
+        newLink.setAttribute('data-consent', 'true');
       } else {
-        navLink.setAttribute('data-consent', 'false');
+        newLink.setAttribute('data-consent', 'false');
       }
 
-      const iconWrapper = item.querySelector('[data-aue-prop="icon"]');
+      const iconWrapper = navItem.querySelector('[data-aue-prop="icon"]');
       let iconImg = iconWrapper ? iconWrapper.querySelector('img') : null;
 
       if (!iconImg) {
-        const anchor = iconWrapper ? iconWrapper.querySelector('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"]') : null;
-        if (anchor) {
-          iconImg = document.createElement('img');
-          iconImg.src = anchor.href;
-          iconImg.alt = anchor.title || '';
-        }
+        // Fallback for reference field if it's just an image
+        iconImg = navItem.querySelector('img');
       }
 
       if (iconImg) {
-        const picture = createOptimizedPicture(iconImg.src, iconImg.alt, false, [{ width: '40' }]);
-        const img = picture.querySelector('img');
-        img.className = 'sticky-navigation-bottom-nav__icon';
-        navLink.append(picture);
-        moveInstrumentation(iconImg, img);
+        const picture = createOptimizedPicture(iconImg.src, iconImg.alt);
+        const pictureImg = picture.querySelector('img');
+        pictureImg.className = 'sticky-navigation-bottom-nav__icon';
+        newLink.append(picture);
+        moveInstrumentation(iconImg, pictureImg);
       }
 
-      const label = item.querySelector('[data-aue-prop="label"]');
-      if (label) {
-        const navLabel = document.createElement('span');
-        navLabel.className = 'sticky-navigation-bottom-nav__label';
-        navLabel.textContent = label.textContent.trim();
-        navLink.append(navLabel);
-        moveInstrumentation(label, navLabel);
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'sticky-navigation-bottom-nav__label';
+      const labelElement = navItem.querySelector('[data-aue-prop="label"]');
+      if (labelElement) {
+        labelSpan.textContent = labelElement.textContent;
+        moveInstrumentation(labelElement, labelSpan);
       }
-      navItem.append(navLink);
+      newLink.append(labelSpan);
+
+      listItem.append(newLink);
+      moveInstrumentation(linkElement, newLink);
     }
-    navList.append(navItem);
+    navList.append(listItem);
+    moveInstrumentation(navItem, listItem);
   });
+
+  bottomNav.append(navList);
 
   block.textContent = '';
   block.append(bottomNav);

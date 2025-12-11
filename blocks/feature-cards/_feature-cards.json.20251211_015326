@@ -1,31 +1,31 @@
 {
   "definitions": [
     {
-      "title": "Latest-Blogs",
-      "id": "latestBlogs",
+      "title": "Feature-Cards",
+      "id": "featureCards",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "latestBlogs",
-              "model": "latestBlogs",
-              "name": "Latest-Blogs"
+              "filter": "featureCards",
+              "model": "featureCards",
+              "name": "Feature-Cards"
             }
           }
         }
       }
     },
     {
-      "title": "Blog-Card",
-      "id": "blogCard",
+      "title": "Feature-Card",
+      "id": "featureCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "blogCard",
-              "name": "Blog-Card"
+              "model": "featureCard",
+              "name": "Feature-Card"
             }
           }
         }
@@ -34,8 +34,14 @@
   ],
   "models": [
     {
-      "id": "latestBlogs",
+      "id": "featureCard",
       "fields": [
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        },
         {
           "component": "richtext",
           "label": "Title",
@@ -50,37 +56,8 @@
         },
         {
           "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "blogCard",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Image",
-          "name": "image",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
           "label": "Link",
           "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Date",
-          "name": "date",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Text",
-          "name": "text",
           "valueType": "string"
         }
       ]
@@ -88,9 +65,9 @@
   ],
   "filters": [
     {
-      "id": "latestBlogs",
+      "id": "featureCards",
       "components": [
-        "blogCard"
+        "featureCard"
       ]
     }
   ]

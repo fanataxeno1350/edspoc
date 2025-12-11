@@ -56,8 +56,8 @@
         },
         {
           "component": "boolean",
-          "label": "Consent Required",
-          "name": "consentRequired",
+          "label": "Consent",
+          "name": "consent",
           "valueType": "boolean"
         }
       ]
@@ -65,7 +65,7 @@
   ],
   "filters": [
     {
-      "id": "sticky-navigation-bottom-nav",
+      "id": "stickyNavigationBottomNav",
       "components": [
         "navItem"
       ]

@@ -51,7 +51,7 @@
         {
           "component": "aem-content",
           "label": "CTA Link",
-          "name": "ctaLink",
+          "name": "cta",
           "valueType": "string"
         }
       ]
@@ -66,21 +66,21 @@
           "valueType": "string"
         },
         {
+          "component": "date-time",
+          "label": "Publish Date",
+          "name": "publishDate",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Headline",
+          "name": "headline",
+          "valueType": "string"
+        },
+        {
           "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Date",
-          "name": "date",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Text",
-          "name": "text",
+          "label": "Blog Link",
+          "name": "blogLink",
           "valueType": "string"
         }
       ]

@@ -17,45 +17,45 @@
       }
     },
     {
-      "title": "Menu-Item",
-      "id": "menuItem",
+      "title": "Sidebar-Menu-Item",
+      "id": "sidebarMenuItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "menuItem",
-              "name": "Menu-Item"
+              "model": "sidebarMenuItem",
+              "name": "Sidebar-Menu-Item"
             }
           }
         }
       }
     },
     {
-      "title": "Footer-Link",
-      "id": "footerLink",
+      "title": "Footer-Link-Item",
+      "id": "footerLinkItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerLink",
-              "name": "Footer-Link"
+              "model": "footerLinkItem",
+              "name": "Footer-Link-Item"
             }
           }
         }
       }
     },
     {
-      "title": "Footer-Social",
-      "id": "footerSocial",
+      "title": "Social-Link-Item",
+      "id": "socialLinkItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "footerSocial",
-              "name": "Footer-Social"
+              "model": "socialLinkItem",
+              "name": "Social-Link-Item"
             }
           }
         }
@@ -67,61 +67,76 @@
       "id": "headerSection",
       "fields": [
         {
+          "component": "text",
+          "label": "App Name",
+          "name": "appName",
+          "valueType": "string"
+        },
+        {
           "component": "reference",
-          "label": "Logo Image",
-          "name": "logoImage",
+          "label": "Logo",
+          "name": "logo",
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Logo Link",
-          "name": "logoLink",
+          "component": "text",
+          "label": "Logo Alt Text",
+          "name": "logoAlt",
           "valueType": "string"
         },
         {
-          "component": "aem-content",
+          "component": "text",
+          "label": "Login Button Label",
+          "name": "loginLabel",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
           "label": "Login Link",
           "name": "loginLink",
           "valueType": "string"
         },
         {
           "component": "container",
-          "config": {
-            "block": "menuItem"
-          },
-          "label": "Menu",
-          "name": "menu"
+          "itemType": "sidebarMenuItem",
+          "label": "Sidebar Menu Items",
+          "name": "sidebarMenuItems",
+          "valueType": "array"
         },
         {
           "component": "reference",
-          "label": "Footer Brand Logo 1",
-          "name": "footerBrandLogo1",
+          "label": "Footer Logo",
+          "name": "footerLogo",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Footer Brand Logo 2",
-          "name": "footerBrandLogo2",
+          "label": "Footer Logo Secondary",
+          "name": "footerLogoSecondary",
           "valueType": "string"
         },
         {
           "component": "container",
-          "config": {
-            "block": "footerLink"
-          },
+          "itemType": "footerLinkItem",
           "label": "Footer Links",
-          "name": "footerLinks"
+          "name": "footerLinks",
+          "valueType": "array"
         },
         {
           "component": "container",
-          "config": {
-            "block": "footerSocial"
-          },
-          "label": "Footer Social",
-          "name": "footerSocial"
+          "itemType": "socialLinkItem",
+          "label": "Footer Social Links",
+          "name": "footerSocialLinks",
+          "valueType": "array"
         },
         {
-          "component": "aem-content",
+          "component": "reference",
+          "label": "Footer Left Link",
+          "name": "footerLeftLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
           "label": "Footer Copyright",
           "name": "footerCopyright",
           "valueType": "string"
@@ -129,8 +144,14 @@
       ]
     },
     {
-      "id": "menuItem",
+      "id": "sidebarMenuItem",
       "fields": [
+        {
+          "component": "reference",
+          "label": "Menu Link",
+          "name": "link",
+          "valueType": "string"
+        },
         {
           "component": "reference",
           "label": "Menu Icon",
@@ -138,42 +159,36 @@
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Menu Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
           "component": "text",
-          "label": "Menu Text",
-          "name": "text",
+          "label": "Menu Label",
+          "name": "label",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "footerLink",
+      "id": "footerLinkItem",
       "fields": [
         {
-          "component": "aem-content",
+          "component": "reference",
           "label": "Footer Link",
           "name": "link",
           "valueType": "string"
         },
         {
           "component": "text",
-          "label": "Footer Link Text",
-          "name": "text",
+          "label": "Footer Link Label",
+          "name": "label",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "footerSocial",
+      "id": "socialLinkItem",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "Social Link",
+          "component": "reference",
+          "label": "Social Link URL",
           "name": "link",
           "valueType": "string"
         },
@@ -190,9 +205,9 @@
     {
       "id": "headerSection",
       "components": [
-        "menuItem",
-        "footerLink",
-        "footerSocial"
+        "sidebarMenuItem",
+        "footerLinkItem",
+        "socialLinkItem"
       ]
     }
   ]

@@ -54,7 +54,13 @@
         {
           "component": "reference",
           "label": "Primary Logo",
-          "name": "logo",
+          "name": "primaryLogo",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Primary Logo Link",
+          "name": "primaryLogoLink",
           "valueType": "string"
         },
         {
@@ -64,19 +70,21 @@
           "valueType": "string"
         },
         {
-          "component": "footerLink",
+          "block": "footerLink",
+          "component": "block",
           "label": "Footer Links",
           "name": "footerLinks"
         },
         {
-          "component": "footerSocialLink",
+          "block": "footerSocialLink",
+          "component": "block",
           "label": "Footer Social Links",
           "name": "footerSocialLinks"
         },
         {
           "component": "aem-content",
           "label": "Copyright Text",
-          "name": "copyright",
+          "name": "copyrightText",
           "valueType": "string"
         }
       ]
@@ -91,7 +99,7 @@
           "valueType": "string"
         },
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Label",
           "name": "label",
           "valueType": "string"
@@ -104,12 +112,12 @@
         {
           "component": "aem-content",
           "label": "Social Link",
-          "name": "link",
+          "name": "socialLink",
           "valueType": "string"
         },
         {
           "component": "reference",
-          "label": "Icon",
+          "label": "Social Icon",
           "name": "icon",
           "valueType": "string"
         }

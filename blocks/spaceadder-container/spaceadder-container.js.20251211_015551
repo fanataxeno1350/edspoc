@@ -7,11 +7,10 @@ export default function decorate(block) {
 
   // Move all child nodes from the original block to the new container
   while (block.firstChild) {
-    const child = block.firstChild;
-    spaceadderContainer.appendChild(child);
-    moveInstrumentation(child, child);
+    spaceadderContainer.appendChild(block.firstChild);
   }
 
+  // Clear the original block and append the new container
   block.textContent = '';
   block.append(spaceadderContainer);
   block.className = `${block.dataset.blockName} block`;
