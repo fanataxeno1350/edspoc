@@ -45,13 +45,7 @@
         {
           "component": "text",
           "label": "Alt Text",
-          "name": "alt",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
+          "name": "altText",
           "valueType": "string"
         },
         {
@@ -64,6 +58,18 @@
           "component": "richtext",
           "label": "Description",
           "name": "description",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Button Text",
+          "name": "buttonText",
           "valueType": "string"
         }
       ]

@@ -2,72 +2,70 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const bottomNavSection = document.createElement('section');
-  bottomNavSection.className = 'sticky-navigation-bottom-nav sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-boing-container sticky-navigation-bg-boing-primary';
+  const bottomNav = document.createElement('section');
+  bottomNav.className = 'sticky-navigation-bottom-nav sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-boing-container sticky-navigation-bg-boing-primary';
 
-  const bottomNavList = document.createElement('ul');
-  bottomNavList.className = 'sticky-navigation-bottom-nav__list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
+  const navList = document.createElement('ul');
+  navList.className = 'sticky-navigation-bottom-nav__list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
+  bottomNav.append(navList);
 
-  const navItems = block.querySelectorAll('[data-aue-model="navigationItem"]');
+  const navItems = block.querySelectorAll('[data-aue-model="navItem"]');
   navItems.forEach((item) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'sticky-navigation-bottom-nav__item sticky-navigation-position-relative';
+    const navItem = document.createElement('li');
+    navItem.className = 'sticky-navigation-bottom-nav__item sticky-navigation-position-relative';
 
-    const linkElement = item.querySelector('[data-aue-prop="link"]');
-    const labelElement = item.querySelector('[data-aue-prop="label"]');
-    const iconElement = item.querySelector('[data-aue-prop="icon"]');
+    const linkWrapper = item.querySelector('[data-aue-prop="link"]');
+    const link = linkWrapper ? linkWrapper.querySelector('a') : null;
 
-    const anchor = document.createElement('a');
-    anchor.className = 'sticky-navigation-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 analytics_cta_click';
+    if (link) {
+      const navLink = document.createElement('a');
+      navLink.className = 'sticky-navigation-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 analytics_cta_click';
+      navLink.href = link.href;
+      navLink.setAttribute('data-link', link.href);
+      moveInstrumentation(link, navLink);
 
-    let href = '';
-    let dataLink = '';
-    if (linkElement) {
-      const linkAnchor = linkElement.querySelector('a');
-      if (linkAnchor) {
-        href = linkAnchor.href;
-        dataLink = linkAnchor.getAttribute('data-link') || '';
-        moveInstrumentation(linkAnchor, anchor);
+      const consent = item.querySelector('[data-aue-prop="consent"]');
+      if (consent && consent.textContent.trim().toLowerCase() === 'true') {
+        navLink.setAttribute('data-consent', 'true');
       } else {
-        // Fallback for direct text content if no anchor is present
-        href = linkElement.textContent.trim();
+        navLink.setAttribute('data-consent', 'false');
       }
-    }
-    anchor.href = href;
-    if (dataLink) {
-      anchor.setAttribute('data-link', dataLink);
-    }
-    // Default consent to false if not explicitly set by AUE
-    anchor.setAttribute('data-consent', linkElement?.getAttribute('data-consent') || 'false');
 
-    if (iconElement) {
-      const img = iconElement.querySelector('img');
-      if (img) {
-        const picture = createOptimizedPicture(img.src, img.alt, false, [{ width: '100' }]);
-        picture.querySelector('img').className = 'sticky-navigation-bottom-nav__icon';
-        anchor.append(picture);
-        moveInstrumentation(img, picture.querySelector('img'));
+      const iconWrapper = item.querySelector('[data-aue-prop="icon"]');
+      let iconImg = iconWrapper ? iconWrapper.querySelector('img') : null;
+
+      if (!iconImg) {
+        const anchor = iconWrapper ? iconWrapper.querySelector('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"]') : null;
+        if (anchor) {
+          iconImg = document.createElement('img');
+          iconImg.src = anchor.href;
+          iconImg.alt = anchor.title || '';
+        }
       }
+
+      if (iconImg) {
+        const picture = createOptimizedPicture(iconImg.src, iconImg.alt, false, [{ width: '40' }]);
+        const img = picture.querySelector('img');
+        img.className = 'sticky-navigation-bottom-nav__icon';
+        navLink.append(picture);
+        moveInstrumentation(iconImg, img);
+      }
+
+      const label = item.querySelector('[data-aue-prop="label"]');
+      if (label) {
+        const navLabel = document.createElement('span');
+        navLabel.className = 'sticky-navigation-bottom-nav__label';
+        navLabel.textContent = label.textContent.trim();
+        navLink.append(navLabel);
+        moveInstrumentation(label, navLabel);
+      }
+      navItem.append(navLink);
     }
-
-    const labelSpan = document.createElement('span');
-    labelSpan.className = 'sticky-navigation-bottom-nav__label';
-    if (labelElement) {
-      labelSpan.textContent = labelElement.textContent.trim();
-      moveInstrumentation(labelElement, labelSpan);
-    }
-    anchor.append(labelSpan);
-
-    listItem.append(anchor);
-    bottomNavList.append(listItem);
-
-    moveInstrumentation(item, listItem);
+    navList.append(navItem);
   });
 
-  bottomNavSection.append(bottomNavList);
-
   block.textContent = '';
-  block.append(bottomNavSection);
+  block.append(bottomNav);
   block.className = `${block.dataset.blockName} block`;
   block.dataset.blockStatus = 'loaded';
 }
