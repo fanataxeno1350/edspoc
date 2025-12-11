@@ -37,21 +37,21 @@
       "id": "latestBlogs",
       "fields": [
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Title",
           "name": "title",
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Description",
           "name": "description",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "View All Link",
+          "name": "viewAllLink",
           "valueType": "string"
         }
       ]
@@ -67,20 +67,20 @@
         },
         {
           "component": "date-time",
-          "label": "Published Date",
-          "name": "publishedDate",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Text",
-          "name": "text",
+          "label": "Publish Date",
+          "name": "publishDate",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Card Link",
-          "name": "cardLink",
+          "label": "Blog Link",
+          "name": "blogLink",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Blog Title",
+          "name": "blogTitle",
           "valueType": "string"
         }
       ]

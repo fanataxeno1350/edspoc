@@ -1,0 +1,14 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
+export default function decorate(block) {
+  const spaceadderContainer = document.createElement('div');
+  spaceadderContainer.classList.add('spaceadder-container');
+
+  // Move instrumentation from the block to the new container if needed
+  moveInstrumentation(block, spaceadderContainer);
+
+  block.textContent = '';
+  block.append(spaceadderContainer);
+  block.className = `${block.dataset.blockName} block`;
+  block.dataset.blockStatus = 'loaded';
+}

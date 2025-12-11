@@ -5,92 +5,75 @@ export default function decorate(block) {
   const featureCardsContainer = document.createElement('div');
   featureCardsContainer.classList.add('featurecards-container');
 
-  const titleWrapper = block.querySelector('div[data-aue-prop="title"]');
-  if (titleWrapper) {
-    const featureCardsTextWrapper = document.createElement('div');
-    featureCardsTextWrapper.classList.add('featurecards-text-wrapper');
-    const h1 = document.createElement('h1');
-    h1.classList.add('featurecards-title');
+  const titleWrapper = document.createElement('div');
+  titleWrapper.id = 'text-68763da680';
+  titleWrapper.classList.add('featurecards-text-wrapper');
+  const titleElement = document.createElement('h1');
+  titleElement.classList.add('featurecards-title');
 
-    const titleText = titleWrapper.querySelector('h1, h2, h3, h4, h5, h6');
+  // Extract title and highlight from the first row
+  const firstRow = block.children[0];
+  if (firstRow) {
+    const titleText = firstRow.querySelector('[data-aue-prop="title"]') || firstRow.querySelector('h1');
     if (titleText) {
-      h1.innerHTML = titleText.innerHTML;
-      moveInstrumentation(titleText, h1);
+      titleElement.append(...titleText.childNodes);
+      moveInstrumentation(titleText, titleElement);
     }
-
-    featureCardsTextWrapper.append(h1);
-    featureCardsContainer.append(featureCardsTextWrapper);
   }
+  titleWrapper.append(titleElement);
+  featureCardsContainer.append(titleWrapper);
 
-  const cards = block.querySelectorAll('div[data-aue-model="card"]');
-  cards.forEach((card) => {
-    const section = document.createElement('section');
-    section.classList.add('featurecards-section');
+  const cardsWrapper = document.createElement('div');
+  cardsWrapper.classList.add('featurecards-cards-wrapper');
 
-    const linkWrapper = card.querySelector('div[data-aue-prop="link"]');
-    let linkElement = linkWrapper ? linkWrapper.querySelector('a') : null;
+  // Iterate over feature cards starting from the second row
+  Array.from(block.children).slice(1).forEach((row) => {
+    const cardSection = document.createElement('section');
+    cardSection.classList.add('featurecards-section');
 
-    if (!linkElement) {
-      // Fallback for aem-content field that might not wrap in a div
-      linkElement = card.querySelector('a');
-    }
-
-    const featureCardLink = document.createElement('a');
-    featureCardLink.classList.add('featurecards-card-link', 'analytics_cta_click');
+    const linkElement = row.querySelector('[data-aue-prop="link"]');
+    const cardLink = document.createElement('a');
+    cardLink.classList.add('featurecards-card-link', 'analytics_cta_click');
     if (linkElement) {
-      featureCardLink.href = linkElement.href;
-      featureCardLink.title = linkElement.title || '';
-      featureCardLink.dataset.ctaLabel = linkElement.dataset.ctaLabel || '';
-      moveInstrumentation(linkElement, featureCardLink);
+      cardLink.href = linkElement.href;
+      cardLink.title = linkElement.title || '';
+      cardLink.setAttribute('data-cta-label', linkElement.getAttribute('data-cta-label') || 'Explore');
+      moveInstrumentation(linkElement, cardLink);
     }
 
     const imageWrapper = document.createElement('div');
     imageWrapper.classList.add('featurecards-card-image-wrapper');
-    const imgElement = card.querySelector('div[data-aue-prop="image"] img');
-    if (imgElement) {
-      const picture = createOptimizedPicture(imgElement.src, imgElement.alt || '');
-      picture.querySelector('img').classList.add('featurecards-card-image');
-      imageWrapper.append(picture);
-      moveInstrumentation(imgElement, picture.querySelector('img'));
-    } else {
-      // Fallback if image is just an <a> tag from aem-content
-      const imgAnchor = card.querySelector('div[data-aue-prop="image"] a[href]');
-      if (imgAnchor) {
-        const picture = createOptimizedPicture(imgAnchor.href, imgAnchor.title || '');
-        picture.querySelector('img').classList.add('featurecards-card-image');
-        imageWrapper.append(picture);
-        moveInstrumentation(imgAnchor, picture.querySelector('img'));
+    const imageElement = row.querySelector('[data-aue-prop="image"]');
+    if (imageElement) {
+      const img = imageElement.querySelector('img');
+      if (img) {
+        const pic = createOptimizedPicture(img.src, img.alt);
+        imageWrapper.append(pic);
+        moveInstrumentation(img, pic.querySelector('img'));
       }
     }
-    featureCardLink.append(imageWrapper);
+    cardLink.append(imageWrapper);
 
     const cardContent = document.createElement('div');
     cardContent.classList.add('featurecards-card-content');
 
-    const titleElement = card.querySelector('div[data-aue-prop="title"]');
-    if (titleElement) {
-      const h2 = document.createElement('h2');
-      h2.classList.add('featurecards-card-title', 'boing--text__heading-1');
-      const titleText = titleElement.querySelector('h1, h2, h3, h4, h5, h6, p');
-      if (titleText) {
-        h2.textContent = titleText.textContent;
-        moveInstrumentation(titleText, h2);
-      }
-      cardContent.append(h2);
+    const cardTitle = document.createElement('h2');
+    cardTitle.classList.add('featurecards-card-title', 'boing--text__heading-1');
+    const titleAue = row.querySelector('[data-aue-prop="title"]');
+    if (titleAue) {
+      cardTitle.append(...titleAue.childNodes);
+      moveInstrumentation(titleAue, cardTitle);
     }
+    cardContent.append(cardTitle);
 
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.classList.add('featurecards-card-description-wrapper');
-    const descriptionElement = card.querySelector('div[data-aue-prop="description"]');
-    if (descriptionElement) {
-      const p = document.createElement('p');
-      p.classList.add('featurecards-card-description', 'boing--text__body-2', 'text-boing-dark');
-      const descText = descriptionElement.querySelector('p');
-      if (descText) {
-        p.innerHTML = descText.innerHTML;
-        moveInstrumentation(descText, p);
-      }
-      descriptionWrapper.append(p);
+    const cardDescription = document.createElement('p');
+    cardDescription.classList.add('featurecards-card-description', 'boing--text__body-2', 'text-boing-dark');
+    const descriptionAue = row.querySelector('[data-aue-prop="description"]');
+    if (descriptionAue) {
+      descriptionWrapper.append(...descriptionAue.childNodes);
+      moveInstrumentation(descriptionAue, descriptionWrapper);
     }
     cardContent.append(descriptionWrapper);
 
@@ -100,103 +83,22 @@ export default function decorate(block) {
     button.type = 'button';
     button.role = 'button';
     button.classList.add('featurecards-arrow-icon-button');
-    const buttonLabelElement = card.querySelector('div[data-aue-prop="buttonLabel"]');
-    if (buttonLabelElement) {
-      button.textContent = buttonLabelElement.textContent.trim();
-      moveInstrumentation(buttonLabelElement, button);
-    }
+    // Assuming the button content is static or not directly authored via AUE prop in this context
+    // If it were, we'd use a data-aue-prop for it.
     redirectButtonWrapper.append(button);
     cardContent.append(redirectButtonWrapper);
 
-    featureCardLink.append(cardContent);
-    section.append(featureCardLink);
-    featureCardsContainer.append(section);
+    cardLink.append(cardContent);
+    cardSection.append(cardLink);
+    cardsWrapper.append(cardSection);
+
+    // Move instrumentation from the original row to the new cardSection
+    moveInstrumentation(row, cardSection);
   });
 
-  // Handle the 'bolte-sitare-card-section' items
-  cards.forEach((card) => {
-    const linkWrapper = card.querySelector('div[data-aue-prop="link"]');
-    let linkElement = linkWrapper ? linkWrapper.querySelector('a') : null;
-    if (!linkElement) {
-      linkElement = card.querySelector('a');
-    }
+  featureCardsContainer.append(cardsWrapper);
 
-    const bolteSitareCardSection = document.createElement('a');
-    bolteSitareCardSection.classList.add('featurecards-bolte-sitare-card-section', 'd-none', 'analytics_cta_click', 'text-decoration-none');
-    if (linkElement) {
-      bolteSitareCardSection.href = linkElement.href;
-      bolteSitareCardSection.title = linkElement.title || '';
-      bolteSitareCardSection.dataset.title = linkElement.dataset.title || linkElement.title || '';
-      moveInstrumentation(linkElement, bolteSitareCardSection);
-    }
-
-    const bolteSitareCardWrapper = document.createElement('div');
-    bolteSitareCardWrapper.classList.add('featurecards-bolte-sitare-card-wrapper', 'd-flex');
-
-    const bolteSitareCardImage = document.createElement('div');
-    bolteSitareCardImage.classList.add('featurecards-bolte-sitare-card-image');
-    const imgElement = card.querySelector('div[data-aue-prop="image"] img');
-    if (imgElement) {
-      const picture = createOptimizedPicture(imgElement.src, imgElement.alt || '');
-      picture.querySelector('img').classList.add('featurecards-card-image-item');
-      bolteSitareCardImage.append(picture);
-      moveInstrumentation(imgElement, picture.querySelector('img'));
-    } else {
-      const imgAnchor = card.querySelector('div[data-aue-prop="image"] a[href]');
-      if (imgAnchor) {
-        const picture = createOptimizedPicture(imgAnchor.href, imgAnchor.title || '');
-        picture.querySelector('img').classList.add('featurecards-card-image-item');
-        bolteSitareCardImage.append(picture);
-        moveInstrumentation(imgAnchor, picture.querySelector('img'));
-      }
-    }
-    bolteSitareCardWrapper.append(bolteSitareCardImage);
-
-    const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('featurecards-content-wrapper', 'd-flex', 'flex-column', 'justify-content-between');
-
-    const textContentDiv = document.createElement('div');
-    const titleElement = card.querySelector('div[data-aue-prop="title"]');
-    if (titleElement) {
-      const h2 = document.createElement('h2');
-      h2.classList.add('featurecards-bolte-sitare-card-title', 'boing--text__heading-3', 'text-boing-dark');
-      const titleText = titleElement.querySelector('h1, h2, h3, h4, h5, h6, p');
-      if (titleText) {
-        h2.textContent = titleText.textContent;
-        moveInstrumentation(titleText, h2);
-      }
-      textContentDiv.append(h2);
-    }
-
-    const descriptionElement = card.querySelector('div[data-aue-prop="description"]');
-    if (descriptionElement) {
-      const p = document.createElement('p');
-      p.classList.add('featurecards-bolte-sitare-card-text', 'boing--text__body-3', 'text-boing-dark');
-      const descText = descriptionElement.querySelector('p');
-      if (descText) {
-        p.innerHTML = descText.innerHTML;
-        moveInstrumentation(descText, p);
-      }
-      textContentDiv.append(p);
-    }
-    contentWrapper.append(textContentDiv);
-
-    const buttonDiv = document.createElement('div');
-    const button = document.createElement('button');
-    button.classList.add('featurecards-bolte-sitare-card-button', 'text-white', 'boing--text__body-4', 'd-inline-block');
-    const buttonLabelElement = card.querySelector('div[data-aue-prop="buttonLabel"]');
-    if (buttonLabelElement) {
-      button.textContent = buttonLabelElement.textContent.trim();
-      moveInstrumentation(buttonLabelElement, button);
-    }
-    buttonDiv.append(button);
-    contentWrapper.append(buttonDiv);
-
-    bolteSitareCardWrapper.append(contentWrapper);
-    bolteSitareCardSection.append(bolteSitareCardWrapper);
-    featureCardsContainer.append(bolteSitareCardSection);
-  });
-
+  // Append the curve container
   const curveContainer = document.createElement('div');
   curveContainer.classList.add('featurecards-curve-container', 'd-none');
   featureCardsContainer.append(curveContainer);
