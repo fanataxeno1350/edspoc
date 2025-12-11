@@ -180,29 +180,6 @@
     ]
   },
   {
-    "id": "latestBlogs",
-    "fields": [
-      {
-        "component": "text",
-        "label": "Title",
-        "name": "title",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "label": "Description",
-        "name": "description",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "CTA Link",
-        "name": "ctaLink",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "blogCard",
     "fields": [
       {
@@ -212,21 +189,50 @@
         "valueType": "string"
       },
       {
-        "component": "aem-content",
-        "label": "Blog Link",
-        "name": "link",
-        "valueType": "string"
-      },
-      {
-        "component": "date-time",
-        "label": "Published Date",
+        "component": "text",
+        "label": "Date",
         "name": "date",
         "valueType": "string"
       },
       {
         "component": "text",
-        "label": "Headline",
-        "name": "headline",
+        "label": "Title",
+        "name": "title",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Link",
+        "name": "link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "latestBlogs",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Heading",
+        "name": "heading",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Description",
+        "name": "description",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "View All Link",
+        "name": "viewAllLink",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "View All Icon",
+        "name": "viewAllIcon",
         "valueType": "string"
       }
     ]
