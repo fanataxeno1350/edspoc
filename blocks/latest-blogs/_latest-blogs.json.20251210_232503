@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Blog-Item",
-      "id": "blogItem",
+      "title": "Blog-Card",
+      "id": "blogCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "blogItem",
-              "name": "Blog-Item"
+              "model": "blogCard",
+              "name": "Blog-Card"
             }
           }
         }
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "blogItem",
+      "id": "blogCard",
       "fields": [
         {
           "component": "reference",
@@ -67,12 +67,12 @@
         },
         {
           "component": "aem-content",
-          "label": "Blog Link",
+          "label": "Card Link",
           "name": "link",
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Published Date",
           "name": "date",
           "valueType": "string"
@@ -90,7 +90,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "blogItem"
+        "blogCard"
       ]
     }
   ]
