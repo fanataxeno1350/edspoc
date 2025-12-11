@@ -14,41 +14,13 @@
       "title",
       "hero",
       "cards",
-      "header",
-      "carousel",
-      "featureCards",
-      "latestBlogsArticleListing",
-      "spaceAdder",
-      "footerBrand",
-      "stickyNavigation",
-      "featurecards",
-      "latestBlogs",
-      "spaceadderContainer",
-      "headerSection",
-      "carouselBanner",
-      "stickyBottomNav",
-      "spaceadder",
-      "stickyNavigationBottomNav",
-      "footerBrandSection",
-      "spaceadder-container"
+      "header"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
-    ]
-  },
-  {
-    "id": "carouselBanner",
-    "components": [
-      "carouselItem"
-    ]
-  },
-  {
-    "id": "carousel",
-    "components": [
-      "carouselSlide"
     ]
   },
   {
@@ -64,93 +36,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "featureCards",
-    "components": [
-      "featureCard"
-    ]
-  },
-  {
-    "id": "featurecards",
-    "components": [
-      "featurecard"
-    ]
-  },
-  {
-    "id": "footerBrandSection",
-    "components": [
-      "footerLink",
-      "footerSocialLink"
-    ]
-  },
-  {
-    "id": "footerBrand",
-    "components": [
-      "footerLink",
-      "footerSocialLink"
-    ]
-  },
-  {
-    "id": "headerSection",
-    "components": [
-      "menuItem",
-      "footerLink",
-      "footerSocial"
-    ]
-  },
-  {
-    "id": "header",
-    "components": [
-      "sidebarMenuItem",
-      "footerLink",
-      "footerSocialLink"
-    ]
-  },
-  {
-    "id": "latestBlogsArticleListing",
-    "components": [
-      "blogCard"
-    ]
-  },
-  {
-    "id": "latestBlogs",
-    "components": [
-      "blogItem"
-    ]
-  },
-  {
-    "id": "latestBlogsArticleListing",
-    "components": [
-      "articleCard"
-    ]
-  },
-  {
-    "id": "space-adder"
-  },
-  {
-    "id": "spaceadder-container"
-  },
-  {
-    "id": "spaceadder"
-  },
-  {
-    "id": "stickyBottomNav",
-    "components": [
-      "navItem"
-    ]
-  },
-  {
-    "id": "stickyNavigationBottomNav",
-    "components": [
-      "navItem"
-    ]
-  },
-  {
-    "id": "stickyNavigation",
-    "components": [
-      "navItem"
     ]
   }
 ]

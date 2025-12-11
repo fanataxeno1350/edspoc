@@ -49,23 +49,7 @@
         "title",
         "hero",
         "cards",
-        "header",
-        "carousel",
-        "featureCards",
-        "latestBlogsArticleListing",
-        "spaceAdder",
-        "footerBrand",
-        "stickyNavigation",
-        "featurecards",
-        "latestBlogs",
-        "spaceadderContainer",
-        "headerSection",
-        "carouselBanner",
-        "stickyBottomNav",
-        "spaceadder",
-        "stickyNavigationBottomNav",
-        "footerBrandSection",
-        "spaceadder-container"
+        "header"
       ]
     }
   ]
