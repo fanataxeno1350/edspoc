@@ -451,15 +451,15 @@
           }
         },
         {
-          "title": "FooterSocialLink",
-          "id": "footerSocialLink",
+          "title": "SocialLink",
+          "id": "socialLink",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "footerSocialLink",
-                  "name": "FooterSocialLink"
+                  "model": "socialLink",
+                  "name": "SocialLink"
                 }
               }
             }
@@ -513,15 +513,15 @@
           }
         },
         {
-          "title": "Blog-Card",
-          "id": "blogCard",
+          "title": "Blog-Item",
+          "id": "blogItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "model": "blogCard",
-                  "name": "Blog-Card"
+                  "model": "blogItem",
+                  "name": "Blog-Item"
                 }
               }
             }

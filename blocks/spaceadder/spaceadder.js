@@ -1,12 +1,13 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const spaceadderContainer = document.createElement('div');
-  spaceadderContainer.classList.add('spaceadder-container');
-  moveInstrumentation(block, spaceadderContainer);
+  const root = document.createElement('div');
+  root.className = 'spaceadder-container';
 
-  // Spaceadder block has no children/content, it's just an empty div for spacing.
-  // So we just clear the block and append the new container.
   block.textContent = '';
-  block.append(spaceadderContainer);
+  block.append(root);
+
+  block.className = `${block.dataset.blockName} block`;
+  block.dataset.blockStatus = 'loaded';
 }

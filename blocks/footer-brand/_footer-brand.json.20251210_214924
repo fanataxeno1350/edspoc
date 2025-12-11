@@ -53,8 +53,14 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Logo",
-          "name": "logo",
+          "label": "Primary Logo",
+          "name": "primaryLogo",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Primary Logo Link",
+          "name": "primaryLogoLink",
           "valueType": "string"
         },
         {
@@ -64,21 +70,29 @@
           "valueType": "string"
         },
         {
-          "component": "footerLink",
-          "isList": true,
-          "label": "Footer Links",
-          "name": "footerLinks"
+          "component": "aem-content",
+          "label": "Secondary Logo Link",
+          "name": "secondaryLogoLink",
+          "valueType": "string"
         },
         {
-          "component": "footerSocial",
-          "isList": true,
-          "label": "Footer Social Links",
-          "name": "footerSocials"
+          "component": "container",
+          "itemType": "footerLink",
+          "label": "Footer Links",
+          "name": "footerLinks",
+          "valueType": "array"
+        },
+        {
+          "component": "container",
+          "itemType": "footerSocial",
+          "label": "Footer Socials",
+          "name": "footerSocials",
+          "valueType": "array"
         },
         {
           "component": "aem-content",
-          "label": "Copyright",
-          "name": "copyright",
+          "label": "Copyright Text",
+          "name": "copyrightText",
           "valueType": "string"
         }
       ]
@@ -88,14 +102,14 @@
       "fields": [
         {
           "component": "aem-content",
-          "label": "Text",
-          "name": "text",
+          "label": "Label",
+          "name": "label",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "URL",
-          "name": "url",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
         }
       ]
@@ -104,15 +118,21 @@
       "id": "footerSocial",
       "fields": [
         {
-          "component": "reference",
-          "label": "Icon",
-          "name": "icon",
+          "component": "aem-content",
+          "label": "Platform",
+          "name": "platform",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "URL",
-          "name": "url",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Icon",
+          "name": "icon",
           "valueType": "string"
         }
       ]

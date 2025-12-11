@@ -2,8 +2,8 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const section = document.createElement('section');
-  section.className = 'sticky-navigation-bottom-nav sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-boing-container sticky-navigation-bg-boing-primary';
+  const mainContainer = document.createElement('section');
+  mainContainer.className = 'sticky-navigation-bottom-nav sticky-navigation-position-fixed sticky-navigation-bottom-0 sticky-navigation-p-3 sticky-navigation-d-flex sticky-navigation-align-items-center sticky-navigation-boing-container sticky-navigation-bg-boing-primary';
 
   const ul = document.createElement('ul');
   ul.className = 'sticky-navigation-bottom-nav__list sticky-navigation-d-flex sticky-navigation-justify-content-around sticky-navigation-align-items-center sticky-navigation-flex-grow-1';
@@ -13,61 +13,50 @@ export default function decorate(block) {
     const li = document.createElement('li');
     li.className = 'sticky-navigation-bottom-nav__item sticky-navigation-position-relative';
 
-    const linkElement = item.querySelector('[data-aue-prop="link"]');
-    const href = linkElement ? linkElement.href : '#';
-    const dataLink = linkElement ? linkElement.dataset.aueSrc : '';
+    const linkEl = item.querySelector('[data-aue-prop="link"]');
+    const href = linkEl ? linkEl.querySelector('a')?.href || linkEl.textContent.trim() : '#';
+    const dataLink = linkEl ? linkEl.querySelector('a')?.dataset.link || '' : '';
 
-    const consentElement = item.querySelector('[data-aue-prop="consent"]');
-    const dataConsent = consentElement ? consentElement.textContent.trim().toLowerCase() === 'true' : false;
+    const consentEl = item.querySelector('[data-aue-prop="consent"]');
+    const dataConsent = consentEl ? consentEl.textContent.trim().toLowerCase() : 'false';
 
     const a = document.createElement('a');
     a.href = href;
     a.className = 'sticky-navigation-bottom-nav__link sticky-navigation-d-flex sticky-navigation-flex-column sticky-navigation-align-items-center sticky-navigation-gap-1 analytics_cta_click';
-    a.dataset.consent = dataConsent;
-    a.dataset.link = dataLink;
+    a.setAttribute('data-consent', dataConsent);
+    if (dataLink) {
+      a.setAttribute('data-link', dataLink);
+    }
+    moveInstrumentation(linkEl, a);
 
-    const iconElement = item.querySelector('[data-aue-prop="icon"]');
-    const altElement = item.querySelector('[data-aue-prop="alt"]');
-    const labelElement = item.querySelector('[data-aue-prop="label"]');
-
-    if (iconElement) {
-      let img = iconElement.querySelector('img');
-      if (!img) {
-        const anchor = iconElement.querySelector('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"]');
-        if (anchor) {
-          img = document.createElement('img');
-          img.src = anchor.href;
-          img.alt = altElement ? altElement.textContent.trim() : '';
-        }
-      }
-
+    const iconEl = item.querySelector('[data-aue-prop="icon"]');
+    if (iconEl) {
+      const img = iconEl.querySelector('img');
       if (img) {
-        const altText = altElement ? altElement.textContent.trim() : img.alt;
-        const picture = createOptimizedPicture(img.src, altText);
-        const pictureImg = picture.querySelector('img');
-        pictureImg.className = 'sticky-navigation-bottom-nav__icon';
+        const picture = createOptimizedPicture(img.src, img.alt);
+        picture.querySelector('img').className = 'sticky-navigation-bottom-nav__icon';
         a.append(picture);
-        moveInstrumentation(img, pictureImg);
+        moveInstrumentation(img, picture.querySelector('img'));
       }
     }
 
-    if (labelElement) {
+    const labelEl = item.querySelector('[data-aue-prop="label"]');
+    if (labelEl) {
       const span = document.createElement('span');
       span.className = 'sticky-navigation-bottom-nav__label';
-      span.textContent = labelElement.textContent.trim();
+      span.textContent = labelEl.textContent.trim();
       a.append(span);
-      moveInstrumentation(labelElement, span);
+      moveInstrumentation(labelEl, span);
     }
 
     li.append(a);
     ul.append(li);
-    moveInstrumentation(item, li);
   });
 
-  section.append(ul);
+  mainContainer.append(ul);
 
   block.textContent = '';
-  block.append(section);
   block.className = `${block.dataset.blockName} block`;
+  block.append(mainContainer);
   block.dataset.blockStatus = 'loaded';
 }

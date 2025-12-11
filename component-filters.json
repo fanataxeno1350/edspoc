@@ -104,7 +104,7 @@
     "components": [
       "sidebarMenuItem",
       "footerLink",
-      "footerSocialLink"
+      "socialLink"
     ]
   },
   {
@@ -116,7 +116,7 @@
   {
     "id": "latestBlogs",
     "components": [
-      "blogCard"
+      "blogItem"
     ]
   },
   {
