@@ -47,7 +47,7 @@
   {
     "id": "carousel",
     "components": [
-      "carouselSlide"
+      "slide"
     ]
   },
   {
@@ -74,7 +74,7 @@
   {
     "id": "featurecards",
     "components": [
-      "featurecard"
+      "featurecardItem"
     ]
   },
   {
@@ -87,8 +87,8 @@
   {
     "id": "footerBrand",
     "components": [
-      "footerLink",
-      "footerSocial"
+      "footerNavLink",
+      "footerSocialLink"
     ]
   },
   {
@@ -104,7 +104,8 @@
     "components": [
       "sidebarMenuItem",
       "footerLink",
-      "socialLink"
+      "socialLink",
+      "footerBrandLogo"
     ]
   },
   {
@@ -116,7 +117,7 @@
   {
     "id": "latestBlogs",
     "components": [
-      "blogItem"
+      "blogCard"
     ]
   },
   {
@@ -143,7 +144,7 @@
   {
     "id": "stickyNavigationBottomNav",
     "components": [
-      "navItem"
+      "stickyNavigationNavItem"
     ]
   },
   {

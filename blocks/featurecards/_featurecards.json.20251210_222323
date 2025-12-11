@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Featurecard Item",
-      "id": "featurecardItem",
+      "title": "Featurecard",
+      "id": "featurecard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "featurecardItem",
-              "name": "Featurecard Item"
+              "model": "featurecard",
+              "name": "Featurecard"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
     {
-      "id": "featurecardItem",
+      "id": "featurecard",
       "fields": [
         {
           "component": "reference",
@@ -44,26 +44,20 @@
         },
         {
           "component": "text",
-          "label": "Alt Text",
-          "name": "altText",
+          "label": "Title",
+          "name": "title",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Description",
+          "name": "description",
           "valueType": "string"
         },
         {
           "component": "aem-content",
           "label": "Link",
           "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Title",
-          "name": "title",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Description",
-          "name": "description",
           "valueType": "string"
         }
       ]
@@ -73,7 +67,7 @@
     {
       "id": "featurecards",
       "components": [
-        "featurecardItem"
+        "featurecard"
       ]
     }
   ]

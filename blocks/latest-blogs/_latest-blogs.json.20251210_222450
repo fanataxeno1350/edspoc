@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Blog-Card",
-      "id": "blogCard",
+      "title": "Blog-Item",
+      "id": "blogItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "blogCard",
-              "name": "Blog-Card"
+              "model": "blogItem",
+              "name": "Blog-Item"
             }
           }
         }
@@ -34,31 +34,14 @@
   ],
   "models": [
     {
-      "id": "latestBlogs",
+      "id": "blogItem",
       "fields": [
-        {
-          "component": "richtext",
-          "label": "Title",
-          "name": "title",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Description",
-          "name": "description",
-          "valueType": "string"
-        },
         {
           "component": "aem-content",
-          "label": "View All Link",
-          "name": "viewAllLink",
+          "label": "Blog Link",
+          "name": "blogLink",
           "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "blogCard",
-      "fields": [
+        },
         {
           "component": "reference",
           "label": "Image",
@@ -66,21 +49,15 @@
           "valueType": "string"
         },
         {
-          "component": "richtext",
+          "component": "text",
           "label": "Date",
           "name": "date",
           "valueType": "string"
         },
         {
-          "component": "richtext",
-          "label": "Text",
-          "name": "text",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Blog Link",
-          "name": "link",
+          "component": "text",
+          "label": "Title",
+          "name": "title",
           "valueType": "string"
         }
       ]
@@ -90,7 +67,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "blogCard"
+        "blogItem"
       ]
     }
   ]
