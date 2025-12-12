@@ -78,9 +78,8 @@ export default function decorate(block) {
       const latestblogsCardImageWrapper = document.createElement('div');
       latestblogsCardImageWrapper.classList.add('latestblogs-cardImageWrapper');
 
-      const img = imageElement.querySelector('img');
-      if (img) {
-        const optimizedPicture = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+      if (imageElement) {
+        const optimizedPicture = createOptimizedPicture(imageElement.src, imageElement.alt, false, [{ width: '750' }]);
         const newImg = optimizedPicture.querySelector('img');
         if (newImg) {
           newImg.classList.add('latestblogs-cardImage', 'w-100', 'h-100');
