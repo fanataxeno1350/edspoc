@@ -206,27 +206,27 @@
     "id": "blogCard",
     "fields": [
       {
-        "component": "aem-content",
-        "label": "Blog Link",
-        "name": "link",
-        "valueType": "string"
-      },
-      {
         "component": "reference",
         "label": "Image",
         "name": "image",
         "valueType": "string"
       },
       {
-        "component": "date-time",
-        "label": "Published Date",
-        "name": "publishedDate",
+        "component": "aem-content",
+        "label": "Blog Link",
+        "name": "blogLink",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Blog Title",
-        "name": "blogTitle",
+        "label": "Date",
+        "name": "date",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Text",
+        "name": "text",
         "valueType": "string"
       }
     ]
