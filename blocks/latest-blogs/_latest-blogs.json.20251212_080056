@@ -66,21 +66,21 @@
           "valueType": "string"
         },
         {
-          "component": "date-time",
-          "label": "Date",
+          "component": "aem-content",
+          "label": "Blog Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Publish Date",
           "name": "date",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Headline",
-          "name": "headline",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Blog Link",
-          "name": "link",
+          "label": "Blog Title",
+          "name": "text",
           "valueType": "string"
         }
       ]
