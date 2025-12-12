@@ -38,20 +38,20 @@
       "fields": [
         {
           "component": "richtext",
-          "label": "Section Title",
+          "label": "Title",
           "name": "title",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Section Description",
+          "label": "Description",
           "name": "description",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Section CTA Link",
-          "name": "ctaLink",
+          "label": "View All Link",
+          "name": "viewAllLink",
           "valueType": "string"
         }
       ]
@@ -61,26 +61,26 @@
       "fields": [
         {
           "component": "reference",
-          "label": "Blog Image",
+          "label": "Image",
           "name": "image",
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Blog Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
           "component": "date-time",
-          "label": "Published Date",
+          "label": "Publish Date",
           "name": "publishDate",
           "valueType": "string"
         },
         {
           "component": "richtext",
           "label": "Blog Title",
-          "name": "title",
+          "name": "blogTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Blog Link",
+          "name": "blogLink",
           "valueType": "string"
         }
       ]
