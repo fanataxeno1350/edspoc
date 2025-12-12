@@ -183,7 +183,7 @@
     "id": "latestBlogs",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "label": "Title",
         "name": "title",
         "valueType": "string"
@@ -199,34 +199,46 @@
         "label": "View All Link",
         "name": "viewAllLink",
         "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "View All Icon",
+        "name": "viewAllIcon",
+        "valueType": "string"
+      },
+      {
+        "component": "blogItem",
+        "label": "Blogs",
+        "name": "blogs",
+        "valueType": "array"
       }
     ]
   },
   {
-    "id": "blogCard",
+    "id": "blogItem",
     "fields": [
       {
+        "component": "aem-content",
+        "label": "Blog Link",
+        "name": "link",
+        "valueType": "string"
+      },
+      {
         "component": "reference",
-        "label": "Image",
+        "label": "Blog Image",
         "name": "image",
         "valueType": "string"
       },
       {
         "component": "date-time",
-        "label": "Published Date",
-        "name": "date",
+        "label": "Publish Date",
+        "name": "publishDate",
         "valueType": "string"
       },
       {
-        "component": "text",
-        "label": "Title",
-        "name": "title",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "Blog Link",
-        "name": "link",
+        "component": "richtext",
+        "label": "Blog Title",
+        "name": "blogTitle",
         "valueType": "string"
       }
     ]
