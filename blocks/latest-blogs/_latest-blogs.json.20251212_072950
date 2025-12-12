@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Blog-Card",
-      "id": "blogCard",
+      "title": "Blog-Item",
+      "id": "blogItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "blogCard",
-              "name": "Blog-Card"
+              "model": "blogItem",
+              "name": "Blog-Item"
             }
           }
         }
@@ -34,45 +34,16 @@
   ],
   "models": [
     {
-      "id": "blogCard",
+      "id": "latestBlogs",
       "fields": [
         {
-          "component": "reference",
-          "label": "Image",
-          "name": "image",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Date",
-          "name": "date",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
+          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
         },
         {
-          "component": "aem-content",
-          "label": "Blog Link",
-          "name": "link",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
-      "id": "latestBlogs",
-      "fields": [
-        {
-          "component": "text",
-          "label": "Heading",
-          "name": "heading",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
+          "component": "richtext",
           "label": "Description",
           "name": "description",
           "valueType": "string"
@@ -82,6 +53,41 @@
           "label": "View All Link",
           "name": "viewAllLink",
           "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "View All Icon",
+          "name": "viewAllIcon",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "blogItem",
+      "fields": [
+        {
+          "component": "aem-content",
+          "label": "Blog Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Date",
+          "name": "date",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "Headline",
+          "name": "headline",
+          "valueType": "string"
         }
       ]
     }
@@ -90,7 +96,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "blogCard"
+        "blogItem"
       ]
     }
   ]

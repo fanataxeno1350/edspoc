@@ -42,7 +42,7 @@
   {
     "id": "latestBlogs",
     "components": [
-      "latestBlogItem"
+      "blogCard"
     ]
   }
 ]
