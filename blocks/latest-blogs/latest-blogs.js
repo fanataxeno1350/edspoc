@@ -2,6 +2,9 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
+  const latestBlogsWrapper = document.createElement('section');
+  latestBlogsWrapper.classList.add('latestblogs-wrapper');
+
   const latestBlogsListing = document.createElement('div');
   latestBlogsListing.classList.add('latestblogs-listing', 'position-relative');
 
@@ -140,13 +143,15 @@ export default function decorate(block) {
 
     cards.append(contentWrapper);
     cardWrapper.append(cards);
+    moveInstrumentation(item, cardWrapper);
     sectionSecond.append(cardWrapper);
   });
 
   latestBlogsListing.append(sectionSecond);
+  latestBlogsWrapper.append(latestBlogsListing);
 
   block.textContent = '';
-  block.append(latestBlogsListing);
-  block.className = `latest-blogs block latestblogs-wrapper`;
+  block.append(latestBlogsWrapper);
+  block.className = `latest-blogs block`;
   block.dataset.blockStatus = 'loaded';
 }
