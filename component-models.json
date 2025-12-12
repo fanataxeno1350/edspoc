@@ -203,7 +203,7 @@
     ]
   },
   {
-    "id": "blogCard",
+    "id": "blog",
     "fields": [
       {
         "component": "reference",
@@ -213,8 +213,8 @@
       },
       {
         "component": "aem-content",
-        "label": "Blog Link",
-        "name": "blogLink",
+        "label": "Link",
+        "name": "link",
         "valueType": "string"
       },
       {
