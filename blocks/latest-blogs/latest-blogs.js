@@ -144,12 +144,9 @@ export default function decorate(block) {
   });
 
   latestBlogsListing.append(sectionSecond);
-  latestBlogsWrapper.append(latestBlogsListing);
 
   block.textContent = '';
-  block.append(latestBlogsWrapper);
+  block.append(latestBlogsListing);
   block.className = `latest-blogs block`;
   block.dataset.blockStatus = 'loaded';
-  
-  
 }
