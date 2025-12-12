@@ -80,7 +80,6 @@ export default function decorate(block) {
     cardImageWrapper.classList.add('latestblogs-cardImageWrapper');
 
     const imageProp = cardNode.querySelector('[data-aue-prop="image"]');
-    let img = imageProp ? imageProp.querySelector('img') : null;
     if (!img) {
       const fallbackAnchor = cardNode.querySelector('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"]');
       if (fallbackAnchor) {
