@@ -146,8 +146,8 @@ export default function decorate(block) {
     sectionSecond.append(cardWrapper);
   });
 
-  latestBlogsListing.append(sectionSecond);
-  latestBlogsWrapper.append(latestBlogsListing);
+  // latestBlogsListing.append(sectionSecond);
+  // latestBlogsWrapper.append(latestBlogsListing);
 
   block.textContent = '';
   block.append(latestBlogsWrapper);
