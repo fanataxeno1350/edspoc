@@ -2,6 +2,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
+  console.log(block);
   const latestBlogsWrapper = document.createElement('section');
   latestBlogsWrapper.classList.add('latestblogs-wrapper');
 
@@ -81,7 +82,7 @@ export default function decorate(block) {
     const cardImageWrapper = document.createElement('div');
     cardImageWrapper.classList.add('latestblogs-cardImageWrapper');
 
-    const authoredImage = item.querySelector('[data-aue-prop="image"] img');
+    const authoredImage = item.querySelector('[data-aue-prop="image"]');
     if (authoredImage) {
       const picture = createOptimizedPicture(authoredImage.src, authoredImage.alt || '');
       picture.querySelector('img').classList.add('latestblogs-cardImage', 'w-100', 'h-100');
@@ -153,4 +154,6 @@ export default function decorate(block) {
   block.append(latestBlogsWrapper);
   block.className = `latest-blogs block`;
   block.dataset.blockStatus = 'loaded';
+  
+  
 }
