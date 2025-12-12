@@ -147,6 +147,6 @@ export default function decorate(block) {
 
   block.textContent = '';
   block.append(latestBlogsListing);
-  block.className = `latest-blogs block`;
+  block.className = `latest-blogs block latestblogs-wrapper`;
   block.dataset.blockStatus = 'loaded';
 }
