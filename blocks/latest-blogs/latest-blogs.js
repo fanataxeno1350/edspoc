@@ -87,14 +87,14 @@ export default function decorate(block) {
       const picture = createOptimizedPicture(authoredImage.src, authoredImage.alt || '');
       picture.querySelector('img').classList.add('latestblogs-cardImage', 'w-100', 'h-100');
       cardImageWrapper.append(picture);
-      moveInstrumentation(authoredImage, picture);
+      moveInstrumentation(authoredImage, cardImageWrapper);
     } else {
       const fallbackImage = item.querySelector('img');
       if (fallbackImage) {
         const picture = createOptimizedPicture(fallbackImage.src, fallbackImage.alt || '');
         picture.querySelector('img').classList.add('latestblogs-cardImage', 'w-100', 'h-100');
         cardImageWrapper.append(picture);
-        moveInstrumentation(fallbackImage, picture);
+        moveInstrumentation(fallbackImage, cardImageWrapper);
       }
     }
     cards.append(cardImageWrapper);
