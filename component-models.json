@@ -184,61 +184,49 @@
     "fields": [
       {
         "component": "richtext",
-        "label": "Section Title",
+        "label": "Title",
         "name": "title",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Section Description",
+        "label": "Description",
         "name": "description",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "CTA Link",
-        "name": "ctaLink",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "label": "CTA Text",
-        "name": "ctaText",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "label": "CTA Icon",
-        "name": "ctaIcon",
+        "label": "View All Link",
+        "name": "viewAllLink",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "blogCard",
+    "id": "latestBlogItem",
     "fields": [
       {
-        "component": "aem-content",
-        "label": "Blog Link",
-        "name": "blogLink",
-        "valueType": "string"
-      },
-      {
         "component": "reference",
-        "label": "Blog Image",
+        "label": "Image",
         "name": "image",
         "valueType": "string"
       },
       {
         "component": "date-time",
-        "label": "Publish Date",
-        "name": "publishDate",
+        "label": "Published Date",
+        "name": "date",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Blog Title",
-        "name": "title",
+        "label": "Headline",
+        "name": "headline",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Article Link",
+        "name": "link",
         "valueType": "string"
       }
     ]

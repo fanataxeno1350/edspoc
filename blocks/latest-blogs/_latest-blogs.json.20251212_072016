@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Latest-Blog-Item",
-      "id": "latestBlogItem",
+      "title": "Blog-Card",
+      "id": "blogCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "latestBlogItem",
-              "name": "Latest-Blog-Item"
+              "model": "blogCard",
+              "name": "Blog-Card"
             }
           }
         }
@@ -38,49 +38,61 @@
       "fields": [
         {
           "component": "richtext",
-          "label": "Title",
+          "label": "Section Title",
           "name": "title",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Description",
+          "label": "Section Description",
           "name": "description",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "View All Link",
-          "name": "viewAllLink",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "CTA Text",
+          "name": "ctaText",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "label": "CTA Icon",
+          "name": "ctaIcon",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "latestBlogItem",
+      "id": "blogCard",
       "fields": [
         {
+          "component": "aem-content",
+          "label": "Blog Link",
+          "name": "blogLink",
+          "valueType": "string"
+        },
+        {
           "component": "reference",
-          "label": "Image",
+          "label": "Blog Image",
           "name": "image",
           "valueType": "string"
         },
         {
           "component": "date-time",
-          "label": "Published Date",
-          "name": "date",
+          "label": "Publish Date",
+          "name": "publishDate",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Headline",
-          "name": "headline",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Article Link",
-          "name": "link",
+          "label": "Blog Title",
+          "name": "title",
           "valueType": "string"
         }
       ]
@@ -90,7 +102,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "latestBlogItem"
+        "blogCard"
       ]
     }
   ]
