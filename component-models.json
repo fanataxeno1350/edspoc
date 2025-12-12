@@ -184,49 +184,49 @@
     "fields": [
       {
         "component": "richtext",
-        "label": "Section Title",
+        "label": "Title",
         "name": "title",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Section Description",
+        "label": "Description",
         "name": "description",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Section CTA Link",
-        "name": "ctaLink",
+        "label": "View All Link",
+        "name": "viewAllLink",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "latestBlogItem",
+    "id": "blogItem",
     "fields": [
-      {
-        "component": "reference",
-        "label": "Blog Image",
-        "name": "image",
-        "valueType": "string"
-      },
       {
         "component": "aem-content",
         "label": "Blog Link",
-        "name": "link",
+        "name": "blogLink",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
         "valueType": "string"
       },
       {
         "component": "date-time",
         "label": "Published Date",
-        "name": "publishDate",
+        "name": "publishedDate",
         "valueType": "string"
       },
       {
         "component": "richtext",
         "label": "Blog Title",
-        "name": "title",
+        "name": "blogTitle",
         "valueType": "string"
       }
     ]
