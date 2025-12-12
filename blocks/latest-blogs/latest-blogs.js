@@ -2,10 +2,6 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  console.log(block);
-  const latestBlogsWrapper = document.createElement('section');
-  latestBlogsWrapper.classList.add('latestblogs-wrapper');
-
   const latestBlogsListing = document.createElement('div');
   latestBlogsListing.classList.add('latestblogs-listing', 'position-relative');
 
