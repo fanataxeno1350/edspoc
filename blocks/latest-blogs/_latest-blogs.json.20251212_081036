@@ -37,7 +37,7 @@
       "id": "latestBlogs",
       "fields": [
         {
-          "component": "text",
+          "component": "richtext",
           "label": "Title",
           "name": "title",
           "valueType": "string"
@@ -50,8 +50,8 @@
         },
         {
           "component": "aem-content",
-          "label": "View All Link",
-          "name": "viewAllLink",
+          "label": "CTA Link",
+          "name": "ctaLink",
           "valueType": "string"
         }
       ]
@@ -67,14 +67,14 @@
         },
         {
           "component": "date-time",
-          "label": "Published Date",
+          "label": "Date",
           "name": "date",
           "valueType": "string"
         },
         {
-          "component": "text",
-          "label": "Title",
-          "name": "title",
+          "component": "richtext",
+          "label": "Headline",
+          "name": "headline",
           "valueType": "string"
         },
         {
