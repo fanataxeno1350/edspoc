@@ -196,14 +196,14 @@
       },
       {
         "component": "aem-content",
-        "label": "View All Link",
-        "name": "viewAllLink",
+        "label": "CTA Link",
+        "name": "cta",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "blogCard",
+    "id": "latestBlogItem",
     "fields": [
       {
         "component": "reference",
@@ -213,19 +213,19 @@
       },
       {
         "component": "date-time",
-        "label": "Date",
-        "name": "date",
+        "label": "Publish Date",
+        "name": "publishDate",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "label": "Text",
-        "name": "text",
+        "label": "Blog Title",
+        "name": "blogTitle",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "Link",
+        "label": "Blog Link",
         "name": "link",
         "valueType": "string"
       }

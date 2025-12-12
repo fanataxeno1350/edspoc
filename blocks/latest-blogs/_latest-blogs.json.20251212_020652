@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Latest-Blog-Item",
-      "id": "latestBlogItem",
+      "title": "Blog-Card",
+      "id": "blogCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "latestBlogItem",
-              "name": "Latest-Blog-Item"
+              "model": "blogCard",
+              "name": "Blog-Card"
             }
           }
         }
@@ -50,14 +50,14 @@
         },
         {
           "component": "aem-content",
-          "label": "CTA Link",
-          "name": "cta",
+          "label": "View All Link",
+          "name": "viewAllLink",
           "valueType": "string"
         }
       ]
     },
     {
-      "id": "latestBlogItem",
+      "id": "blogCard",
       "fields": [
         {
           "component": "reference",
@@ -67,19 +67,19 @@
         },
         {
           "component": "date-time",
-          "label": "Publish Date",
-          "name": "publishDate",
+          "label": "Date",
+          "name": "date",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Blog Title",
-          "name": "blogTitle",
+          "label": "Text",
+          "name": "text",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "Blog Link",
+          "label": "Link",
           "name": "link",
           "valueType": "string"
         }
@@ -90,7 +90,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "latestBlogItem"
+        "blogCard"
       ]
     }
   ]
