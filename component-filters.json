@@ -15,13 +15,25 @@
       "hero",
       "cards",
       "header",
-      "latestBlogs"
+      "latestBlogs",
+      "headerSection",
+      "carousel",
+      "featurecards",
+      "spaceadder-container",
+      "footerBrand",
+      "stickyNavigationBottomNav"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "carousel",
+    "components": [
+      "carouselItem"
     ]
   },
   {
@@ -40,9 +52,39 @@
     ]
   },
   {
+    "id": "featurecards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "footerBrand",
+    "components": [
+      "footerLink",
+      "footerSocialLink"
+    ]
+  },
+  {
+    "id": "headerSection",
+    "components": [
+      "sidebarMenuItem",
+      "footerLink",
+      "footerSocialLink"
+    ]
+  },
+  {
     "id": "latestBlogs",
     "components": [
-      "blogItem"
+      "blogCard"
+    ]
+  },
+  {
+    "id": "spaceadder-container"
+  },
+  {
+    "id": "stickyNavigationBottomNav",
+    "components": [
+      "navItem"
     ]
   }
 ]

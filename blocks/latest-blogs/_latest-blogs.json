@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Blog-Item",
-      "id": "blogItem",
+      "title": "Blog-Card",
+      "id": "blogCard",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "blogItem",
-              "name": "Blog-Item"
+              "model": "blogCard",
+              "name": "Blog-Card"
             }
           }
         }
@@ -50,49 +50,37 @@
         },
         {
           "component": "aem-content",
-          "label": "View All Link",
-          "name": "viewAllLink",
+          "label": "CTA Link",
+          "name": "ctaLink",
           "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "View All Icon",
-          "name": "viewAllIcon",
-          "valueType": "string"
-        },
-        {
-          "component": "blogItem",
-          "label": "Blogs",
-          "name": "blogs",
-          "valueType": "array"
         }
       ]
     },
     {
-      "id": "blogItem",
+      "id": "blogCard",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "Blog Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
           "component": "reference",
-          "label": "Blog Image",
+          "label": "Image",
           "name": "image",
           "valueType": "string"
         },
         {
           "component": "date-time",
-          "label": "Publish Date",
-          "name": "publishDate",
+          "label": "Published Date",
+          "name": "date",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Blog Title",
-          "name": "blogTitle",
+          "label": "Text",
+          "name": "text",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Blog Link",
+          "name": "link",
           "valueType": "string"
         }
       ]
@@ -102,7 +90,7 @@
     {
       "id": "latestBlogs",
       "components": [
-        "blogItem"
+        "blogCard"
       ]
     }
   ]

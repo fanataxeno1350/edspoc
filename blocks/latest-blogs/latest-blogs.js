@@ -2,8 +2,11 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const mainDiv = document.createElement('div');
-  mainDiv.classList.add('latestblogs-listing', 'position-relative');
+  const latestBlogsWrapper = document.createElement('section');
+  latestBlogsWrapper.classList.add('latestblogs-wrapper');
+
+  const latestBlogsListing = document.createElement('div');
+  latestBlogsListing.classList.add('latestblogs-listing', 'position-relative');
 
   const firstSection = document.createElement('div');
   firstSection.classList.add('latestblogs-listing_section--first', 'text-white', 'text-center');
@@ -26,84 +29,102 @@ export default function decorate(block) {
     moveInstrumentation(descriptionElement, p);
   }
 
-  const viewAllLinkElement = block.querySelector('[data-aue-prop="viewAllLink"]');
-  if (viewAllLinkElement) {
-    const btnWrapper = document.createElement('div');
-    btnWrapper.classList.add('latestblogs-btnWrapper');
+  const ctaLinkElement = block.querySelector('[data-aue-prop="ctaLink"]');
+  if (ctaLinkElement) {
+    const latestBlogsBtnWrapper = document.createElement('div');
+    latestBlogsBtnWrapper.classList.add('latestblogs-btnWrapper');
 
-    const a = document.createElement('a');
-    a.classList.add('boing--text__title-3', 'latestblogs-btn', 'analytics_cta_click');
-    a.href = viewAllLinkElement.href;
-    a.title = viewAllLinkElement.textContent.trim();
-    a.textContent = viewAllLinkElement.textContent.trim();
-
-    btnWrapper.append(a);
-    firstSection.append(btnWrapper);
-    moveInstrumentation(viewAllLinkElement, a);
+    const ctaLink = ctaLinkElement.querySelector('a');
+    if (ctaLink) {
+      const newCtaLink = document.createElement('a');
+      newCtaLink.href = ctaLink.href;
+      newCtaLink.title = ctaLink.textContent.trim();
+      newCtaLink.classList.add('boing--text__title-3', 'latestblogs-btn', 'analytics_cta_click');
+      newCtaLink.textContent = ctaLink.textContent.trim();
+      latestBlogsBtnWrapper.append(newCtaLink);
+      moveInstrumentation(ctaLink, newCtaLink);
+    }
+    firstSection.append(latestBlogsBtnWrapper);
+    moveInstrumentation(ctaLinkElement, latestBlogsBtnWrapper);
   }
 
-  mainDiv.append(firstSection);
+  latestBlogsListing.append(firstSection);
 
   const secondSection = document.createElement('div');
   secondSection.classList.add('latestblogs-listing_section--second', 'd-flex');
 
-  const blogItems = block.querySelectorAll('[data-aue-model="blogItem"]');
-  blogItems.forEach((blogItem) => {
-    const linkElement = blogItem.querySelector('[data-aue-prop="link"]');
-    const imageElement = blogItem.querySelector('[data-aue-prop="image"]');
-    const publishDateElement = blogItem.querySelector('[data-aue-prop="publishDate"]');
-    const blogTitleElement = blogItem.querySelector('[data-aue-prop="blogTitle"]');
-
-    const cardLink = document.createElement('a');
-    cardLink.classList.add('latestblogs-cardWrapper', 'analytics_cta_click');
-    if (linkElement) {
-      cardLink.href = linkElement.href;
-      cardLink.dataset.ctaLabel = blogTitleElement ? blogTitleElement.textContent.trim() : '';
+  const blogCards = block.querySelectorAll('[data-aue-model="blogCard"]');
+  blogCards.forEach((blogCard) => {
+    const blogLinkElement = blogCard.querySelector('[data-aue-prop="link"]');
+    let cardLink = blogLinkElement ? blogLinkElement.querySelector('a') : null;
+    if (!cardLink) {
+      cardLink = document.createElement('a');
+      cardLink.href = '#';
     }
 
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('latestblogs-cards');
+    const latestblogsCardWrapper = document.createElement('a');
+    latestblogsCardWrapper.href = cardLink.href;
+    latestblogsCardWrapper.classList.add('latestblogs-cardWrapper', 'analytics_cta_click');
+    const ctaLabel = blogCard.querySelector('[data-aue-prop="text"]')?.textContent.trim();
+    if (ctaLabel) {
+      latestblogsCardWrapper.dataset.ctaLabel = ctaLabel;
+    }
 
+    const latestblogsCards = document.createElement('div');
+    latestblogsCards.classList.add('latestblogs-cards');
+
+    const imageElement = blogCard.querySelector('[data-aue-prop="image"]');
     if (imageElement) {
-      const cardImageWrapper = document.createElement('div');
-      cardImageWrapper.classList.add('latestblogs-cardImageWrapper');
-      const picture = createOptimizedPicture(imageElement.src, imageElement.alt || '', false, [{ width: '750' }]);
-      picture.querySelector('img').classList.add('latestblogs-cardImage', 'w-100', 'h-100');
-      cardImageWrapper.append(picture);
-      cardDiv.append(cardImageWrapper);
-      moveInstrumentation(imageElement, picture);
+      const latestblogsCardImageWrapper = document.createElement('div');
+      latestblogsCardImageWrapper.classList.add('latestblogs-cardImageWrapper');
+
+      const img = imageElement.querySelector('img');
+      if (img) {
+        const optimizedPicture = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+        const newImg = optimizedPicture.querySelector('img');
+        if (newImg) {
+          newImg.classList.add('latestblogs-cardImage', 'w-100', 'h-100');
+        }
+        latestblogsCardImageWrapper.append(optimizedPicture);
+        moveInstrumentation(imageElement, latestblogsCardImageWrapper);
+      }
+      latestblogsCards.append(latestblogsCardImageWrapper);
     }
 
     const contentWrapper = document.createElement('div');
     contentWrapper.classList.add('latestblogs-cards_content--wrapper');
 
-    if (publishDateElement) {
-      const pDate = document.createElement('p');
-      pDate.classList.add('boing--text__body-5', 'p-0', 'm-0', 'mb-3', 'latestblogs-published_date');
-      pDate.textContent = publishDateElement.textContent.trim();
-      pDate.dataset.date = publishDateElement.dataset.date;
-      contentWrapper.append(pDate);
-      moveInstrumentation(publishDateElement, pDate);
+    const dateElement = blogCard.querySelector('[data-aue-prop="date"]');
+    if (dateElement && dateElement.textContent.trim()) {
+      const dateP = document.createElement('p');
+      dateP.classList.add('boing--text__body-5', 'p-0', 'm-0', 'mb-3', 'latestblogs-published_date');
+      const date = new Date(dateElement.textContent.trim());
+      const options = { day: '2-digit', month: 'long', year: 'numeric' };
+      dateP.textContent = date.toLocaleDateString('en-GB', options);
+      contentWrapper.append(dateP);
+      moveInstrumentation(dateElement, dateP);
     }
 
-    if (blogTitleElement) {
-      const pTitle = document.createElement('p');
-      pTitle.classList.add('boing--text__body-2', 'latestblogs-boing--text__body');
-      pTitle.append(...blogTitleElement.childNodes);
-      contentWrapper.append(pTitle);
-      moveInstrumentation(blogTitleElement, pTitle);
+    const textElement = blogCard.querySelector('[data-aue-prop="text"]');
+    if (textElement) {
+      const textP = document.createElement('p');
+      textP.classList.add('boing--text__body-2', 'latestblogs-boing--text__body');
+      textP.append(...textElement.childNodes);
+      contentWrapper.append(textP);
+      moveInstrumentation(textElement, textP);
     }
 
-    cardDiv.append(contentWrapper);
-    cardLink.append(cardDiv);
-    secondSection.append(cardLink);
-    moveInstrumentation(blogItem, cardLink);
+    latestblogsCards.append(contentWrapper);
+    latestblogsCardWrapper.append(latestblogsCards);
+    secondSection.append(latestblogsCardWrapper);
+    moveInstrumentation(blogCard, latestblogsCardWrapper);
   });
 
-  mainDiv.append(secondSection);
+  latestBlogsListing.append(secondSection);
+  latestBlogsWrapper.append(latestBlogsListing);
 
   block.textContent = '';
-  block.classList.add('latestblogs-wrapper');
-  block.append(mainDiv);
+  block.append(latestBlogsWrapper);
+  block.classList.add('latestblogs');
   block.dataset.blockStatus = 'loaded';
 }

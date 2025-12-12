@@ -50,7 +50,13 @@
         "hero",
         "cards",
         "header",
-        "latestBlogs"
+        "latestBlogs",
+        "headerSection",
+        "carousel",
+        "featurecards",
+        "spaceadder-container",
+        "footerBrand",
+        "stickyNavigationBottomNav"
       ]
     }
   ]
