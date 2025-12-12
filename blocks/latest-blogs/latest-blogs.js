@@ -60,7 +60,7 @@ export default function decorate(block) {
   const blogCards = block.querySelectorAll('[data-aue-model="blogCard"]');
   blogCards.forEach((cardNode) => {
     const blogLink = cardNode.querySelector('[data-aue-prop="blogLink"] .button-container a');
-    const image = cardNode.querySelector('[data-aue-prop="image"] img');
+    const image = cardNode.querySelector('[data-aue-prop="image"]');
     const publishDate = cardNode.querySelector('[data-aue-prop="publishDate"]');
     const blogTitle = cardNode.querySelector('[data-aue-prop="title"]');
 
