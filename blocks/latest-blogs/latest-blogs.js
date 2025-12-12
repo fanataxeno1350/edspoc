@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  const wrapper = block.closest('.latest-blogs-it-wrapper');
+  const wrapper = block.closest('.latest-blogs-wrapper');
 
   // ---------------------------
   // 1. Read main fields (title, description, CTA)
