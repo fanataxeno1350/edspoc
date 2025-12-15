@@ -1,0 +1,219 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
+export default function decorate(block) {
+  const swiperWrapper = document.createElement('div');
+  swiperWrapper.classList.add('swiper-wrapper', 'carousel-primary-swiper-wrapper', 'carousel-z-0');
+
+  const slides = [...block.children];
+  slides.forEach((slide, index) => {
+    const swiperSlide = document.createElement('div');
+    swiperSlide.classList.add('swiper-slide', 'carousel-primary-swiper-slide');
+    swiperSlide.setAttribute('role', 'tabpanel');
+    swiperSlide.setAttribute('aria-roledescription', 'slide');
+
+    const bannerDiv = document.createElement('div');
+    bannerDiv.classList.add('carousel-banner');
+
+    const section = document.createElement('section');
+    section.classList.add('carousel-banner-section');
+
+    const wrapperDiv = document.createElement('div');
+    wrapperDiv.classList.add('carousel-position-relative', 'carousel-boing', 'carousel-banner-section__wrapper');
+
+    const videoElement = slide.querySelector('[data-aue-prop="video"]');
+    const imageElement = slide.querySelector('[data-aue-prop="image"]');
+    const ctaLink = slide.querySelector('[data-aue-prop="ctaLink"]');
+
+    if (videoElement) {
+      const videoWrapper = document.createElement('div');
+      videoWrapper.classList.add('carousel-video-wrapper');
+
+      const video = document.createElement('video');
+      video.classList.add('carousel-w-100', 'carousel-object-fit-cover', 'carousel-banner-media', 'carousel-banner-video');
+      video.setAttribute('title', 'Video');
+      video.setAttribute('aria-label', 'Video');
+      video.setAttribute('data-is-autoplay', 'true');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('preload', 'metadata');
+      video.setAttribute('fetchpriority', 'high');
+      video.setAttribute('loop', 'false');
+      video.setAttribute('muted', 'true');
+      video.setAttribute('autoplay', 'true');
+
+      const source = document.createElement('source');
+      source.setAttribute('src', videoElement.textContent.trim());
+      source.setAttribute('type', 'video/mp4');
+      video.append(source);
+
+      const playPauseWrapper = document.createElement('div');
+      playPauseWrapper.classList.add('carousel-position-absolute', 'carousel-w-100', 'carousel-h-100', 'carousel-start-0', 'carousel-top-0', 'carousel-d-flex', 'carousel-justify-content-center', 'carousel-align-items-center', 'carousel-cursor-pointer');
+
+      const playButton = document.createElement('button');
+      playButton.setAttribute('type', 'button');
+      playButton.classList.add('carousel-d-none', 'carousel-video-icon', 'carousel-icon-play', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer');
+
+      const pauseButton = document.createElement('button');
+      pauseButton.setAttribute('type', 'button');
+      pauseButton.classList.add('carousel-d-block', 'carousel-video-icon', 'carousel-icon-pause', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer');
+      playPauseWrapper.append(playButton, pauseButton);
+
+      const muteIconWrapper = document.createElement('div');
+      muteIconWrapper.classList.add('carousel-position-absolute', 'carousel-z-2', 'carousel-d-flex', 'carousel-justify-content-center', 'carousel-align-items-center', 'carousel-cursor-pointer', 'carousel-mute-icon');
+
+      const muteButton = document.createElement('button');
+      muteButton.setAttribute('type', 'button');
+      muteButton.classList.add('carousel-video-icon-volume', 'carousel-icon-mute', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer', 'carousel-d-none');
+
+      const unmuteButton = document.createElement('button');
+      unmuteButton.setAttribute('type', 'button');
+      unmuteButton.classList.add('carousel-video-icon-volume', 'carousel-icon-unmute', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer', 'carousel-d-none');
+
+      const noAudioIcon = document.createElement('button');
+      noAudioIcon.setAttribute('type', 'button');
+      noAudioIcon.classList.add('carousel-video-icon-volume', 'carousel-no-audio-icon', 'carousel-bg-transparent', 'carousel-d-flex', 'carousel-align-items-center', 'carousel-justify-content-center', 'carousel-cursor-pointer');
+      muteIconWrapper.append(muteButton, unmuteButton, noAudioIcon);
+
+      videoWrapper.append(video, playPauseWrapper, muteIconWrapper);
+      wrapperDiv.append(videoWrapper);
+    } else if (imageElement) {
+      const picture = createOptimizedPicture(imageElement.querySelector('img').src, imageElement.querySelector('img').alt, true, [{ width: '2000' }]);
+      picture.querySelector('img').classList.add('carousel-w-100', 'carousel-h-100', 'carousel-object-fit-cover', 'carousel-banner-media', 'carousel-banner-image');
+      wrapperDiv.append(picture);
+    }
+
+    const ctaWrapper = document.createElement('div');
+    ctaWrapper.classList.add('carousel-position-absolute', 'carousel-start-50', 'carousel-translate-middle-x', 'carousel-w-100', 'carousel-boing__banner--cta');
+
+    const bannerCtaDiv = document.createElement('div');
+    bannerCtaDiv.classList.add('carousel-banner-cta');
+
+    if (ctaLink) {
+      const textCenterDiv = document.createElement('div');
+      textCenterDiv.classList.add('carousel-text-center');
+
+      const a = document.createElement('a');
+      a.setAttribute('id', `cta-${Math.random().toString(36).substring(2, 11)}`);
+      a.classList.add('carousel-cmp-button', 'carousel-analytics_cta_click', 'carousel-text-center', 'carousel-cta-layout');
+      a.setAttribute('data-link-region', 'CTA');
+      a.setAttribute('data-is-internal', 'true');
+      a.setAttribute('data-enable-gating', 'false');
+      a.setAttribute('href', ctaLink.querySelector('a').href);
+      a.setAttribute('target', '_blank');
+
+      const span = document.createElement('span');
+      span.classList.add('carousel-cmp-button__text', 'carousel-primary-btn', 'carousel-w-75', 'carousel-p-5', 'carousel-rounded-pill', 'carousel-d-inline-flex', 'carousel-justify-content-center', 'carousel-align-items-center', 'carousel-famlf-cta-btn');
+      span.textContent = ctaLink.querySelector('a').textContent.trim();
+      a.append(span);
+
+      const popUpDiv = document.createElement('div');
+      popUpDiv.classList.add('carousel-pop-up', 'carousel-d-none');
+
+      const popupMessage = document.createElement('input');
+      popupMessage.setAttribute('type', 'hidden');
+      popupMessage.classList.add('carousel-popup-message');
+
+      const proceedButtonLabel = document.createElement('input');
+      proceedButtonLabel.setAttribute('type', 'hidden');
+      proceedButtonLabel.classList.add('carousel-proceed-button-label');
+
+      const cancelButtonLabel = document.createElement('input');
+      cancelButtonLabel.setAttribute('type', 'hidden');
+      cancelButtonLabel.classList.add('carousel-cancel-button-label');
+
+      const backgroundColor = document.createElement('input');
+      backgroundColor.setAttribute('type', 'hidden');
+      backgroundColor.classList.add('carousel-background-color');
+      popUpDiv.append(popupMessage, proceedButtonLabel, cancelButtonLabel, backgroundColor);
+
+      textCenterDiv.append(a, popUpDiv);
+      bannerCtaDiv.append(textCenterDiv);
+    }
+    ctaWrapper.append(bannerCtaDiv);
+    wrapperDiv.append(ctaWrapper);
+
+    section.append(wrapperDiv);
+    bannerDiv.append(section);
+    swiperSlide.append(bannerDiv);
+
+    swiperWrapper.append(swiperSlide);
+    moveInstrumentation(slide, swiperSlide);
+  });
+
+  const actionsDiv = document.createElement('div');
+  actionsDiv.classList.add('carousel-cmp-carousel__actions');
+
+  const prevButton = document.createElement('button');
+  prevButton.classList.add('carousel-cmp-carousel__action', 'carousel-cmp-carousel__action--previous');
+  prevButton.setAttribute('type', 'button');
+  prevButton.setAttribute('aria-label', 'Previous');
+  prevButton.setAttribute('data-cmp-hook-carousel', 'previous');
+  prevButton.innerHTML = '<span class="carousel-cmp-carousel__action-icon"></span><span class="carousel-cmp-carousel__action-text"></span>';
+
+  const nextButton = document.createElement('button');
+  nextButton.classList.add('carousel-cmp-carousel__action', 'carousel-cmp-carousel__action--next');
+  nextButton.setAttribute('type', 'button');
+  nextButton.setAttribute('aria-label', 'Next');
+  nextButton.setAttribute('data-cmp-hook-carousel', 'next');
+  nextButton.innerHTML = '<span class="carousel-cmp-carousel__action-icon"></span><span class="carousel-cmp-carousel__action-text"></span>';
+
+  const pauseButton = document.createElement('button');
+  pauseButton.classList.add('carousel-cmp-carousel__action', 'carousel-cmp-carousel__action--pause');
+  pauseButton.setAttribute('type', 'button');
+  pauseButton.setAttribute('aria-label', 'Pause');
+  pauseButton.setAttribute('data-cmp-hook-carousel', 'pause');
+  pauseButton.innerHTML = '<span class="carousel-cmp-carousel__action-icon"></span><span class="carousel-cmp-carousel__action-text"></span>';
+
+  const playButton = document.createElement('button');
+  playButton.classList.add('carousel-cmp-carousel__action', 'carousel-cmp-carousel__action--play', 'carousel-cmp-carousel__action--disabled');
+  playButton.setAttribute('type', 'button');
+  playButton.setAttribute('aria-label', 'Play');
+  playButton.setAttribute('data-cmp-hook-carousel', 'play');
+  playButton.innerHTML = '<span class="carousel-cmp-carousel__action-icon"></span><span class="carousel-cmp-carousel__action-text"></span>';
+
+  actionsDiv.append(prevButton, nextButton, pauseButton, playButton);
+  swiperWrapper.append(actionsDiv);
+
+  const swiperContainer = document.createElement('div');
+  swiperContainer.classList.add('carousel-swiper-container');
+
+  const swiperNextDiv = document.createElement('div');
+  const swiperNextButton = document.createElement('button');
+  swiperNextButton.classList.add('carousel-primary-swiper__buttonNext', 'carousel-position-absolute', 'carousel-top-50', 'carousel-swiper-buttonBg', 'carousel-d-none', 'carousel-d-sm-block', 'carousel-cursor-pointer', 'carousel-analytics_cta_click', 'carousel-disabled');
+  swiperNextButton.setAttribute('disabled', '');
+  swiperNextDiv.append(swiperNextButton);
+
+  const swiperPrevDiv = document.createElement('div');
+  const swiperPrevButton = document.createElement('button');
+  swiperPrevButton.classList.add('carousel-primary-swiper__buttonPrev', 'carousel-position-absolute', 'carousel-top-50', 'carousel-swiper-buttonBg', 'carousel-d-none', 'carousel-d-sm-block', 'carousel-cursor-pointer', 'carousel-analytics_cta_click');
+  swiperPrevDiv.append(swiperPrevButton);
+  swiperContainer.append(swiperNextDiv, swiperPrevDiv);
+
+  const swiperPagination = document.createElement('div');
+  swiperPagination.classList.add('swiper-pagination', 'carousel-primary-swiper-pagination', 'carousel-pagination-set', 'carousel-mb-md-8', 'carousel-mb-10', 'carousel-mt-6', 'carousel-position-absolute', 'swiper-pagination-clickable', 'swiper-pagination-bullets', 'swiper-pagination-horizontal');
+  swiperPagination.innerHTML = '<span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet carousel-swiper-pagination-bullet-active"></span>';
+
+  const carouselPrimarySwiper = document.createElement('div');
+  carouselPrimarySwiper.classList.add('swiper', 'carousel-primary-swiper', `carousel-primary-swiper-${block.id || 'generated'}`);
+  carouselPrimarySwiper.setAttribute('data-swiper-id', `.carousel-primary-swiper-${block.id || 'generated'}`);
+  carouselPrimarySwiper.setAttribute('id', `carousel-${block.id || 'generated'}`);
+  carouselPrimarySwiper.setAttribute('role', 'group');
+  carouselPrimarySwiper.setAttribute('aria-live', 'polite');
+  carouselPrimarySwiper.setAttribute('aria-roledescription', 'carousel');
+  carouselPrimarySwiper.setAttribute('data-is-autoplay', 'true');
+  carouselPrimarySwiper.setAttribute('data-delay', '5000');
+  carouselPrimarySwiper.setAttribute('data-autopause-disabled', 'true');
+  carouselPrimarySwiper.setAttribute('data-is-loop', 'false');
+  carouselPrimarySwiper.setAttribute('data-placeholder-text', 'false');
+
+  carouselPrimarySwiper.append(swiperWrapper, swiperContainer, swiperPagination);
+
+  const carouselContainer = document.createElement('div');
+  carouselContainer.classList.add('carousel-container');
+  carouselContainer.append(carouselPrimarySwiper);
+
+  block.textContent = '';
+  block.append(carouselContainer);
+  block.classList.add('carousel');
+  block.dataset.blockStatus = 'loaded';
+}

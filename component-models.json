@@ -161,18 +161,24 @@
     ]
   },
   {
-    "id": "slide",
+    "id": "carouselItem",
     "fields": [
       {
         "component": "reference",
-        "label": "Media",
-        "name": "media",
+        "label": "Video",
+        "name": "video",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "CTA",
-        "name": "cta",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
       }
     ]
