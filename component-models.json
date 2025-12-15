@@ -425,14 +425,14 @@
       },
       {
         "component": "aem-content",
-        "label": "CTA Link",
-        "name": "cta",
+        "label": "View All Link",
+        "name": "viewAllLink",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "blogItem",
+    "id": "blogCard",
     "fields": [
       {
         "component": "reference",
@@ -441,13 +441,7 @@
         "valueType": "string"
       },
       {
-        "component": "aem-content",
-        "label": "Blog Link",
-        "name": "link",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
+        "component": "date-time",
         "label": "Published Date",
         "name": "date",
         "valueType": "string"
@@ -456,6 +450,12 @@
         "component": "richtext",
         "label": "Blog Title",
         "name": "blogTitle",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Blog Link",
+        "name": "blogLink",
         "valueType": "string"
       }
     ]
