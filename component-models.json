@@ -409,18 +409,12 @@
     ]
   },
   {
-    "id": "blogCard",
+    "id": "latestBlogs",
     "fields": [
       {
-        "component": "reference",
-        "label": "Image",
-        "name": "image",
-        "valueType": "string"
-      },
-      {
-        "component": "date-time",
-        "label": "Published Date",
-        "name": "publishedDate",
+        "component": "richtext",
+        "label": "Title",
+        "name": "title",
         "valueType": "string"
       },
       {
@@ -431,31 +425,37 @@
       },
       {
         "component": "aem-content",
-        "label": "Blog Link",
-        "name": "link",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
       }
     ]
   },
   {
-    "id": "latestBlogs",
+    "id": "blogCard",
     "fields": [
       {
-        "component": "text",
-        "label": "Title",
-        "name": "title",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Description",
-        "name": "description",
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
         "valueType": "string"
       },
       {
         "component": "aem-content",
-        "label": "CTA Link",
-        "name": "ctaLink",
+        "label": "Blog Link",
+        "name": "link",
+        "valueType": "string"
+      },
+      {
+        "component": "date-time",
+        "label": "Published Date",
+        "name": "publishedDate",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "label": "Headline",
+        "name": "headline",
         "valueType": "string"
       }
     ]
