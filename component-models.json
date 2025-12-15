@@ -409,29 +409,6 @@
     ]
   },
   {
-    "id": "latestBlogs",
-    "fields": [
-      {
-        "component": "richtext",
-        "label": "Title",
-        "name": "title",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "label": "Description",
-        "name": "description",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "label": "CTA Link",
-        "name": "ctaLink",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "blogCard",
     "fields": [
       {
@@ -442,20 +419,43 @@
       },
       {
         "component": "aem-content",
-        "label": "Blog Link",
+        "label": "Link",
         "name": "link",
         "valueType": "string"
       },
       {
-        "component": "date-time",
-        "label": "Published Date",
-        "name": "publishedDate",
+        "component": "text",
+        "label": "Date",
+        "name": "date",
         "valueType": "string"
       },
       {
-        "component": "richtext",
-        "label": "Headline",
-        "name": "headline",
+        "component": "text",
+        "label": "Title",
+        "name": "title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "latestBlogs",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Section Title",
+        "name": "sectionTitle",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "label": "Section Description",
+        "name": "sectionDesc",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "CTA Link",
+        "name": "ctaLink",
         "valueType": "string"
       }
     ]
