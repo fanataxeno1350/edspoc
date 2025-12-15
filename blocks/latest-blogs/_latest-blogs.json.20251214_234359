@@ -17,7 +17,7 @@
       }
     },
     {
-      "title": "Blog Card",
+      "title": "Blog-Card",
       "id": "blogCard",
       "plugins": {
         "xwalk": {
@@ -25,7 +25,7 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "model": "blogCard",
-              "name": "Blog Card"
+              "name": "Blog-Card"
             }
           }
         }
@@ -53,21 +53,6 @@
           "label": "View All Link",
           "name": "viewAllLink",
           "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "label": "View All Icon",
-          "name": "viewAllIcon",
-          "valueType": "string"
-        },
-        {
-          "component": "container",
-          "item": {
-            "type": "blogCard"
-          },
-          "label": "Blog Cards",
-          "name": "blogCards",
-          "valueType": "array"
         }
       ]
     },
@@ -75,27 +60,27 @@
       "id": "blogCard",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
           "component": "reference",
           "label": "Image",
           "name": "image",
           "valueType": "string"
         },
         {
-          "component": "richtext",
-          "label": "Date",
+          "component": "date-time",
+          "label": "Published Date",
           "name": "date",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Headline",
-          "name": "headline",
+          "label": "Blog Title",
+          "name": "blogTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Blog Link",
+          "name": "blogLink",
           "valueType": "string"
         }
       ]

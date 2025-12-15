@@ -313,7 +313,7 @@
           }
         },
         {
-          "title": "Blog-Card",
+          "title": "Blog Card",
           "id": "blogCard",
           "plugins": {
             "xwalk": {
@@ -321,7 +321,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "model": "blogCard",
-                  "name": "Blog-Card"
+                  "name": "Blog Card"
                 }
               }
             }
