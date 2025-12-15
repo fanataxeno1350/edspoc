@@ -37,27 +37,27 @@
       "id": "blogCard",
       "fields": [
         {
-          "component": "aem-content",
-          "label": "Card Link",
-          "name": "cardLink",
-          "valueType": "string"
-        },
-        {
           "component": "reference",
           "label": "Image",
           "name": "image",
           "valueType": "string"
         },
         {
-          "component": "date-time",
-          "label": "Published Date",
-          "name": "publishedDate",
+          "component": "aem-content",
+          "label": "Link",
+          "name": "link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "label": "Date",
+          "name": "date",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "Description",
-          "name": "description",
+          "label": "Title",
+          "name": "title",
           "valueType": "string"
         }
       ]
@@ -67,8 +67,8 @@
       "fields": [
         {
           "component": "richtext",
-          "label": "Title",
-          "name": "title",
+          "label": "Heading",
+          "name": "heading",
           "valueType": "string"
         },
         {
@@ -79,8 +79,14 @@
         },
         {
           "component": "aem-content",
-          "label": "View All Link",
-          "name": "viewAllLink",
+          "label": "CTA Link",
+          "name": "ctaLink",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "label": "CTA Text",
+          "name": "ctaText",
           "valueType": "string"
         }
       ]
