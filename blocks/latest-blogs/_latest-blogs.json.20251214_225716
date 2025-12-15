@@ -34,41 +34,12 @@
   ],
   "models": [
     {
-      "id": "blogCard",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Image",
-          "name": "image",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Date",
-          "name": "date",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "label": "Title",
-          "name": "title",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
       "id": "latestBlogs",
       "fields": [
         {
           "component": "richtext",
-          "label": "Heading",
-          "name": "heading",
+          "label": "Title",
+          "name": "title",
           "valueType": "string"
         },
         {
@@ -80,13 +51,36 @@
         {
           "component": "aem-content",
           "label": "CTA Link",
-          "name": "ctaLink",
+          "name": "cta",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "blogCard",
+      "fields": [
+        {
+          "component": "reference",
+          "label": "Image",
+          "name": "image",
+          "valueType": "string"
+        },
+        {
+          "component": "date-time",
+          "label": "Publish Date",
+          "name": "publishDate",
           "valueType": "string"
         },
         {
           "component": "richtext",
-          "label": "CTA Text",
-          "name": "ctaText",
+          "label": "Card Title",
+          "name": "cardTitle",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "label": "Card Link",
+          "name": "cardLink",
           "valueType": "string"
         }
       ]
