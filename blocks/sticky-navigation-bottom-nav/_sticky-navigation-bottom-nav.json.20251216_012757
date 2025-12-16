@@ -1,31 +1,31 @@
 {
   "definitions": [
     {
-      "title": "Carousel",
-      "id": "carousel",
+      "title": "Sticky-Navigation-Bottom-Nav",
+      "id": "stickyNavigationBottomNav",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "filter": "carousel",
-              "model": "carousel",
-              "name": "Carousel"
+              "filter": "stickyNavigationBottomNav",
+              "model": "stickyNavigationBottomNav",
+              "name": "Sticky-Navigation-Bottom-Nav"
             }
           }
         }
       }
     },
     {
-      "title": "Carousel Slide",
-      "id": "carouselSlide",
+      "title": "Nav-Item",
+      "id": "navItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "model": "carouselSlide",
-              "name": "Carousel Slide"
+              "model": "navItem",
+              "name": "Nav-Item"
             }
           }
         }
@@ -34,34 +34,40 @@
   ],
   "models": [
     {
-      "id": "carouselSlide",
+      "id": "navItem",
       "fields": [
         {
           "component": "reference",
-          "label": "Video",
-          "name": "video",
+          "label": "Icon",
+          "name": "icon",
           "valueType": "string"
         },
         {
-          "component": "reference",
-          "label": "Image",
-          "name": "image",
+          "component": "text",
+          "label": "Label",
+          "name": "label",
           "valueType": "string"
         },
         {
           "component": "aem-content",
-          "label": "CTA Link",
-          "name": "ctaLink",
+          "label": "Link",
+          "name": "link",
           "valueType": "string"
+        },
+        {
+          "component": "boolean",
+          "label": "Consent",
+          "name": "consent",
+          "valueType": "boolean"
         }
       ]
     }
   ],
   "filters": [
     {
-      "id": "carousel",
+      "id": "stickyNavigationBottomNav",
       "components": [
-        "carouselSlide"
+        "navItem"
       ]
     }
   ]

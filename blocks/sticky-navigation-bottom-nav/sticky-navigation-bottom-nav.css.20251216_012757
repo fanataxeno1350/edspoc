@@ -6,8 +6,15 @@
   z-index: 997;
   position: fixed;
   bottom: 0;
+  padding-left: 1rem; /* Equivalent to 16px assuming 16px base */
+  padding-right: 1rem; /* Equivalent to 16px assuming 16px base */
   display: flex;
   align-items: center;
+  max-width: 33.75rem; /* Equivalent to 540px assuming 16px base */
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  background-color: #aa1f30;
 }
 .sticky-navigation-bottom-nav__list {
   list-style: none;
@@ -23,13 +30,12 @@
 }
 .sticky-navigation-bottom-nav__link {
   color: #fff;
-  display: block;
-  text-decoration: none;
-  transition: color 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.125rem; /* Equivalent to 2px assuming 16px base */
+  gap: 0.0625rem; /* Equivalent to 1px assuming 16px base */
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 .sticky-navigation-bottom-nav__link.active {
   color: #f6bb00;
@@ -49,8 +55,8 @@
 .sticky-navigation-bottom-nav__icon {
   display: block;
   height: 1.125rem; /* Equivalent to 18px assuming 16px base */
-  transition: filter 0.3s ease;
   width: 1.125rem; /* Equivalent to 18px assuming 16px base */
+  transition: filter 0.3s ease, -webkit-filter 0.3s ease;
 }
 .sticky-navigation-bottom-nav__label {
   color: #fff;

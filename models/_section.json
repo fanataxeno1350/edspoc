@@ -56,7 +56,9 @@
         "featurecards",
         "spaceadder-container",
         "footerBrand",
-        "stickyNavigationBottomNav"
+        "stickyNavigationBottomNav",
+        "latestBlogsArticleListing",
+        "spaceadderContainer"
       ]
     }
   ]
