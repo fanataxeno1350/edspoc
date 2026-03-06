@@ -22,8 +22,7 @@
       "featurecards",
       "footerBrand",
       "latestBlogs",
-      "spaceadderContainer",
-      "spaceadderCurveContainer",
+      "header2",
       "stickyBottomNav",
       "stickyNavigation",
       "textAndMedia"
@@ -66,6 +65,14 @@
       "sidebarMenuItem",
       "footerListItem",
       "socialLink"
+    ]
+  },
+  {
+    "id": "header2",
+    "components": [
+      "headerMenuItem2",
+      "footerLink2",
+      "socialLink2"
     ]
   },
   {
