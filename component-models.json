@@ -583,6 +583,30 @@
         "label": "Link",
         "name": "link",
         "valueType": "string"
+      },
+      {
+        "component": "container",
+        "itemType": "headerSubMenu2",
+        "label": "Sub Menu",
+        "name": "subMenu",
+        "valueType": "array"
+      }
+    ]
+  },
+  {
+    "id": "headerSubMenu2",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Sub Menu Label",
+        "name": "subMenuLabel",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "label": "Sub Menu Link",
+        "name": "subMenuLink",
+        "valueType": "string"
       }
     ]
   },
@@ -683,12 +707,6 @@
         "valueType": "string"
       }
     ]
-  },
-  {
-    "id": "spaceadderContainer"
-  },
-  {
-    "id": "spaceadderCurveContainer"
   },
   {
     "id": "navItem",
