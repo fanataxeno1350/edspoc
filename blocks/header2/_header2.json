@@ -240,7 +240,12 @@
       "components": [
         "headerMenuItem2",
         "footerLink2",
-        "socialLink2",
+        "socialLink2"
+      ]
+    },
+    {
+      "id": "headerMenuItem2",
+      "components": [
         "headerSubMenu2"
       ]
     }
