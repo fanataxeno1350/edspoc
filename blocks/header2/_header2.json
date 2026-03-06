@@ -17,36 +17,6 @@
       }
     },
     {
-      "title": "HeaderMenuItem2",
-      "id": "headerMenuItem2",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "model": "headerMenuItem2",
-              "name": "HeaderMenuItem2"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "HeaderSubMenu2",
-      "id": "headerSubMenu2",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "model": "headerSubMenu2",
-              "name": "HeaderSubMenu2"
-            }
-          }
-        }
-      }
-    },
-    {
       "title": "FooterLink2",
       "id": "footerLink2",
       "plugins": {
@@ -147,53 +117,6 @@
       ]
     },
     {
-      "id": "headerMenuItem2",
-      "fields": [
-        {
-          "component": "reference",
-          "label": "Icon",
-          "name": "icon",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "label": "Label",
-          "name": "label",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Link",
-          "name": "link",
-          "valueType": "string"
-        },
-        {
-          "component": "container",
-          "itemType": "headerSubMenu2",
-          "label": "Sub Menu",
-          "name": "subMenu",
-          "valueType": "array"
-        }
-      ]
-    },
-    {
-      "id": "headerSubMenu2",
-      "fields": [
-        {
-          "component": "text",
-          "label": "Sub Menu Label",
-          "name": "subMenuLabel",
-          "valueType": "string"
-        },
-        {
-          "component": "aem-content",
-          "label": "Sub Menu Link",
-          "name": "subMenuLink",
-          "valueType": "string"
-        }
-      ]
-    },
-    {
       "id": "footerLink2",
       "fields": [
         {
@@ -241,12 +164,6 @@
         "headerMenuItem2",
         "footerLink2",
         "socialLink2"
-      ]
-    },
-    {
-      "id": "headerMenuItem2",
-      "components": [
-        "headerSubMenu2"
       ]
     }
   ]

@@ -76,12 +76,6 @@
     ]
   },
   {
-    "id": "headerMenuItem2",
-    "components": [
-      "headerSubMenu2"
-    ]
-  },
-  {
     "id": "latestBlogs",
     "components": [
       "blogCard"
