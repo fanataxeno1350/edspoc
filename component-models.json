@@ -241,14 +241,12 @@
         "component": "text",
         "valueType": "string",
         "name": "title",
-        "label": "Title",
-        "multi": false
+        "label": "Title"
       },
       {
         "component": "container",
         "name": "items",
-        "label": "Items",
-        "multi": true
+        "label": "Items"
       }
     ]
   },
@@ -259,8 +257,7 @@
         "component": "text",
         "valueType": "string",
         "name": "label",
-        "label": "Label",
-        "multi": false
+        "label": "Label"
       },
       {
         "component": "aem-content",
