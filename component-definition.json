@@ -186,6 +186,36 @@
               }
             }
           }
+        },
+        {
+          "title": "Navigation2",
+          "id": "navigation2",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Navigation2",
+                  "filter": "navigation2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav-Item2",
+          "id": "nav-item2",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav-Item2",
+                  "model": "nav-item2"
+                }
+              }
+            }
+          }
         }
       ]
     }

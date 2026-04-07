@@ -233,5 +233,42 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "navigation2",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "multi": false
+      },
+      {
+        "component": "container",
+        "name": "items",
+        "label": "Items",
+        "multi": true
+      }
+    ]
+  },
+  {
+    "id": "nav-item2",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Label",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "value": "",
+        "label": "Link",
+        "valueType": "string"
+      }
+    ]
   }
 ]
