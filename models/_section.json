@@ -43,6 +43,12 @@
     {
       "id": "section",
       "components": [
+        "cards",
+        "columns",
+        "footer",
+        "fragment",
+        "header",
+        "hero"
       ]
     }
   ]

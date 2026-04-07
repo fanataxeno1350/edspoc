@@ -7,6 +7,34 @@
   },
   {
     "id": "section",
-    "components": []
+    "components": [
+      "cards",
+      "columns",
+      "footer",
+      "fragment",
+      "header",
+      "hero"
+    ]
+  },
+  {
+    "id": "cards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "columns",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
   }
 ]
