@@ -245,6 +245,7 @@
       },
       {
         "component": "container",
+        "item": "nav-item2",
         "name": "items",
         "label": "Items"
       }
