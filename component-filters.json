@@ -15,7 +15,8 @@
       "header",
       "hero",
       "navigation",
-      "navigation2"
+      "navigation2",
+      "footer-nav"
     ]
   },
   {
@@ -37,6 +38,15 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "footer-nav",
+    "components": [
+      "footer-nav-section",
+      "footer-button",
+      "footer-social-link",
+      "footer-secondary-link"
     ]
   },
   {

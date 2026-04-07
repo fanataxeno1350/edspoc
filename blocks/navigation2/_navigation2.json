@@ -43,7 +43,7 @@
         },
         {
           "component": "container",
-          "item": "nav-item2",
+          "item": "featured-column",
           "name": "items",
           "label": "Items"
         }
