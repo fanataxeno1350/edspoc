@@ -13,7 +13,8 @@
       "footer",
       "fragment",
       "header",
-      "hero"
+      "hero",
+      "navigation"
     ]
   },
   {
@@ -35,6 +36,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "navigation",
+    "components": [
+      "nav-item"
     ]
   }
 ]

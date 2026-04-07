@@ -48,7 +48,8 @@
         "footer",
         "fragment",
         "header",
-        "hero"
+        "hero",
+        "navigation"
       ]
     }
   ]
