@@ -1,5 +1,5 @@
-import { createOptimizedPicture } from '../../../scripts/aem.js';
-import { moveInstrumentation } from '../../../scripts/scripts.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   /* change to ul, li */
@@ -19,5 +19,8 @@ export default function decorate(block) {
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
-  block.replaceChildren(ul);
+  block.textContent = '';
+  block.append(ul);
 }
+// cards.js
+//making change on develop after on A
