@@ -24,14 +24,25 @@
           "component": "text",
           "valueType": "string",
           "name": "label",
-          "label": "Label",
-          "multi": false
+          "label": "Header Text"
+        },
+        {
+            "component": "reference",
+            "valueType": "string",
+            "name": "icon",
+            "label": "Heder Icon"
         },
         {
           "component": "aem-content",
           "name": "link",
+          "label": "Header Link",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
           "value": "",
-          "label": "Link",
+          "label": "Text",
           "valueType": "string"
         }
       ]
