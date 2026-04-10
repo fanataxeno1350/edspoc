@@ -360,26 +360,31 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "label",
-        "label": "Header Text"
+        "name": "title",
+        "label": "Title"
       },
       {
-        "component": "reference",
+        "component": "container",
+        "item": "featured-column",
+        "name": "items",
+        "label": "Items"
+      }
+    ]
+  },
+  {
+    "id": "nav-item2",
+    "fields": [
+      {
+        "component": "text",
         "valueType": "string",
-        "name": "icon",
-        "label": "Header Icon"
+        "name": "label",
+        "label": "Label"
       },
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Header Link",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "text",
         "value": "",
-        "label": "Text",
+        "label": "Link",
         "valueType": "string"
       }
     ]

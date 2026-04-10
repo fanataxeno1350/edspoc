@@ -55,5 +55,11 @@
     "components": [
       "nav-item"
     ]
+  },
+  {
+    "id": "navigation2",
+    "components": [
+      "nav-item2"
+    ]
   }
 ]
