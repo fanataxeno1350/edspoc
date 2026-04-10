@@ -30,7 +30,7 @@
             "component": "reference",
             "valueType": "string",
             "name": "icon",
-            "label": "Heder Icon"
+            "label": "Header Icon"
         },
         {
           "component": "aem-content",
